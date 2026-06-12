@@ -391,6 +391,35 @@ Project Bootstrap is a prerequisite system before Lifecycle begins.
 | User Validation             | Human         | Implementation Verification Result | User Validation Result             |
 | Release                     | Git           | User Validation Result             | Release Result                     |
 
+
+
+---
+
+## 4.3 Bootstrap to Problem Stage Entry Rule
+
+Project Bootstrap is a prerequisite system and not part of the Lifecycle.
+
+After Bootstrap PASS, Lifecycle defines the Stage Entry Rule:
+
+- Current Stage: Problem
+- Inputs: Required Load Set from Bootstrap (PROJECT_BOOTSTRAP.md, ARTIFACT_INDEX.md, BOOTSTRAP_RESULT.md, POST_BOOTSTRAP_ENTRY.md, ProblemDefinition_Template.md)
+- Execution Environment: ChatGPT
+- Produced Artifact: ProblemDefinition_CORE_v1.md
+- Next Stage: Solution
+- Runtime Update Target: PROJECT_BOOTSTRAP.md
+
+Lifecycle owns Stage Entry Rule. POST_BOOTSTRAP_ENTRY.md only contains actionable instructions instantiated for this project.
+
+Rationale:
+
+Ensures unambiguous Bootstrap → Problem Stage transition while maintaining Authority Ownership Model (D-0022).
+
+PATCH PASS criteria:
+
+- ProblemDefinition_CORE_v1.md is generated according to template.
+- Runtime Completion Block is updated.
+- Next Stage is correctly set to Solution.
+
 ---
 
 # 5. Lifecycle Stage Definitions

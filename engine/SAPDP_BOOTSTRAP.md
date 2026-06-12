@@ -66,41 +66,42 @@ The following section is the authoritative runtime state of SAPDP.
 
 Other canonical documents must not maintain runtime state. 
 
-## 3. Current Stage
+## 3. 当前阶段
 
-```text
-Repository Productization
-✓ Frozen
+Released
 
-Next Stage:
+SAPDP v1.0.1 Protocol Repair successfully applied.
 
-Reality Validation
-```
+All Bootstrap Completion Handoff issues (P-038) resolved.
+
+Current Stage reflects that the protocol repair is now fully frozen.
+
 ---
 
 ## 4. 当前任务
 
-Reality Validation Round-1 Preparation
+SAPDP v1.0.1 Protocol Repair Release
+
+Task is complete. No active research or patch required for this release.
+
+Bootstrap Completion Handoff is operational and validated.
 
 ---
 
-## 5.  Current Goal
+## 5. 当前目标
 
-```text
-Validate SAPDP using a completely new product.
+Maintain SAPDP v1.0.1 Protocol Repair Release.
 
-Verify:
+Ensure future Reality Validation rounds start from a clean project bootstrap.
 
-START.md
+Key goals:
 
-Codex Bootstrap
+- All Bootstrap → Problem Stage transitions are fully executable.
+- POST_BOOTSTRAP_ENTRY.md correctly instantiates Stage Entry Instructions.
+- Authority Ownership and Runtime Ownership are preserved.
+- Lifecycle Entry Rules are respected.
+- Patch-1 ~ Patch-10 updates remain frozen.
 
-Bootstrap Audit
-
-Problem Stage Entry
-
-Reality Validation Round-1
-```
 ---
 
 ## 6. 权威文件

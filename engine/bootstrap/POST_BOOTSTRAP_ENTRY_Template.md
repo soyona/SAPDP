@@ -1,125 +1,61 @@
-# POST_BOOTSTRAP_ENTRY
+# POST_BOOTSTRAP_ENTRY.md Template
 
 ## Purpose
 
-Provide the human-readable entry package after Bootstrap completion.
+This template defines the actionable handoff from Project Bootstrap to the first SAPDP Lifecycle Stage.
 
-This file exists to help Human start the first Lifecycle Stage.
+Bootstrap is not operationally complete unless this file clearly tells the user how to continue after Bootstrap PASS.
 
-POST_BOOTSTRAP_ENTRY.md is a Bootstrap handoff artifact.
+POST_BOOTSTRAP_ENTRY.md does not own Lifecycle Stage rules.
 
-It is not:
+Lifecycle Stage rules are owned by:
 
-* Runtime Authority
-* Artifact Authority
-* Lifecycle Authority
+```text
+SAPDP_LIFECYCLE.md
+```
 
----
-
-## Bootstrap Status
-
-Bootstrap Result:
-
-<PASS | PATCH REQUIRED | FAIL>
+POST_BOOTSTRAP_ENTRY.md only instantiates the Bootstrap Completion Handoff for the current project.
 
 ---
 
-## Current Lifecycle Entry
+## Bootstrap Result
 
-Lifecycle Stage:
+```text
+Bootstrap Audit Result:
+<PASS | FAIL>
+```
 
+---
+
+## Current Stage
+
+```text
 Problem
+```
 
 ---
 
-## Required Load Set
+## Next Lifecycle Stage Entry
 
-Load the following files before entering Problem Stage:
-
-PROJECT_BOOTSTRAP.md
-
-ARTIFACT_INDEX.md
-
-docs/protocol/SAPDP_CANONICAL_PROTOCOL.md
+```text
+Problem
+```
 
 ---
 
 ## Execution Environment
 
-Primary Environment:
-
+```text
 ChatGPT
+```
 
 ---
 
-## Next Action
+## Required Load Set
 
-Create:
+The following files must be available in the ChatGPT project session:
 
-ProblemDefinition_CORE_v1.md
-
-using:
-
-templates/problem/ProblemDefinition_Template.md
-
----
-
-## Human Instructions
-
-1.
-
-Read:
-
-PROJECT_BOOTSTRAP.md
-
-2.
-
-Read:
-
-ARTIFACT_INDEX.md
-
-3.
-
-Read:
-
-docs/protocol/SAPDP_CANONICAL_PROTOCOL.md
-
-4.
-
-Start a new ChatGPT session if required.
-
-5.
-
-Provide the Required Load Set.
-
-6.
-
-Request:
-
-Create ProblemDefinition_CORE_v1.md
-
----
-
-## Forbidden Actions
-
-Do not:
-
-Create SolutionDefinition artifacts
-
-Create MVPDefinition artifacts
-
-Create TaskPackage artifacts
-
-Implement product code
-
-Skip Problem Stage
-
----
-
-## Bootstrap Outputs
-
-Bootstrap created:
-
+```text
 PROJECT_BOOTSTRAP.md
 
 ARTIFACT_INDEX.md
@@ -128,26 +64,112 @@ BOOTSTRAP_RESULT.md
 
 POST_BOOTSTRAP_ENTRY.md
 
----
-
-## Authority
-
-POST_BOOTSTRAP_ENTRY.md owns:
-
-Bootstrap Handoff Guidance
-
-POST_BOOTSTRAP_ENTRY.md does not own:
-
-Runtime State
-
-Artifact Discovery
-
-Lifecycle State
-
-Protocol Governance
+ProblemDefinition_Template.md
+```
 
 ---
 
-## Status
+## Required Template
 
-Template
+```text
+ProblemDefinition_Template.md
+```
+
+---
+
+## Artifact To Create
+
+```text
+ProblemDefinition_CORE_v1.md
+```
+
+---
+
+## Exact Next User Action
+
+Open a ChatGPT SAPDP project session and input:
+
+```text
+Load SAPDP Project
+
+Project:
+<ProjectName>
+
+Current Stage:
+Problem
+
+Required Load Set:
+PROJECT_BOOTSTRAP.md
+ARTIFACT_INDEX.md
+BOOTSTRAP_RESULT.md
+POST_BOOTSTRAP_ENTRY.md
+ProblemDefinition_Template.md
+
+Task:
+Generate ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md.
+
+Rules:
+1. Focus only on problem definition.
+2. Do not enter solution design.
+3. Do not enter MVP scope.
+4. Do not enter UI design.
+5. Output complete Markdown.
+6. After generation, provide Runtime Completion Block.
+```
+
+---
+
+## Expected Output
+
+```text
+ProblemDefinition_CORE_v1.md
+```
+
+---
+
+## Runtime Update Target
+
+```text
+PROJECT_BOOTSTRAP.md
+```
+
+---
+
+## Runtime Completion Block Required
+
+After ProblemDefinition_CORE_v1.md is accepted, ChatGPT must produce:
+
+```text
+Current Stage:
+Problem
+
+Produced Artifact:
+ProblemDefinition_CORE_v1.md
+
+Stage Result:
+PASS
+
+Next Stage:
+Solution
+
+Required Load Set:
+ProblemDefinition_CORE_v1.md
+SolutionDefinition_Template.md
+
+Execution Environment:
+ChatGPT
+
+Need New Session:
+No
+
+Next Action:
+Generate SolutionDefinition_CORE_v1.md
+```
+
+---
+
+## Next Stage After Completion
+
+```text
+Solution
+```

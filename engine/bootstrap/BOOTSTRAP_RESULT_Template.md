@@ -1,214 +1,151 @@
-# BOOTSTRAP_RESULT_TEMPLATE
+# BOOTSTRAP_RESULT.md Template
 
 ## Purpose
 
-Record the execution result of SAPDP Project Bootstrap.
+Record the result of Project Bootstrap execution and define the actionable handoff required to enter the first SAPDP Lifecycle Stage.
 
-This artifact records what Bootstrap executed,
-what was validated,
-and the final Bootstrap result.
+Bootstrap is not considered operationally complete until the Bootstrap Completion Handoff is produced.
 
-BOOTSTRAP_RESULT.md is an execution result artifact.
+---
 
-It is not:
+## Bootstrap Audit Result
 
-* Runtime Authority
-* Artifact Authority
-* Lifecycle Authority
+```text
+<PASS | FAIL>
+```
 
-Runtime state remains owned by:
+PASS indicates that:
 
+- Project workspace exists
+- Project scaffold has been generated
+- Runtime authority (PROJECT_BOOTSTRAP.md) exists
+- Artifact authority (ARTIFACT_INDEX.md) exists
+- Required protocol sources have been resolved
+
+---
+
+## Bootstrap Completion Handoff
+
+Operational completion requires that Bootstrap produces the following information:
+
+```text
+Current Stage
+Next Lifecycle Stage Entry
+Execution Environment
+Required Load Set
+Required Template
+Artifact To Create
+Exact Next User Action
+Expected Output
+Runtime Update Target
+Next Stage After Completion
+```
+
+---
+
+## Default New Project Handoff
+
+For a newly initialized SAPDP project, Bootstrap must hand off to:
+
+```text
+Lifecycle Stage:
+Problem
+```
+
+Default Stage Entry Instruction:
+
+```text
+Bootstrap Audit Result:
+PASS
+
+Current Stage:
+Problem
+
+Next Lifecycle Stage Entry:
+Problem
+
+Execution Environment:
+ChatGPT
+
+Required Load Set:
+PROJECT_BOOTSTRAP.md
+ARTIFACT_INDEX.md
+BOOTSTRAP_RESULT.md
+POST_BOOTSTRAP_ENTRY.md
+ProblemDefinition_Template.md
+
+Required Template:
+ProblemDefinition_Template.md
+
+Artifact To Create:
+ProblemDefinition_CORE_v1.md
+
+Exact Next User Action:
+Open a ChatGPT SAPDP project session and request generation of ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md
+
+Expected Output:
+ProblemDefinition_CORE_v1.md
+
+Runtime Update Target:
 PROJECT_BOOTSTRAP.md
 
----
-
-## Bootstrap Result
-
-Result:
-
-<PASS | PATCH REQUIRED | FAIL>
+Next Stage After Completion:
+Solution
+```
 
 ---
 
-## Product Repository
+## Invalid Bootstrap Output Example
 
-Repository:
+The following is **not sufficient**:
 
-<PRODUCT_REPOSITORY>
+```text
+Current Stage:
+Problem
 
----
+Next Action:
+Create ProblemDefinition_CORE_v1.md
+```
 
-## Product Name
+Reason:
 
-Product Name:
+- Execution Environment is undefined
+- Required Load Set is undefined
+- Required Template is undefined
+- Expected Output is undefined
+- Runtime Update Target is undefined
+- Next Stage After Completion is undefined
 
-<PRODUCT_NAME>
-
----
-
-## SAPDP Source
-
-SAPDP Source:
-
-<SAPDP_SOURCE>
-
----
-
-## SAPDP Source Commit Hash
-
-SAPDP Source Commit Hash:
-
-<SAPDP_SOURCE_COMMIT_HASH>
+Bootstrap PASS alone does **not** imply operational completion.
 
 ---
 
-## Version Information
+## Operational Completion Rule
 
-Protocol Version:
+Bootstrap is considered **operationally complete** only when:
 
-<PROTOCOL_VERSION>
+```text
+Bootstrap Audit Result:
+PASS
 
-Bootstrap Version:
+AND
 
-<BOOTSTRAP_VERSION>
+Bootstrap Completion Handoff exists
+```
 
-Contract Version:
+If the handoff is missing:
 
-<BOOTSTRAP_CONTRACT_VERSION>
+```text
+Bootstrap Status:
+Operationally Incomplete
+```
 
-Validation Contract Version:
-
-<BOOTSTRAP_VALIDATION_CONTRACT_VERSION>
-
----
-
-## Scaffold Result
-
-Scaffold Result:
-
-<PASS | PATCH REQUIRED | FAIL>
-
-Details:
-
-<DETAILS>
+even when the Bootstrap Audit Result is PASS.
 
 ---
 
-## Runtime Result
+## Notes
 
-Runtime Result:
-
-<PASS | PATCH REQUIRED | FAIL>
-
-Details:
-
-<DETAILS>
-
----
-
-## Artifact Index Result
-
-Artifact Index Result:
-
-<PASS | PATCH REQUIRED | FAIL>
-
-Details:
-
-<DETAILS>
-
----
-
-## Template Result
-
-Template Result:
-
-<PASS | PATCH REQUIRED | FAIL>
-
-Details:
-
-<DETAILS>
-
----
-
-## Protocol Snapshot Result
-
-Protocol Snapshot Result:
-
-<PASS | PATCH REQUIRED | FAIL>
-
-Details:
-
-<DETAILS>
-
----
-
-## Environment Check Result
-
-Environment Check Result:
-
-<PASS | PATCH REQUIRED | FAIL>
-
-Details:
-
-<DETAILS>
-
----
-
-## Git Result
-
-Git Result:
-
-<PASS | PATCH REQUIRED | FAIL>
-
-Details:
-
-<DETAILS>
-
----
-
-## Validation Result
-
-Validation Result:
-
-<PASS | PATCH REQUIRED | FAIL>
-
-Details:
-
-<DETAILS>
-
----
-
-## Remaining Issues
-
-Remaining Issues:
-
-<NONE | ISSUE LIST>
-
----
-
-## Commit Hash
-
-Commit Hash:
-
-<COMMIT_HASH>
-
----
-
-## Authority
-
-BOOTSTRAP_RESULT.md owns:
-
-* Bootstrap Execution Result
-
-BOOTSTRAP_RESULT.md does not own:
-
-* Runtime State
-* Artifact Discovery
-* Lifecycle State
-* Protocol Governance
-
----
-
-## Status
-
-Template
+- POST_BOOTSTRAP_ENTRY.md is the artifact that contains the actionable instruction instantiated for this project.
+- Lifecycle Stage rules remain in SAPDP_LIFECYCLE.md and are not owned by POST_BOOTSTRAP_ENTRY.md.
+- The Execution Engine must use POST_BOOTSTRAP_ENTRY.md to instruct ChatGPT on generating ProblemDefinition_CORE_v1.md.

@@ -1755,3 +1755,67 @@ Solved
 D-0062
 
 Runtime Completion Contract
+
+
+---
+
+# Problem Domain 10
+
+## Bootstrap To Lifecycle Handoff
+
+### P-038
+
+#### Original Observation
+
+Reality Validation Round-1 中，Codex 完成新项目 Bootstrap 后返回：
+
+Bootstrap Audit Result:
+PASS
+
+Current Stage:
+Problem
+
+Next Action:
+Create ProblemDefinition_CORE_v1.md
+
+但没有明确说明：
+
+下一步应在哪个环境执行
+
+需要加载哪些文件
+
+应该由 ChatGPT 还是 Codex 执行
+
+应输入什么启动指令
+
+应生成哪个 Artifact
+
+生成后如何更新 Runtime
+
+完成后如何进入下一阶段
+
+导致使用者不知道 Bootstrap PASS 后如何继续。
+
+#### Tag
+
+Bootstrap Completion Handoff Problem
+
+#### Why It Matters
+
+Bootstrap 虽然完成了项目初始化，但没有形成可执行的 Lifecycle Entry Handoff。
+
+如果 Bootstrap PASS 后仍需要 Human 自行判断下一步操作，SAPDP 仍然没有彻底解决：
+
+Workflow Memory Ownership Problem
+
+Workflow Progression Ownership Problem
+
+Artifact Discovery Problem
+
+Human As Manual Router Problem
+
+该问题会导致 Bootstrap 到 Problem Stage 的衔接依赖人工理解，而不是协议驱动。
+
+#### Status
+
+Validated

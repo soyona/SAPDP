@@ -7991,3 +7991,631 @@ as an AI-Native Product Development System.
 Status:
 
 Accepted
+
+
+---
+
+
+
+---
+
+## D-0092 | Bootstrap Completion Handoff Rule
+
+Decision:
+
+SAPDP adopts a Bootstrap Completion Handoff Rule.
+
+After Project Bootstrap completes successfully, Bootstrap must produce an explicit handoff from Bootstrap to the first Lifecycle Stage.
+
+Bootstrap PASS is not complete unless the bootstrap output clearly defines:
+
+Current Stage
+Next Lifecycle Stage Entry
+Execution Environment
+Required Load Set
+Required Template
+Artifact To Create
+Exact Next User Action
+Expected Output
+Runtime Update Target
+Next Stage After Completion
+
+For a new project, Bootstrap must hand off to:
+
+Lifecycle Stage: Problem
+
+The default Bootstrap Completion Handoff instructs the user to continue in:
+
+ChatGPT
+
+and generate:
+
+ProblemDefinition_CORE_v1.md
+
+using:
+
+ProblemDefinition_Template.md
+
+Bootstrap output must not stop at:
+
+Current Stage: Problem
+Next Action: Create ProblemDefinition_CORE_v1.md
+
+because this is insufficient for execution.
+
+Reason:
+
+Reality Validation Round-1 showed that Codex can successfully initialize a SAPDP project, generate bootstrap artifacts, and enter Problem Stage, but the user still did not know how to continue.
+
+This rule addresses:
+
+P-038 Bootstrap Completion Handoff Problem
+P-030 Workflow Memory Ownership Problem
+P-031 Workflow Progression Ownership Problem
+P-032 Artifact Discovery Problem
+P-017 Human As Message Bus Problem
+P-018 Human As Manual Router Problem
+
+Status:
+
+Accepted
+
+
+---
+
+## D-0093 | Bootstrap Completion Handoff Freeze Impact Checklist
+
+Decision:
+
+SAPDP adopts a mandatory Freeze Impact Checklist for all Bootstrap Completion Handoff related changes.
+
+Before Bootstrap Completion Handoff may be considered Frozen, the following impact audit must be executed.
+
+---
+
+### Authority Ownership Audit
+
+Verify:
+
+```text
+Bootstrap System
+does not own
+Lifecycle Rules
+```
+
+Verify:
+
+```text
+POST_BOOTSTRAP_ENTRY.md
+
+owns:
+
+Execution Instruction
+
+only
+```
+
+Verify:
+
+```text
+SAPDP_LIFECYCLE.md
+
+owns:
+
+Bootstrap
+↓
+
+Problem
+
+Stage Entry Rule
+```
+
+Verify:
+
+```text
+PROJECT_BOOTSTRAP.md
+
+owns:
+
+Project Runtime State
+```
+
+Verify:
+
+```text
+SAPDP_BOOTSTRAP.md
+
+does not own:
+
+Project Runtime State
+```
+
+Expected Result:
+
+```text
+PASS
+```
+
+---
+
+### Runtime Ownership Audit
+
+Verify:
+
+```text
+SAPDP_BOOTSTRAP.md
+```
+
+maintains:
+
+```text
+SAPDP Runtime
+```
+
+only.
+
+Verify:
+
+```text
+PROJECT_BOOTSTRAP.md
+```
+
+maintains:
+
+```text
+Project Runtime
+```
+
+only.
+
+Expected Result:
+
+```text
+PASS
+```
+
+---
+
+### Lifecycle Audit
+
+Verify:
+
+```text
+Bootstrap PASS
+```
+
+can unambiguously enter:
+
+```text
+Problem
+```
+
+Verify:
+
+```text
+Problem Stage Entry
+```
+
+defines:
+
+```text
+Execution Environment
+
+Required Load Set
+
+Required Template
+
+Artifact To Create
+
+Expected Output
+
+Runtime Update Target
+
+Next Stage
+```
+
+Expected Result:
+
+```text
+PASS
+```
+
+---
+
+### Execution Audit
+
+Verify:
+
+```text
+POST_BOOTSTRAP_ENTRY.md
+```
+
+contains:
+
+```text
+Execution Environment
+
+Required Load Set
+
+Required Template
+
+Artifact To Create
+
+Exact Next User Action
+
+Expected Output
+
+Runtime Completion Block
+```
+
+Expected Result:
+
+```text
+PASS
+```
+
+---
+
+### Bootstrap Output Audit
+
+Verify:
+
+```text
+BOOTSTRAP_RESULT.md
+```
+
+contains:
+
+```text
+Bootstrap Completion Handoff
+```
+
+Verify:
+
+```text
+Bootstrap PASS
+```
+
+does not terminate at:
+
+```text
+Current Stage
+
+Next Action
+```
+
+only.
+
+Expected Result:
+
+```text
+PASS
+```
+
+---
+
+### Freeze Impact Audit
+
+Impacted Files:
+
+```text
+SAPDP_PROBLEM_BASELINE.md
+
+SAPDP_DECISION_LOG.md
+
+SAPDP_CANONICAL_PROTOCOL.md
+
+SAPDP_LIFECYCLE.md
+
+SAPDP_BOOTSTRAP.md
+
+POST_BOOTSTRAP_ENTRY_Template.md
+
+BOOTSTRAP_RESULT_Template.md
+```
+
+Required Status:
+
+```text
+Updated
+```
+
+Non-Impacted Files:
+
+```text
+README.md
+
+SAPDP_FOUNDATION.md
+
+SAPDP_GOALS_DEFINITION.md
+```
+
+Required Status:
+
+```text
+No Change
+```
+
+---
+
+### Freeze Acceptance Criteria
+
+Bootstrap Completion Handoff may be considered Frozen only when:
+
+```text
+P-038
+Accepted
+
+D-0092
+Accepted
+
+Authority Ownership Audit
+PASS
+
+Runtime Ownership Audit
+PASS
+
+Lifecycle Audit
+PASS
+
+Execution Audit
+PASS
+
+Bootstrap Output Audit
+PASS
+```
+
+Final Result:
+
+```text
+Bootstrap Completion Handoff
+
+Frozen
+```
+
+Status:
+
+Accepted
+
+---
+
+## D-0094 | Bootstrap Completion Handoff Artifact Ownership Freeze
+
+Decision:
+
+SAPDP adopts Bootstrap Completion Handoff Artifact Ownership.
+
+The Bootstrap Completion Handoff is represented by:
+
+```text
+POST_BOOTSTRAP_ENTRY.md
+```
+
+POST_BOOTSTRAP_ENTRY.md is a Bootstrap-to-Lifecycle bridge artifact.
+
+It owns:
+
+```text
+Execution Instruction
+
+Stage Entry Instantiation
+
+Next User Action
+
+Required Load Set For First Lifecycle Stage
+
+Expected First Lifecycle Artifact
+
+Runtime Update Target
+```
+
+POST_BOOTSTRAP_ENTRY.md does not own:
+
+```text
+Lifecycle Rules
+
+Lifecycle Stage Definitions
+
+Lifecycle Progression Rules
+
+Project Runtime State
+
+Artifact Discovery Authority
+
+Artifact Validity Rules
+
+Protocol Governance
+```
+
+Authority ownership:
+
+```text
+SAPDP_LIFECYCLE.md
+=
+Owns Lifecycle Rules
+
+PROJECT_BOOTSTRAP.md
+=
+Owns Project Runtime State
+
+ARTIFACT_INDEX.md
+=
+Owns Artifact Discovery
+
+POST_BOOTSTRAP_ENTRY.md
+=
+Owns Bootstrap Completion Execution Instruction
+```
+
+POST_BOOTSTRAP_ENTRY.md may reference Lifecycle rules, but must not redefine them.
+
+Reason:
+
+Reality Validation Round-1 showed that Bootstrap could enter Problem Stage but failed to provide executable next-step guidance.
+
+The fix requires a dedicated Bootstrap-to-Lifecycle handoff artifact.
+
+However, without explicit ownership boundaries, POST_BOOTSTRAP_ENTRY.md could incorrectly become a second owner of Lifecycle rules or Project Runtime state.
+
+This decision preserves:
+
+```text
+Authority Ownership Model
+
+Runtime Ownership
+
+Lifecycle Ownership
+
+Execution Engine Clarity
+```
+
+Status:
+
+Accepted
+
+---
+
+## D-0095 | SAPDP v1.0.1 Protocol Repair And Validation Restart Freeze
+
+Decision:
+
+SAPDP adopts SAPDP v1.0.1 as a protocol repair release.
+
+The purpose of v1.0.1 is to fix:
+
+```text
+P-038
+
+Bootstrap Completion Handoff Problem
+```
+
+This release does not introduce a new lifecycle stage.
+
+This release does not change the SAPDP target user, target outcome, optimization targets, or non-goals.
+
+This release updates:
+
+```text
+Bootstrap Completion Handoff
+
+Bootstrap Output
+
+Bootstrap Validation
+
+POST_BOOTSTRAP_ENTRY.md
+
+START.md user startup guidance
+
+Developer maintenance guidance
+
+Execution Engine bootstrap contracts
+```
+
+After this repair release is applied, Reality Validation must restart from a clean new product bootstrap.
+
+The next validation must not continue from the previously initialized project.
+
+Validation Restart Rule:
+
+```text
+Start from a clean Git workspace
+
+Run SAPDP Bootstrap again
+
+Verify Bootstrap Audit
+
+Verify Bootstrap Completion Handoff
+
+Verify POST_BOOTSTRAP_ENTRY.md
+
+Only then enter Problem Stage
+```
+
+Reason:
+
+Reality Validation Round-1 discovered a protocol defect during first project bootstrap.
+
+Continuing from the partially validated project would not verify whether the repaired protocol works from a clean start.
+
+A clean restart is required to validate that v1.0.1 fixes the issue at the correct system level.
+
+Status:
+
+Accepted
+
+
+---
+
+## D-0096 | SAPDP v1.0.1 Protocol Repair Release Freeze
+
+Decision:
+
+SAPDP v1.0.1 Protocol Repair Release is formally frozen.
+
+All patches related to P-038 Bootstrap Completion Handoff Problem (Patch-1 ~ Patch-10) are now considered authoritative.
+
+Release Status:
+
+- Bootstrap System: Fixed and validated
+- Execution Engine: Handoff instructions instantiated correctly
+- Lifecycle Entry: Problem Stage entry automated and unambiguous
+- Runtime Ownership: Preserved in PROJECT_BOOTSTRAP.md and SAPDP_BOOTSTRAP.md
+- Authority Ownership: Preserved across Lifecycle, Bootstrap, and Artifact System
+
+Validation Rule:
+
+Future Reality Validation must start from a clean project bootstrap.
+
+Continuation from prior partially executed projects is prohibited.
+
+Reason:
+
+Reality Validation Round-1 confirmed the protocol repair addresses the previously observed gap (P-038).
+
+This freeze ensures a stable and reproducible SAPDP v1.0.1 protocol for all new projects.
+
+Status:
+
+Accepted
+
+
+---
+
+## D-0097 | SAPDP v1.0.1 Protocol Repair Freeze Impact Checklist
+
+Audit completed and passed.
+
+Impacted Files:
+
+```text
+SAPDP_PROBLEM_BASELINE.md
+SAPDP_DECISION_LOG.md
+SAPDP_CANONICAL_PROTOCOL.md
+SAPDP_LIFECYCLE.md
+SAPDP_FOUNDATION.md
+SAPDP_BOOTSTRAP.md
+POST_BOOTSTRAP_ENTRY_Template.md
+BOOTSTRAP_RESULT_Template.md
+```
+
+Status after Freeze:
+
+```text
+All changes implemented and validated
+Bootstrap Completion Handoff fully operational
+Authority Ownership and Runtime Ownership preserved
+Lifecycle Stage Entry rules respected
+```
+
+Non-Impacted Files (No Change):
+
+```text
+README.md
+SAPDP_GOALS_DEFINITION.md
+```
+
+Conclusion:
+
+```text
+SAPDP v1.0.1 Protocol Repair Release fully frozen and ready for new Reality Validation rounds.
+```
