@@ -19,7 +19,7 @@ Access to SAPDP Repository
 Use the actual SAPDP GitHub repository URL:
 
 ```text
-[<SAPDP_GITHUB_URL>](https://github.com/soyona/SAPDP.git)
+https://github.com/soyona/SAPDP.git
 ```
 
 Example format:
@@ -40,7 +40,7 @@ Open a new Codex session and paste:
 Initialize a new project using SAPDP.
 
 Protocol:
-[<SAPDP_GITHUB_URL>](https://github.com/soyona/SAPDP.git)
+https://github.com/soyona/SAPDP.git
 
 Project Name:
 <MyProject>
