@@ -1,0 +1,121 @@
+{
+  "manifest_version": "1.0.0",
+  "protocol": "SAPDP",
+  "protocol_version": "1.0.0",
+  "bootstrap_version": "1.0.0",
+  "bootstrap_contract_version": "1.0.0",
+  "bootstrap_validation_contract_version": "1.0.0",
+  "authority": {
+    "configuration_authority": "bootstrap/bootstrap_manifest.json",
+    "execution_authority": "contracts/bootstrap/BootstrapContract.md",
+    "validation_authority": "contracts/bootstrap/BootstrapValidationContract.md",
+    "runtime_authority": "PROJECT_BOOTSTRAP.md",
+    "artifact_index_authority": "ARTIFACT_INDEX.md"
+  },
+  "required_directories": [
+    "docs/problem",
+    "docs/solution",
+    "docs/product",
+    "docs/mvp",
+    "docs/tasks",
+    "docs/verification",
+    "docs/validation",
+    "docs/release",
+    "docs/protocol",
+    "templates/problem",
+    "templates/solution",
+    "templates/product",
+    "templates/mvp",
+    "templates/tasks",
+    "templates/verification",
+    "templates/validation",
+    "templates/release"
+  ],
+  "required_files": [
+    "PROJECT_BOOTSTRAP.md",
+    "ARTIFACT_INDEX.md",
+    "BOOTSTRAP_RESULT.md",
+    "POST_BOOTSTRAP_ENTRY.md",
+    "docs/protocol/SAPDP_CANONICAL_PROTOCOL.md",
+    "docs/protocol/SAPDP_SOURCE_VERSION.md"
+  ],
+  "required_templates": [
+    "templates/problem/ProblemDefinition_Template.md",
+    "templates/solution/SolutionDefinition_Template.md",
+    "templates/product/ProductRequirement_Template.md",
+    "templates/product/ProductRepresentation_Template.md",
+    "templates/product/UXSpecification_Template.md",
+    "templates/product/VisualDesignSpecification_Template.md",
+    "templates/product/TechnicalConstraint_Template.md",
+    "templates/mvp/MVPDefinition_Template.md",
+    "templates/tasks/TaskPackage_Template.md",
+    "templates/verification/ImplementationVerification_Template.md",
+    "templates/validation/UserValidation_Template.md",
+    "templates/release/ReleaseResult_Template.md"
+  ],
+  "initial_runtime": {
+    "initial_lifecycle_stage": "Problem",
+    "required_next_action": "Create ProblemDefinition_CORE_v1.md"
+  },
+  "protocol_snapshot": {
+    "strategy": "copy_snapshot_with_source_commit_hash",
+    "required_snapshot_file": "docs/protocol/SAPDP_CANONICAL_PROTOCOL.md",
+    "required_source_version_file": "docs/protocol/SAPDP_SOURCE_VERSION.md",
+    "forbidden_strategies": [
+      "git_submodule",
+      "remote_reference_only",
+      "live_protocol_dependency"
+    ]
+  },
+  "validation_rule_ids": [
+    "product_repository_exists",
+    "sapdp_repository_accessible",
+    "required_directories_exist",
+    "required_files_exist",
+    "required_templates_exist",
+    "project_bootstrap_exists",
+    "artifact_index_exists",
+    "bootstrap_result_exists",
+    "post_bootstrap_entry_exists",
+    "protocol_snapshot_exists",
+    "sapdp_source_commit_hash_exists",
+    "protocol_version_exists",
+    "runtime_initialized",
+    "lifecycle_ready_for_problem_stage",
+    "no_lifecycle_artifact_created",
+    "no_product_source_code_created",
+    "no_forbidden_action_executed"
+  ],
+  "idempotency": {
+    "bootstrap_is_idempotent": true,
+    "existing_sapdp_files_protected": true,
+    "overwrite_requires_confirmation": true,
+    "non_empty_incomplete_repository_result": "PATCH REQUIRED",
+    "preexisting_product_code_result": "FAIL",
+    "preexisting_lifecycle_artifact_result": "FAIL"
+  },
+  "forbidden_actions": [
+    "create_problem_definition_artifact",
+    "create_solution_definition_artifact",
+    "create_product_representation_artifact",
+    "create_mvp_definition_artifact",
+    "create_task_package_artifact",
+    "create_build_artifact",
+    "implement_product_source_code",
+    "infer_product_requirements",
+    "infer_target_users",
+    "infer_solution_direction",
+    "infer_mvp_scope",
+    "modify_sapdp_repository",
+    "create_second_protocol_repository",
+    "rename_sapdp_protocol_files",
+    "store_artifact_activation_state",
+    "advance_beyond_problem_stage",
+    "skip_bootstrap_validation"
+  ],
+  "result_files": {
+    "bootstrap_result": "BOOTSTRAP_RESULT.md",
+    "post_bootstrap_entry": "POST_BOOTSTRAP_ENTRY.md"
+  },
+  "status": "Frozen Candidate"
+}
