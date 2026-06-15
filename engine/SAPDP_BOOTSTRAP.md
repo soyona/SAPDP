@@ -74,6 +74,8 @@ SAPDP v1.1 Bootstrap Productionization Release
 
 SAPDP v1.1.1 Bootstrap Scaffold Repair released.
 
+SAPDP v1.2.0 Git Artifact Commitment Rule released.
+
 Protocol Consolidation completed.
 
 Bootstrap Completion System v2 released.
@@ -104,7 +106,7 @@ Protocol Change Proposal
 
 ## 5. 当前目标
 
-Maintain SAPDP v1.1.1 Release.
+Maintain SAPDP v1.2.0 Release.
 
 Ensure Bootstrap remains:
 
@@ -113,6 +115,18 @@ Executable
 Discoverable
 
 Operationally Complete
+
+Ensure all Codex-generated SAPDP artifacts are:
+
+Written into repository
+
+Added to Git
+
+Committed to Git
+
+Pushed to Git
+
+before ChatGPT audit.
 
 Reality Validation remains the primary source of future protocol evolution.
 

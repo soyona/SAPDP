@@ -93,11 +93,17 @@ Codex will:
 
 8. Execute Bootstrap Validation
 
-9. Execute Bootstrap Productionization Audit
+9. Add generated artifacts to Git
 
-10. Produce Bootstrap Completion Handoff
+10. Commit generated artifacts to Git
 
-11. Enter Problem Stage
+11. Push committed Git state
+
+12. Execute Bootstrap Productionization Audit
+
+13. Produce Bootstrap Completion Handoff
+
+14. Enter Problem Stage
 ```
 
 ---
@@ -115,6 +121,24 @@ BOOTSTRAP_RESULT.md
 
 POST_BOOTSTRAP_ENTRY.md
 ```
+
+All generated Bootstrap artifacts must be:
+
+```text
+Written into repository
+
+Added to Git
+
+Committed to Git
+
+Pushed to Git
+```
+
+before ChatGPT audit.
+
+Runtime-only artifacts are invalid audit inputs.
+
+ChatGPT must audit committed Git repository state only.
 
 ---
 

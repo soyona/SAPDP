@@ -349,11 +349,37 @@ Codex must execute:
 
     18. Create POST_BOOTSTRAP_ENTRY.md.
 
-    19. Run Bootstrap Validation.
+    19. Add generated Bootstrap artifacts to Git.
 
-    20. Produce Bootstrap Result.
+    20. Commit generated Bootstrap artifacts to Git.
 
-    21. Stop.
+    21. Push committed Git state.
+
+    22. Run Bootstrap Validation.
+
+    23. Produce Bootstrap Result.
+
+    24. Stop.
+
+## Git Artifact Commitment Rule
+
+All Codex-generated Bootstrap artifacts must be persisted into Git before audit.
+
+Bootstrap artifacts existing only in runtime memory are considered non-existent.
+
+Required Bootstrap persistence order:
+
+```
+Artifact Generation
+→ Git Add
+→ Git Commit
+→ Git Push
+→ ChatGPT Audit
+```
+
+ChatGPT must audit committed repository state only.
+
+ChatGPT must not audit runtime-only Bootstrap outputs.
 
 ---
 
@@ -376,6 +402,10 @@ Bootstrap must stop when:
     No lifecycle artifact has been created
 
     No product source code has been implemented
+
+    Generated Bootstrap artifacts have been committed to Git
+
+    Committed Git state has been pushed
 
 Bootstrap is complete only when:
 

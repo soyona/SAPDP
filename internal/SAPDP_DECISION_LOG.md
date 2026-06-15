@@ -9160,3 +9160,48 @@ v1.1.1
 Status:
 
 Accepted
+
+---
+
+## D-0108 | Git Artifact Commitment Rule
+
+Decision:
+
+All Codex-generated SAPDP artifacts must be persisted into Git before audit.
+
+Runtime-only artifacts are considered non-existent.
+
+Required execution order:
+
+```text
+Codex Execution
+→ Artifact Generation
+→ Git Add
+→ Git Commit
+→ Git Push
+→ ChatGPT Audit
+```
+
+The rule applies to:
+
+```text
+Reality Validation
+Bootstrap
+Upgrade
+Audit
+Release
+```
+
+ChatGPT must audit committed repository state only.
+
+ChatGPT must not audit runtime-only outputs.
+
+Reason:
+
+Reality Validation Round-3 identified Issue-015, Audit Handoff Contract Missing.
+
+Without mandatory Git persistence, Codex may generate reports or handoff artifacts that never enter the repository, violating Git as System Memory and preventing Git-native audit.
+
+Status:
+
+Accepted

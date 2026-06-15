@@ -1839,6 +1839,10 @@ Execute Current Stage
 ↓
 Produce Artifact
 ↓
+Persist Artifact To Git
+↓
+Push Git State
+↓
 Verify Quality
 ↓
 Accept Artifact
@@ -1856,6 +1860,77 @@ Lifecycle progression must stop if:
 ```text
 Required Load Set
 cannot be resolved.
+```
+
+### Git Artifact Commitment Rule
+
+All Codex-generated SAPDP artifacts must be persisted into Git before audit.
+
+Artifacts existing only in runtime memory are considered:
+
+```text
+Non-existent
+```
+
+Mandatory execution order:
+
+```text
+Codex Execution
+→ Artifact Generation
+→ Git Add
+→ Git Commit
+→ Git Push
+→ ChatGPT Audit
+```
+
+This rule applies to:
+
+```text
+Reality Validation
+
+Bootstrap
+
+Upgrade
+
+Audit
+
+Release
+```
+
+ChatGPT must audit:
+
+```text
+Committed Git repository state
+```
+
+ChatGPT must not audit:
+
+```text
+Runtime-only outputs
+
+Uncommitted artifacts
+
+Conversation-only artifacts
+```
+
+Audit must fail when a required artifact has not been committed to Git.
+
+Git remains:
+
+```text
+Single Source Of Truth
+```
+
+The Git Artifact Commitment Rule does not introduce:
+
+```text
+New Lifecycle Stage
+
+New Authority System
+
+Branch Workflow
+
+Pull Request Workflow
 ```
 
 ### Runtime Completion Contract
@@ -2154,6 +2229,12 @@ Consistent
 
 Artifact State
 Consistent
+
+Required Release Artifacts
+Committed To Git
+
+Git State
+Pushed
 ```
 
 Release Result becomes:

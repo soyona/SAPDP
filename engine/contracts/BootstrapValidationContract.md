@@ -98,6 +98,10 @@ Bootstrap returns PASS only when all of the following conditions are satisfied.
 Product Repository exists.
 
 Product Repository is accessible.
+
+Generated Bootstrap artifacts are committed to Git.
+
+Committed Git state is pushed.
 ```
 
 ### Structure Validation
@@ -132,6 +136,8 @@ ARTIFACT_INDEX.md exists.
 BOOTSTRAP_RESULT.md exists.
 
 POST_BOOTSTRAP_ENTRY.md exists.
+
+Generated artifacts exist in committed repository state.
 ```
 
 ### Protocol Validation
@@ -166,6 +172,8 @@ No lifecycle artifact has been created.
 No product source code has been created.
 
 No forbidden action has been executed.
+
+No required artifact exists only in runtime memory.
 ```
 
 ### Scaffold Conformance Validation
@@ -248,6 +256,12 @@ Bootstrap returns FAIL when any of the following conditions occur.
 Product Repository unavailable.
 
 Product Repository inaccessible.
+
+Required generated artifact exists only in runtime memory.
+
+Required generated artifact is uncommitted.
+
+Committed Git state has not been pushed before audit.
 ```
 
 ### SAPDP Source Failure
@@ -286,6 +300,8 @@ Project Root mismatch across required Bootstrap artifacts.
 PROJECT_BOOTSTRAP.md missing.
 
 ARTIFACT_INDEX.md missing.
+
+Required generated artifact missing from committed repository state.
 ```
 
 ### Protocol Failure
@@ -312,6 +328,8 @@ Lifecycle artifacts created.
 Product source code created.
 
 Forbidden action executed.
+
+ChatGPT audit attempted against runtime-only output.
 ```
 
 ### Scaffold Conformance Failure
@@ -357,6 +375,32 @@ Result Determination
 ```
 
 Validation execution order is authoritative.
+
+## Git Artifact Commitment Validation
+
+Validation cases:
+
+```
+Generated artifact exists only in runtime
+→
+FAIL
+
+Generated artifact exists in repository and committed
+→
+PASS
+
+ChatGPT attempts to audit runtime-only output
+→
+FAIL
+
+ChatGPT audits committed repository state
+→
+PASS
+```
+
+ChatGPT audit must use Git state only.
+
+Runtime-only outputs are invalid audit inputs.
 
 ---
 
