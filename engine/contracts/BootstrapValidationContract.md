@@ -102,6 +102,8 @@ Product Repository is accessible.
 Generated Bootstrap artifacts are committed to Git.
 
 Committed Git state is pushed.
+
+Bootstrap audit is performed against committed and pushed repository state only.
 ```
 
 ### Structure Validation
@@ -110,6 +112,12 @@ Committed Git state is pushed.
 Required directories exist.
 
 Required files exist.
+
+README.md exists.
+
+Required scaffold persistence files exist.
+
+Required empty scaffold directories are Git-persistable.
 
 Forbidden Bootstrap internal execution directories do not exist in the final Product Project Root.
 ```
@@ -138,6 +146,8 @@ BOOTSTRAP_RESULT.md exists.
 POST_BOOTSTRAP_ENTRY.md exists.
 
 Generated artifacts exist in committed repository state.
+
+Committed Git state proves the scaffold structure.
 ```
 
 ### Protocol Validation
@@ -184,6 +194,30 @@ Final Product Project Root conforms to SAPDP Project Scaffold.
 All required scaffold directories and files defined by bootstrap_manifest.json exist.
 
 Bootstrap internal execution directories defined by bootstrap_manifest.json do not exist.
+```
+
+### Lifecycle Progress UI Validation
+
+```
+Lifecycle Progress UI matches the canonical format exactly:
+
+Lifecycle Progress
+
+● Problem                    CURRENT
+
+○ Solution
+
+○ Product Representation
+
+○ MVP Scope
+
+○ Build
+
+○ Implementation Verification
+
+○ User Validation
+
+○ Release
 ```
 
 Only when all PASS conditions are satisfied:
@@ -279,6 +313,14 @@ Required directories missing.
 
 Required files missing.
 
+README.md missing.
+
+Required .gitkeep file missing.
+
+Scaffold only exists as local empty directories.
+
+Scaffold cannot be verified from committed Git state.
+
 Forbidden Bootstrap internal execution directory exists in final Product Project Root.
 ```
 
@@ -330,6 +372,8 @@ Product source code created.
 Forbidden action executed.
 
 ChatGPT audit attempted against runtime-only output.
+
+Lifecycle Progress UI uses non-canonical symbols such as "*" or "o".
 ```
 
 ### Scaffold Conformance Failure
@@ -357,6 +401,8 @@ FAIL
 Bootstrap validation must execute in the following order:
 
 ```
+Repository Validation
+
 Structure Validation
 
 Project Identity Validation
@@ -370,6 +416,8 @@ Protocol Validation
 Boundary Validation
 
 Scaffold Conformance Validation
+
+Lifecycle Progress UI Validation
 
 Result Determination
 ```
@@ -539,6 +587,8 @@ Required:
 
 PROJECT_BOOTSTRAP.md
 
+README.md
+
 ARTIFACT_INDEX.md
 
 BOOTSTRAP_RESULT.md
@@ -553,6 +603,8 @@ src/
 
 tests/
 
+.gitkeep scaffold persistence files for Git-empty directories
+
 Forbidden:
 
 outputs/
@@ -562,6 +614,8 @@ work/
 PASS Criteria:
 
 All required files and directories exist.
+
+All required scaffold persistence files exist in committed Git state.
 
 No forbidden Bootstrap internal execution directories exist.
 

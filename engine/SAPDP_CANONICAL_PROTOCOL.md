@@ -793,6 +793,10 @@ Provide a standard executable project structure.
 
 Bootstrap internal execution directories must not exist in the final Product Project Root.
 
+README.md is a required Project Scaffold file.
+
+Required scaffold directories that may be empty at Bootstrap completion must contain .gitkeep so that GitHub committed state can prove scaffold existence.
+
 Forbidden final Product Project Root directories:
 
 ```text
@@ -1215,6 +1219,16 @@ The structure is defined by:
 Project Scaffold
 ```
 
+Bootstrap Scaffold Persistence Rule:
+
+```text
+Required scaffold directories that may be empty at Bootstrap completion must contain .gitkeep.
+
+README.md is a required Project Scaffold file.
+
+Bootstrap scaffold proof must be verifiable from committed and pushed Git repository state.
+```
+
 ---
 
 ## Create Runtime Authority
@@ -1311,6 +1325,10 @@ PROJECT_BOOTSTRAP.md Exists
 ARTIFACT_INDEX.md Exists
 
 Required Protocol Sources Resolved
+
+Required .gitkeep scaffold persistence files exist
+
+Committed and pushed Git repository state proves scaffold existence
 ```
 
 ---
@@ -1771,6 +1789,8 @@ Lifecycle Progress
 ```
 
 Alternative display formats are prohibited.
+
+Lifecycle Progress UI must use the canonical ● / ○ format.
 
 ---
 

@@ -9205,3 +9205,27 @@ Without mandatory Git persistence, Codex may generate reports or handoff artifac
 Status:
 
 Accepted
+
+---
+
+## D-0109 | Bootstrap Scaffold Persistence Repair Rule
+
+Decision:
+
+SAPDP requires all Bootstrap-created scaffold directories that may otherwise be empty to contain .gitkeep files.
+
+SAPDP requires README.md as a Bootstrap required file.
+
+SAPDP prohibits Bootstrap PASS based on local empty-directory existence only.
+
+Bootstrap validation must be performed against committed and pushed Git repository state.
+
+Lifecycle Progress UI must use canonical ● / ○ symbols.
+
+Reason:
+
+Reality Validation Round-2 on LALA proved that empty directories created locally are not preserved by Git, causing GitHub audit to be unable to verify scaffold conformance. This creates false Bootstrap PASS risk.
+
+Status:
+
+Accepted

@@ -83,27 +83,29 @@ Codex will:
 
 3. Resolve Project Root from Project Name
 
-4. Generate Bootstrap Files
+4. Generate README.md and .gitkeep scaffold persistence files
 
-5. Generate Workspace Files
+5. Generate Bootstrap Files
 
-6. Generate Runtime Files
+6. Generate Workspace Files
 
-7. Generate POST_BOOTSTRAP_ENTRY.md
+7. Generate Runtime Files
 
-8. Execute Bootstrap Validation
+8. Generate POST_BOOTSTRAP_ENTRY.md
 
-9. Add generated artifacts to Git
+9. Add generated artifacts and scaffold persistence files to Git
 
-10. Commit generated artifacts to Git
+10. Commit generated artifacts and scaffold persistence files to Git
 
 11. Push committed Git state
 
-12. Execute Bootstrap Productionization Audit
+12. Execute Bootstrap Validation against committed and pushed Git state
 
-13. Produce Bootstrap Completion Handoff
+13. Execute Bootstrap Productionization Audit
 
-14. Enter Problem Stage
+14. Produce Bootstrap Completion Handoff
+
+15. Enter Problem Stage
 ```
 
 ---
@@ -120,6 +122,10 @@ ARTIFACT_INDEX.md
 BOOTSTRAP_RESULT.md
 
 POST_BOOTSTRAP_ENTRY.md
+
+README.md
+
+.gitkeep scaffold persistence files
 ```
 
 All generated Bootstrap artifacts must be:
@@ -140,6 +146,8 @@ Runtime-only artifacts are invalid audit inputs.
 
 ChatGPT must audit committed Git repository state only.
 
+Local empty directories are invalid scaffold evidence unless they contain committed .gitkeep persistence files.
+
 ---
 
 ## Success Criteria
@@ -159,6 +167,10 @@ Project Name Resolution
 Project Identity Consistency
 
 Scaffold Conformance
+
+Scaffold Persistence
+
+Canonical Lifecycle Progress UI
 ```
 
 and generates an executable Bootstrap Completion Handoff:

@@ -76,6 +76,8 @@ SAPDP v1.1.1 Bootstrap Scaffold Repair released.
 
 SAPDP v1.2.0 Git Artifact Commitment Rule released.
 
+SAPDP v1.2.1 Bootstrap Scaffold Persistence Repair released.
+
 Protocol Consolidation completed.
 
 Bootstrap Completion System v2 released.
@@ -106,7 +108,7 @@ Protocol Change Proposal
 
 ## 5. 当前目标
 
-Maintain SAPDP v1.2.0 Release.
+Maintain SAPDP v1.2.1 Release.
 
 Ensure Bootstrap remains:
 
@@ -127,6 +129,8 @@ Committed to Git
 Pushed to Git
 
 before ChatGPT audit.
+
+Future Bootstrap audit must verify committed GitHub repository state, not local runtime state.
 
 Reality Validation remains the primary source of future protocol evolution.
 

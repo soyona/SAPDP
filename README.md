@@ -152,6 +152,22 @@ A new SAPDP project can typically be initialized within minutes using Codex.
 
 ---
 
+# Bootstrap Scaffold Persistence
+
+SAPDP v1.2.1 requires Bootstrap scaffold proof to be visible in committed Git state.
+
+Bootstrap must create:
+
+```text
+README.md
+
+.gitkeep files for scaffold directories that may otherwise be empty
+```
+
+Bootstrap PASS cannot be based only on local empty directories or runtime-only artifacts.
+
+---
+
 # Bootstrap Completion System
 
 SAPDP v1.1 introduces:

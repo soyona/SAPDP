@@ -256,6 +256,13 @@ Lifecycle Navigation
 
 ## Lifecycle Progress
 
+Lifecycle Progress UI must use the canonical symbols:
+
+```text
+● for the current stage
+○ for inactive stages
+```
+
 ```text
 Lifecycle Progress
 

@@ -127,6 +127,8 @@ Project Name must not be used to infer:
 ```
 PROJECT_BOOTSTRAP.md
 
+README.md
+
 ARTIFACT_INDEX.md
 
 BOOTSTRAP_RESULT.md
@@ -144,6 +146,14 @@ Required Templates
 PROJECT_BOOTSTRAP.md is the authoritative runtime state source.
 
 No other Bootstrap artifact may redefine runtime state.
+
+Bootstrap must create README.md during project initialization.
+
+Bootstrap must create .gitkeep files in every required scaffold directory that may otherwise be empty at Bootstrap completion.
+
+Bootstrap must not claim scaffold PASS based only on local empty directories.
+
+Bootstrap must persist scaffold proof into Git.
 
 ---
 
@@ -335,31 +345,33 @@ Codex must execute:
 
     11. Create required files.
 
-    12. Copy required templates.
+    12. Create required .gitkeep scaffold persistence files.
 
-    13. Copy protocol snapshot.
+    13. Copy required templates.
 
-    14. Record SAPDP source commit hash.
+    14. Copy protocol snapshot.
 
-    15. Create PROJECT_BOOTSTRAP.md.
+    15. Record SAPDP source commit hash.
 
-    16. Create ARTIFACT_INDEX.md.
+    16. Create PROJECT_BOOTSTRAP.md.
 
-    17. Create BOOTSTRAP_RESULT.md.
+    17. Create ARTIFACT_INDEX.md.
 
-    18. Create POST_BOOTSTRAP_ENTRY.md.
+    18. Create BOOTSTRAP_RESULT.md.
 
-    19. Add generated Bootstrap artifacts to Git.
+    19. Create POST_BOOTSTRAP_ENTRY.md.
 
-    20. Commit generated Bootstrap artifacts to Git.
+    20. Add generated Bootstrap artifacts and scaffold persistence files to Git.
 
-    21. Push committed Git state.
+    21. Commit generated Bootstrap artifacts and scaffold persistence files to Git.
 
-    22. Run Bootstrap Validation.
+    22. Push committed Git state.
 
-    23. Produce Bootstrap Result.
+    23. Run Bootstrap Validation.
 
-    24. Stop.
+    24. Produce Bootstrap Result.
+
+    25. Stop.
 
 ## Git Artifact Commitment Rule
 
@@ -387,6 +399,12 @@ ChatGPT must not audit runtime-only Bootstrap outputs.
 
 Bootstrap must stop when:
 
+    Required files exist
+
+    Required templates exist
+
+    Required .gitkeep persistence files exist
+
     BOOTSTRAP_RESULT.md exists
 
     POST_BOOTSTRAP_ENTRY.md exists
@@ -406,6 +424,8 @@ Bootstrap must stop when:
     Generated Bootstrap artifacts have been committed to Git
 
     Committed Git state has been pushed
+
+    Committed GitHub repository state can prove the scaffold exists
 
 Bootstrap is complete only when:
 

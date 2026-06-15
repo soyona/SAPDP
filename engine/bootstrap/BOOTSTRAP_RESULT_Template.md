@@ -46,6 +46,22 @@ Next Stage After Completion
 
 ---
 
+## Bootstrap Scaffold Persistence
+
+Required:
+
+```text
+README.md exists
+
+.gitkeep files exist for Git-empty scaffold directories
+
+Committed Git state proves scaffold structure
+
+Lifecycle Progress UI format is canonical
+```
+
+---
+
 ## Default New Project Handoff
 
 For a newly initialized SAPDP project, Bootstrap must hand off to:
