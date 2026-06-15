@@ -227,25 +227,114 @@ internal/ may influence engine/ only through accepted patches.
 
 # Maintenance Workflow
 
-SAPDP maintenance follows:
+SAPDP protocol upgrades follow the Protocol Evolution Lifecycle.
+
+Standard route:
 
 ```text
-Identify validated problem
+Reality Validation
 ↓
-Record or reference problem source
+Issue
 ↓
-Design minimal change
+Proposal
 ↓
-Freeze decision in internal/
+Design Audit
 ↓
-Patch affected runtime files in engine/
+Codex Upgrade
 ↓
-Patch affected templates if needed
+Release Audit
 ↓
-Patch README.md / START.md only if user-facing behavior changes
+Freeze
 ↓
-Validate with real project bootstrap or lifecycle execution
+Reality Validation
 ```
+
+Stage ownership:
+
+```text
+Reality Validation
+=
+Human + ChatGPT
+
+Issue
+=
+ChatGPT
+
+Proposal
+=
+ChatGPT
+
+Design Audit
+=
+ChatGPT
+
+Codex Upgrade
+=
+Codex
+
+Release Audit
+=
+ChatGPT
+
+Freeze
+=
+Git + Release Package
+```
+
+Protocol Evolution is governance only.
+
+It must not change:
+
+```text
+Product lifecycle stages
+
+Product bootstrap behavior
+
+Product artifact set
+
+Template directory structure
+
+v1.6.1 routing and Git-first rules
+```
+
+To start or resume a SAPDP protocol upgrade:
+
+```text
+Load SAPDP
+
+Mode:
+Protocol Evolution
+```
+
+---
+
+# Protocol Upgrade Handoff
+
+When ChatGPT approves a protocol upgrade proposal, ChatGPT must output a low-token Codex command.
+
+Required command fields:
+
+```text
+Version
+
+Release Name
+
+Problem
+
+Goal
+
+Scope
+
+Required Changes
+
+Validation
+
+Final Output Format
+```
+
+The Codex command must be sufficient for Codex Upgrade without pasted protocol history or duplicated lifecycle theory.
+
+Codex Upgrade must return minimal Git URL evidence for Release Audit.
 
 ---
 
@@ -288,6 +377,16 @@ Remote tag is verified on remote
 
 Final output includes Commit URL and Tag URL
 ```
+
+ChatGPT Release Audit input must use:
+
+```text
+Commit URL
+
+Tag URL
+```
+
+Human paste of changed files is fallback only.
 
 If the remote commit or remote tag cannot be verified, the final protocol release result must be:
 

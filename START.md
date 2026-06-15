@@ -14,6 +14,8 @@ Use the SAPDP repository:
 https://github.com/soyona/SAPDP.git
 ```
 
+## Product Development Mode
+
 To initialize a new product project in Codex, paste:
 
 ```text
@@ -30,6 +32,43 @@ If Project Name is omitted, SAPDP uses:
 
 ```text
 NewProduct
+```
+
+## Protocol Evolution Mode
+
+To start or resume a SAPDP protocol upgrade, use:
+
+```text
+Load SAPDP
+
+Mode:
+Protocol Evolution
+```
+
+Protocol Evolution mode starts or resumes SAPDP protocol upgrade flow.
+
+It does not start product development flow.
+
+It does not change product bootstrap behavior.
+
+Protocol Evolution uses:
+
+```text
+Reality Validation
+↓
+Issue
+↓
+Proposal
+↓
+Design Audit
+↓
+Codex Upgrade
+↓
+Release Audit
+↓
+Freeze
+↓
+Reality Validation
 ```
 
 ---

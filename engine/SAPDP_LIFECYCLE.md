@@ -148,7 +148,7 @@ SAPDP adopts:
 Single Lifecycle Principle
 ```
 
-SAPDP maintains one lifecycle only.
+SAPDP maintains one product development lifecycle only.
 
 The lifecycle supports:
 
@@ -162,7 +162,7 @@ Refactor
 
 through entry rules.
 
-SAPDP does not maintain separate lifecycles for:
+SAPDP does not maintain separate product development lifecycles for:
 
 ```text
 Feature Development
@@ -949,6 +949,105 @@ Product Bootstrap behavior
 ```
 
 Product workflow handoff, Git audit source, and token budget rules are owned by:
+
+```text
+engine/SAPDP_CANONICAL_PROTOCOL.md
+```
+
+---
+
+## 6.8 Protocol Evolution Lifecycle Boundary Rule
+
+SAPDP protocol upgrades use a separate governance route:
+
+```text
+Reality Validation
+↓
+Issue
+↓
+Proposal
+↓
+Design Audit
+↓
+Codex Upgrade
+↓
+Release Audit
+↓
+Freeze
+↓
+Reality Validation
+```
+
+This route is the Protocol Evolution Lifecycle.
+
+It is not the product development lifecycle.
+
+It does not change:
+
+```text
+Lifecycle Stage Set
+
+Lifecycle Entry Types
+
+Lifecycle Forward Progression Rules
+
+Lifecycle Rollback Rules
+
+Lifecycle Closure Rules
+
+Product Bootstrap behavior
+
+Product artifact set
+
+Template directory structure
+```
+
+Protocol Evolution stage ownership:
+
+```text
+Reality Validation
+=
+Human + ChatGPT
+
+Issue
+=
+ChatGPT
+
+Proposal
+=
+ChatGPT
+
+Design Audit
+=
+ChatGPT
+
+Codex Upgrade
+=
+Codex
+
+Release Audit
+=
+ChatGPT
+
+Freeze
+=
+Git + Release Package
+```
+
+Protocol Evolution starts or resumes only when startup mode is:
+
+```text
+Load SAPDP
+
+Mode:
+Protocol Evolution
+```
+
+Product Development mode remains the default for new product bootstrap and product lifecycle execution.
+
+Protocol Evolution mode must not invoke product Bootstrap.
+
+Protocol Evolution governance is owned by:
 
 ```text
 engine/SAPDP_CANONICAL_PROTOCOL.md

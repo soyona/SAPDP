@@ -184,7 +184,7 @@ START.md
 
 # 协议发布审计交接
 
-SAPDP v1.2.6 要求使用最小化协议发布审计交接输出。
+SAPDP v1.6.2 要求使用最小化协议发布审计交接输出。
 
 Codex 只有在完成以下事项后，才可以报告 SAPDP 协议发布 PASS：
 
@@ -242,6 +242,47 @@ PASS / PATCH REQUIRED / FAIL
 ```
 
 最终输出不得重复 Repository、Branch、Commit SHA、Tag、remote verification、validation checklist 或 git execution logs。
+
+---
+
+# 协议演进生命周期
+
+SAPDP v1.6.2 为 SAPDP 协议自身升级定义正式治理 route：
+
+```text
+Reality Validation
+↓
+Issue
+↓
+Proposal
+↓
+Design Audit
+↓
+Codex Upgrade
+↓
+Release Audit
+↓
+Freeze
+↓
+Reality Validation
+```
+
+启动或恢复协议升级 flow：
+
+```text
+Load SAPDP
+
+Mode:
+Protocol Evolution
+```
+
+Protocol Evolution mode 与 Product Development mode 明确区分。
+
+它不改变产品生命周期阶段、产品 Bootstrap 行为、产品 artifacts、template 目录结构，且保留 v1.6.1 routing 与 Git-first rules。
+
+ChatGPT Release Audit 必须使用 Commit URL 和 Tag URL。
+
+人工粘贴 changed files 仅作为 fallback。
 
 ---
 

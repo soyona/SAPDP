@@ -388,6 +388,149 @@ Git execution logs
 
 ---
 
+# 5.2.1 Protocol Evolution Lifecycle Rule
+
+SAPDP protocol upgrades use the Protocol Evolution Lifecycle.
+
+This lifecycle is a protocol governance route only.
+
+It does not define product development stages.
+
+It does not change:
+
+```text
+Product lifecycle stage set
+
+Product bootstrap behavior
+
+Product artifact set
+
+Template directory structure
+
+Product workflow routing rules
+
+Git-first audit rules
+```
+
+Standard protocol upgrade route:
+
+```text
+Reality Validation
+↓
+Issue
+↓
+Proposal
+↓
+Design Audit
+↓
+Codex Upgrade
+↓
+Release Audit
+↓
+Freeze
+↓
+Reality Validation
+```
+
+Stage ownership:
+
+```text
+Reality Validation
+=
+Human + ChatGPT
+
+Issue
+=
+ChatGPT
+
+Proposal
+=
+ChatGPT
+
+Design Audit
+=
+ChatGPT
+
+Codex Upgrade
+=
+Codex
+
+Release Audit
+=
+ChatGPT
+
+Freeze
+=
+Git + Release Package
+```
+
+Protocol Evolution startup:
+
+```text
+Load SAPDP
+
+Mode:
+Protocol Evolution
+```
+
+Protocol Evolution startup must start or resume SAPDP protocol upgrade flow.
+
+It must not start product development flow.
+
+It must not invoke product Bootstrap.
+
+## Protocol Upgrade Handoff Rule
+
+When ChatGPT approves a protocol upgrade proposal, ChatGPT must output a low-token Codex command.
+
+The command must include:
+
+```text
+Version
+
+Release Name
+
+Problem
+
+Goal
+
+Scope
+
+Required Changes
+
+Validation
+
+Final Output Format
+```
+
+The command must be sufficient for Codex Upgrade without requiring the Human to re-agree the upgrade process.
+
+The command must prefer concise references, requirements, and Git evidence over pasted protocol history.
+
+## Protocol Release Audit Input Rule
+
+ChatGPT Release Audit must use:
+
+```text
+Commit URL
+
+Tag URL
+```
+
+Human paste of changed files is fallback only.
+
+Release Audit PASS requires minimal Git URL evidence:
+
+```text
+Commit URL
+
+Tag URL
+```
+
+If Commit URL or Tag URL is missing or not remotely verifiable, Release Audit must not return PASS.
+
+---
+
 # 5.3 Product Workflow Routing & Token Efficiency Rule
 
 This rule applies only to product development workflow.
@@ -2957,7 +3100,7 @@ It does not replace authoritative ownership.
 
 # 18. Canonical Execution Rule
 
-When starting a new SAPDP project:
+When starting a new SAPDP product project:
 
 ```text
 Load SAPDP
@@ -2974,6 +3117,23 @@ Produce Accepted Artifact
 ↓
 Advance Lifecycle
 ```
+
+When starting or resuming a SAPDP protocol upgrade:
+
+```text
+Load SAPDP
+
+Mode:
+Protocol Evolution
+↓
+Enter Protocol Evolution Lifecycle
+↓
+Resume current protocol upgrade stage
+↓
+Produce required Git URL evidence at Codex Upgrade and Release Audit
+```
+
+Protocol Evolution mode is distinct from Product Development mode.
 
 All SAPDP execution must comply with:
 

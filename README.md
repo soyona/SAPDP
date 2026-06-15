@@ -154,7 +154,7 @@ A new SAPDP project can typically be initialized within minutes using Codex.
 
 # Protocol Release Audit Handoff
 
-SAPDP v1.3.1 requires a minimal protocol release handoff backed by remotely verifiable Git state.
+SAPDP v1.6.2 requires a minimal protocol release handoff backed by remotely verifiable Git state.
 
 Codex may report a SAPDP protocol release PASS only after:
 
@@ -212,6 +212,47 @@ PASS / PATCH REQUIRED / FAIL
 ```
 
 Do not repeat Repository, Branch, Commit SHA, Tag, remote verification, validation checklist, or git execution logs in final output.
+
+---
+
+# Protocol Evolution Lifecycle
+
+SAPDP v1.6.2 defines a formal governance route for upgrading SAPDP itself:
+
+```text
+Reality Validation
+↓
+Issue
+↓
+Proposal
+↓
+Design Audit
+↓
+Codex Upgrade
+↓
+Release Audit
+↓
+Freeze
+↓
+Reality Validation
+```
+
+To start or resume protocol upgrade flow:
+
+```text
+Load SAPDP
+
+Mode:
+Protocol Evolution
+```
+
+Protocol Evolution mode is distinct from Product Development mode.
+
+It does not change product lifecycle stages, product bootstrap behavior, product artifacts, template directory structure, or v1.6.1 routing and Git-first rules.
+
+ChatGPT Release Audit must use Commit URL and Tag URL.
+
+Human paste of changed files is fallback only.
 
 ---
 
