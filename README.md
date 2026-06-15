@@ -152,6 +152,46 @@ A new SAPDP project can typically be initialized within minutes using Codex.
 
 ---
 
+# Protocol Release Audit Handoff
+
+SAPDP v1.2.5 requires protocol upgrade releases to be audit-ready from remote GitHub state before PASS.
+
+Codex may report a SAPDP protocol release PASS only after:
+
+```text
+Committed changes
+
+Pushed commit to remote main
+
+Created version tag
+
+Pushed version tag to remote
+
+Verified remote commit
+
+Verified remote tag
+
+Included Commit URL and Tag URL for ChatGPT audit
+```
+
+If the remote commit or remote tag cannot be verified, the final protocol release result must be:
+
+```text
+PATCH REQUIRED
+```
+
+or:
+
+```text
+FAIL
+```
+
+This rule applies only to SAPDP protocol upgrade workflow.
+
+It does not change product Bootstrap behavior, add product audit package rules, or introduce lifecycle stages/status models.
+
+---
+
 # Bootstrap Completion UX Repair
 
 SAPDP v1.2.4 separates local Bootstrap success from remote Git validation.

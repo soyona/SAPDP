@@ -182,6 +182,46 @@ START.md
 
 ---
 
+# 协议发布审计交接
+
+SAPDP v1.2.5 要求协议升级发布在报告 PASS 前，必须具备可由 ChatGPT 审计的远程 GitHub 状态。
+
+Codex 只有在完成以下事项后，才可以报告 SAPDP 协议发布 PASS：
+
+```text
+提交变更
+
+将提交推送到远程 main
+
+创建版本标签
+
+将版本标签推送到远程
+
+验证远程提交
+
+验证远程标签
+
+在最终输出中包含 Commit URL 和 Tag URL
+```
+
+如果远程提交或远程标签无法验证，最终协议发布结果必须为：
+
+```text
+PATCH REQUIRED
+```
+
+或：
+
+```text
+FAIL
+```
+
+此规则仅适用于 SAPDP 协议升级 workflow。
+
+它不改变产品 Bootstrap 行为，不新增产品 audit package 规则，也不引入新的生命周期阶段或状态模型。
+
+---
+
 # Bootstrap 完成体验修复
 
 SAPDP v1.2.4 将本地 Bootstrap 成功与远程 Git 验证分开表达。

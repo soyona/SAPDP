@@ -498,6 +498,51 @@ Fresh POST_BOOTSTRAP_ENTRY.md
 
 ---
 
+## Protocol Release Audit Handoff Rule
+
+This rule applies only to SAPDP protocol upgrade releases.
+
+It does not change product Bootstrap behavior.
+
+Codex may report protocol release PASS only after:
+
+```text
+1. Changes are committed
+2. Commit is pushed to remote main
+3. Version tag is created
+4. Tag is pushed to remote
+5. Remote commit and remote tag are verified
+6. Final output includes Commit URL and Tag URL for ChatGPT audit
+```
+
+If the commit or tag is not remotely verifiable, Codex must report:
+
+```text
+Final Release Result:
+PATCH REQUIRED
+```
+
+or:
+
+```text
+Final Release Result:
+FAIL
+```
+
+Codex must not report protocol release PASS based only on local commits, local tags, or unverified push output.
+
+Required final protocol release handoff fields:
+
+```text
+Commit URL
+
+Tag URL
+
+ChatGPT Release Audit Prompt
+```
+
+---
+
 ## What To Do Next
 
 Follow the exact guidance returned in:

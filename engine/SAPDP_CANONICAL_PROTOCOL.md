@@ -259,6 +259,58 @@ Git owns system memory.
 
 ---
 
+# 5.1 Protocol Release Audit Handoff Rule
+
+For SAPDP protocol upgrade releases, Codex must not report PASS until Git remote state is audit-ready for ChatGPT.
+
+This rule applies only to the SAPDP protocol repository release workflow.
+
+It does not define product Bootstrap behavior, product audit package rules, lifecycle stages, or lifecycle status models.
+
+Protocol release PASS requires:
+
+```text
+Changes committed
+
+Commit pushed to remote main
+
+Version tag created
+
+Tag pushed to remote
+
+Remote commit verified on remote main
+
+Remote tag verified on remote
+
+Commit URL included in final output
+
+Tag URL included in final output
+
+ChatGPT Release Audit Prompt included in final output
+```
+
+If the commit or tag is not remotely verifiable, the protocol release result must be:
+
+```text
+PATCH REQUIRED
+```
+
+or:
+
+```text
+FAIL
+```
+
+The protocol release result must not be:
+
+```text
+PASS
+```
+
+Remote Git state is the audit authority for SAPDP protocol release verification.
+
+---
+
 # 6. Lifecycle
 
 SAPDP maintains one lifecycle.

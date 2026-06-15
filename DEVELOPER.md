@@ -249,6 +249,96 @@ Validate with real project bootstrap or lifecycle execution
 
 ---
 
+# Protocol Release Audit Handoff
+
+SAPDP protocol upgrade releases require a remote audit handoff before PASS.
+
+Scope:
+
+```text
+SAPDP protocol upgrade workflow only
+```
+
+This rule must not be applied as:
+
+```text
+Product Bootstrap behavior
+
+Product audit package rules
+
+New lifecycle stages
+
+New status models
+```
+
+Codex may report protocol release PASS only after:
+
+```text
+Changes are committed
+
+Commit is pushed to remote main
+
+Version tag is created
+
+Tag is pushed to remote
+
+Remote commit is verified on remote main
+
+Remote tag is verified on remote
+
+Final output includes Commit URL and Tag URL
+```
+
+If the remote commit or remote tag cannot be verified, the final protocol release result must be:
+
+```text
+PATCH REQUIRED
+```
+
+or:
+
+```text
+FAIL
+```
+
+It must not be:
+
+```text
+PASS
+```
+
+Required final protocol release output must include:
+
+```text
+Protocol Release Audit Handoff
+
+Version
+
+Repository
+
+Branch
+
+Commit
+
+Commit URL
+
+Tag
+
+Tag URL
+
+Files Changed
+
+Remote Branch Verification
+
+Remote Tag Verification
+
+ChatGPT Release Audit Prompt
+
+Final Release Result
+```
+
+---
+
 # Patch Rules
 
 SAPDP uses PATCH MODE.

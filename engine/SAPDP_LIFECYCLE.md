@@ -829,6 +829,40 @@ A new lifecycle execution begins through the applicable entry rule.
 
 ---
 
+## 6.6 Protocol Release Boundary Rule
+
+SAPDP protocol upgrade release handoff is a repository maintenance rule.
+
+It is not a lifecycle stage.
+
+It does not change:
+
+```text
+Lifecycle Stage Set
+
+Lifecycle Entry Types
+
+Lifecycle Forward Progression Rules
+
+Lifecycle Rollback Rules
+
+Lifecycle Closure Rules
+```
+
+For SAPDP protocol upgrade releases, Codex may report release PASS only when:
+
+```text
+Remote main contains the release commit
+
+Remote contains the version tag
+
+Final output includes the remote Commit URL and Tag URL for ChatGPT audit
+```
+
+If the remote commit or remote tag cannot be verified, the protocol release result must be PATCH REQUIRED or FAIL.
+
+---
+
 # 7. Lifecycle Constraints
 
 ## 7.1 Lifecycle Scope Constraints
