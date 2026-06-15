@@ -33,6 +33,9 @@ Project Name:
 
 Project Root:
 <PROJECT_ROOT>
+
+Working Directory:
+<PROJECT_ROOT>
 ```
 
 ---
@@ -135,6 +138,59 @@ Rules:
 
 ---
 
+## Post-Bootstrap ChatGPT Session Handoff
+
+Create a new ChatGPT Project if this is a new product or if no product-bound ChatGPT Project exists.
+
+Use the initialized product project name as the ChatGPT Project name:
+
+```text
+<PROJECT_NAME>
+```
+
+Upload the Required Load Set.
+
+Start from Problem Stage.
+
+Generate ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md.
+
+ChatGPT Start Prompt:
+
+```text
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+```
+
+Required Upload Files:
+
+```text
+PROJECT_BOOTSTRAP.md
+
+ARTIFACT_INDEX.md
+
+BOOTSTRAP_RESULT.md
+
+POST_BOOTSTRAP_ENTRY.md
+
+ProblemDefinition_Template.md
+```
+
+---
+
+## Post-Bootstrap Codex Workspace Handoff
+
+Open or switch Codex workspace to:
+
+```text
+<PROJECT_ROOT>
+```
+
+Use this initialized project directory as the active workspace.
+Do not continue product implementation from the SAPDP protocol repository.
+Codex must not continue product work from the SAPDP protocol repository.
+
+---
+
 ## Expected Output
 
 ```text
@@ -204,6 +260,16 @@ Working Directory:
 
 <PROJECT_ROOT>
 
+Codex Workspace Switch Guide:
+
+Open or switch Codex workspace to:
+
+<PROJECT_ROOT>
+
+Use this initialized project directory as the active workspace.
+Do not continue product implementation from the SAPDP protocol repository.
+Codex must not continue product work from the SAPDP protocol repository.
+
 Expected Responsibility:
 
 Implementation
@@ -220,6 +286,12 @@ Build Execution
 
 Create or Open ChatGPT Project.
 
+Create a new ChatGPT Project if this is a new product or if no product-bound ChatGPT Project exists.
+
+Use the initialized product project name as the ChatGPT Project name:
+
+<PROJECT_NAME>
+
 Upload:
 
 ```text
@@ -231,13 +303,14 @@ BOOTSTRAP_RESULT.md
 
 POST_BOOTSTRAP_ENTRY.md
 
-Required Lifecycle Artifacts
+ProblemDefinition_Template.md
 ```
 
 Start Prompt:
 
 ```text
-Load SAPDP Product Project
+Load SAPDP from:
+https://github.com/soyona/SAPDP
 ```
 
 Expected Responsibility:

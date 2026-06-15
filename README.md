@@ -152,6 +152,41 @@ A new SAPDP project can typically be initialized within minutes using Codex.
 
 ---
 
+# Bootstrap Workspace Handoff
+
+SAPDP v1.2.3 requires Bootstrap completion to explicitly hand off both AI workspaces.
+
+## Post-Bootstrap ChatGPT Session Handoff
+
+After Bootstrap PASS, the generated handoff must tell the user:
+
+```text
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+```
+
+New products must create a product-bound ChatGPT Project and upload the Required Load Set.
+
+Start from Problem Stage.
+
+Generate ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md.
+
+## Post-Bootstrap Codex Workspace Handoff
+
+The generated handoff must also tell the user:
+
+```text
+Open or switch Codex workspace to:
+
+<Project Root>
+
+Use this initialized project directory as the active workspace.
+Do not continue product implementation from the SAPDP protocol repository.
+Codex must not continue product work from the SAPDP protocol repository.
+```
+
+---
+
 # Codex Completion Verification
 
 SAPDP v1.2.2 requires Codex task completion to be verified from remote Git state.

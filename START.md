@@ -209,6 +209,10 @@ Expected Output
 Runtime Update Target
 
 Next Stage After Completion
+
+Post-Bootstrap ChatGPT Session Handoff
+
+Post-Bootstrap Codex Workspace Handoff
 ```
 
 Bootstrap output is insufficient if it only says:
@@ -239,6 +243,10 @@ Required Load Set
 Codex Project Setup Guide
 
 ChatGPT Project Setup Guide
+
+Post-Bootstrap ChatGPT Session Handoff
+
+Post-Bootstrap Codex Workspace Handoff
 ```
 
 These fields are required by:
@@ -249,6 +257,47 @@ Bootstrap Completion System v2
 ```
 
 Bootstrap PASS is operationally incomplete if these fields are missing.
+
+## Post-Bootstrap ChatGPT Session Handoff
+
+After Bootstrap PASS, the bootstrap result must explicitly tell the user how to start or continue the ChatGPT session.
+
+The handoff must include this exact ChatGPT start prompt:
+
+```text
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+```
+
+For a new product, or when no product-bound ChatGPT Project exists:
+
+```text
+Create a new ChatGPT Project.
+
+Use the initialized product project name as the ChatGPT Project name.
+
+Upload the Required Load Set.
+
+Start from Problem Stage.
+
+Generate ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md.
+```
+
+## Post-Bootstrap Codex Workspace Handoff
+
+After Bootstrap PASS, the bootstrap result must explicitly tell the user how to switch Codex to the initialized product project directory.
+
+The handoff must include this exact Codex workspace switch instruction:
+
+```text
+Open or switch Codex workspace to:
+
+<Project Root>
+
+Use this initialized project directory as the active workspace.
+Do not continue product implementation from the SAPDP protocol repository.
+Codex must not continue product work from the SAPDP protocol repository.
+```
 
 ## Expected Next Action After Bootstrap
 

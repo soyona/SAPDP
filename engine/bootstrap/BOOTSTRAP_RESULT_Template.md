@@ -42,6 +42,10 @@ Exact Next User Action
 Expected Output
 Runtime Update Target
 Next Stage After Completion
+ChatGPT Session Handoff
+Codex Workspace Handoff
+Exact ChatGPT start prompt
+Exact Codex workspace switch instruction
 ```
 
 ---
@@ -100,7 +104,20 @@ Artifact To Create:
 ProblemDefinition_CORE_v1.md
 
 Exact Next User Action:
-Open a ChatGPT SAPDP project session and request generation of ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md
+Create or continue the product-bound ChatGPT Project, upload the Required Load Set, enter the exact ChatGPT start prompt, and request generation of ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md
+
+Exact ChatGPT start prompt:
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Exact Codex workspace switch instruction:
+Open or switch Codex workspace to:
+
+<Project Root>
+
+Use this initialized project directory as the active workspace.
+Do not continue product implementation from the SAPDP protocol repository.
+Codex must not continue product work from the SAPDP protocol repository.
 
 Expected Output:
 ProblemDefinition_CORE_v1.md
@@ -185,11 +202,62 @@ Working Directory:
 
 Execution Environment:
 
+ChatGPT
+
+---
+
+## Post-Bootstrap ChatGPT Session Handoff
+
+Create a new ChatGPT Project if this is a new product or if no product-bound ChatGPT Project exists.
+
+Use the initialized product project name as the ChatGPT Project name:
+
+<PROJECT_NAME>
+
+Upload the Required Load Set.
+
+Start from Problem Stage.
+
+Generate ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md.
+
+Exact ChatGPT start prompt:
+
+```text
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+```
+
+---
+
+## Post-Bootstrap Codex Workspace Handoff
+
+Exact Codex workspace switch instruction:
+
+```text
+Open or switch Codex workspace to:
+
+<PROJECT_ROOT>
+
+Use this initialized project directory as the active workspace.
+Do not continue product implementation from the SAPDP protocol repository.
+Codex must not continue product work from the SAPDP protocol repository.
+```
+
 ---
 
 ## Required Load Set
 
--
+```text
+PROJECT_BOOTSTRAP.md
+
+ARTIFACT_INDEX.md
+
+BOOTSTRAP_RESULT.md
+
+POST_BOOTSTRAP_ENTRY.md
+
+ProblemDefinition_Template.md
+```
 
 ---
 
@@ -199,7 +267,17 @@ Create or Open Codex Project:
 
 Working Directory:
 
+<PROJECT_ROOT>
+
 Expected Next Action:
+
+Open or switch Codex workspace to:
+
+<PROJECT_ROOT>
+
+Use this initialized project directory as the active workspace.
+Do not continue product implementation from the SAPDP protocol repository.
+Codex must not continue product work from the SAPDP protocol repository.
 
 ---
 
@@ -207,14 +285,31 @@ Expected Next Action:
 
 Create ChatGPT Project:
 
+Create a new ChatGPT Project if this is a new product or if no product-bound ChatGPT Project exists.
+
+Use the initialized product project name as the ChatGPT Project name:
+
+<PROJECT_NAME>
+
 Upload:
 
--
+```text
+PROJECT_BOOTSTRAP.md
+
+ARTIFACT_INDEX.md
+
+BOOTSTRAP_RESULT.md
+
+POST_BOOTSTRAP_ENTRY.md
+
+ProblemDefinition_Template.md
+```
 
 Start Prompt:
 
 ```text
-Load SAPDP Product Project
+Load SAPDP from:
+https://github.com/soyona/SAPDP
 ```
 
 

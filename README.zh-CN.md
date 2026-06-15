@@ -182,6 +182,41 @@ START.md
 
 ---
 
+# Bootstrap 工作区交接
+
+SAPDP v1.2.3 要求 Bootstrap 完成结果必须明确交接 ChatGPT 会话和 Codex 工作区。
+
+## Post-Bootstrap ChatGPT Session Handoff
+
+Bootstrap PASS 后，交接内容必须告诉用户输入：
+
+```text
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+```
+
+新产品必须创建绑定该产品的 ChatGPT Project，并上传 Required Load Set。
+
+Start from Problem Stage.
+
+Generate ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md.
+
+## Post-Bootstrap Codex Workspace Handoff
+
+交接内容还必须告诉用户：
+
+```text
+Open or switch Codex workspace to:
+
+<Project Root>
+
+Use this initialized project directory as the active workspace.
+Do not continue product implementation from the SAPDP protocol repository.
+Codex must not continue product work from the SAPDP protocol repository.
+```
+
+---
+
 # 仓库结构
 
 ```text

@@ -140,6 +140,8 @@ Project Root is derived only from Project Name.
 Project Name is consistent across PROJECT_BOOTSTRAP.md, BOOTSTRAP_RESULT.md, and POST_BOOTSTRAP_ENTRY.md.
 
 Project Root is consistent across PROJECT_BOOTSTRAP.md, BOOTSTRAP_RESULT.md, and POST_BOOTSTRAP_ENTRY.md.
+
+Project Root and Working Directory are resolved in the Bootstrap handoff.
 ```
 
 ### Artifact Validation
@@ -156,6 +158,19 @@ POST_BOOTSTRAP_ENTRY.md exists.
 Generated artifacts exist in committed repository state.
 
 Committed Git state proves the scaffold structure.
+
+ChatGPT Session Handoff exists and contains the exact SAPDP load prompt:
+
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Codex Workspace Handoff exists and points to Project Root / Working Directory.
+
+ChatGPT Session Handoff requires Problem Stage entry.
+
+ChatGPT Session Handoff requires:
+
+Generate ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md.
 ```
 
 ### Protocol Validation
@@ -265,6 +280,12 @@ Incomplete BOOTSTRAP_RESULT fields.
 
 Incomplete POST_BOOTSTRAP_ENTRY guidance.
 
+Post-Bootstrap handoff exists but wording is incomplete.
+
+Upload list is incomplete.
+
+Codex workspace switch instruction is missing but recoverable.
+
 Incorrect formatting.
 
 Incorrect status wording.
@@ -356,6 +377,8 @@ Project Root not derived from Project Name.
 Project Name mismatch across required Bootstrap artifacts.
 
 Project Root mismatch across required Bootstrap artifacts.
+
+Project Root / Working Directory is unresolved.
 ```
 
 ### Artifact Failure
@@ -366,6 +389,8 @@ PROJECT_BOOTSTRAP.md missing.
 ARTIFACT_INDEX.md missing.
 
 Required generated artifact missing from committed repository state.
+
+ChatGPT entry instruction is missing entirely.
 ```
 
 ### Protocol Failure
@@ -396,6 +421,8 @@ Forbidden action executed.
 ChatGPT audit attempted against runtime-only output.
 
 Lifecycle Progress UI uses non-canonical symbols such as "*" or "o".
+
+Bootstrap handoff tells Codex to continue product work from the SAPDP protocol repository.
 ```
 
 ### Scaffold Conformance Failure
@@ -563,6 +590,10 @@ Codex Project Setup Guide
 
 ChatGPT Project Setup Guide
 
+Post-Bootstrap ChatGPT Session Handoff
+
+Post-Bootstrap Codex Workspace Handoff
+
 Validation Result:
 
 PASS
@@ -699,9 +730,30 @@ Codex Project Setup Guide
 
 ChatGPT Project Setup Guide
 
+Post-Bootstrap ChatGPT Session Handoff
+
+Post-Bootstrap Codex Workspace Handoff
+
 PASS Criteria:
 
 All required sections exist.
+
+ChatGPT Session Handoff contains the exact SAPDP load prompt:
+
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Codex Workspace Handoff points to Project Root / Working Directory.
+
+Codex Workspace Handoff includes:
+
+Open or switch Codex workspace to:
+
+<Project Root>
+
+Use this initialized project directory as the active workspace.
+Do not continue product implementation from the SAPDP protocol repository.
+Codex must not continue product work from the SAPDP protocol repository.
 
 ---
 
