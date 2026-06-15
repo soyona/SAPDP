@@ -154,7 +154,7 @@ A new SAPDP project can typically be initialized within minutes using Codex.
 
 # Protocol Release Audit Handoff
 
-SAPDP v1.2.5 requires protocol upgrade releases to be audit-ready from remote GitHub state before PASS.
+SAPDP v1.2.6 requires a minimal protocol release handoff.
 
 Codex may report a SAPDP protocol release PASS only after:
 
@@ -171,7 +171,7 @@ Verified remote commit
 
 Verified remote tag
 
-Included Commit URL and Tag URL for ChatGPT audit
+Included Commit URL and Tag URL in the minimal final handoff
 ```
 
 If the remote commit or remote tag cannot be verified, the final protocol release result must be:
@@ -189,6 +189,37 @@ FAIL
 This rule applies only to SAPDP protocol upgrade workflow.
 
 It does not change product Bootstrap behavior, add product audit package rules, or introduce lifecycle stages/status models.
+
+Required final output:
+
+```text
+Protocol Release Audit Handoff
+
+Version:
+vX.Y.Z
+
+Commit URL:
+https://github.com/soyona/SAPDP/commit/<sha>
+
+Tag URL:
+https://github.com/soyona/SAPDP/releases/tag/vX.Y.Z
+
+Files Changed:
+<n>
+
+Release Result:
+PASS / PATCH REQUIRED / FAIL
+
+ChatGPT Audit:
+
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit Release:
+vX.Y.Z
+```
+
+Do not repeat Repository, Branch, Commit SHA, Tag, remote verification, validation checklist, or git execution logs in final output.
 
 ---
 

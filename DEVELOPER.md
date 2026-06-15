@@ -249,7 +249,7 @@ Validate with real project bootstrap or lifecycle execution
 
 ---
 
-# Protocol Release Audit Handoff
+# Minimal Protocol Release Audit Handoff
 
 SAPDP protocol upgrade releases require a remote audit handoff before PASS.
 
@@ -307,34 +307,51 @@ It must not be:
 PASS
 ```
 
-Required final protocol release output must include:
+Required final protocol release output format:
 
 ```text
 Protocol Release Audit Handoff
 
-Version
+Version:
+vX.Y.Z
 
+Commit URL:
+https://github.com/soyona/SAPDP/commit/<sha>
+
+Tag URL:
+https://github.com/soyona/SAPDP/releases/tag/vX.Y.Z
+
+Files Changed:
+<n>
+
+Release Result:
+PASS / PATCH REQUIRED / FAIL
+
+ChatGPT Audit:
+
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit Release:
+vX.Y.Z
+```
+
+Final protocol release output must not repeat:
+
+```text
 Repository
 
 Branch
 
-Commit
-
-Commit URL
+Commit SHA
 
 Tag
 
-Tag URL
+Remote verification
 
-Files Changed
+Validation checklist
 
-Remote Branch Verification
-
-Remote Tag Verification
-
-ChatGPT Release Audit Prompt
-
-Final Release Result
+Git execution logs
 ```
 
 ---

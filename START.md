@@ -498,7 +498,7 @@ Fresh POST_BOOTSTRAP_ENTRY.md
 
 ---
 
-## Protocol Release Audit Handoff Rule
+## Minimal Protocol Release Audit Handoff Rule
 
 This rule applies only to SAPDP protocol upgrade releases.
 
@@ -512,33 +512,70 @@ Codex may report protocol release PASS only after:
 3. Version tag is created
 4. Tag is pushed to remote
 5. Remote commit and remote tag are verified
-6. Final output includes Commit URL and Tag URL for ChatGPT audit
+6. Final output uses the minimal Protocol Release Audit Handoff format
 ```
 
 If the commit or tag is not remotely verifiable, Codex must report:
 
 ```text
-Final Release Result:
+Release Result:
 PATCH REQUIRED
 ```
 
 or:
 
 ```text
-Final Release Result:
+Release Result:
 FAIL
 ```
 
 Codex must not report protocol release PASS based only on local commits, local tags, or unverified push output.
 
-Required final protocol release handoff fields:
+Required final protocol release handoff format:
 
 ```text
+Protocol Release Audit Handoff
+
+Version:
+vX.Y.Z
+
 Commit URL
+https://github.com/soyona/SAPDP/commit/<sha>
 
 Tag URL
+https://github.com/soyona/SAPDP/releases/tag/vX.Y.Z
 
-ChatGPT Release Audit Prompt
+Files Changed:
+<n>
+
+Release Result:
+PASS / PATCH REQUIRED / FAIL
+
+ChatGPT Audit:
+
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit Release:
+vX.Y.Z
+```
+
+Final protocol release output must not repeat:
+
+```text
+Repository
+
+Branch
+
+Commit SHA
+
+Tag
+
+Remote verification
+
+Validation checklist
+
+Git execution logs
 ```
 
 ---

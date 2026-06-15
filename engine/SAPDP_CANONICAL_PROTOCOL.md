@@ -259,7 +259,7 @@ Git owns system memory.
 
 ---
 
-# 5.1 Protocol Release Audit Handoff Rule
+# 5.1 Minimal Protocol Release Audit Handoff Rule
 
 For SAPDP protocol upgrade releases, Codex must not report PASS until Git remote state is audit-ready for ChatGPT.
 
@@ -286,7 +286,7 @@ Commit URL included in final output
 
 Tag URL included in final output
 
-ChatGPT Release Audit Prompt included in final output
+Minimal ChatGPT Audit prompt included in final output
 ```
 
 If the commit or tag is not remotely verifiable, the protocol release result must be:
@@ -308,6 +308,53 @@ PASS
 ```
 
 Remote Git state is the audit authority for SAPDP protocol release verification.
+
+Final protocol release output must use the minimal handoff format:
+
+```text
+Protocol Release Audit Handoff
+
+Version:
+vX.Y.Z
+
+Commit URL:
+https://github.com/soyona/SAPDP/commit/<sha>
+
+Tag URL:
+https://github.com/soyona/SAPDP/releases/tag/vX.Y.Z
+
+Files Changed:
+<n>
+
+Release Result:
+PASS / PATCH REQUIRED / FAIL
+
+ChatGPT Audit:
+
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit Release:
+vX.Y.Z
+```
+
+Final protocol release output must not repeat:
+
+```text
+Repository
+
+Branch
+
+Commit SHA
+
+Tag
+
+Remote verification
+
+Validation checklist
+
+Git execution logs
+```
 
 ---
 

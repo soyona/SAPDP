@@ -856,10 +856,12 @@ Remote main contains the release commit
 
 Remote contains the version tag
 
-Final output includes the remote Commit URL and Tag URL for ChatGPT audit
+Final output includes the remote Commit URL and Tag URL in the minimal Protocol Release Audit Handoff
 ```
 
 If the remote commit or remote tag cannot be verified, the protocol release result must be PATCH REQUIRED or FAIL.
+
+Final protocol release output must not repeat Repository, Branch, Commit SHA, Tag, remote verification, validation checklist, or git execution logs.
 
 ---
 
