@@ -78,6 +78,8 @@ SAPDP v1.2.0 Git Artifact Commitment Rule released.
 
 SAPDP v1.2.1 Bootstrap Scaffold Persistence Repair released.
 
+SAPDP v1.2.2 Codex Completion Verification Rule released.
+
 Protocol Consolidation completed.
 
 Bootstrap Completion System v2 released.
@@ -108,7 +110,7 @@ Protocol Change Proposal
 
 ## 5. 当前目标
 
-Maintain SAPDP v1.2.1 Release.
+Maintain SAPDP v1.2.2 Release.
 
 Ensure Bootstrap remains:
 
@@ -131,6 +133,8 @@ Pushed to Git
 before ChatGPT audit.
 
 Future Bootstrap audit must verify committed GitHub repository state, not local runtime state.
+
+Codex task completion requires clean local Git state and successful remote verification.
 
 Reality Validation remains the primary source of future protocol evolution.
 

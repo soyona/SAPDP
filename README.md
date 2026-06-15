@@ -152,6 +152,28 @@ A new SAPDP project can typically be initialized within minutes using Codex.
 
 ---
 
+# Codex Completion Verification
+
+SAPDP v1.2.2 requires Codex task completion to be verified from remote Git state.
+
+Codex completion requires:
+
+```text
+Clean git status
+
+Pushed commit
+
+Remote verification
+
+Remote tag verification when applicable
+
+Remote file verification
+```
+
+Codex must not claim completion based only on local changes, local runtime output, unstaged files, uncommitted files, or unpushed commits.
+
+---
+
 # Bootstrap Scaffold Persistence
 
 SAPDP v1.2.1 requires Bootstrap scaffold proof to be visible in committed Git state.

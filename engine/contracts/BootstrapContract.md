@@ -367,11 +367,13 @@ Codex must execute:
 
     22. Push committed Git state.
 
-    23. Run Bootstrap Validation.
+    23. Run Codex Completion Verification.
 
-    24. Produce Bootstrap Result.
+    24. Run Bootstrap Validation.
 
-    25. Stop.
+    25. Produce Bootstrap Result.
+
+    26. Stop.
 
 ## Git Artifact Commitment Rule
 
@@ -386,12 +388,39 @@ Artifact Generation
 → Git Add
 → Git Commit
 → Git Push
+→ Git Fetch
+→ Remote Verification
+→ Clean Status Verification
 → ChatGPT Audit
 ```
 
 ChatGPT must audit committed repository state only.
 
 ChatGPT must not audit runtime-only Bootstrap outputs.
+
+---
+
+## Bootstrap Completion Verification
+
+Bootstrap completion must include Codex Completion Verification.
+
+Codex must run and report:
+
+```text
+git status --short
+
+git fetch origin
+
+git rev-parse HEAD
+
+git rev-parse origin/main
+
+git ls-remote origin main
+
+git ls-remote --tags origin <release-tag-if-any>
+```
+
+If any verification fails, Codex must return FAIL or PATCH REQUIRED, not completion.
 
 ---
 
@@ -426,6 +455,8 @@ Bootstrap must stop when:
     Committed Git state has been pushed
 
     Committed GitHub repository state can prove the scaffold exists
+
+    Codex Completion Verification has passed
 
 Bootstrap is complete only when:
 

@@ -104,6 +104,14 @@ Generated Bootstrap artifacts are committed to Git.
 Committed Git state is pushed.
 
 Bootstrap audit is performed against committed and pushed repository state only.
+
+git status --short is clean after commit and push.
+
+Committed local HEAD matches pushed remote state.
+
+Required release tag exists remotely when applicable.
+
+Required files can be verified from committed remote state.
 ```
 
 ### Structure Validation
@@ -296,6 +304,20 @@ Required generated artifact exists only in runtime memory.
 Required generated artifact is uncommitted.
 
 Committed Git state has not been pushed before audit.
+
+Unstaged changes exist.
+
+Uncommitted changes exist.
+
+Untracked required artifacts exist.
+
+Local commit has not been pushed.
+
+Required tag has not been pushed.
+
+Remote verification is missing.
+
+Codex final output lacks remote verification evidence.
 ```
 
 ### SAPDP Source Failure
@@ -449,6 +471,8 @@ PASS
 ChatGPT audit must use Git state only.
 
 Runtime-only outputs are invalid audit inputs.
+
+Codex final output must include remote verification evidence.
 
 ---
 

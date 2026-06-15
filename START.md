@@ -148,6 +148,14 @@ ChatGPT must audit committed Git repository state only.
 
 Local empty directories are invalid scaffold evidence unless they contain committed .gitkeep persistence files.
 
+After any Codex task, Codex must not stop until:
+
+```text
+git status --short
+```
+
+returns clean and remote verification proves the expected commit, tag, and files exist.
+
 ---
 
 ## Success Criteria

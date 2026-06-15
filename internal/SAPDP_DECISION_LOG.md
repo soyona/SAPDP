@@ -9229,3 +9229,35 @@ Reality Validation Round-2 on LALA proved that empty directories created locally
 Status:
 
 Accepted
+
+---
+
+## D-0110 | Codex Completion Verification Rule
+
+Decision:
+
+A Codex task is not complete until all generated or modified artifacts have been written to repository, staged, committed, pushed, and verified from remote Git state.
+
+Completion requires:
+
+1. git status --short returns clean.
+
+2. git fetch origin succeeds.
+
+3. origin/main contains the expected commit.
+
+4. required tag exists remotely when the task creates a release tag.
+
+5. required files can be read from GitHub remote state.
+
+6. Codex final output includes remote verification evidence.
+
+Codex must not claim completion based on local file changes, local runtime output, unstaged files, uncommitted files, or unpushed commits.
+
+Reason:
+
+Reality Validation during SAPDP v1.2.1 showed that Codex may produce correct local changes but fail to persist them into Git. This violates Git as System Memory and makes ChatGPT audit impossible or misleading.
+
+Status:
+
+Accepted

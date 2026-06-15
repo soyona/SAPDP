@@ -1900,6 +1900,9 @@ Codex Execution
 → Git Add
 → Git Commit
 → Git Push
+→ Git Fetch
+→ Remote Verification
+→ Clean Status Verification
 → ChatGPT Audit
 ```
 
@@ -1934,6 +1937,36 @@ Conversation-only artifacts
 ```
 
 Audit must fail when a required artifact has not been committed to Git.
+
+Codex task completion requires:
+
+```text
+Codex Execution
+→ Artifact Generation
+→ Git Add
+→ Git Commit
+→ Git Push
+→ Git Fetch
+→ Remote Verification
+→ Clean Status Verification
+→ ChatGPT Audit
+```
+
+A Codex task is incomplete if:
+
+```text
+git status is not clean
+
+generated artifacts are unstaged
+
+generated artifacts are uncommitted
+
+commits are unpushed
+
+required tags are local only
+
+remote GitHub state cannot prove the claimed result
+```
 
 Git remains:
 
