@@ -348,9 +348,9 @@ Git execution logs
 
 ---
 
-# Product Workflow Handoff & Token Efficiency
+# Product Workflow Routing & Token Efficiency
 
-SAPDP v1.4.0 adds mandatory environment-aware handoff rules while preserving Git audit source rules.
+SAPDP v1.5.0 adds mandatory lifecycle execution Route Cards while preserving Git audit source rules.
 
 This upgrade does not add lifecycle stages, artifacts, or lifecycle status models.
 
@@ -400,53 +400,82 @@ ChatGPT Audit:
 <Commit URL>
 ```
 
-Every stage completion handoff must identify where the next action is executed:
+Every stage completion must output one Route Card:
 
 ```text
+Route
+
 Current:
-<stage>
+<stage> · <environment> · <project/session>
 
 Done:
-<artifact/result>
+<artifact/result/commit>
 
-Environment:
-ChatGPT | Codex | Git | Human
-
-Project:
-<project name>
-
-Session:
-NEW | CURRENT | REUSE_EXISTING
-
-Startup:
-<exact next-session bootstrap prompt or N/A>
+Next:
+<stage> · <environment> · <project/session>
 
 Action:
 <one executable action>
+
+Start:
+<exact prompt/command or omit if not needed>
+
+Audit:
+<commit URL or artifact path, only when needed>
 ```
 
-For concise lifecycle navigation, the preferred minimal form may omit `Project:` and `Startup:` only when they are already unambiguous in the same handoff context:
+Route Card rules:
 
 ```text
-Current:
-<stage>
+Current and Next must include stage, environment, project, and session when applicable.
 
-Done:
-<artifact/result>
+Environment values are ChatGPT, Codex, Git, and Human.
 
-Environment:
-<next environment>
+Session values are CURRENT, NEW, and REUSE_EXISTING.
 
-Session:
-<NEW | CURRENT | REUSE_EXISTING>
-
-Action:
-<one executable next action>
-```
-
-Do not require Human to infer the next environment.
+Action must be executable.
 
 Do not output the full lifecycle unless explicitly requested.
+```
+
+Default route map:
+
+```text
+Bootstrap: Codex -> ChatGPT, NEW session, next Problem
+Problem: ChatGPT -> ChatGPT, CURRENT session, next Solution
+Solution: ChatGPT -> ChatGPT, CURRENT session, next MVP
+MVP: ChatGPT -> ChatGPT, CURRENT session, next Task Package
+Task Package: ChatGPT -> Codex, REUSE_EXISTING product workspace, next Build
+Build: Codex -> ChatGPT, CURRENT or NEW if context is heavy, next Implementation Verification
+Implementation Verification: ChatGPT -> ChatGPT if PASS, ChatGPT -> Codex if PATCH REQUIRED
+User Validation: ChatGPT -> Release if PASS, ChatGPT -> Codex or ChatGPT if issues
+Release: ChatGPT/Codex/Git -> Release Result
+```
+
+When next environment is Codex, the Route Card must include:
+
+```text
+Codex workspace
+Source artifact or commit URL
+Minimal Codex startup instruction
+Expected output: Commit URL, Tests, Result
+```
+
+When next environment is ChatGPT, the Route Card must include:
+
+```text
+ChatGPT Project
+Session mode
+Startup prompt if NEW
+Audit source commit URL if available
+Next artifact or action
+```
+
+For new products, create or use a ChatGPT Project named after the product.
+
+Bootstrap -> Problem uses NEW session by default.
+
+Later ChatGPT stages use CURRENT unless context is heavy.
 
 Git is the default audit memory.
 

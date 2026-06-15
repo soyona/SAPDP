@@ -245,9 +245,9 @@ PASS / PATCH REQUIRED / FAIL
 
 ---
 
-# 产品工作流交接与 Token 效率
+# 产品工作流路由与 Token 效率
 
-SAPDP v1.4.0 统一产品研发 workflow 的环境感知交接格式与 Git 审计来源。
+SAPDP v1.5.0 统一产品研发 workflow 的 Route Card 与 Git 审计来源。
 
 它不新增生命周期阶段，不新增 artifact，也不新增状态模型。
 
@@ -303,24 +303,49 @@ Tests
 Result
 ```
 
-生命周期阶段完成交接必须显示下一步执行环境：
+每个阶段完成时必须只输出当前 transition 的 Route Card：
 
 ```text
+Route
+
 Current:
-<stage>
+<stage> · <environment> · <project/session>
 
 Done:
-<artifact/result>
+<artifact/result/commit>
 
-Environment:
-ChatGPT | Codex | Git | Human
-
-Session:
-NEW | CURRENT | REUSE_EXISTING
+Next:
+<stage> · <environment> · <project/session>
 
 Action:
 <one executable action>
+
+Start:
+<exact prompt/command or omit if not needed>
+
+Audit:
+<commit URL or artifact path, only when needed>
 ```
+
+环境取值只能是 ChatGPT、Codex、Git、Human。
+
+Session 取值只能是 CURRENT、NEW、REUSE_EXISTING。
+
+默认 route map：
+
+```text
+Bootstrap: Codex -> ChatGPT, NEW session, next Problem
+Problem: ChatGPT -> ChatGPT, CURRENT session, next Solution
+Solution: ChatGPT -> ChatGPT, CURRENT session, next MVP
+MVP: ChatGPT -> ChatGPT, CURRENT session, next Task Package
+Task Package: ChatGPT -> Codex, REUSE_EXISTING product workspace, next Build
+Build: Codex -> ChatGPT, CURRENT or NEW if context is heavy, next Implementation Verification
+Implementation Verification: ChatGPT -> ChatGPT if PASS, ChatGPT -> Codex if PATCH REQUIRED
+User Validation: ChatGPT -> Release if PASS, ChatGPT -> Codex or ChatGPT if issues
+Release: ChatGPT/Codex/Git -> Release Result
+```
+
+默认不得输出完整生命周期；只有用户要求 route map 时才显示。
 
 Git 是默认审计记忆。人工复制粘贴仅作为 fallback。
 
@@ -328,37 +353,34 @@ Git 是默认审计记忆。人工复制粘贴仅作为 fallback。
 
 # Bootstrap 完成交接
 
-SAPDP v1.4.0 要求产品 Bootstrap 完成后使用最小化、Git 优先、环境感知的交接格式。
+SAPDP v1.5.0 要求产品 Bootstrap 完成后使用最小化、Git 优先的 Route Card。
 
 产品 Bootstrap 完成后，Codex 最终输出必须使用：
 
 ```text
-Bootstrap Handoff
+Route
 
-Project:
-<Name>
+Current:
+Bootstrap · Codex · <Project>
 
-Commit URL:
+Done:
 <remote product commit URL>
 
-Environment:
-ChatGPT
+Next:
+Problem · ChatGPT · <Project> Project · NEW session
 
-ChatGPT Project:
-<Name>
+Action:
+Create ProblemDefinition_CORE_v1.md
 
-Session:
-NEW
-
-Startup:
+Start:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
 
 Audit product commit:
 <remote product commit URL>
 
-Action:
-Create ProblemDefinition_CORE_v1.md
+Audit:
+<remote product commit URL>
 
 Workspace:
 <absolute project root>

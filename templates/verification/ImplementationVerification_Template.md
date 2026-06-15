@@ -98,6 +98,64 @@ Implementation Verification must use Commit URL before asking the Human to paste
 
 ---
 
+# Completion Route Card
+
+Implementation Verification completion must output one Route Card.
+
+For PASS:
+
+```text
+Route
+
+Current:
+Implementation Verification · ChatGPT · <Project> Project · CURRENT session
+
+Done:
+Implementation Verification Result: PASS
+
+Next:
+User Validation · ChatGPT · <Project> Project · CURRENT session
+
+Action:
+Prepare User Validation decision using the verified Commit URL.
+
+Audit:
+<Commit URL>
+```
+
+For PATCH REQUIRED:
+
+```text
+Route
+
+Current:
+Implementation Verification · ChatGPT · <Project> Project · CURRENT session
+
+Done:
+Implementation Verification Result: PATCH REQUIRED
+
+Next:
+Build · Codex · <absolute product workspace> · REUSE_EXISTING session
+
+Action:
+Patch the implementation findings in Codex.
+
+Start:
+Open <absolute product workspace>, load <Commit URL>, and patch the listed findings only.
+
+Audit:
+<Commit URL>
+
+Expected output:
+Commit URL
+Tests
+Result
+```
+
+If Git state is unavailable, route to Human or Git with one executable action to supply or create the required audit source.
+
+---
+
 # Verification Summary
 
 ## Verification Scope

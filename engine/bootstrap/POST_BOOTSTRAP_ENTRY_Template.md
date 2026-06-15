@@ -24,33 +24,32 @@ SAPDP_LIFECYCLE.md
 
 ---
 
-## Bootstrap Handoff
+## Bootstrap Route Card
 
 ```text
-Project:
-<PROJECT_NAME>
+Route
 
-Commit URL:
+Current:
+Bootstrap · Codex · <PROJECT_NAME>
+
+Done:
 <remote product commit URL>
 
-Environment:
-ChatGPT
+Next:
+Problem · ChatGPT · <PROJECT_NAME> Project · NEW session
 
-ChatGPT Project:
-<PROJECT_NAME>
+Action:
+Create ProblemDefinition_CORE_v1.md
 
-Session:
-NEW
-
-Startup:
+Start:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
 
 Audit product commit:
 <remote product commit URL>
 
-Action:
-Create ProblemDefinition_CORE_v1.md
+Audit:
+<remote product commit URL>
 
 Workspace:
 <absolute project root>
@@ -82,7 +81,7 @@ Commit URL:
 <remote product commit URL>
 ```
 
-The Commit URL in the Bootstrap Handoff is the only ChatGPT audit target.
+The Commit URL in the Bootstrap Route Card is the only ChatGPT audit target.
 
 File upload is fallback only.
 
@@ -114,33 +113,29 @@ Product repository file tree
 ## Problem Stage Entry
 
 ```text
-Current Stage:
-Problem
+Route
 
-Environment:
-ChatGPT
+Current:
+Bootstrap · Codex · <PROJECT_NAME>
 
-ChatGPT Project:
-<PROJECT_NAME>
+Done:
+<remote product commit URL>
 
-Session:
-NEW
+Next:
+Problem · ChatGPT · <PROJECT_NAME> Project · NEW session
 
-Startup:
+Action:
+Create ProblemDefinition_CORE_v1.md
+
+Start:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
 
 Audit product commit:
 <remote product commit URL>
 
-Next Artifact:
-ProblemDefinition_CORE_v1.md
-
-Template:
-templates/problem/ProblemDefinition_Template.md
-
-Next Action:
-Create ProblemDefinition_CORE_v1.md.
+Audit:
+<remote product commit URL>
 ```
 
 ---
@@ -174,7 +169,7 @@ When the remote product commit is missing, Result must not be PASS.
 
 ## Final Decision
 
-The final user-facing decision must be expressed only through the `Result:` line in the minimal Bootstrap Handoff.
+The final user-facing decision must be expressed only through the `Result:` line in the minimal Bootstrap Route Card.
 
 ```text
 Result:
@@ -192,17 +187,16 @@ Do not output conflicting commit identifiers.
 After ProblemDefinition_CORE_v1.md is accepted, ChatGPT must produce:
 
 ```text
+Route
+
 Current:
-Problem
+Problem · ChatGPT · <PROJECT_NAME> Project · CURRENT session
 
 Done:
 ProblemDefinition_CORE_v1.md
 
-Environment:
-ChatGPT
-
-Session:
-CURRENT
+Next:
+Solution · ChatGPT · <PROJECT_NAME> Project · CURRENT session
 
 Action:
 Generate SolutionDefinition_CORE_v1.md

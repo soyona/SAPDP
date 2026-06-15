@@ -46,6 +46,37 @@ Tests
 Result
 ```
 
+Task Package completion routes from ChatGPT to Codex.
+
+The stage completion Route Card must include:
+
+```text
+Route
+
+Current:
+Task Package · ChatGPT · <Project> Project · CURRENT session
+
+Done:
+<TaskPackage artifact path or commit URL>
+
+Next:
+Build · Codex · <absolute product workspace> · REUSE_EXISTING session
+
+Action:
+Implement the Task Package in Codex.
+
+Start:
+Open <absolute product workspace> and execute <TaskPackage artifact path or commit URL>.
+
+Audit:
+<TaskPackage artifact path or commit URL>
+
+Expected output:
+Commit URL
+Tests
+Result
+```
+
 ---
 
 # Rules
@@ -58,6 +89,7 @@ Result
 - Scope must include both required work and explicit non-goals.
 - Acceptance must contain 3 to 7 concrete checks.
 - Output must require Commit URL, Tests, and Result.
+- The Route Card must identify Codex workspace, source artifact or commit URL, minimal Codex startup instruction, and expected output.
 
 ---
 

@@ -44,35 +44,32 @@ BOOTSTRAP_RESULT.md may record internal Bootstrap validation states.
 
 Codex final user-facing output after product bootstrap must not expose internal Bootstrap states.
 
-Codex final output after initialization must use only this format:
+Codex final output after initialization must use only this Route Card format:
 
 ```text
-Bootstrap Handoff
+Route
 
-Project:
-<PROJECT_NAME>
+Current:
+Bootstrap · Codex · <PROJECT_NAME>
 
-Commit URL:
+Done:
 <remote product commit URL>
 
-Environment:
-ChatGPT
+Next:
+Problem · ChatGPT · <PROJECT_NAME> Project · NEW session
 
-ChatGPT Project:
-<PROJECT_NAME>
+Action:
+Create ProblemDefinition_CORE_v1.md
 
-Session:
-NEW
-
-Startup:
+Start:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
 
 Audit product commit:
 <remote product commit URL>
 
-Action:
-Create ProblemDefinition_CORE_v1.md
+Audit:
+<remote product commit URL>
 
 Workspace:
 <absolute project root>
@@ -145,7 +142,7 @@ Audit product commit:
 <remote product commit URL>
 ```
 
-The Commit URL in the final Bootstrap Handoff is the only ChatGPT audit target.
+The Commit URL in the final Route Card is the only ChatGPT audit target.
 
 Do not output a separate verified commit value that conflicts with the Commit URL.
 
@@ -203,33 +200,29 @@ Codex must not continue product work from the SAPDP protocol repository.
 ## D. Problem Stage Entry
 
 ```text
-Environment:
-ChatGPT
+Route
 
-ChatGPT Project:
-<PROJECT_NAME>
+Current:
+Bootstrap · Codex · <PROJECT_NAME>
 
-Session:
-NEW
+Done:
+<remote product commit URL>
 
-Startup:
+Next:
+Problem · ChatGPT · <PROJECT_NAME> Project · NEW session
+
+Action:
+Create ProblemDefinition_CORE_v1.md
+
+Start:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
 
 Audit product commit:
 <remote product commit URL>
 
-Current Stage:
-Problem
-
-Next Artifact:
-ProblemDefinition_CORE_v1.md
-
-Template:
-templates/problem/ProblemDefinition_Template.md
-
-Next Action:
-Create ProblemDefinition_CORE_v1.md.
+Audit:
+<remote product commit URL>
 ```
 
 ---
@@ -276,7 +269,7 @@ Remote validation pending is a traceability limitation, not a local Bootstrap fa
 
 BOOTSTRAP_RESULT.md may include internal state lines for audit traceability.
 
-Codex final user-facing output must use the minimal Bootstrap Handoff format and must not show:
+Codex final user-facing output must use the minimal Route Card format and must not show:
 
 ```text
 LOCAL_BOOTSTRAP_PASS
@@ -288,32 +281,29 @@ PROBLEM_STAGE_ALLOWED
 Correct final user-facing output:
 
 ```text
-Bootstrap Handoff
+Route
 
-Project:
-<PROJECT_NAME>
+Current:
+Bootstrap · Codex · <PROJECT_NAME>
 
-Commit URL:
+Done:
 <remote product commit URL>
 
-Environment:
-ChatGPT
+Next:
+Problem · ChatGPT · <PROJECT_NAME> Project · NEW session
 
-ChatGPT Project:
-<PROJECT_NAME>
+Action:
+Create ProblemDefinition_CORE_v1.md
 
-Session:
-NEW
-
-Startup:
+Start:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
 
 Audit product commit:
 <remote product commit URL>
 
-Action:
-Create ProblemDefinition_CORE_v1.md
+Audit:
+<remote product commit URL>
 
 Workspace:
 <absolute project root>

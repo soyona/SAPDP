@@ -38,7 +38,7 @@ NewProduct
 
 For product bootstrap audit, use the product Commit URL first.
 
-If no remote product commit exists, use the local commit SHA and exact push commands from the Bootstrap Handoff.
+If no remote product commit exists, use the local commit SHA and exact push commands from the Bootstrap Route Card.
 
 File upload is fallback only:
 
@@ -86,15 +86,19 @@ POST_BOOTSTRAP_ENTRY.md
 For a new product after successful bootstrap:
 
 ```text
-Create a ChatGPT Project named <ProjectName>, start a NEW session in that project, use the Startup prompt from the Bootstrap Handoff, and create ProblemDefinition_CORE_v1.md.
+Create or use a ChatGPT Project named <ProjectName>, start a NEW session in that project, use the Start prompt from the Bootstrap Route Card, and create ProblemDefinition_CORE_v1.md.
 ```
 
-Codex must continue from the product project root shown in the Bootstrap Handoff.
+Codex must continue from the product project root shown in the Bootstrap Route Card.
 
 Do not continue product implementation from the SAPDP protocol repository.
 
 For an existing product:
 
 ```text
-Follow the Environment, Session, Startup, and Action fields in the latest Environment Handoff or POST_BOOTSTRAP_ENTRY.md.
+Follow the Current, Next, Action, Start, and Audit fields in the latest Route Card or POST_BOOTSTRAP_ENTRY.md.
 ```
+
+Every stage completion must show only the current transition by default.
+
+Use the full route map only when explicitly requested.

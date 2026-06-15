@@ -215,39 +215,96 @@ Do not repeat Repository, Branch, Commit SHA, Tag, remote verification, validati
 
 ---
 
-# Bootstrap Completion Handoff
+# Lifecycle Execution Routing
 
-SAPDP v1.4.0 requires product bootstrap completion to use a minimal Git-first, environment-aware handoff.
+SAPDP v1.5.0 requires every stage completion to output one compact Route Card.
+
+Required Route Card:
+
+```text
+Route
+
+Current:
+<stage> · <environment> · <project/session>
+
+Done:
+<artifact/result/commit>
+
+Next:
+<stage> · <environment> · <project/session>
+
+Action:
+<one executable action>
+
+Start:
+<exact prompt/command or omit if not needed>
+
+Audit:
+<commit URL or artifact path, only when needed>
+```
+
+Rules:
+
+```text
+Current and Next must include stage, environment, project, and session when applicable.
+
+Allowed environments are ChatGPT, Codex, Git, and Human.
+
+Allowed sessions are CURRENT, NEW, and REUSE_EXISTING.
+
+Action must be executable.
+
+Show only the current transition unless the user asks for a route map.
+```
+
+Default routing:
+
+```text
+Bootstrap: Codex -> ChatGPT, NEW session, next Problem
+Problem: ChatGPT -> ChatGPT, CURRENT session, next Solution
+Solution: ChatGPT -> ChatGPT, CURRENT session, next MVP
+MVP: ChatGPT -> ChatGPT, CURRENT session, next Task Package
+Task Package: ChatGPT -> Codex, REUSE_EXISTING product workspace, next Build
+Build: Codex -> ChatGPT, CURRENT or NEW if context is heavy, next Implementation Verification
+Implementation Verification: ChatGPT -> ChatGPT if PASS, ChatGPT -> Codex if PATCH REQUIRED
+User Validation: ChatGPT -> Release if PASS, ChatGPT -> Codex or ChatGPT if issues
+Release: ChatGPT/Codex/Git -> Release Result
+```
+
+Git is the default audit memory. Human copy/paste is fallback only.
+
+---
+
+# Bootstrap Completion Route Card
+
+SAPDP v1.5.0 requires product bootstrap completion to use the Route Card format.
 
 After product bootstrap, Codex final output must use:
 
 ```text
-Bootstrap Handoff
+Route
 
-Project:
-<Name>
+Current:
+Bootstrap · Codex · <Project>
 
-Commit URL:
-<remote product commit URL>
+Done:
+<Commit URL>
 
-Environment:
-ChatGPT
+Next:
+Problem · ChatGPT · <Project> Project · NEW session
 
-ChatGPT Project:
-<Name>
+Action:
+Create ProblemDefinition_CORE_v1.md
 
-Session:
-NEW
-
-Startup:
+Start:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
 
 Audit product commit:
 <remote product commit URL>
 
-Action:
-Create ProblemDefinition_CORE_v1.md
+Audit:
+<remote product commit URL>
 
 Workspace:
 <absolute project root>
@@ -374,33 +431,6 @@ Avoid pasted documents, lifecycle explanations, and repeated context.
 
 ---
 
-# Environment Handoff
-
-Every product lifecycle stage completion handoff must identify where the next executable action happens:
-
-```text
-Current:
-<stage>
-
-Done:
-<artifact/result>
-
-Environment:
-ChatGPT | Codex | Git | Human
-
-Session:
-NEW | CURRENT | REUSE_EXISTING
-
-Action:
-<one executable action>
-```
-
-Do not repeat the full lifecycle unless the user is lost or explicitly asks.
-
-Do not require the Human to infer the next environment.
-
----
-
 # Bootstrap Scaffold Persistence
 
 SAPDP v1.2.1 requires Bootstrap scaffold proof to be visible in committed Git state.
@@ -446,12 +476,12 @@ Bootstrap PASS alone is insufficient.
 Bootstrap is operationally complete only when:
 
 ```text
-Bootstrap Completion Handoff
+Bootstrap Route Card
 ```
 
 has been produced.
 
-The Bootstrap Completion Handoff is instantiated in:
+The Bootstrap Route Card is instantiated in:
 
 ```text
 POST_BOOTSTRAP_ENTRY.md

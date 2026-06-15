@@ -300,46 +300,86 @@ Artifact Formats
 
 ### Runtime Completion Contract
 
-Every product Lifecycle Stage completion must produce an Environment Handoff.
+Every product Lifecycle Stage completion must produce one Route Card.
 
-The preferred minimal handoff contains:
+The required Route Card contains:
 
 ```text
+Route
+
 Current:
-<stage>
+<stage> · <environment> · <project/session>
 
 Done:
-<artifact/result>
+<artifact/result/commit>
 
-Environment:
-<next environment>
-
-Session:
-NEW | CURRENT | REUSE_EXISTING
+Next:
+<stage> · <environment> · <project/session>
 
 Action:
 <one executable action>
+
+Start:
+<exact prompt/command or omit if not needed>
+
+Audit:
+<commit URL or artifact path, only when needed>
 ```
 
-The handoff must not repeat the full lifecycle unless the user is lost or explicitly asks.
+Allowed Environment values:
 
-The handoff must not include generic guidance.
+```text
+ChatGPT
+Codex
+Git
+Human
+```
 
-The Environment must identify where the next action is performed.
+Allowed Session values:
 
-The Session must identify whether the next action uses a new session, the current session, or an existing product-bound session.
+```text
+CURRENT
+NEW
+REUSE_EXISTING
+```
+
+The Route Card must not repeat the full lifecycle unless the user explicitly asks for a route map.
+
+The Route Card must not include generic guidance.
+
+Current and Next must include stage, environment, project, and session when applicable.
+
+The Environment must identify where each side of the transition is performed.
 
 The Action must be executable.
 
-Environment Handoff is a handoff contract.
+Route Card is a handoff contract.
 
-Environment Handoff is not a Runtime Authority.
+Route Card is not a Runtime Authority.
 
-Lifecycle completion is not operationally complete until the Environment Handoff has been produced.
+Lifecycle completion is not operationally complete until the Route Card has been produced.
 
 Authoritative runtime state remains:
 
 PROJECT_BOOTSTRAP.md
+
+### Default Stage Route Map
+
+The default routing reference is:
+
+```text
+Bootstrap: Codex -> ChatGPT, NEW session, next Problem
+Problem: ChatGPT -> ChatGPT, CURRENT session, next Solution
+Solution: ChatGPT -> ChatGPT, CURRENT session, next MVP
+MVP: ChatGPT -> ChatGPT, CURRENT session, next Task Package
+Task Package: ChatGPT -> Codex, REUSE_EXISTING product workspace, next Build
+Build: Codex -> ChatGPT, CURRENT or NEW if context is heavy, next Implementation Verification
+Implementation Verification: ChatGPT -> ChatGPT if PASS, ChatGPT -> Codex if PATCH REQUIRED
+User Validation: ChatGPT -> Release if PASS, ChatGPT -> Codex or ChatGPT if issues
+Release: ChatGPT/Codex/Git -> Release Result
+```
+
+The route map is not output by default.
 
 
 
@@ -416,7 +456,7 @@ After Bootstrap PASS, Lifecycle defines the Stage Entry Rule:
 - Inputs: Required Load Set from Bootstrap (PROJECT_BOOTSTRAP.md, ARTIFACT_INDEX.md, BOOTSTRAP_RESULT.md, POST_BOOTSTRAP_ENTRY.md, ProblemDefinition_Template.md)
 - Environment: ChatGPT
 - Session: NEW by default, or REUSE_EXISTING when a product-bound ChatGPT Project already exists
-- Startup: Bootstrap Handoff Startup prompt
+- Startup: Bootstrap Route Card Start prompt
 - Produced Artifact: ProblemDefinition_CORE_v1.md
 - Runtime Update Target: PROJECT_BOOTSTRAP.md
 
@@ -429,7 +469,7 @@ Ensures unambiguous Bootstrap → Problem Stage transition while maintaining Aut
 PATCH PASS criteria:
 
 - ProblemDefinition_CORE_v1.md is generated according to template.
-- Environment Handoff is produced.
+- Route Card is produced.
 - Action is executable and identifies the next stage action.
 
 ---

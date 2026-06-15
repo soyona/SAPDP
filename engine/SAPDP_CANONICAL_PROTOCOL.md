@@ -388,7 +388,7 @@ Git execution logs
 
 ---
 
-# 5.3 Product Workflow Handoff & Token Efficiency Rule
+# 5.3 Product Workflow Routing & Token Efficiency Rule
 
 This rule applies only to product development workflow.
 
@@ -474,69 +474,163 @@ Do not include lifecycle theory.
 Do not request broad implementation beyond current stage scope.
 ```
 
-## 5.3.3 Environment Handoff Rule
+## 5.3.3 Route Card Rule
 
-Every product lifecycle stage completion handoff must identify the next execution environment.
+Every product lifecycle stage completion must output one compact Route Card.
 
-Required complete form:
+Required format:
 
 ```text
+Route
+
 Current:
-<stage>
+<stage> · <environment> · <project/session>
 
 Done:
-<artifact/result>
+<artifact/result/commit>
 
-Environment:
-ChatGPT | Codex | Git | Human
-
-Project:
-<project name>
-
-Session:
-NEW | CURRENT | REUSE_EXISTING
-
-Startup:
-<exact next-session bootstrap prompt or N/A>
+Next:
+<stage> · <environment> · <project/session>
 
 Action:
 <one executable action>
-```
 
-Preferred minimal navigation form:
+Start:
+<exact prompt/command or omit if not needed>
 
-```text
-Current:
-<stage>
-
-Done:
-<artifact/result>
-
-Environment:
-<next environment>
-
-Session:
-<NEW | CURRENT | REUSE_EXISTING>
-
-Action:
-<one executable next action>
+Audit:
+<commit URL or artifact path, only when needed>
 ```
 
 Rules:
 
 ```text
-Environment must identify where the next action is performed.
+Current and Next must include stage, environment, project, and session when applicable.
+
+Allowed Environment values:
+ChatGPT
+Codex
+Git
+Human
+
+Allowed Session values:
+CURRENT
+NEW
+REUSE_EXISTING
 
 Action must be executable.
 
-Do not require Human to infer the next environment.
+Do not show the full lifecycle by default.
 
-Do not output the full lifecycle unless explicitly requested.
+Show only the current transition unless the user asks for a route map.
+
+Do not require Human to infer the next environment, project, session, source, or executable action.
 
 Do not include generic guidance.
 ```
 
-## 5.3.4 Git Memory Rule
+## 5.3.4 Stage Route Map
+
+The default route map is:
+
+```text
+Bootstrap: Codex -> ChatGPT, NEW session, next Problem
+
+Problem: ChatGPT -> ChatGPT, CURRENT session, next Solution
+
+Solution: ChatGPT -> ChatGPT, CURRENT session, next MVP
+
+MVP: ChatGPT -> ChatGPT, CURRENT session, next Task Package
+
+Task Package: ChatGPT -> Codex, REUSE_EXISTING product workspace, next Build
+
+Build: Codex -> ChatGPT, CURRENT or NEW if context is heavy, next Implementation Verification
+
+Implementation Verification: ChatGPT -> ChatGPT if PASS, ChatGPT -> Codex if PATCH REQUIRED
+
+User Validation: ChatGPT -> Release if PASS, ChatGPT -> Codex or ChatGPT if issues
+
+Release: ChatGPT/Codex/Git -> Release Result
+```
+
+The route map is a routing reference only.
+
+It does not add lifecycle stages, artifacts, status models, or template directories.
+
+The route map must not be output by default.
+
+## 5.3.5 ChatGPT to Codex Handoff Rule
+
+When the next environment is Codex, the Route Card must include:
+
+```text
+Codex workspace
+
+Source artifact or commit URL
+
+Minimal Codex startup instruction
+
+Expected output:
+Commit URL
+Tests
+Result
+```
+
+The Action must be directly executable in Codex.
+
+The source artifact or commit URL must be sufficient for Codex to begin without pasted full lifecycle context.
+
+## 5.3.6 Codex to ChatGPT Handoff Rule
+
+When the next environment is ChatGPT, the Route Card must include:
+
+```text
+ChatGPT Project
+
+Session mode
+
+Startup prompt if NEW
+
+Audit source commit URL if available
+
+Next artifact or action
+```
+
+If context is heavy after Build, Codex may route to a NEW ChatGPT session; otherwise use CURRENT.
+
+Commit URL is the preferred audit source when available.
+
+## 5.3.7 ChatGPT Project Rule
+
+For new products, create or use a ChatGPT Project named:
+
+```text
+<Product>
+```
+
+Bootstrap -> Problem uses NEW session by default.
+
+Later ChatGPT stages use CURRENT unless context is heavy.
+
+If a product-bound ChatGPT Project already exists, use that project and set Session to REUSE_EXISTING only when a previously established session must be reused.
+
+## 5.3.8 Human and Git Exception Handoff Rule
+
+When the next environment is Human or Git, the Route Card must identify the required exception action.
+
+Examples:
+
+```text
+Human:
+Review User Validation issue and choose PASS, PATCH REQUIRED, or FAIL.
+
+Git:
+Push commit and tag, then return Commit URL or Tag URL.
+```
+
+Human and Git exception paths must preserve Git-first audit rules.
+
+## 5.3.9 Git Memory Rule
 
 Git is the default audit memory for product development workflow.
 
@@ -548,37 +642,34 @@ ChatGPT audit should use Commit URL before asking Human to paste files.
 
 Human copy/paste is fallback only.
 
-## 5.3.5 Product Bootstrap Handoff Rule
+## 5.3.10 Product Bootstrap Route Card Rule
 
 After product bootstrap, Codex final output must use:
 
 ```text
-Bootstrap Handoff
+Route
 
-Project:
-<Name>
+Current:
+Bootstrap · Codex · <Project>
 
-Commit URL:
-<remote product commit URL>
+Done:
+<Commit URL>
 
-Environment:
-ChatGPT
+Next:
+Problem · ChatGPT · <Project> Project · NEW session
 
-ChatGPT Project:
-<Name>
+Action:
+Create ProblemDefinition_CORE_v1.md
 
-Session:
-NEW
-
-Startup:
+Start:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
 
 Audit product commit:
 <remote product commit URL>
 
-Action:
-Create ProblemDefinition_CORE_v1.md
+Audit:
+<remote product commit URL>
 
 Workspace:
 <absolute project root>
@@ -601,7 +692,7 @@ The file upload list is fallback only.
 
 If the remote product commit is missing, Codex must output the local commit SHA and exact push commands, and Result must not be PASS.
 
-The final Bootstrap Handoff must not show internal Bootstrap state names, including:
+The final Bootstrap Route Card must not show internal Bootstrap state names, including:
 
 ```text
 LOCAL_BOOTSTRAP_PASS
@@ -720,21 +811,21 @@ but may not advance Lifecycle Stages.
 
 ---
 
-## Environment Handoff Rule
+## Route Card Rule
 
 Lifecycle completion is not operationally complete until:
 
 ```text
-Environment Handoff
+Route Card
 ```
 
 has been produced.
 
-Every product Lifecycle Stage completion must produce an Environment Handoff.
+Every product Lifecycle Stage completion must produce a Route Card.
 
-The Environment Handoff is mandatory.
+The Route Card is mandatory.
 
-The Environment Handoff is:
+The Route Card is:
 
 ```text
 Stage Handoff Contract
@@ -755,6 +846,10 @@ Authoritative runtime state remains:
 ```text
 PROJECT_BOOTSTRAP.md
 ```
+
+The Route Card must show only the current transition by default.
+
+The full route map may be shown only when the user asks for it.
 
 ---
 
@@ -1400,32 +1495,34 @@ Bootstrap Completion System v2
 Bootstrap PASS is not operationally complete until:
 
 ```text
-Bootstrap Completion Handoff
+Bootstrap Route Card
 ```
 
 has been produced.
 
-Bootstrap Completion Handoff must disclose:
+Bootstrap Route Card must disclose:
 
 ```text
-Project
+Current stage/environment/project/session
 
-Commit URL
+Done commit or result
 
-Stage
+Next stage/environment/project/session
 
-Next
+Action
+
+Start
 
 Result
 
-ChatGPT Audit
+Audit
 
 Codex Workspace
 
 Codex workspace boundary sentence
 ```
 
-Bootstrap Completion Handoff provides:
+Bootstrap Route Card provides:
 
 ```text
 Execution Guidance
@@ -1433,7 +1530,7 @@ Execution Guidance
 
 only.
 
-Bootstrap Completion Handoff is not:
+Bootstrap Route Card is not:
 
 ```text
 Runtime Authority
@@ -1719,55 +1816,56 @@ POST_BOOTSTRAP_ENTRY.md
 
 Bootstrap output must include:
 
-Bootstrap Handoff
-Project
-Commit URL
-Environment
-ChatGPT Project
-Session
-Startup
+Route Card
+Current stage/environment/project/session
+Done commit or result
+Next stage/environment/project/session
 Action
+Start
+Audit
 Workspace
 Result
 Codex workspace boundary sentence
 
-Bootstrap PASS is not operationally complete unless all required Bootstrap artifacts exist and the Bootstrap Completion Handoff is produced.
+Bootstrap PASS is not operationally complete unless all required Bootstrap artifacts exist and the Bootstrap Route Card is produced.
 
 
 ---
 
-## Bootstrap Completion Handoff
+## Bootstrap Completion Route Card
 
-Bootstrap Completion Handoff is mandatory.
+Bootstrap Completion Route Card is mandatory.
 
 Bootstrap must produce an explicit handoff into the first Lifecycle Stage.
 
-Bootstrap Completion Handoff only outputs actionable instructions (POST_BOOTSTRAP_ENTRY.md) and does **not** define Lifecycle Stage rules.
+Bootstrap Completion Route Card only outputs actionable instructions (POST_BOOTSTRAP_ENTRY.md) and does **not** define Lifecycle Stage rules.
 
 Minimum Stage Entry Instruction:
 
-Environment: ChatGPT
-ChatGPT Project: <Project Name>
-Session: NEW
-Startup:
+Route
+Current: Bootstrap · Codex · <Project Name>
+Done: <Commit URL>
+Next: Problem · ChatGPT · <Project Name> Project · NEW session
+Action: Create ProblemDefinition_CORE_v1.md
+Start:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
 Audit product commit:
 <Commit URL>
-Action: Create ProblemDefinition_CORE_v1.md
+Audit: <Commit URL>
 Workspace: <absolute project root>
 Do not continue product implementation from the SAPDP protocol repository.
 
 Operational Completion Rule:
 
-Bootstrap Handoff Result PASS does not imply operational completion.
-Bootstrap is operationally complete only when Bootstrap Completion Handoff exists.
+Bootstrap Route Card Result PASS does not imply operational completion.
+Bootstrap is operationally complete only when Bootstrap Completion Route Card exists.
 
 ---
 
-## Bootstrap Completion Handoff
+## Bootstrap Completion Route Card
 
-Bootstrap Completion Handoff is mandatory.
+Bootstrap Completion Route Card is mandatory.
 
 Bootstrap must produce an explicit handoff into the first Lifecycle Stage.
 
@@ -1789,9 +1887,9 @@ Which workspace Codex must use
 
 ---
 
-## Bootstrap Completion Handoff Artifact
+## Bootstrap Route Card Template
 
-Bootstrap Completion Handoff is represented by:
+Bootstrap Route Card is represented by:
 
 ```text
 POST_BOOTSTRAP_ENTRY.md
@@ -1877,7 +1975,7 @@ Bootstrap Validation must fail operationally if POST_BOOTSTRAP_ENTRY.md is missi
 
 ## Protocol Repair Validation Rule
 
-After any Bootstrap Completion Handoff repair, validation must restart from a clean project bootstrap.
+After any Bootstrap Route Card repair, validation must restart from a clean project bootstrap.
 
 The repaired protocol must be validated by:
 
@@ -1918,35 +2016,32 @@ Environment:
 ChatGPT
 ```
 
-Default Bootstrap Completion Handoff:
+Default Bootstrap Completion Route Card:
 
 ```text
-Bootstrap Handoff
+Route
 
-Project:
-<Name>
+Current:
+Bootstrap · Codex · <Project>
 
-Commit URL:
+Done:
 <remote product commit URL>
 
-Environment:
-ChatGPT
+Next:
+Problem · ChatGPT · <Project> Project · NEW session
 
-ChatGPT Project:
-<Name>
+Action:
+Create ProblemDefinition_CORE_v1.md
 
-Session:
-NEW
-
-Startup:
+Start:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
 
 Audit product commit:
 <remote product commit URL>
 
-Action:
-Create ProblemDefinition_CORE_v1.md
+Audit:
+<remote product commit URL>
 
 Workspace:
 <absolute project root>
@@ -1993,7 +2088,7 @@ Therefore the output is not executable.
 
 ## Operational Completion Rule
 
-Bootstrap Handoff Result:
+Bootstrap Route Card Result:
 
 ```text
 PASS
@@ -2009,7 +2104,7 @@ PASS
 
 AND
 
-Bootstrap Completion Handoff exists
+Bootstrap Route Card exists
 ```
 
 If the handoff is missing:
@@ -2030,7 +2125,7 @@ PASS
 
 ## POST_BOOTSTRAP_ENTRY.md Authority
 
-POST_BOOTSTRAP_ENTRY.md is the authoritative Bootstrap Completion Handoff artifact.
+POST_BOOTSTRAP_ENTRY.md is the authoritative Bootstrap Route Card template.
 
 POST_BOOTSTRAP_ENTRY.md owns:
 
@@ -2155,7 +2250,7 @@ Bootstrap Productionization Audit verifies:
 ```text
 Project Structure
 
-Bootstrap Completion Handoff
+Bootstrap Route Card
 
 Template Availability
 
@@ -2215,7 +2310,7 @@ Verify Quality
 ↓
 Accept Artifact
 ↓
-Produce Environment Handoff
+Produce Route Card
 ↓
 Update Runtime State
 ↓
@@ -2458,7 +2553,7 @@ must be updated.
 Lifecycle completion is not operationally complete until:
 
 ```text
-Environment Handoff
+Route Card
 ```
 
 has been produced.
