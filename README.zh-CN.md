@@ -253,6 +253,89 @@ vX.Y.Z
 
 ---
 
+# 产品工作流交接与 Token 效率
+
+SAPDP v1.3.0 仅升级产品研发 workflow 的交接格式。
+
+它不改变产品 Bootstrap 行为，不新增生命周期阶段，也不新增状态模型。
+
+Codex 完成产品实现任务后的最终输出必须使用：
+
+```text
+Codex Completion Handoff
+
+Project:
+<name>
+
+Commit URL:
+<url>
+
+Changed:
+<n files>
+
+Tests:
+PASS / FAIL / NOT RUN
+
+Result:
+PASS / PATCH REQUIRED / FAIL
+
+ChatGPT Audit:
+
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit Codex result:
+<Commit URL>
+```
+
+有 origin remote 时 Commit URL 必填。
+
+没有 origin remote 时，Codex 必须输出本地 commit SHA 和精确 push 命令。
+
+Codex 不应输出 full diff、git logs、冗长 summary 或重复仓库信息。
+
+ChatGPT 生成 Codex 执行任务时必须使用：
+
+```text
+Task:
+<one sentence>
+
+Inputs:
+<artifact paths or commit URLs>
+
+Scope:
+<must do>
+<must not do>
+
+Acceptance:
+<3-7 checks>
+
+Output:
+Commit URL
+Tests
+Result
+```
+
+生命周期阶段完成交接只显示：
+
+```text
+Current:
+<stage>
+
+Done:
+<artifact/result>
+
+Next:
+<stage>
+
+Action:
+<one concrete action>
+```
+
+Git 是默认审计记忆。人工复制粘贴仅作为 fallback。
+
+---
+
 # Bootstrap 完成体验修复
 
 SAPDP v1.2.4 将本地 Bootstrap 成功与远程 Git 验证分开表达。

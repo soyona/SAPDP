@@ -296,23 +296,110 @@ Codex must not continue product work from the SAPDP protocol repository.
 
 # Codex Completion Verification
 
-SAPDP v1.2.2 requires Codex task completion to be verified from remote Git state.
+SAPDP v1.3.0 requires product implementation completion to be minimal and verified from Git state.
 
 Codex completion requires:
 
 ```text
 Clean git status
 
-Pushed commit
+Committed work
 
-Remote verification
+Pushed commit when origin exists
 
-Remote tag verification when applicable
+Commit URL when origin exists
 
-Remote file verification
+Required checks passed or reported
+
+Minimal ChatGPT audit prompt
 ```
 
 Codex must not claim completion based only on local changes, local runtime output, unstaged files, uncommitted files, or unpushed commits.
+
+Required product implementation completion output:
+
+```text
+Codex Completion Handoff
+
+Project:
+<name>
+
+Commit URL:
+<url>
+
+Changed:
+<n files>
+
+Tests:
+PASS / FAIL / NOT RUN
+
+Result:
+PASS / PATCH REQUIRED / FAIL
+
+ChatGPT Audit:
+
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit Codex result:
+<Commit URL>
+```
+
+If origin is missing, Codex must output the local commit SHA and exact push commands.
+
+Codex must not output full diff, git logs, verbose summaries, or duplicated repository metadata.
+
+Result may be PASS only if the working tree is clean and required checks passed.
+
+---
+
+# Token-Efficient Task Packages
+
+When ChatGPT generates Codex execution instructions, SAPDP v1.3.0 requires:
+
+```text
+Task:
+<one sentence>
+
+Inputs:
+<artifact paths or commit URLs>
+
+Scope:
+<must do>
+<must not do>
+
+Acceptance:
+<3-7 checks>
+
+Output:
+Commit URL
+Tests
+Result
+```
+
+Use paths, commit URLs, and artifact names instead of pasted full content.
+
+---
+
+# Minimal Stage Navigation
+
+Every product lifecycle stage completion handoff must show only:
+
+```text
+Current:
+<stage>
+
+Done:
+<artifact/result>
+
+Next:
+<stage>
+
+Action:
+<one concrete action>
+```
+
+Do not repeat the full lifecycle unless the user is lost or explicitly asks.
 
 ---
 

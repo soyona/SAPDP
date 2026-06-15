@@ -356,6 +356,85 @@ Git execution logs
 
 ---
 
+# Product Workflow Handoff & Token Efficiency
+
+SAPDP v1.3.0 adds product workflow handoff rules only.
+
+This upgrade does not change product Bootstrap behavior, lifecycle stages, or lifecycle status models.
+
+ChatGPT-generated Codex task packages must use:
+
+```text
+Task:
+<one sentence>
+
+Inputs:
+<artifact paths or commit URLs>
+
+Scope:
+<must do>
+<must not do>
+
+Acceptance:
+<3-7 checks>
+
+Output:
+Commit URL
+Tests
+Result
+```
+
+Codex product implementation completion must use:
+
+```text
+Codex Completion Handoff
+
+Project:
+<name>
+
+Commit URL:
+<url>
+
+Changed:
+<n files>
+
+Tests:
+PASS / FAIL / NOT RUN
+
+Result:
+PASS / PATCH REQUIRED / FAIL
+
+ChatGPT Audit:
+
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit Codex result:
+<Commit URL>
+```
+
+Product lifecycle stage completion handoff must show only:
+
+```text
+Current:
+<stage>
+
+Done:
+<artifact/result>
+
+Next:
+<stage>
+
+Action:
+<one concrete action>
+```
+
+Git is the default audit memory.
+
+Human copy/paste is fallback only.
+
+---
+
 # Patch Rules
 
 SAPDP uses PATCH MODE.

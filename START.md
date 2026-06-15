@@ -156,6 +156,39 @@ returns clean.
 
 When an origin remote is configured, remote verification must prove the expected commit, tag, and files exist.
 
+For product implementation tasks, Codex final output must use:
+
+```text
+Codex Completion Handoff
+
+Project:
+<name>
+
+Commit URL:
+<url>
+
+Changed:
+<n files>
+
+Tests:
+PASS / FAIL / NOT RUN
+
+Result:
+PASS / PATCH REQUIRED / FAIL
+
+ChatGPT Audit:
+
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit Codex result:
+<Commit URL>
+```
+
+Codex must not include full diff, git logs, verbose summaries, or duplicated repository metadata.
+
+Result may be PASS only when the working tree is clean and required checks passed.
+
 When no origin remote is configured, Codex must report:
 
 ```text

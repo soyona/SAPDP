@@ -358,6 +358,141 @@ Git execution logs
 
 ---
 
+# 5.2 Product Workflow Handoff & Token Efficiency Rule
+
+This rule applies only to product development workflow.
+
+It does not change:
+
+```text
+Lifecycle Stage Set
+
+Lifecycle status models
+
+Product Bootstrap behavior
+```
+
+## 5.2.1 Codex Completion Handoff Rule
+
+After Codex completes any product implementation task, final output must use this minimal format:
+
+```text
+Codex Completion Handoff
+
+Project:
+<name>
+
+Commit URL:
+<url>
+
+Changed:
+<n files>
+
+Tests:
+PASS / FAIL / NOT RUN
+
+Result:
+PASS / PATCH REQUIRED / FAIL
+
+ChatGPT Audit:
+
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit Codex result:
+<Commit URL>
+```
+
+Rules:
+
+```text
+Commit URL is mandatory when origin exists.
+
+If origin is missing, output local commit SHA and exact push commands.
+
+Do not output full diff, git logs, verbose summaries, or duplicated repository metadata.
+
+Result may be PASS only if working tree is clean and required checks passed.
+```
+
+## 5.2.2 Codex Task Package Token Budget Rule
+
+When ChatGPT generates Codex execution instructions, use this minimal structure:
+
+```text
+Task:
+<one sentence>
+
+Inputs:
+<artifact paths or commit URLs>
+
+Scope:
+<must do>
+<must not do>
+
+Acceptance:
+<3-7 checks>
+
+Output:
+Commit URL
+Tests
+Result
+```
+
+Rules:
+
+```text
+Prefer paths, commit URLs, and artifact names over pasted full content.
+
+Do not include background unless required for execution.
+
+Do not include lifecycle theory.
+
+Do not request broad implementation beyond current stage scope.
+```
+
+## 5.2.3 Minimal Stage Navigation Prompt Rule
+
+Every product lifecycle stage completion handoff must show only:
+
+```text
+Current:
+<stage>
+
+Done:
+<artifact/result>
+
+Next:
+<stage>
+
+Action:
+<one concrete action>
+```
+
+Rules:
+
+```text
+Do not repeat the full lifecycle unless user is lost or explicitly asks.
+
+Do not include generic guidance.
+
+The next action must be executable.
+```
+
+## 5.2.4 Git Memory Rule
+
+Git is the default audit memory for product development workflow.
+
+Codex must commit completed work.
+
+If origin exists, Codex must push and return Commit URL.
+
+ChatGPT audit should use Commit URL before asking Human to paste files.
+
+Human copy/paste is fallback only.
+
+---
+
 # 6. Lifecycle
 
 SAPDP maintains one lifecycle.
@@ -462,21 +597,21 @@ but may not advance Lifecycle Stages.
 
 ---
 
-## Runtime Completion Rule
+## Minimal Stage Navigation Rule
 
 Lifecycle completion is not operationally complete until:
 
 ```text
-Runtime Completion Block
+Minimal Stage Navigation Handoff
 ```
 
 has been produced.
 
-Every Lifecycle Stage completion must produce a Runtime Completion Block.
+Every product Lifecycle Stage completion must produce a Minimal Stage Navigation Handoff.
 
-The Runtime Completion Block is mandatory.
+The Minimal Stage Navigation Handoff is mandatory.
 
-The Runtime Completion Block is:
+The Minimal Stage Navigation Handoff is:
 
 ```text
 Stage Handoff Contract
@@ -1966,7 +2101,7 @@ Verify Quality
 ↓
 Accept Artifact
 ↓
-Produce Runtime Completion Block
+Produce Minimal Stage Navigation Handoff
 ↓
 Update Runtime State
 ↓
@@ -2087,26 +2222,34 @@ Pull Request Workflow
 
 ### Runtime Completion Contract
 
-Every completed Lifecycle Stage must produce a Runtime Completion Block.
+Every completed product Lifecycle Stage must produce a minimal stage navigation handoff.
 
-The Runtime Completion Block must contain:
+The stage completion handoff must contain only:
 
 ```text
-Current Stage
+Current:
+<stage>
 
-Produced Artifact
+Done:
+<artifact/result>
 
-Stage Result
+Next:
+<stage>
 
-Next Stage
+Action:
+<one concrete action>
+```
 
-Required Load Set
+The handoff must not repeat:
 
-Execution Environment
+```text
+Full lifecycle
 
-Need New Session
+Generic guidance
 
-Next Action
+Verbose artifact summaries
+
+Runtime metadata
 ```
 
 Allowed Stage Result values:
@@ -2149,35 +2292,11 @@ REJECTED
 
 apply to all other Lifecycle Stages.
 
-Need New Session must be:
+This release does not add or rename Stage Result values.
 
-```text
-YES
-```
+Minimal stage navigation handoff establishes the operational handoff between Lifecycle Stages.
 
-when any condition is true:
-
-```text
-Primary execution environment changes
-
-Current stage output is accepted and frozen
-
-Required Load Set changes significantly
-
-Human validation or offline execution is required
-```
-
-Otherwise:
-
-```text
-Need New Session
-=
-NO
-```
-
-Runtime Completion Block establishes the operational handoff between Lifecycle Stages.
-
-Runtime Completion Block is not:
+Minimal stage navigation handoff is not:
 
 ```text
 Artifact
@@ -2195,7 +2314,7 @@ Authoritative runtime state remains:
 PROJECT_BOOTSTRAP.md
 ```
 
-If Runtime Completion changes:
+If runtime state changes:
 
 ```text
 Current Lifecycle Stage
@@ -2222,7 +2341,7 @@ must be updated.
 Lifecycle completion is not operationally complete until:
 
 ```text
-Runtime Completion Block
+Minimal Stage Navigation Handoff
 ```
 
 has been produced.

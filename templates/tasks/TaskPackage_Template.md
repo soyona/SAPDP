@@ -14,117 +14,78 @@
 
 # Purpose
 
-Define the implementation package that can be directly executed by Codex.
+Define a token-efficient implementation package that can be directly executed by Codex.
 
-This artifact exists to transform an approved MVP Definition into an executable implementation task.
+This artifact transforms approved product artifacts into one bounded implementation task.
 
-This artifact must not redefine:
+This artifact must prefer artifact paths, commit URLs, and artifact names over pasted full content.
 
-- Problem Definition
-- Solution Definition
-- Product Requirements
-- Product Representation
-- UX Design
-- Visual Design
-- Technical Constraints
-- MVP Scope
+This artifact must not include lifecycle theory or background unless required for execution.
 
 ---
 
-# Inputs
+# Required Format
 
-MVP Definition
+```text
+Task:
+<one sentence>
 
-Technical Constraint
+Inputs:
+<artifact paths or commit URLs>
 
----
+Scope:
+<must do>
+<must not do>
 
-# Outputs
+Acceptance:
+<3-7 checks>
 
-Build Artifact
-
-Implementation Verification Result
-
----
-
-# Required Load Set
-
-PROJECT_BOOTSTRAP.md
-
-ARTIFACT_INDEX.md
-
-MVP Definition
-
-Technical Constraint
-
-Decision Log
+Output:
+Commit URL
+Tests
+Result
+```
 
 ---
 
-# Task Summary
+# Rules
 
-## Task Name
-
-<TASK_NAME>
-
----
-
-## Task Objective
-
-<TASK_OBJECTIVE>
+- Use paths, commit URLs, and artifact names instead of pasted full artifact content.
+- Include only context required for Codex execution.
+- Do not include lifecycle theory.
+- Do not request broad implementation beyond current stage scope.
+- Scope must include both required work and explicit non-goals.
+- Acceptance must contain 3 to 7 concrete checks.
+- Output must require Commit URL, Tests, and Result.
 
 ---
 
-# Implementation Scope
+# Template
 
-<IMPLEMENTATION_SCOPE>
+```text
+Task:
+<one sentence>
 
----
+Inputs:
+<artifact paths or commit URLs>
 
-# Deliverables
+Scope:
+Must do:
+<required implementation work>
 
-<DELIVERABLES>
+Must not do:
+<out-of-scope work>
 
----
+Acceptance:
+1. <check>
+2. <check>
+3. <check>
 
-# Constraints
-
-<IMPLEMENTATION_CONSTRAINTS>
-
----
-
-# Acceptance Criteria
-
-<IMPLEMENTATION_ACCEPTANCE_CRITERIA>
-
----
-
-# Test Requirements
-
-<TEST_REQUIREMENTS>
-
----
-
-# Non Goals
-
-<NON_GOALS>
-
----
-
-# Execution Instructions
-
-<EXECUTION_INSTRUCTIONS>
-
----
-
-# Completion Criteria
-
-Task is considered complete when:
-
-- Deliverables produced
-- Acceptance criteria satisfied
-- Required tests passed
-- Constraints respected
+Output:
+Commit URL
+Tests
+Result
+```
 
 ---
 

@@ -18,6 +18,8 @@ Verify that implementation matches the approved definitions and constraints.
 
 This artifact exists to determine whether implementation is correct.
 
+Implementation Verification must audit committed Git state before requesting pasted files from the Human.
+
 This artifact does not evaluate:
 
 - User Satisfaction
@@ -32,7 +34,7 @@ These subjects belong to User Validation.
 
 Task Package
 
-Build Artifact
+Build Artifact commit URL
 
 MVP Definition
 
@@ -61,6 +63,43 @@ MVP Definition
 Technical Constraint
 
 Decision Log
+
+---
+
+# Codex Completion Handoff Input
+
+Codex implementation completion must provide:
+
+```text
+Codex Completion Handoff
+
+Project:
+<name>
+
+Commit URL:
+<url>
+
+Changed:
+<n files>
+
+Tests:
+PASS / FAIL / NOT RUN
+
+Result:
+PASS / PATCH REQUIRED / FAIL
+
+ChatGPT Audit:
+
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit Codex result:
+<Commit URL>
+```
+
+If origin is missing, Codex must provide the local commit SHA and exact push commands instead of Commit URL.
+
+Implementation Verification must use Commit URL before asking the Human to paste files.
 
 ---
 

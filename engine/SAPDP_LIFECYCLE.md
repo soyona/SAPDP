@@ -300,31 +300,35 @@ Artifact Formats
 
 ### Runtime Completion Contract
 
-Every Lifecycle Stage completion must produce a Runtime Completion Block.
+Every product Lifecycle Stage completion must produce a Minimal Stage Navigation Handoff.
 
-The Runtime Completion Block must contain:
+The handoff must contain only:
 
-Current Stage
+```text
+Current:
+<stage>
 
-Produced Artifact
+Done:
+<artifact/result>
 
-Stage Result
+Next:
+<stage>
 
-Next Stage
+Action:
+<one concrete action>
+```
 
-Required Load Set
+The handoff must not repeat the full lifecycle unless the user is lost or explicitly asks.
 
-Execution Environment
+The handoff must not include generic guidance.
 
-Need New Session
+The Action must be executable.
 
-Next Action
+Minimal Stage Navigation Handoff is a handoff contract.
 
-Runtime Completion Block is a handoff contract.
+Minimal Stage Navigation Handoff is not a Runtime Authority.
 
-Runtime Completion Block is not a Runtime Authority.
-
-Lifecycle completion is not operationally complete until the Runtime Completion Block has been produced.
+Lifecycle completion is not operationally complete until the Minimal Stage Navigation Handoff has been produced.
 
 Authoritative runtime state remains:
 
@@ -417,7 +421,7 @@ Ensures unambiguous Bootstrap → Problem Stage transition while maintaining Aut
 PATCH PASS criteria:
 
 - ProblemDefinition_CORE_v1.md is generated according to template.
-- Runtime Completion Block is updated.
+- Minimal Stage Navigation Handoff is produced.
 - Next Stage is correctly set to Solution.
 
 ---
@@ -862,6 +866,60 @@ Final output includes the remote Commit URL and Tag URL in the minimal Protocol 
 If the remote commit or remote tag cannot be verified, the protocol release result must be PATCH REQUIRED or FAIL.
 
 Final protocol release output must not repeat Repository, Branch, Commit SHA, Tag, remote verification, validation checklist, or git execution logs.
+
+---
+
+## 6.7 Product Workflow Handoff Boundary Rule
+
+Product workflow handoff rules apply only to product development workflow.
+
+They do not change:
+
+```text
+Lifecycle Stage Set
+
+Lifecycle Entry Types
+
+Lifecycle Forward Progression Rules
+
+Lifecycle Rollback Rules
+
+Lifecycle Closure Rules
+
+Lifecycle status models
+
+Product Bootstrap behavior
+```
+
+When ChatGPT sends Codex execution instructions, it must use the token-efficient Task Package structure:
+
+```text
+Task:
+<one sentence>
+
+Inputs:
+<artifact paths or commit URLs>
+
+Scope:
+<must do>
+<must not do>
+
+Acceptance:
+<3-7 checks>
+
+Output:
+Commit URL
+Tests
+Result
+```
+
+When Codex completes product implementation work, Git is the default audit memory.
+
+Codex must commit completed work.
+
+If origin exists, Codex must push and return Commit URL.
+
+Human copy/paste is fallback only.
 
 ---
 
