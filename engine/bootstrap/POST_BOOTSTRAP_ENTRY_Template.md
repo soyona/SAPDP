@@ -8,8 +8,7 @@ It must clearly answer:
 
 - Where is the project?
 - What should I open in Codex?
-- What should I upload to ChatGPT?
-- What exact ChatGPT prompt should I use?
+- Which Commit URL should ChatGPT audit?
 - What is the current stage?
 - What artifact should be created next?
 - Is Git remote validation pending?
@@ -24,81 +23,73 @@ SAPDP_LIFECYCLE.md
 
 ---
 
-## Bootstrap Summary
+## Bootstrap Handoff
 
 ```text
 Project:
 <PROJECT_NAME>
 
-Project Root:
-<PROJECT_ROOT>
+Commit URL:
+<remote product commit URL>
 
-Working Directory:
-<WORKING_DIRECTORY>
+Stage:
+Problem
 
-Local Bootstrap Result:
-<LOCAL_BOOTSTRAP_PASS | LOCAL_BOOTSTRAP_FAIL>
+Next:
+ProblemDefinition_CORE_v1.md
 
-Remote Git Validation:
-<REMOTE_VALIDATION_PASS | REMOTE_VALIDATION_PENDING | REMOTE_VALIDATION_FAIL>
+Result:
+PASS | PATCH REQUIRED | FAIL
 
-Overall Stage Entry:
-<PROBLEM_STAGE_ALLOWED | PROBLEM_STAGE_BLOCKED>
-```
+ChatGPT Audit:
+<Commit URL>
 
----
+Codex Workspace:
+<absolute project root>
 
-## Codex Workspace Handoff
-
-Open or switch Codex workspace to:
-
-```text
-<PROJECT_ROOT>
-```
-
-Use this initialized product directory as the active workspace.
 Do not continue product implementation from the SAPDP protocol repository.
-Codex must not continue product work from the SAPDP protocol repository.
+```
+
+This is the required minimal Codex final output after product bootstrap.
+
+Internal Bootstrap validation states must not appear in the final user-facing output.
 
 ---
 
-## ChatGPT Handoff
+## ChatGPT Audit Source
 
-Recommended ChatGPT Project:
+If a remote product commit exists, ChatGPT audit must use only:
 
 ```text
-<PROJECT_NAME>
+Commit URL:
+<remote product commit URL>
 ```
 
-Required Upload Files:
+The Commit URL in the Bootstrap Handoff is the only ChatGPT audit target.
+
+File upload is fallback only.
+
+If no remote product commit exists, provide:
 
 ```text
-PROJECT_BOOTSTRAP.md
-ARTIFACT_INDEX.md
-BOOTSTRAP_RESULT.md
-POST_BOOTSTRAP_ENTRY.md
+Local Commit:
+<local commit SHA>
+
+Push Commands:
+git remote add origin <your-product-repo-url>
+git push -u origin main
 ```
 
-Start Prompt:
+When no remote product commit exists, Result must not be PASS.
+
+Fallback upload files:
 
 ```text
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-
-Audit this initialized SAPDP product project.
-
-Project:
-<PROJECT_NAME>
-
-Required audit inputs:
 PROJECT_BOOTSTRAP.md
 ARTIFACT_INDEX.md
 BOOTSTRAP_RESULT.md
 POST_BOOTSTRAP_ENTRY.md
 Product repository file tree
-
-Task:
-Perform SAPDP Bootstrap audit and confirm whether the project may enter Problem Stage.
 ```
 
 ---
@@ -121,54 +112,45 @@ Create ProblemDefinition_CORE_v1.md.
 
 ---
 
-## Remote Git Validation
+## Git Audit State
 
-### If Remote Validation Passed
+### If Remote Product Commit Exists
 
 ```text
-Remote Git Validation:
-REMOTE_VALIDATION_PASS
-
 Remote:
 <origin-url>
 
-Verified Commit:
-<commit-hash>
+Commit URL:
+<remote product commit URL>
 ```
 
-### If Remote Validation Is Pending
+### If Remote Product Commit Is Missing
 
 ```text
-Remote Git Validation:
-REMOTE_VALIDATION_PENDING
+Local Commit:
+<local commit SHA>
 
-Reason:
-No origin remote is configured.
-
-To complete remote validation:
-
+Push Commands:
 git remote add origin <your-product-repo-url>
 git push -u origin main
-
-Then rerun Bootstrap Validation.
 ```
 
-Remote validation pending is a traceability limitation, not a local Bootstrap failure.
+When the remote product commit is missing, Result must not be PASS.
 
 ---
 
 ## Final Decision
 
-Use separate state lines.
+The final user-facing decision must be expressed only through the `Result:` line in the minimal Bootstrap Handoff.
 
 ```text
-Final Decision:
-<LOCAL_BOOTSTRAP_PASS | LOCAL_BOOTSTRAP_FAIL>
-<PROBLEM_STAGE_ALLOWED | PROBLEM_STAGE_BLOCKED>
-<REMOTE_VALIDATION_PASS | REMOTE_VALIDATION_PENDING | REMOTE_VALIDATION_FAIL>
+Result:
+PASS | PATCH REQUIRED | FAIL
 ```
 
-Do not output a plain FAIL when local Bootstrap succeeds and only remote Git validation is pending.
+Do not show internal Bootstrap states in final user-facing output.
+
+Do not output conflicting commit identifiers.
 
 ---
 

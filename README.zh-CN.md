@@ -323,62 +323,50 @@ Git 是默认审计记忆。人工复制粘贴仅作为 fallback。
 
 ---
 
-# Bootstrap 完成体验修复
+# Bootstrap 完成交接
 
-SAPDP v1.2.4 将本地 Bootstrap 成功与远程 Git 验证分开表达。
+SAPDP v1.3.2 要求产品 Bootstrap 完成后使用最小化、Git 优先的交接格式。
 
-Bootstrap 完成结果必须报告：
-
-```text
-Local Bootstrap Result:
-LOCAL_BOOTSTRAP_PASS or LOCAL_BOOTSTRAP_FAIL
-
-Remote Git Validation:
-REMOTE_VALIDATION_PASS or REMOTE_VALIDATION_PENDING or REMOTE_VALIDATION_FAIL
-
-Overall Stage Entry:
-PROBLEM_STAGE_ALLOWED or PROBLEM_STAGE_BLOCKED
-```
-
-如果本地 Bootstrap 成功且必需的 Bootstrap artifacts 均存在，即使 Remote Git Validation 为 REMOTE_VALIDATION_PENDING，也可以允许进入 Problem Stage。
-
-远程验证 pending 是可追溯性限制，不是本地 Bootstrap 失败。
-
-Codex 初始化后的最终输出必须包含：
+产品 Bootstrap 完成后，Codex 最终输出必须使用：
 
 ```text
-A. Bootstrap Summary
-B. ChatGPT Handoff
-C. Codex Workspace Handoff
-D. Problem Stage Entry
-E. Remote Git Validation
-F. Final Decision
+Bootstrap Handoff
+
+Project:
+<Name>
+
+Commit URL:
+<remote product commit URL>
+
+Stage:
+Problem
+
+Next:
+ProblemDefinition_CORE_v1.md
+
+Result:
+PASS | PATCH REQUIRED | FAIL
+
+ChatGPT Audit:
+<Commit URL>
+
+Codex Workspace:
+<absolute project root>
+
+Do not continue product implementation from the SAPDP protocol repository.
 ```
 
-当本地 Bootstrap 成功时，Final Decision 不得只输出模糊的 FAIL。
+如果远程 product commit 存在，ChatGPT audit 必须使用 Commit URL。
+
+文件上传列表仅作为 fallback。
+
+如果远程 product commit 不存在，Codex 必须输出本地 commit SHA 和精确 push 命令，且 Result 不得为 PASS。
+
+Codex 最终输出不得显示内部 Bootstrap state 名称，也不得输出冲突的 verified commit 值。
 
 ---
 
-# Bootstrap 工作区交接
-
-SAPDP v1.2.3 要求 Bootstrap 完成结果必须明确交接 ChatGPT 会话和 Codex 工作区。
-
-## Post-Bootstrap ChatGPT Session Handoff
-
-LOCAL_BOOTSTRAP_PASS 且 PROBLEM_STAGE_ALLOWED 后，交接内容必须告诉用户输入：
-
-```text
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-```
-
-新产品必须创建绑定该产品的 ChatGPT Project，并上传 Required Load Set。
-
-Start from Problem Stage.
-
-Generate ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md.
-
-## Post-Bootstrap Codex Workspace Handoff
+# Bootstrap 工作区边界
 
 交接内容还必须告诉用户：
 

@@ -215,62 +215,50 @@ Do not repeat Repository, Branch, Commit SHA, Tag, remote verification, validati
 
 ---
 
-# Bootstrap Completion UX Repair
+# Bootstrap Completion Handoff
 
-SAPDP v1.2.4 separates local Bootstrap success from remote Git validation.
+SAPDP v1.3.2 requires product bootstrap completion to use a minimal Git-first handoff.
 
-Bootstrap completion must report:
-
-```text
-Local Bootstrap Result:
-LOCAL_BOOTSTRAP_PASS or LOCAL_BOOTSTRAP_FAIL
-
-Remote Git Validation:
-REMOTE_VALIDATION_PASS or REMOTE_VALIDATION_PENDING or REMOTE_VALIDATION_FAIL
-
-Overall Stage Entry:
-PROBLEM_STAGE_ALLOWED or PROBLEM_STAGE_BLOCKED
-```
-
-If local Bootstrap succeeds and all required Bootstrap artifacts exist, Problem Stage may be allowed even when Remote Git Validation is REMOTE_VALIDATION_PENDING.
-
-Remote validation pending is a traceability limitation, not a local Bootstrap failure.
-
-Codex final output after initialization must contain:
+After product bootstrap, Codex final output must use:
 
 ```text
-A. Bootstrap Summary
-B. ChatGPT Handoff
-C. Codex Workspace Handoff
-D. Problem Stage Entry
-E. Remote Git Validation
-F. Final Decision
+Bootstrap Handoff
+
+Project:
+<Name>
+
+Commit URL:
+<remote product commit URL>
+
+Stage:
+Problem
+
+Next:
+ProblemDefinition_CORE_v1.md
+
+Result:
+PASS | PATCH REQUIRED | FAIL
+
+ChatGPT Audit:
+<Commit URL>
+
+Codex Workspace:
+<absolute project root>
+
+Do not continue product implementation from the SAPDP protocol repository.
 ```
 
-Final Decision must not say plain FAIL when local Bootstrap succeeds.
+If a remote product commit exists, ChatGPT audit must use the Commit URL.
+
+File upload is fallback only.
+
+If no remote product commit exists, Codex must output the local commit SHA and exact push commands, and Result must not be PASS.
+
+Codex final output must not show internal Bootstrap state names or conflicting verified commit values.
 
 ---
 
-# Bootstrap Workspace Handoff
-
-SAPDP v1.2.3 requires Bootstrap completion to explicitly hand off both AI workspaces.
-
-## Post-Bootstrap ChatGPT Session Handoff
-
-After LOCAL_BOOTSTRAP_PASS with PROBLEM_STAGE_ALLOWED, the generated handoff must tell the user:
-
-```text
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-```
-
-New products must create a product-bound ChatGPT Project and upload the Required Load Set.
-
-Start from Problem Stage.
-
-Generate ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md.
-
-## Post-Bootstrap Codex Workspace Handoff
+# Bootstrap Workspace Boundary
 
 The generated handoff must also tell the user:
 

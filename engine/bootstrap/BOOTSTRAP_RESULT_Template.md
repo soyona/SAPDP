@@ -40,15 +40,37 @@ If Local Bootstrap Result is LOCAL_BOOTSTRAP_PASS and all required Bootstrap art
 
 ## Bootstrap Completion Output Contract
 
-Codex final output after initialization must contain these sections in this order:
+BOOTSTRAP_RESULT.md may record internal Bootstrap validation states.
+
+Codex final user-facing output after product bootstrap must not expose internal Bootstrap states.
+
+Codex final output after initialization must use only this format:
 
 ```text
-A. Bootstrap Summary
-B. ChatGPT Handoff
-C. Codex Workspace Handoff
-D. Problem Stage Entry
-E. Remote Git Validation
-F. Final Decision
+Bootstrap Handoff
+
+Project:
+<PROJECT_NAME>
+
+Commit URL:
+<remote product commit URL>
+
+Stage:
+Problem
+
+Next:
+ProblemDefinition_CORE_v1.md
+
+Result:
+PASS | PATCH REQUIRED | FAIL
+
+ChatGPT Audit:
+<Commit URL>
+
+Codex Workspace:
+<absolute project root>
+
+Do not continue product implementation from the SAPDP protocol repository.
 ```
 
 ---
@@ -91,37 +113,55 @@ Local Bootstrap Result PASS indicates that:
 
 ---
 
-## B. ChatGPT Handoff
+## B. ChatGPT Audit Source
+
+If a remote product commit exists, ChatGPT audit must use only:
 
 ```text
-Recommended ChatGPT Project:
-<PROJECT_NAME>
+Commit URL:
+<remote product commit URL>
 
-Required Upload Files:
-- PROJECT_BOOTSTRAP.md
-- ARTIFACT_INDEX.md
-- BOOTSTRAP_RESULT.md
-- POST_BOOTSTRAP_ENTRY.md
+ChatGPT Audit:
+<Commit URL>
+```
 
-Start Prompt:
+The Commit URL in the final Bootstrap Handoff is the only ChatGPT audit target.
 
-Load SAPDP from:
-https://github.com/soyona/SAPDP
+Do not output a separate verified commit value that conflicts with the Commit URL.
 
-Audit this initialized SAPDP product project.
+File upload is fallback only.
 
-Project:
-<PROJECT_NAME>
+If the remote product commit is missing, output the local commit SHA and exact push commands:
 
-Required audit inputs:
+```text
+Local Commit:
+<local commit SHA>
+
+Push Commands:
+git remote add origin <your-product-repo-url>
+git push -u origin main
+```
+
+When the remote product commit is missing, Result must be:
+
+```text
+PATCH REQUIRED
+```
+
+or:
+
+```text
+FAIL
+```
+
+Fallback upload files:
+
+```text
 PROJECT_BOOTSTRAP.md
 ARTIFACT_INDEX.md
 BOOTSTRAP_RESULT.md
 POST_BOOTSTRAP_ENTRY.md
 Product repository file tree
-
-Task:
-Perform SAPDP Bootstrap audit and confirm whether the project may enter Problem Stage.
 ```
 
 ---
@@ -169,8 +209,8 @@ REMOTE_VALIDATION_PASS or REMOTE_VALIDATION_FAIL
 Remote:
 <origin-url>
 
-Verified Commit:
-<commit-hash>
+Commit URL:
+<remote product commit URL>
 ```
 
 ### Remote Pending
@@ -198,22 +238,57 @@ Remote validation pending is a traceability limitation, not a local Bootstrap fa
 
 ## F. Final Decision
 
-Use separate state lines.
+BOOTSTRAP_RESULT.md may include internal state lines for audit traceability.
 
-Correct:
+Codex final user-facing output must use the minimal Bootstrap Handoff format and must not show:
 
 ```text
-Final Decision:
 LOCAL_BOOTSTRAP_PASS
-PROBLEM_STAGE_ALLOWED
+REMOTE_VALIDATION_PASS
 REMOTE_VALIDATION_PENDING
+PROBLEM_STAGE_ALLOWED
 ```
 
-Incorrect:
+Correct final user-facing output:
 
 ```text
-Bootstrap Audit Result:
-FAIL
+Bootstrap Handoff
+
+Project:
+<PROJECT_NAME>
+
+Commit URL:
+<remote product commit URL>
+
+Stage:
+Problem
+
+Next:
+ProblemDefinition_CORE_v1.md
+
+Result:
+PASS | PATCH REQUIRED | FAIL
+
+ChatGPT Audit:
+<Commit URL>
+
+Codex Workspace:
+<absolute project root>
+
+Do not continue product implementation from the SAPDP protocol repository.
+```
+
+Incorrect final user-facing output:
+
+```text
+Local Bootstrap Result:
+LOCAL_BOOTSTRAP_PASS
+
+Remote Git Validation:
+REMOTE_VALIDATION_PENDING
+
+Conflicting Commit:
+<different commit hash>
 ```
 
 ---

@@ -36,7 +36,11 @@ NewProduct
 
 # Required Files
 
-For product bootstrap audit, load:
+For product bootstrap audit, use the product Commit URL first.
+
+If no remote product commit exists, use the local commit SHA and exact push commands from the Bootstrap Handoff.
+
+File upload is fallback only:
 
 ```text
 PROJECT_BOOTSTRAP.md
@@ -84,6 +88,10 @@ For a new product after successful bootstrap:
 ```text
 Create ProblemDefinition_CORE_v1.md using templates/problem/ProblemDefinition_Template.md.
 ```
+
+Codex must continue from the product project root shown in the Bootstrap Handoff.
+
+Do not continue product implementation from the SAPDP protocol repository.
 
 For an existing product:
 

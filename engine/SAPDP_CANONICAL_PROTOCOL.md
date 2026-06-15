@@ -398,8 +398,6 @@ It does not change:
 Lifecycle Stage Set
 
 Lifecycle status models
-
-Product Bootstrap behavior
 ```
 
 ## 5.3.1 Codex Completion Handoff Rule
@@ -515,6 +513,56 @@ If origin exists, Codex must push and return Commit URL.
 ChatGPT audit should use Commit URL before asking Human to paste files.
 
 Human copy/paste is fallback only.
+
+## 5.3.5 Product Bootstrap Handoff Rule
+
+After product bootstrap, Codex final output must use:
+
+```text
+Bootstrap Handoff
+
+Project:
+<Name>
+
+Commit URL:
+<remote product commit URL>
+
+Stage:
+Problem
+
+Next:
+ProblemDefinition_CORE_v1.md
+
+Result:
+PASS | PATCH REQUIRED | FAIL
+
+ChatGPT Audit:
+<Commit URL>
+
+Codex Workspace:
+<absolute project root>
+
+Do not continue product implementation from the SAPDP protocol repository.
+```
+
+If a remote product commit exists, ChatGPT audit must use the Commit URL.
+
+The file upload list is fallback only.
+
+If the remote product commit is missing, Codex must output the local commit SHA and exact push commands, and Result must not be PASS.
+
+The final Bootstrap Handoff must not show internal Bootstrap state names, including:
+
+```text
+LOCAL_BOOTSTRAP_PASS
+REMOTE_VALIDATION_PASS
+REMOTE_VALIDATION_PENDING
+PROBLEM_STAGE_ALLOWED
+```
+
+The Commit URL in the final handoff is the only ChatGPT audit target.
+
+Do not output conflicting verified commit values.
 
 ---
 
@@ -1310,17 +1358,21 @@ has been produced.
 Bootstrap Completion Handoff must disclose:
 
 ```text
-Project Root
+Project
 
-Working Directory
+Commit URL
 
-Execution Environment
+Stage
 
-Required Load Set
+Next
 
-Codex Project Setup Guide
+Result
 
-ChatGPT Project Setup Guide
+ChatGPT Audit
+
+Codex Workspace
+
+Codex workspace boundary sentence
 ```
 
 Bootstrap Completion Handoff provides:
@@ -1617,17 +1669,15 @@ POST_BOOTSTRAP_ENTRY.md
 
 Bootstrap output must include:
 
-Bootstrap Audit Result
-Current Stage
-Next Lifecycle Stage Entry
-Execution Environment
-Required Load Set
-Required Template
-Artifact To Create
-Exact Next User Action
-Expected Output
-Runtime Update Target
-Next Stage After Completion
+Bootstrap Handoff
+Project
+Commit URL
+Stage
+Next
+Result
+ChatGPT Audit
+Codex Workspace
+Codex workspace boundary sentence
 
 Bootstrap PASS is not operationally complete unless all required Bootstrap artifacts exist and the Bootstrap Completion Handoff is produced.
 
@@ -1644,21 +1694,15 @@ Bootstrap Completion Handoff only outputs actionable instructions (POST_BOOTSTRA
 
 Minimum Stage Entry Instruction:
 
-Execution Environment: ChatGPT
-Required Load Set:
-PROJECT_BOOTSTRAP.md
-ARTIFACT_INDEX.md
-BOOTSTRAP_RESULT.md
-POST_BOOTSTRAP_ENTRY.md
-ProblemDefinition_Template.md
-Next User Action: Open ChatGPT SAPDP project session and generate ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md
-Expected Output: ProblemDefinition_CORE_v1.md
-Runtime Update Target: PROJECT_BOOTSTRAP.md
-Next Stage After Completion: Solution
+Stage: Problem
+Next: ProblemDefinition_CORE_v1.md
+ChatGPT Audit: <Commit URL>
+Codex Workspace: <absolute project root>
+Do not continue product implementation from the SAPDP protocol repository.
 
 Operational Completion Rule:
 
-Bootstrap Audit Result PASS does not imply operational completion.
+Bootstrap Handoff Result PASS does not imply operational completion.
 Bootstrap is operationally complete only when Bootstrap Completion Handoff exists.
 
 ---
@@ -1674,19 +1718,15 @@ The handoff must eliminate ambiguity regarding:
 ```text
 Where execution continues
 
-Who performs the next action
-
 What Artifact must be created
 
-What Template must be used
+What Commit URL ChatGPT audits
 
-What files must be loaded
+What fallback applies if the remote commit is missing
 
-What output is expected
+What result was reached
 
-How Runtime is updated
-
-Which Lifecycle Stage follows
+Which workspace Codex must use
 ```
 
 ---
@@ -1706,25 +1746,29 @@ It exists to make the first Lifecycle Stage executable.
 POST_BOOTSTRAP_ENTRY.md must contain:
 
 ```text
-Current Stage
+Project
 
-Next Lifecycle Stage Entry
+Commit URL
 
-Execution Environment
+Stage
 
-Required Load Set
+Next
 
-Required Template
+Result
 
-Artifact To Create
+ChatGPT Audit
 
-Exact Next User Action
+Codex Workspace
 
-Expected Output
+Codex workspace boundary sentence
+```
 
-Runtime Update Target
+If no remote product commit exists, POST_BOOTSTRAP_ENTRY.md must include:
 
-Next Stage After Completion
+```text
+Local Commit
+
+Push Commands
 ```
 
 For a new project, POST_BOOTSTRAP_ENTRY.md must instruct the user to generate:
@@ -1816,54 +1860,30 @@ Problem
 Default Bootstrap Completion Handoff:
 
 ```text
-Bootstrap Audit Result:
-PASS
+Bootstrap Handoff
 
-Current Stage:
+Project:
+<Name>
+
+Commit URL:
+<remote product commit URL>
+
+Stage:
 Problem
 
-Next Lifecycle Stage Entry:
-Problem
-
-Execution Environment:
-ChatGPT
-
-Required Load Set:
-
-PROJECT_BOOTSTRAP.md
-
-ARTIFACT_INDEX.md
-
-BOOTSTRAP_RESULT.md
-
-POST_BOOTSTRAP_ENTRY.md
-
-ProblemDefinition_Template.md
-
-Required Template:
-ProblemDefinition_Template.md
-
-Artifact To Create:
+Next:
 ProblemDefinition_CORE_v1.md
 
-Exact Next User Action:
+Result:
+PASS | PATCH REQUIRED | FAIL
 
-Open a ChatGPT SAPDP project session and generate:
+ChatGPT Audit:
+<Commit URL>
 
-ProblemDefinition_CORE_v1.md
+Codex Workspace:
+<absolute project root>
 
-using:
-
-ProblemDefinition_Template.md
-
-Expected Output:
-ProblemDefinition_CORE_v1.md
-
-Runtime Update Target:
-PROJECT_BOOTSTRAP.md
-
-Next Stage After Completion:
-Solution
+Do not continue product implementation from the SAPDP protocol repository.
 ```
 
 ---
@@ -1885,17 +1905,15 @@ Reason:
 The output does not define:
 
 ```text
-Execution Environment
+Commit URL
 
-Required Load Set
+ChatGPT Audit
 
-Required Template
+Result
 
-Expected Output
+Codex Workspace
 
-Runtime Update Target
-
-Next Stage After Completion
+Codex workspace boundary sentence
 ```
 
 Therefore the output is not executable.
@@ -1904,7 +1922,7 @@ Therefore the output is not executable.
 
 ## Operational Completion Rule
 
-Bootstrap Audit Result:
+Bootstrap Handoff Result:
 
 ```text
 PASS
@@ -1915,7 +1933,7 @@ does not imply operational completion.
 Bootstrap is operationally complete only when:
 
 ```text
-Bootstrap Audit Result:
+Result:
 PASS
 
 AND
@@ -1933,7 +1951,7 @@ Operationally Incomplete
 even if:
 
 ```text
-Bootstrap Audit Result:
+Result:
 PASS
 ```
 
@@ -1946,23 +1964,23 @@ POST_BOOTSTRAP_ENTRY.md is the authoritative Bootstrap Completion Handoff artifa
 POST_BOOTSTRAP_ENTRY.md owns:
 
 ```text
-Next Lifecycle Stage Entry
+Project
 
-Execution Environment
+Commit URL
 
-Required Load Set
+Stage
 
-Required Template
+Next
 
-Artifact To Create
+Result
 
-Exact Next User Action
+ChatGPT Audit
 
-Expected Output
+Codex Workspace
 
-Runtime Update Target
+Codex workspace boundary sentence
 
-Next Stage After Completion
+Missing remote fallback commands
 ```
 
 Bootstrap Validation is not complete until:

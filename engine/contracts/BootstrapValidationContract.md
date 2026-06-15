@@ -113,7 +113,9 @@ FAIL
 
 No additional validation result types are defined.
 
-The validation result must be accompanied by the required state model.
+The validation record may be accompanied by the required state model.
+
+Codex final user-facing output must not expose internal Bootstrap state names.
 
 ---
 
@@ -125,11 +127,11 @@ Bootstrap returns PASS only when all of the following conditions are satisfied.
 Local scaffold valid
 Required bootstrap artifacts exist
 Project Root resolved
-Working Directory resolved
-ChatGPT Handoff exists
-Codex Workspace Handoff exists
+ChatGPT Audit exists
+Codex Workspace exists
 Problem Stage Entry exists
 Remote validation pass if remote is configured
+Commit URL present when remote product commit exists
 ```
 
 ### Repository Validation
@@ -162,7 +164,7 @@ Project Name is resolved.
 Project Root is derived only from Project Name.
 Project Name is consistent across PROJECT_BOOTSTRAP.md, BOOTSTRAP_RESULT.md, and POST_BOOTSTRAP_ENTRY.md.
 Project Root is consistent across PROJECT_BOOTSTRAP.md, BOOTSTRAP_RESULT.md, and POST_BOOTSTRAP_ENTRY.md.
-Project Root and Working Directory are resolved in the Bootstrap handoff.
+Project Root is resolved in the Bootstrap Handoff.
 ```
 
 ### Artifact Validation
@@ -174,38 +176,40 @@ BOOTSTRAP_RESULT.md exists.
 POST_BOOTSTRAP_ENTRY.md exists.
 Generated artifacts exist in committed local repository state.
 Committed local Git state proves the scaffold structure.
-ChatGPT Handoff exists.
-Codex Workspace Handoff exists and points to Project Root / Working Directory.
+ChatGPT Audit exists.
+Codex Workspace exists and points to absolute Project Root.
 Problem Stage Entry exists.
 ```
 
 ### Handoff Validation
 
-ChatGPT Handoff must contain the exact SAPDP load prompt:
+Bootstrap Handoff must include:
 
 ```text
-Load SAPDP from:
-https://github.com/soyona/SAPDP
+Project
+Commit URL
+Stage
+Next
+Result
+ChatGPT Audit
+Codex Workspace
+Codex workspace boundary sentence
 ```
 
-ChatGPT Handoff must include required upload files:
+When remote product commit exists:
 
 ```text
-PROJECT_BOOTSTRAP.md
-ARTIFACT_INDEX.md
-BOOTSTRAP_RESULT.md
-POST_BOOTSTRAP_ENTRY.md
+ChatGPT Audit equals Commit URL.
+Commit URL is mandatory for PASS.
+File upload list is fallback only.
 ```
 
-Codex Workspace Handoff must include:
+When remote product commit is missing:
 
 ```text
-Open or switch Codex workspace to:
-
-<Project Root>
-
-Use this initialized product directory as the active workspace.
-Do not continue product implementation from the SAPDP protocol repository.
+Local commit SHA is included.
+Exact push commands are included.
+Result is not PASS.
 ```
 
 Problem Stage Entry must include:
@@ -401,7 +405,7 @@ Project Name unresolved.
 Project Root not derived from Project Name.
 Project Name mismatch across required Bootstrap artifacts.
 Project Root mismatch across required Bootstrap artifacts.
-Project Root / Working Directory is unresolved.
+Project Root is unresolved.
 ```
 
 ### Artifact Failure
@@ -412,8 +416,8 @@ ARTIFACT_INDEX.md missing.
 BOOTSTRAP_RESULT.md missing.
 POST_BOOTSTRAP_ENTRY.md missing.
 Required generated artifact missing from committed local repository state.
-ChatGPT handoff missing entirely.
-Codex Workspace Handoff missing entirely.
+ChatGPT Audit missing entirely.
+Codex Workspace missing entirely.
 Problem Stage entry missing.
 ```
 
@@ -465,76 +469,90 @@ FAIL
 
 ## Bootstrap Completion Output Contract Validation
 
-Codex final output after initialization must contain these sections in this order:
+Codex final user-facing output after product bootstrap must contain only this handoff:
 
 ```text
-A. Bootstrap Summary
-B. ChatGPT Handoff
-C. Codex Workspace Handoff
-D. Problem Stage Entry
-E. Remote Git Validation
-F. Final Decision
-```
+Bootstrap Handoff
 
-### Bootstrap Summary Required Fields
-
-```text
 Project:
-<Project Name>
+<Name>
 
-Project Root:
+Commit URL:
+<remote product commit URL>
+
+Stage:
+Problem
+
+Next:
+ProblemDefinition_CORE_v1.md
+
+Result:
+PASS | PATCH REQUIRED | FAIL
+
+ChatGPT Audit:
+<Commit URL>
+
+Codex Workspace:
 <absolute project root>
 
-Working Directory:
-<absolute working directory>
-
-Local Bootstrap Result:
-LOCAL_BOOTSTRAP_PASS or LOCAL_BOOTSTRAP_FAIL
-
-Remote Git Validation:
-REMOTE_VALIDATION_PASS or REMOTE_VALIDATION_PENDING or REMOTE_VALIDATION_FAIL
-
-Overall Stage Entry:
-PROBLEM_STAGE_ALLOWED or PROBLEM_STAGE_BLOCKED
+Do not continue product implementation from the SAPDP protocol repository.
 ```
 
-### Remote Git Pending Required Output
+### Git-First Audit Rule
+
+If a remote product commit exists:
+
+```text
+Commit URL is mandatory.
+ChatGPT audit must use Commit URL.
+File upload list is fallback only.
+Result may be PASS only when all other PASS criteria are satisfied.
+```
+
+The Commit URL in the final Bootstrap Handoff must be the only ChatGPT audit target.
+
+Final output must not include conflicting verified commit values, duplicate commit identifiers, git logs, or verbose status summaries.
 
 If no origin remote exists, output:
 
 ```text
-Remote Git Validation:
-REMOTE_VALIDATION_PENDING
+Local Commit:
+<local commit SHA>
 
-Reason:
-No origin remote is configured.
-
-To complete remote validation:
-
+Push Commands:
 git remote add origin <your-product-repo-url>
 git push -u origin main
-
-Then rerun Bootstrap Validation.
 ```
+
+When no remote product commit exists, Result must not be PASS.
+
+### Hidden Internal State Rule
+
+Codex final user-facing output must not show:
+
+```text
+LOCAL_BOOTSTRAP_PASS
+REMOTE_VALIDATION_PASS
+REMOTE_VALIDATION_PENDING
+PROBLEM_STAGE_ALLOWED
+```
+
+These values may remain in BOOTSTRAP_RESULT.md for validation traceability.
 
 ### Final Decision Rule
 
-Final Decision must not say plain FAIL when local bootstrap succeeds.
-
-Correct:
+Final user-facing output must use:
 
 ```text
-Final Decision:
-LOCAL_BOOTSTRAP_PASS
-PROBLEM_STAGE_ALLOWED
-REMOTE_VALIDATION_PENDING
+Result:
+PASS | PATCH REQUIRED | FAIL
 ```
 
-Incorrect:
+It must not expose internal state lines such as:
 
 ```text
-Bootstrap Audit Result:
-FAIL
+Local Bootstrap Result:
+LOCAL_BOOTSTRAP_PASS
 ```
 
 ---
@@ -592,7 +610,9 @@ ChatGPT audit must use committed repository state only.
 
 Runtime-only outputs are invalid audit inputs.
 
-Codex final output must include Remote Git Validation state.
+Codex final output must include Commit URL when a remote product commit exists.
+
+File upload list is fallback only.
 
 ---
 
@@ -666,23 +686,26 @@ No forbidden Bootstrap internal execution directories exist.
 Required:
 
 ```text
-Project Root
-Working Directory
-ChatGPT Handoff
-Codex Workspace Handoff
-Problem Stage Entry
-Remote Git Validation
-Final Decision
+Project
+Commit URL when remote product commit exists
+Stage
+Next
+Result
+ChatGPT Audit
+Codex Workspace
+Codex workspace boundary sentence
 ```
 
 PASS Criteria:
 
 ```text
 All required sections exist.
-ChatGPT Handoff contains the exact SAPDP load prompt.
-Codex Workspace Handoff points to Project Root / Working Directory.
-Remote Git Validation pending is clearly labeled if no origin remote exists.
-Final Decision uses separate state lines.
+ChatGPT Audit equals the Commit URL when remote product commit exists.
+Codex Workspace points to absolute Project Root.
+Remote Git missing fallback includes local commit SHA and exact push commands.
+Result is not PASS when remote product commit is missing.
+Final output hides internal Bootstrap states.
+Final output contains no conflicting commit identifiers.
 ```
 
 ---
