@@ -350,9 +350,9 @@ Git execution logs
 
 # Product Workflow Handoff & Token Efficiency
 
-SAPDP v1.3.1 consolidates product workflow handoff rules and Git audit source rules.
+SAPDP v1.4.0 adds mandatory environment-aware handoff rules while preserving Git audit source rules.
 
-This upgrade does not change product Bootstrap behavior, lifecycle stages, or lifecycle status models.
+This upgrade does not add lifecycle stages, artifacts, or lifecycle status models.
 
 ChatGPT-generated Codex task packages must use:
 
@@ -400,7 +400,7 @@ ChatGPT Audit:
 <Commit URL>
 ```
 
-Product lifecycle stage completion handoff must show only:
+Every stage completion handoff must identify where the next action is executed:
 
 ```text
 Current:
@@ -409,12 +409,44 @@ Current:
 Done:
 <artifact/result>
 
-Next:
-<stage>
+Environment:
+ChatGPT | Codex | Git | Human
+
+Project:
+<project name>
+
+Session:
+NEW | CURRENT | REUSE_EXISTING
+
+Startup:
+<exact next-session bootstrap prompt or N/A>
 
 Action:
 <one executable action>
 ```
+
+For concise lifecycle navigation, the preferred minimal form may omit `Project:` and `Startup:` only when they are already unambiguous in the same handoff context:
+
+```text
+Current:
+<stage>
+
+Done:
+<artifact/result>
+
+Environment:
+<next environment>
+
+Session:
+<NEW | CURRENT | REUSE_EXISTING>
+
+Action:
+<one executable next action>
+```
+
+Do not require Human to infer the next environment.
+
+Do not output the full lifecycle unless explicitly requested.
 
 Git is the default audit memory.
 

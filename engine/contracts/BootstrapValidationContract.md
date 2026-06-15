@@ -188,18 +188,20 @@ Bootstrap Handoff must include:
 ```text
 Project
 Commit URL
-Stage
-Next
+Environment
+ChatGPT Project
+Session
+Startup
+Action
+Workspace
 Result
-ChatGPT Audit
-Codex Workspace
 Codex workspace boundary sentence
 ```
 
 When remote product commit exists:
 
 ```text
-ChatGPT Audit equals Commit URL.
+Startup includes the Commit URL as the audit source.
 Commit URL is mandatory for PASS.
 File upload list is fallback only.
 ```
@@ -217,6 +219,22 @@ Problem Stage Entry must include:
 ```text
 Current Stage:
 Problem
+
+Environment:
+ChatGPT
+
+ChatGPT Project:
+<Project Name>
+
+Session:
+NEW or REUSE_EXISTING
+
+Startup:
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit product commit:
+<remote product commit URL>
 
 Next Artifact:
 ProblemDefinition_CORE_v1.md
@@ -480,23 +498,39 @@ Project:
 Commit URL:
 <remote product commit URL>
 
-Stage:
-Problem
+Environment:
+ChatGPT
 
-Next:
-ProblemDefinition_CORE_v1.md
+ChatGPT Project:
+<Name>
+
+Session:
+NEW
+
+Startup:
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit product commit:
+<remote product commit URL>
+
+Action:
+Create ProblemDefinition_CORE_v1.md
+
+Workspace:
+<absolute project root>
 
 Result:
 PASS | PATCH REQUIRED | FAIL
 
-ChatGPT Audit:
-<Commit URL>
-
-Codex Workspace:
-<absolute project root>
-
 Do not continue product implementation from the SAPDP protocol repository.
 ```
+
+Problem Stage must be clearly assigned to ChatGPT.
+
+For a new product, the handoff must recommend creating a ChatGPT Project named after the product and starting a NEW session inside it.
+
+If a product-bound ChatGPT Project already exists, the handoff may use `Session: REUSE_EXISTING`.
 
 ### Git-First Audit Rule
 
@@ -504,12 +538,12 @@ If a remote product commit exists:
 
 ```text
 Commit URL is mandatory.
-ChatGPT audit must use Commit URL.
+Startup must use Commit URL as the audit source.
 File upload list is fallback only.
 Result may be PASS only when all other PASS criteria are satisfied.
 ```
 
-The Commit URL in the final Bootstrap Handoff must be the only ChatGPT audit target.
+The Commit URL in the final Bootstrap Handoff must be the default ChatGPT audit target.
 
 Final output must not include conflicting verified commit values, duplicate commit identifiers, git logs, or verbose status summaries.
 

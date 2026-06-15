@@ -300,9 +300,9 @@ Artifact Formats
 
 ### Runtime Completion Contract
 
-Every product Lifecycle Stage completion must produce a Minimal Stage Navigation Handoff.
+Every product Lifecycle Stage completion must produce an Environment Handoff.
 
-The handoff must contain only:
+The preferred minimal handoff contains:
 
 ```text
 Current:
@@ -311,8 +311,11 @@ Current:
 Done:
 <artifact/result>
 
-Next:
-<stage>
+Environment:
+<next environment>
+
+Session:
+NEW | CURRENT | REUSE_EXISTING
 
 Action:
 <one executable action>
@@ -322,13 +325,17 @@ The handoff must not repeat the full lifecycle unless the user is lost or explic
 
 The handoff must not include generic guidance.
 
+The Environment must identify where the next action is performed.
+
+The Session must identify whether the next action uses a new session, the current session, or an existing product-bound session.
+
 The Action must be executable.
 
-Minimal Stage Navigation Handoff is a handoff contract.
+Environment Handoff is a handoff contract.
 
-Minimal Stage Navigation Handoff is not a Runtime Authority.
+Environment Handoff is not a Runtime Authority.
 
-Lifecycle completion is not operationally complete until the Minimal Stage Navigation Handoff has been produced.
+Lifecycle completion is not operationally complete until the Environment Handoff has been produced.
 
 Authoritative runtime state remains:
 
@@ -407,9 +414,10 @@ After Bootstrap PASS, Lifecycle defines the Stage Entry Rule:
 
 - Current Stage: Problem
 - Inputs: Required Load Set from Bootstrap (PROJECT_BOOTSTRAP.md, ARTIFACT_INDEX.md, BOOTSTRAP_RESULT.md, POST_BOOTSTRAP_ENTRY.md, ProblemDefinition_Template.md)
-- Execution Environment: ChatGPT
+- Environment: ChatGPT
+- Session: NEW by default, or REUSE_EXISTING when a product-bound ChatGPT Project already exists
+- Startup: Bootstrap Handoff Startup prompt
 - Produced Artifact: ProblemDefinition_CORE_v1.md
-- Next Stage: Solution
 - Runtime Update Target: PROJECT_BOOTSTRAP.md
 
 Lifecycle owns Stage Entry Rule. POST_BOOTSTRAP_ENTRY.md only contains actionable instructions instantiated for this project.
@@ -421,8 +429,8 @@ Ensures unambiguous Bootstrap → Problem Stage transition while maintaining Aut
 PATCH PASS criteria:
 
 - ProblemDefinition_CORE_v1.md is generated according to template.
-- Minimal Stage Navigation Handoff is produced.
-- Next Stage is correctly set to Solution.
+- Environment Handoff is produced.
+- Action is executable and identifies the next stage action.
 
 ---
 

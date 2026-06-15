@@ -474,9 +474,11 @@ Do not include lifecycle theory.
 Do not request broad implementation beyond current stage scope.
 ```
 
-## 5.3.3 Minimal Stage Navigation Rule
+## 5.3.3 Environment Handoff Rule
 
-Every product lifecycle stage completion handoff must show only:
+Every product lifecycle stage completion handoff must identify the next execution environment.
+
+Required complete form:
 
 ```text
 Current:
@@ -485,21 +487,53 @@ Current:
 Done:
 <artifact/result>
 
-Next:
-<stage>
+Environment:
+ChatGPT | Codex | Git | Human
+
+Project:
+<project name>
+
+Session:
+NEW | CURRENT | REUSE_EXISTING
+
+Startup:
+<exact next-session bootstrap prompt or N/A>
 
 Action:
 <one executable action>
 ```
 
+Preferred minimal navigation form:
+
+```text
+Current:
+<stage>
+
+Done:
+<artifact/result>
+
+Environment:
+<next environment>
+
+Session:
+<NEW | CURRENT | REUSE_EXISTING>
+
+Action:
+<one executable next action>
+```
+
 Rules:
 
 ```text
-Do not repeat the full lifecycle unless user is lost or explicitly asks.
+Environment must identify where the next action is performed.
+
+Action must be executable.
+
+Do not require Human to infer the next environment.
+
+Do not output the full lifecycle unless explicitly requested.
 
 Do not include generic guidance.
-
-The next action must be executable.
 ```
 
 ## 5.3.4 Git Memory Rule
@@ -527,23 +561,39 @@ Project:
 Commit URL:
 <remote product commit URL>
 
-Stage:
-Problem
+Environment:
+ChatGPT
 
-Next:
-ProblemDefinition_CORE_v1.md
+ChatGPT Project:
+<Name>
+
+Session:
+NEW
+
+Startup:
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit product commit:
+<remote product commit URL>
+
+Action:
+Create ProblemDefinition_CORE_v1.md
+
+Workspace:
+<absolute project root>
 
 Result:
 PASS | PATCH REQUIRED | FAIL
 
-ChatGPT Audit:
-<Commit URL>
-
-Codex Workspace:
-<absolute project root>
-
 Do not continue product implementation from the SAPDP protocol repository.
 ```
+
+Problem Stage is executed in ChatGPT by default.
+
+New product Bootstrap must recommend creating a ChatGPT Project named after the product.
+
+If a product-bound ChatGPT Project already exists, reuse it.
 
 If a remote product commit exists, ChatGPT audit must use the Commit URL.
 
@@ -670,21 +720,21 @@ but may not advance Lifecycle Stages.
 
 ---
 
-## Minimal Stage Navigation Rule
+## Environment Handoff Rule
 
 Lifecycle completion is not operationally complete until:
 
 ```text
-Minimal Stage Navigation Handoff
+Environment Handoff
 ```
 
 has been produced.
 
-Every product Lifecycle Stage completion must produce a Minimal Stage Navigation Handoff.
+Every product Lifecycle Stage completion must produce an Environment Handoff.
 
-The Minimal Stage Navigation Handoff is mandatory.
+The Environment Handoff is mandatory.
 
-The Minimal Stage Navigation Handoff is:
+The Environment Handoff is:
 
 ```text
 Stage Handoff Contract
@@ -1672,11 +1722,13 @@ Bootstrap output must include:
 Bootstrap Handoff
 Project
 Commit URL
-Stage
-Next
+Environment
+ChatGPT Project
+Session
+Startup
+Action
+Workspace
 Result
-ChatGPT Audit
-Codex Workspace
 Codex workspace boundary sentence
 
 Bootstrap PASS is not operationally complete unless all required Bootstrap artifacts exist and the Bootstrap Completion Handoff is produced.
@@ -1694,10 +1746,16 @@ Bootstrap Completion Handoff only outputs actionable instructions (POST_BOOTSTRA
 
 Minimum Stage Entry Instruction:
 
-Stage: Problem
-Next: ProblemDefinition_CORE_v1.md
-ChatGPT Audit: <Commit URL>
-Codex Workspace: <absolute project root>
+Environment: ChatGPT
+ChatGPT Project: <Project Name>
+Session: NEW
+Startup:
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+Audit product commit:
+<Commit URL>
+Action: Create ProblemDefinition_CORE_v1.md
+Workspace: <absolute project root>
 Do not continue product implementation from the SAPDP protocol repository.
 
 Operational Completion Rule:
@@ -1720,7 +1778,7 @@ Where execution continues
 
 What Artifact must be created
 
-What Commit URL ChatGPT audits
+What Commit URL the Startup prompt instructs ChatGPT to audit
 
 What fallback applies if the remote commit is missing
 
@@ -1855,6 +1913,9 @@ For a new project, Bootstrap must hand off to:
 ```text
 Lifecycle Stage:
 Problem
+
+Environment:
+ChatGPT
 ```
 
 Default Bootstrap Completion Handoff:
@@ -1868,20 +1929,30 @@ Project:
 Commit URL:
 <remote product commit URL>
 
-Stage:
-Problem
+Environment:
+ChatGPT
 
-Next:
-ProblemDefinition_CORE_v1.md
+ChatGPT Project:
+<Name>
+
+Session:
+NEW
+
+Startup:
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit product commit:
+<remote product commit URL>
+
+Action:
+Create ProblemDefinition_CORE_v1.md
+
+Workspace:
+<absolute project root>
 
 Result:
 PASS | PATCH REQUIRED | FAIL
-
-ChatGPT Audit:
-<Commit URL>
-
-Codex Workspace:
-<absolute project root>
 
 Do not continue product implementation from the SAPDP protocol repository.
 ```
@@ -2144,7 +2215,7 @@ Verify Quality
 ↓
 Accept Artifact
 ↓
-Produce Minimal Stage Navigation Handoff
+Produce Environment Handoff
 ↓
 Update Runtime State
 ↓
@@ -2267,7 +2338,7 @@ Pull Request Workflow
 
 Every completed product Lifecycle Stage must produce a minimal stage navigation handoff.
 
-The stage completion handoff must contain only:
+The stage completion handoff must identify the next execution environment:
 
 ```text
 Current:
@@ -2276,8 +2347,11 @@ Current:
 Done:
 <artifact/result>
 
-Next:
-<stage>
+Environment:
+<next environment>
+
+Session:
+NEW | CURRENT | REUSE_EXISTING
 
 Action:
 <one executable action>
@@ -2384,7 +2458,7 @@ must be updated.
 Lifecycle completion is not operationally complete until:
 
 ```text
-Minimal Stage Navigation Handoff
+Environment Handoff
 ```
 
 has been produced.

@@ -319,37 +319,43 @@ Overall Stage Entry:
 PROBLEM_STAGE_ALLOWED or PROBLEM_STAGE_BLOCKED
 ```
 
-### B. ChatGPT Handoff
+### B. Environment Handoff
 
 ```text
-Recommended ChatGPT Project:
+Environment:
+ChatGPT
+
+ChatGPT Project:
 <Project Name>
 
-Required Upload Files:
-- PROJECT_BOOTSTRAP.md
-- ARTIFACT_INDEX.md
-- BOOTSTRAP_RESULT.md
-- POST_BOOTSTRAP_ENTRY.md
+Session:
+NEW
 
-Start Prompt:
-
+Startup:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
 
-Audit this initialized SAPDP product project.
+Audit product commit:
+<remote product commit URL>
 
-Project:
-<Project Name>
+Action:
+Create ProblemDefinition_CORE_v1.md
+```
 
-Required audit inputs:
+For a new product, create a ChatGPT Project named `<Project Name>` and start a NEW session inside that project.
+
+If a product-bound ChatGPT Project already exists, reuse it.
+
+Remote Commit URL is the default audit source.
+
+Uploading bootstrap files is fallback only:
+
+```text
 PROJECT_BOOTSTRAP.md
 ARTIFACT_INDEX.md
 BOOTSTRAP_RESULT.md
 POST_BOOTSTRAP_ENTRY.md
 Product repository file tree
-
-Task:
-Perform SAPDP Bootstrap audit and confirm whether the project may enter Problem Stage.
 ```
 
 ### C. Codex Workspace Handoff
@@ -368,6 +374,22 @@ Do not continue product implementation from the SAPDP protocol repository.
 ```text
 Current Stage:
 Problem
+
+Environment:
+ChatGPT
+
+ChatGPT Project:
+<Project Name>
+
+Session:
+NEW
+
+Startup:
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit product commit:
+<remote product commit URL>
 
 Next Artifact:
 ProblemDefinition_CORE_v1.md

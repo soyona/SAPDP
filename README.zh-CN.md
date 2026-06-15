@@ -247,9 +247,9 @@ PASS / PATCH REQUIRED / FAIL
 
 # 产品工作流交接与 Token 效率
 
-SAPDP v1.3.1 统一产品研发 workflow 的交接格式与 Git 审计来源。
+SAPDP v1.4.0 统一产品研发 workflow 的环境感知交接格式与 Git 审计来源。
 
-它不改变产品 Bootstrap 行为，不新增生命周期阶段，也不新增状态模型。
+它不新增生命周期阶段，不新增 artifact，也不新增状态模型。
 
 Codex 完成产品实现任务后的最终输出必须使用：
 
@@ -303,7 +303,7 @@ Tests
 Result
 ```
 
-生命周期阶段完成交接只显示：
+生命周期阶段完成交接必须显示下一步执行环境：
 
 ```text
 Current:
@@ -312,8 +312,11 @@ Current:
 Done:
 <artifact/result>
 
-Next:
-<stage>
+Environment:
+ChatGPT | Codex | Git | Human
+
+Session:
+NEW | CURRENT | REUSE_EXISTING
 
 Action:
 <one executable action>
@@ -325,7 +328,7 @@ Git 是默认审计记忆。人工复制粘贴仅作为 fallback。
 
 # Bootstrap 完成交接
 
-SAPDP v1.3.2 要求产品 Bootstrap 完成后使用最小化、Git 优先的交接格式。
+SAPDP v1.4.0 要求产品 Bootstrap 完成后使用最小化、Git 优先、环境感知的交接格式。
 
 产品 Bootstrap 完成后，Codex 最终输出必须使用：
 
@@ -338,23 +341,37 @@ Project:
 Commit URL:
 <remote product commit URL>
 
-Stage:
-Problem
+Environment:
+ChatGPT
 
-Next:
-ProblemDefinition_CORE_v1.md
+ChatGPT Project:
+<Name>
+
+Session:
+NEW
+
+Startup:
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit product commit:
+<remote product commit URL>
+
+Action:
+Create ProblemDefinition_CORE_v1.md
+
+Workspace:
+<absolute project root>
 
 Result:
 PASS | PATCH REQUIRED | FAIL
 
-ChatGPT Audit:
-<Commit URL>
-
-Codex Workspace:
-<absolute project root>
-
 Do not continue product implementation from the SAPDP protocol repository.
 ```
+
+Problem Stage 默认在 ChatGPT 执行。
+
+新产品 Bootstrap 应建议创建名为 <Name> 的 ChatGPT Project；如果该产品已有绑定的 ChatGPT Project，则复用它。
 
 如果远程 product commit 存在，ChatGPT audit 必须使用 Commit URL。
 

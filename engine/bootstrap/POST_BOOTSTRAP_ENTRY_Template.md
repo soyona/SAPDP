@@ -8,9 +8,10 @@ It must clearly answer:
 
 - Where is the project?
 - What should I open in Codex?
-- Which Commit URL should ChatGPT audit?
-- What is the current stage?
-- What artifact should be created next?
+- Which environment executes the Problem Stage?
+- Which ChatGPT Project and session mode should be used?
+- What Startup prompt should begin the next session?
+- What executable action should be performed next?
 - Is Git remote validation pending?
 
 POST_BOOTSTRAP_ENTRY.md does not own Lifecycle Stage rules.
@@ -32,25 +33,41 @@ Project:
 Commit URL:
 <remote product commit URL>
 
-Stage:
-Problem
+Environment:
+ChatGPT
 
-Next:
-ProblemDefinition_CORE_v1.md
+ChatGPT Project:
+<PROJECT_NAME>
+
+Session:
+NEW
+
+Startup:
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit product commit:
+<remote product commit URL>
+
+Action:
+Create ProblemDefinition_CORE_v1.md
+
+Workspace:
+<absolute project root>
 
 Result:
 PASS | PATCH REQUIRED | FAIL
-
-ChatGPT Audit:
-<Commit URL>
-
-Codex Workspace:
-<absolute project root>
 
 Do not continue product implementation from the SAPDP protocol repository.
 ```
 
 This is the required minimal Codex final output after product bootstrap.
+
+Problem Stage is executed in ChatGPT by default.
+
+For a new product, create a ChatGPT Project named `<PROJECT_NAME>` and start a NEW session inside that project.
+
+If a product-bound ChatGPT Project already exists, reuse it.
 
 Internal Bootstrap validation states must not appear in the final user-facing output.
 
@@ -99,6 +116,22 @@ Product repository file tree
 ```text
 Current Stage:
 Problem
+
+Environment:
+ChatGPT
+
+ChatGPT Project:
+<PROJECT_NAME>
+
+Session:
+NEW
+
+Startup:
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit product commit:
+<remote product commit URL>
 
 Next Artifact:
 ProblemDefinition_CORE_v1.md
@@ -159,28 +192,18 @@ Do not output conflicting commit identifiers.
 After ProblemDefinition_CORE_v1.md is accepted, ChatGPT must produce:
 
 ```text
-Current Stage:
+Current:
 Problem
 
-Produced Artifact:
+Done:
 ProblemDefinition_CORE_v1.md
 
-Stage Result:
-ACCEPTED
-
-Next Stage:
-Solution
-
-Required Load Set:
-ProblemDefinition_CORE_v1.md
-SolutionDefinition_Template.md
-
-Execution Environment:
+Environment:
 ChatGPT
 
-Need New Session:
-No
+Session:
+CURRENT
 
-Next Action:
+Action:
 Generate SolutionDefinition_CORE_v1.md
 ```

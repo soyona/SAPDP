@@ -55,23 +55,39 @@ Project:
 Commit URL:
 <remote product commit URL>
 
-Stage:
-Problem
+Environment:
+ChatGPT
 
-Next:
-ProblemDefinition_CORE_v1.md
+ChatGPT Project:
+<PROJECT_NAME>
+
+Session:
+NEW
+
+Startup:
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit product commit:
+<remote product commit URL>
+
+Action:
+Create ProblemDefinition_CORE_v1.md
+
+Workspace:
+<absolute project root>
 
 Result:
 PASS | PATCH REQUIRED | FAIL
 
-ChatGPT Audit:
-<Commit URL>
-
-Codex Workspace:
-<absolute project root>
-
 Do not continue product implementation from the SAPDP protocol repository.
 ```
+
+Problem Stage is executed in ChatGPT by default.
+
+For a new product, create a ChatGPT Project named `<PROJECT_NAME>` and start a NEW session inside that project.
+
+If a product-bound ChatGPT Project already exists, reuse it.
 
 ---
 
@@ -121,8 +137,12 @@ If a remote product commit exists, ChatGPT audit must use only:
 Commit URL:
 <remote product commit URL>
 
-ChatGPT Audit:
-<Commit URL>
+Startup:
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit product commit:
+<remote product commit URL>
 ```
 
 The Commit URL in the final Bootstrap Handoff is the only ChatGPT audit target.
@@ -183,6 +203,22 @@ Codex must not continue product work from the SAPDP protocol repository.
 ## D. Problem Stage Entry
 
 ```text
+Environment:
+ChatGPT
+
+ChatGPT Project:
+<PROJECT_NAME>
+
+Session:
+NEW
+
+Startup:
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit product commit:
+<remote product commit URL>
+
 Current Stage:
 Problem
 
@@ -260,20 +296,30 @@ Project:
 Commit URL:
 <remote product commit URL>
 
-Stage:
-Problem
+Environment:
+ChatGPT
 
-Next:
-ProblemDefinition_CORE_v1.md
+ChatGPT Project:
+<PROJECT_NAME>
+
+Session:
+NEW
+
+Startup:
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit product commit:
+<remote product commit URL>
+
+Action:
+Create ProblemDefinition_CORE_v1.md
+
+Workspace:
+<absolute project root>
 
 Result:
 PASS | PATCH REQUIRED | FAIL
-
-ChatGPT Audit:
-<Commit URL>
-
-Codex Workspace:
-<absolute project root>
 
 Do not continue product implementation from the SAPDP protocol repository.
 ```

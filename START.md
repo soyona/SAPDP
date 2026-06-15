@@ -86,7 +86,7 @@ POST_BOOTSTRAP_ENTRY.md
 For a new product after successful bootstrap:
 
 ```text
-Create ProblemDefinition_CORE_v1.md using templates/problem/ProblemDefinition_Template.md.
+Create a ChatGPT Project named <ProjectName>, start a NEW session in that project, use the Startup prompt from the Bootstrap Handoff, and create ProblemDefinition_CORE_v1.md.
 ```
 
 Codex must continue from the product project root shown in the Bootstrap Handoff.
@@ -96,5 +96,5 @@ Do not continue product implementation from the SAPDP protocol repository.
 For an existing product:
 
 ```text
-Follow the Action field in the latest Minimal Stage Navigation Handoff or POST_BOOTSTRAP_ENTRY.md.
+Follow the Environment, Session, Startup, and Action fields in the latest Environment Handoff or POST_BOOTSTRAP_ENTRY.md.
 ```
