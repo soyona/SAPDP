@@ -182,13 +182,49 @@ START.md
 
 ---
 
+# Bootstrap 完成体验修复
+
+SAPDP v1.2.4 将本地 Bootstrap 成功与远程 Git 验证分开表达。
+
+Bootstrap 完成结果必须报告：
+
+```text
+Local Bootstrap Result:
+LOCAL_BOOTSTRAP_PASS or LOCAL_BOOTSTRAP_FAIL
+
+Remote Git Validation:
+REMOTE_VALIDATION_PASS or REMOTE_VALIDATION_PENDING or REMOTE_VALIDATION_FAIL
+
+Overall Stage Entry:
+PROBLEM_STAGE_ALLOWED or PROBLEM_STAGE_BLOCKED
+```
+
+如果本地 Bootstrap 成功且必需的 Bootstrap artifacts 均存在，即使 Remote Git Validation 为 REMOTE_VALIDATION_PENDING，也可以允许进入 Problem Stage。
+
+远程验证 pending 是可追溯性限制，不是本地 Bootstrap 失败。
+
+Codex 初始化后的最终输出必须包含：
+
+```text
+A. Bootstrap Summary
+B. ChatGPT Handoff
+C. Codex Workspace Handoff
+D. Problem Stage Entry
+E. Remote Git Validation
+F. Final Decision
+```
+
+当本地 Bootstrap 成功时，Final Decision 不得只输出模糊的 FAIL。
+
+---
+
 # Bootstrap 工作区交接
 
 SAPDP v1.2.3 要求 Bootstrap 完成结果必须明确交接 ChatGPT 会话和 Codex 工作区。
 
 ## Post-Bootstrap ChatGPT Session Handoff
 
-Bootstrap PASS 后，交接内容必须告诉用户输入：
+LOCAL_BOOTSTRAP_PASS 且 PROBLEM_STAGE_ALLOWED 后，交接内容必须告诉用户输入：
 
 ```text
 Load SAPDP from:

@@ -97,9 +97,9 @@ Codex will:
 
 10. Commit generated artifacts and scaffold persistence files to Git
 
-11. Push committed Git state
+11. Push committed Git state when an origin remote is configured
 
-12. Execute Bootstrap Validation against committed and pushed Git state
+12. Execute Bootstrap Validation against local committed state and remote Git state when available
 
 13. Execute Bootstrap Productionization Audit
 
@@ -136,15 +136,13 @@ Written into repository
 Added to Git
 
 Committed to Git
-
-Pushed to Git
 ```
 
-before ChatGPT audit.
+Pushed to Git when an origin remote is configured.
 
 Runtime-only artifacts are invalid audit inputs.
 
-ChatGPT must audit committed Git repository state only.
+ChatGPT must audit committed repository state only.
 
 Local empty directories are invalid scaffold evidence unless they contain committed .gitkeep persistence files.
 
@@ -154,17 +152,28 @@ After any Codex task, Codex must not stop until:
 git status --short
 ```
 
-returns clean and remote verification proves the expected commit, tag, and files exist.
+returns clean.
+
+When an origin remote is configured, remote verification must prove the expected commit, tag, and files exist.
+
+When no origin remote is configured, Codex must report:
+
+```text
+Remote Git Validation:
+REMOTE_VALIDATION_PENDING
+```
+
+This is a traceability limitation, not a local Bootstrap failure.
 
 ---
 
 ## Success Criteria
 
-Bootstrap is successful only when Codex reports:
+Bootstrap local success is represented by:
 
 ```text
-Bootstrap Audit Result:
-PASS
+Local Bootstrap Result:
+LOCAL_BOOTSTRAP_PASS
 ```
 
 and verifies:
@@ -180,6 +189,16 @@ Scaffold Persistence
 
 Canonical Lifecycle Progress UI
 ```
+
+Remote Git Validation is represented separately:
+
+```text
+REMOTE_VALIDATION_PASS
+REMOTE_VALIDATION_PENDING
+REMOTE_VALIDATION_FAIL
+```
+
+If Local Bootstrap Result is LOCAL_BOOTSTRAP_PASS and all required Bootstrap artifacts exist, Problem Stage may be allowed even when Remote Git Validation is REMOTE_VALIDATION_PENDING.
 
 and generates an executable Bootstrap Completion Handoff:
 
@@ -258,9 +277,145 @@ Bootstrap Completion System v2
 
 Bootstrap PASS is operationally incomplete if these fields are missing.
 
+---
+
+## Bootstrap Completion Output Contract
+
+Codex final output after initialization must contain these sections in this order:
+
+```text
+A. Bootstrap Summary
+B. ChatGPT Handoff
+C. Codex Workspace Handoff
+D. Problem Stage Entry
+E. Remote Git Validation
+F. Final Decision
+```
+
+### A. Bootstrap Summary
+
+```text
+Project:
+<Project Name>
+
+Project Root:
+<absolute project root>
+
+Working Directory:
+<absolute working directory>
+
+Local Bootstrap Result:
+LOCAL_BOOTSTRAP_PASS or LOCAL_BOOTSTRAP_FAIL
+
+Remote Git Validation:
+REMOTE_VALIDATION_PASS or REMOTE_VALIDATION_PENDING or REMOTE_VALIDATION_FAIL
+
+Overall Stage Entry:
+PROBLEM_STAGE_ALLOWED or PROBLEM_STAGE_BLOCKED
+```
+
+### B. ChatGPT Handoff
+
+```text
+Recommended ChatGPT Project:
+<Project Name>
+
+Required Upload Files:
+- PROJECT_BOOTSTRAP.md
+- ARTIFACT_INDEX.md
+- BOOTSTRAP_RESULT.md
+- POST_BOOTSTRAP_ENTRY.md
+
+Start Prompt:
+
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit this initialized SAPDP product project.
+
+Project:
+<Project Name>
+
+Required audit inputs:
+PROJECT_BOOTSTRAP.md
+ARTIFACT_INDEX.md
+BOOTSTRAP_RESULT.md
+POST_BOOTSTRAP_ENTRY.md
+Product repository file tree
+
+Task:
+Perform SAPDP Bootstrap audit and confirm whether the project may enter Problem Stage.
+```
+
+### C. Codex Workspace Handoff
+
+```text
+Open or switch Codex workspace to:
+
+<Project Root>
+
+Use this initialized product directory as the active workspace.
+Do not continue product implementation from the SAPDP protocol repository.
+```
+
+### D. Problem Stage Entry
+
+```text
+Current Stage:
+Problem
+
+Next Artifact:
+ProblemDefinition_CORE_v1.md
+
+Template:
+templates/problem/ProblemDefinition_Template.md
+
+Next Action:
+Create ProblemDefinition_CORE_v1.md.
+```
+
+### E. Remote Git Validation
+
+If no origin remote exists, output:
+
+```text
+Remote Git Validation:
+REMOTE_VALIDATION_PENDING
+
+Reason:
+No origin remote is configured.
+
+To complete remote validation:
+
+git remote add origin <your-product-repo-url>
+git push -u origin main
+
+Then rerun Bootstrap Validation.
+```
+
+### F. Final Decision
+
+Do not use a single ambiguous Bootstrap Result when local scaffold succeeds but remote Git validation is pending.
+
+Correct:
+
+```text
+Final Decision:
+LOCAL_BOOTSTRAP_PASS
+PROBLEM_STAGE_ALLOWED
+REMOTE_VALIDATION_PENDING
+```
+
+Incorrect:
+
+```text
+Bootstrap Audit Result:
+FAIL
+```
+
 ## Post-Bootstrap ChatGPT Session Handoff
 
-After Bootstrap PASS, the bootstrap result must explicitly tell the user how to start or continue the ChatGPT session.
+After LOCAL_BOOTSTRAP_PASS with PROBLEM_STAGE_ALLOWED, the bootstrap result must explicitly tell the user how to start or continue the ChatGPT session.
 
 The handoff must include this exact ChatGPT start prompt:
 
@@ -285,7 +440,7 @@ Generate ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md.
 
 ## Post-Bootstrap Codex Workspace Handoff
 
-After Bootstrap PASS, the bootstrap result must explicitly tell the user how to switch Codex to the initialized product project directory.
+After LOCAL_BOOTSTRAP_PASS with PROBLEM_STAGE_ALLOWED, the bootstrap result must explicitly tell the user how to switch Codex to the initialized product project directory.
 
 The handoff must include this exact Codex workspace switch instruction:
 
@@ -301,7 +456,7 @@ Codex must not continue product work from the SAPDP protocol repository.
 
 ## Expected Next Action After Bootstrap
 
-After Bootstrap PASS, follow:
+After LOCAL_BOOTSTRAP_PASS with PROBLEM_STAGE_ALLOWED, follow:
 
 ```text
 POST_BOOTSTRAP_ENTRY.md

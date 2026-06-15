@@ -2,9 +2,17 @@
 
 ## Purpose
 
-This template defines the actionable handoff from Project Bootstrap to the first SAPDP Lifecycle Stage.
+This template is the direct user handoff from Project Bootstrap to the first SAPDP Lifecycle Stage.
 
-Bootstrap is not operationally complete unless this file clearly tells the user how to continue after Bootstrap PASS.
+It must clearly answer:
+
+- Where is the project?
+- What should I open in Codex?
+- What should I upload to ChatGPT?
+- What exact ChatGPT prompt should I use?
+- What is the current stage?
+- What artifact should be created next?
+- Is Git remote validation pending?
 
 POST_BOOTSTRAP_ENTRY.md does not own Lifecycle Stage rules.
 
@@ -14,170 +22,33 @@ Lifecycle Stage rules are owned by:
 SAPDP_LIFECYCLE.md
 ```
 
-POST_BOOTSTRAP_ENTRY.md only instantiates the Bootstrap Completion Handoff for the current project.
-
 ---
 
-## Bootstrap Result
+## Bootstrap Summary
 
 ```text
-Bootstrap Audit Result:
-<PASS | FAIL>
-```
-
-## Project Identity
-
-```text
-Project Name:
+Project:
 <PROJECT_NAME>
 
 Project Root:
 <PROJECT_ROOT>
 
 Working Directory:
-<PROJECT_ROOT>
+<WORKING_DIRECTORY>
+
+Local Bootstrap Result:
+<LOCAL_BOOTSTRAP_PASS | LOCAL_BOOTSTRAP_FAIL>
+
+Remote Git Validation:
+<REMOTE_VALIDATION_PASS | REMOTE_VALIDATION_PENDING | REMOTE_VALIDATION_FAIL>
+
+Overall Stage Entry:
+<PROBLEM_STAGE_ALLOWED | PROBLEM_STAGE_BLOCKED>
 ```
 
 ---
 
-## Current Stage
-
-```text
-Problem
-```
-
----
-
-## Next Lifecycle Stage Entry
-
-```text
-Problem
-```
-
----
-
-## Execution Environment
-
-```text
-ChatGPT
-```
-
----
-
-## Required Load Set
-
-The following files must be available in the ChatGPT project session:
-
-```text
-PROJECT_BOOTSTRAP.md
-
-ARTIFACT_INDEX.md
-
-BOOTSTRAP_RESULT.md
-
-POST_BOOTSTRAP_ENTRY.md
-
-ProblemDefinition_Template.md
-```
-
----
-
-## Required Template
-
-```text
-ProblemDefinition_Template.md
-```
-
----
-
-## Artifact To Create
-
-```text
-ProblemDefinition_CORE_v1.md
-```
-
----
-
-## Exact Next User Action
-
-Open a ChatGPT Project and input:
-
-```text
-Load SAPDP Product Project
-
-Project:
-<ProjectName>
-
-Current Stage:
-Problem
-
-Required Load Set:
-PROJECT_BOOTSTRAP.md
-ARTIFACT_INDEX.md
-BOOTSTRAP_RESULT.md
-POST_BOOTSTRAP_ENTRY.md
-ProblemDefinition_Template.md
-
-Task:
-Generate ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md.
-
-Rules:
-
-1. Focus only on problem definition.
-
-2. Do not enter solution design.
-
-3. Do not enter MVP scope.
-
-4. Do not enter UI design.
-
-5. Output complete Markdown.
-
-6. After generation, provide Runtime Completion Block.
-```
-
----
-
-## Post-Bootstrap ChatGPT Session Handoff
-
-Create a new ChatGPT Project if this is a new product or if no product-bound ChatGPT Project exists.
-
-Use the initialized product project name as the ChatGPT Project name:
-
-```text
-<PROJECT_NAME>
-```
-
-Upload the Required Load Set.
-
-Start from Problem Stage.
-
-Generate ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md.
-
-ChatGPT Start Prompt:
-
-```text
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-```
-
-Required Upload Files:
-
-```text
-PROJECT_BOOTSTRAP.md
-
-ARTIFACT_INDEX.md
-
-BOOTSTRAP_RESULT.md
-
-POST_BOOTSTRAP_ENTRY.md
-
-ProblemDefinition_Template.md
-```
-
----
-
-## Post-Bootstrap Codex Workspace Handoff
+## Codex Workspace Handoff
 
 Open or switch Codex workspace to:
 
@@ -185,29 +56,123 @@ Open or switch Codex workspace to:
 <PROJECT_ROOT>
 ```
 
-Use this initialized project directory as the active workspace.
+Use this initialized product directory as the active workspace.
 Do not continue product implementation from the SAPDP protocol repository.
 Codex must not continue product work from the SAPDP protocol repository.
 
 ---
 
-## Expected Output
+## ChatGPT Handoff
+
+Recommended ChatGPT Project:
 
 ```text
-ProblemDefinition_CORE_v1.md
+<PROJECT_NAME>
 ```
 
----
-
-## Runtime Update Target
+Required Upload Files:
 
 ```text
 PROJECT_BOOTSTRAP.md
+ARTIFACT_INDEX.md
+BOOTSTRAP_RESULT.md
+POST_BOOTSTRAP_ENTRY.md
+```
+
+Start Prompt:
+
+```text
+Load SAPDP from:
+https://github.com/soyona/SAPDP
+
+Audit this initialized SAPDP product project.
+
+Project:
+<PROJECT_NAME>
+
+Required audit inputs:
+PROJECT_BOOTSTRAP.md
+ARTIFACT_INDEX.md
+BOOTSTRAP_RESULT.md
+POST_BOOTSTRAP_ENTRY.md
+Product repository file tree
+
+Task:
+Perform SAPDP Bootstrap audit and confirm whether the project may enter Problem Stage.
 ```
 
 ---
 
-## Runtime Completion Block Required
+## Problem Stage Entry
+
+```text
+Current Stage:
+Problem
+
+Next Artifact:
+ProblemDefinition_CORE_v1.md
+
+Template:
+templates/problem/ProblemDefinition_Template.md
+
+Next Action:
+Create ProblemDefinition_CORE_v1.md.
+```
+
+---
+
+## Remote Git Validation
+
+### If Remote Validation Passed
+
+```text
+Remote Git Validation:
+REMOTE_VALIDATION_PASS
+
+Remote:
+<origin-url>
+
+Verified Commit:
+<commit-hash>
+```
+
+### If Remote Validation Is Pending
+
+```text
+Remote Git Validation:
+REMOTE_VALIDATION_PENDING
+
+Reason:
+No origin remote is configured.
+
+To complete remote validation:
+
+git remote add origin <your-product-repo-url>
+git push -u origin main
+
+Then rerun Bootstrap Validation.
+```
+
+Remote validation pending is a traceability limitation, not a local Bootstrap failure.
+
+---
+
+## Final Decision
+
+Use separate state lines.
+
+```text
+Final Decision:
+<LOCAL_BOOTSTRAP_PASS | LOCAL_BOOTSTRAP_FAIL>
+<PROBLEM_STAGE_ALLOWED | PROBLEM_STAGE_BLOCKED>
+<REMOTE_VALIDATION_PASS | REMOTE_VALIDATION_PENDING | REMOTE_VALIDATION_FAIL>
+```
+
+Do not output a plain FAIL when local Bootstrap succeeds and only remote Git validation is pending.
+
+---
+
+## Runtime Completion Block Required After Problem Artifact Acceptance
 
 After ProblemDefinition_CORE_v1.md is accepted, ChatGPT must produce:
 
@@ -236,122 +201,4 @@ No
 
 Next Action:
 Generate SolutionDefinition_CORE_v1.md
-```
-
----
-
-## Next Stage After Completion
-
-```text
-Solution
-```
-
----
-
-## Codex Project Setup Guide
-
-Create or Open Codex Project.
-
-Project Root:
-
-<PROJECT_ROOT>
-
-Working Directory:
-
-<PROJECT_ROOT>
-
-Codex Workspace Switch Guide:
-
-Open or switch Codex workspace to:
-
-<PROJECT_ROOT>
-
-Use this initialized project directory as the active workspace.
-Do not continue product implementation from the SAPDP protocol repository.
-Codex must not continue product work from the SAPDP protocol repository.
-
-Expected Responsibility:
-
-Implementation
-
-Testing
-
-Refactoring
-
-Build Execution
-
----
-
-## ChatGPT Project Setup Guide
-
-Create or Open ChatGPT Project.
-
-Create a new ChatGPT Project if this is a new product or if no product-bound ChatGPT Project exists.
-
-Use the initialized product project name as the ChatGPT Project name:
-
-<PROJECT_NAME>
-
-Upload:
-
-```text
-PROJECT_BOOTSTRAP.md
-
-ARTIFACT_INDEX.md
-
-BOOTSTRAP_RESULT.md
-
-POST_BOOTSTRAP_ENTRY.md
-
-ProblemDefinition_Template.md
-```
-
-Start Prompt:
-
-```text
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-```
-
-Expected Responsibility:
-
-Problem Definition
-
-Solution Definition
-
-Product Design
-
-Verification
-
-Lifecycle Navigation
-
----
-
-## Lifecycle Progress
-
-Lifecycle Progress UI must use the canonical symbols:
-
-```text
-● for the current stage
-○ for inactive stages
-```
-
-```text
-Lifecycle Progress
-
-● Problem                    CURRENT
-
-○ Solution
-
-○ Product Representation
-
-○ MVP Scope
-
-○ Build
-
-○ Implementation Verification
-
-○ User Validation
-
-○ Release
 ```
