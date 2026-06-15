@@ -315,7 +315,7 @@ Next:
 <stage>
 
 Action:
-<one concrete action>
+<one executable action>
 ```
 
 The handoff must not repeat the full lifecycle unless the user is lost or explicitly asks.
@@ -853,19 +853,11 @@ Lifecycle Rollback Rules
 Lifecycle Closure Rules
 ```
 
-For SAPDP protocol upgrade releases, Codex may report release PASS only when:
+Protocol release governance is owned by:
 
 ```text
-Remote main contains the release commit
-
-Remote contains the version tag
-
-Final output includes the remote Commit URL and Tag URL in the minimal Protocol Release Audit Handoff
+engine/SAPDP_CANONICAL_PROTOCOL.md
 ```
-
-If the remote commit or remote tag cannot be verified, the protocol release result must be PATCH REQUIRED or FAIL.
-
-Final protocol release output must not repeat Repository, Branch, Commit SHA, Tag, remote verification, validation checklist, or git execution logs.
 
 ---
 
@@ -891,35 +883,11 @@ Lifecycle status models
 Product Bootstrap behavior
 ```
 
-When ChatGPT sends Codex execution instructions, it must use the token-efficient Task Package structure:
+Product workflow handoff, Git audit source, and token budget rules are owned by:
 
 ```text
-Task:
-<one sentence>
-
-Inputs:
-<artifact paths or commit URLs>
-
-Scope:
-<must do>
-<must not do>
-
-Acceptance:
-<3-7 checks>
-
-Output:
-Commit URL
-Tests
-Result
+engine/SAPDP_CANONICAL_PROTOCOL.md
 ```
-
-When Codex completes product implementation work, Git is the default audit memory.
-
-Codex must commit completed work.
-
-If origin exists, Codex must push and return Commit URL.
-
-Human copy/paste is fallback only.
 
 ---
 

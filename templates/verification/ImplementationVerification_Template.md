@@ -8,7 +8,7 @@
 | Owner | ChatGPT |
 | Producer | ChatGPT |
 | Lifecycle Stage | Implementation Verification |
-| Status | Template |
+| Status | Frozen |
 
 ---
 
@@ -80,7 +80,7 @@ Commit URL:
 <url>
 
 Changed:
-<n files>
+<n>
 
 Tests:
 PASS / FAIL / NOT RUN
@@ -89,11 +89,6 @@ Result:
 PASS / PATCH REQUIRED / FAIL
 
 ChatGPT Audit:
-
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-
-Audit Codex result:
 <Commit URL>
 ```
 
@@ -188,4 +183,4 @@ A valid Implementation Verification Result must satisfy:
 
 # Status
 
-Draft
+Frozen

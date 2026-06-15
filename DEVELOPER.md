@@ -73,13 +73,13 @@ START.md should remain short.
 START.md must answer only:
 
 ```text
-How to start
+Load SAPDP
 
-What to paste into Codex
+Required files
 
-What result to expect
+Current stage
 
-What to do next
+Next action
 ```
 
 ---
@@ -326,14 +326,6 @@ Files Changed:
 
 Release Result:
 PASS / PATCH REQUIRED / FAIL
-
-ChatGPT Audit:
-
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-
-Audit Release:
-vX.Y.Z
 ```
 
 Final protocol release output must not repeat:
@@ -358,7 +350,7 @@ Git execution logs
 
 # Product Workflow Handoff & Token Efficiency
 
-SAPDP v1.3.0 adds product workflow handoff rules only.
+SAPDP v1.3.1 consolidates product workflow handoff rules and Git audit source rules.
 
 This upgrade does not change product Bootstrap behavior, lifecycle stages, or lifecycle status models.
 
@@ -396,7 +388,7 @@ Commit URL:
 <url>
 
 Changed:
-<n files>
+<n>
 
 Tests:
 PASS / FAIL / NOT RUN
@@ -405,11 +397,6 @@ Result:
 PASS / PATCH REQUIRED / FAIL
 
 ChatGPT Audit:
-
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-
-Audit Codex result:
 <Commit URL>
 ```
 
@@ -426,7 +413,7 @@ Next:
 <stage>
 
 Action:
-<one concrete action>
+<one executable action>
 ```
 
 Git is the default audit memory.

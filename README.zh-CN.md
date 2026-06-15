@@ -239,14 +239,6 @@ Files Changed:
 
 Release Result:
 PASS / PATCH REQUIRED / FAIL
-
-ChatGPT Audit:
-
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-
-Audit Release:
-vX.Y.Z
 ```
 
 最终输出不得重复 Repository、Branch、Commit SHA、Tag、remote verification、validation checklist 或 git execution logs。
@@ -255,7 +247,7 @@ vX.Y.Z
 
 # 产品工作流交接与 Token 效率
 
-SAPDP v1.3.0 仅升级产品研发 workflow 的交接格式。
+SAPDP v1.3.1 统一产品研发 workflow 的交接格式与 Git 审计来源。
 
 它不改变产品 Bootstrap 行为，不新增生命周期阶段，也不新增状态模型。
 
@@ -271,7 +263,7 @@ Commit URL:
 <url>
 
 Changed:
-<n files>
+<n>
 
 Tests:
 PASS / FAIL / NOT RUN
@@ -280,11 +272,6 @@ Result:
 PASS / PATCH REQUIRED / FAIL
 
 ChatGPT Audit:
-
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-
-Audit Codex result:
 <Commit URL>
 ```
 
@@ -329,7 +316,7 @@ Next:
 <stage>
 
 Action:
-<one concrete action>
+<one executable action>
 ```
 
 Git 是默认审计记忆。人工复制粘贴仅作为 fallback。

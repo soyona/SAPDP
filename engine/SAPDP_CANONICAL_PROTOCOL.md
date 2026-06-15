@@ -259,7 +259,47 @@ Git owns system memory.
 
 ---
 
-# 5.1 Minimal Protocol Release Audit Handoff Rule
+# 5.1 Git Truth Source Rule
+
+Git remote state is the default audit source for SAPDP governance and workflow verification.
+
+Protocol Release Audit must use remotely verifiable Git state.
+
+Protocol release PASS requires:
+
+```text
+Commit URL
+
+Tag URL
+
+Remote commit verification
+
+Remote tag verification
+```
+
+If the commit or tag is not remotely verifiable, the protocol release result must not be PASS.
+
+Codex Completion Audit must prefer:
+
+```text
+Commit URL
+```
+
+over:
+
+```text
+Pasted diffs
+
+Pasted files
+
+Runtime-only output
+```
+
+Human copy/paste is fallback only.
+
+---
+
+# 5.2 Minimal Protocol Release Audit Handoff Rule
 
 For SAPDP protocol upgrade releases, Codex must not report PASS until Git remote state is audit-ready for ChatGPT.
 
@@ -285,8 +325,6 @@ Remote tag verified on remote
 Commit URL included in final output
 
 Tag URL included in final output
-
-Minimal ChatGPT Audit prompt included in final output
 ```
 
 If the commit or tag is not remotely verifiable, the protocol release result must be:
@@ -328,14 +366,6 @@ Files Changed:
 
 Release Result:
 PASS / PATCH REQUIRED / FAIL
-
-ChatGPT Audit:
-
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-
-Audit Release:
-vX.Y.Z
 ```
 
 Final protocol release output must not repeat:
@@ -358,7 +388,7 @@ Git execution logs
 
 ---
 
-# 5.2 Product Workflow Handoff & Token Efficiency Rule
+# 5.3 Product Workflow Handoff & Token Efficiency Rule
 
 This rule applies only to product development workflow.
 
@@ -372,7 +402,7 @@ Lifecycle status models
 Product Bootstrap behavior
 ```
 
-## 5.2.1 Codex Completion Handoff Rule
+## 5.3.1 Codex Completion Handoff Rule
 
 After Codex completes any product implementation task, final output must use this minimal format:
 
@@ -386,7 +416,7 @@ Commit URL:
 <url>
 
 Changed:
-<n files>
+<n>
 
 Tests:
 PASS / FAIL / NOT RUN
@@ -395,11 +425,6 @@ Result:
 PASS / PATCH REQUIRED / FAIL
 
 ChatGPT Audit:
-
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-
-Audit Codex result:
 <Commit URL>
 ```
 
@@ -410,12 +435,12 @@ Commit URL is mandatory when origin exists.
 
 If origin is missing, output local commit SHA and exact push commands.
 
-Do not output full diff, git logs, verbose summaries, or duplicated repository metadata.
+Do not output repository duplication, branch duplication, commit SHA duplication, full diff, git logs, verbose summaries, or duplicated repository metadata.
 
 Result may be PASS only if working tree is clean and required checks passed.
 ```
 
-## 5.2.2 Codex Task Package Token Budget Rule
+## 5.3.2 Task Package Token Budget Rule
 
 When ChatGPT generates Codex execution instructions, use this minimal structure:
 
@@ -442,16 +467,16 @@ Result
 Rules:
 
 ```text
-Prefer paths, commit URLs, and artifact names over pasted full content.
+Prefer artifact paths, commit URLs, and repository references over pasted full content.
 
-Do not include background unless required for execution.
+Avoid pasted documents, lifecycle explanations, and repeated context.
 
 Do not include lifecycle theory.
 
 Do not request broad implementation beyond current stage scope.
 ```
 
-## 5.2.3 Minimal Stage Navigation Prompt Rule
+## 5.3.3 Minimal Stage Navigation Rule
 
 Every product lifecycle stage completion handoff must show only:
 
@@ -466,7 +491,7 @@ Next:
 <stage>
 
 Action:
-<one concrete action>
+<one executable action>
 ```
 
 Rules:
@@ -479,7 +504,7 @@ Do not include generic guidance.
 The next action must be executable.
 ```
 
-## 5.2.4 Git Memory Rule
+## 5.3.4 Git Memory Rule
 
 Git is the default audit memory for product development workflow.
 
@@ -2237,7 +2262,7 @@ Next:
 <stage>
 
 Action:
-<one concrete action>
+<one executable action>
 ```
 
 The handoff must not repeat:

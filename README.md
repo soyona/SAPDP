@@ -154,7 +154,7 @@ A new SAPDP project can typically be initialized within minutes using Codex.
 
 # Protocol Release Audit Handoff
 
-SAPDP v1.2.6 requires a minimal protocol release handoff.
+SAPDP v1.3.1 requires a minimal protocol release handoff backed by remotely verifiable Git state.
 
 Codex may report a SAPDP protocol release PASS only after:
 
@@ -209,14 +209,6 @@ Files Changed:
 
 Release Result:
 PASS / PATCH REQUIRED / FAIL
-
-ChatGPT Audit:
-
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-
-Audit Release:
-vX.Y.Z
 ```
 
 Do not repeat Repository, Branch, Commit SHA, Tag, remote verification, validation checklist, or git execution logs in final output.
@@ -296,7 +288,7 @@ Codex must not continue product work from the SAPDP protocol repository.
 
 # Codex Completion Verification
 
-SAPDP v1.3.0 requires product implementation completion to be minimal and verified from Git state.
+SAPDP v1.3.1 requires product implementation completion to be minimal and verified from Git state.
 
 Codex completion requires:
 
@@ -328,7 +320,7 @@ Commit URL:
 <url>
 
 Changed:
-<n files>
+<n>
 
 Tests:
 PASS / FAIL / NOT RUN
@@ -337,11 +329,6 @@ Result:
 PASS / PATCH REQUIRED / FAIL
 
 ChatGPT Audit:
-
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-
-Audit Codex result:
 <Commit URL>
 ```
 
@@ -355,7 +342,7 @@ Result may be PASS only if the working tree is clean and required checks passed.
 
 # Token-Efficient Task Packages
 
-When ChatGPT generates Codex execution instructions, SAPDP v1.3.0 requires:
+When ChatGPT generates Codex execution instructions, SAPDP v1.3.1 requires:
 
 ```text
 Task:
@@ -377,7 +364,9 @@ Tests
 Result
 ```
 
-Use paths, commit URLs, and artifact names instead of pasted full content.
+Use artifact paths, commit URLs, and repository references instead of pasted full content.
+
+Avoid pasted documents, lifecycle explanations, and repeated context.
 
 ---
 
@@ -396,7 +385,7 @@ Next:
 <stage>
 
 Action:
-<one concrete action>
+<one executable action>
 ```
 
 Do not repeat the full lifecycle unless the user is lost or explicitly asks.
