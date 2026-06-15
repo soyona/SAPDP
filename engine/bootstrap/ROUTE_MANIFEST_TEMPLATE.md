@@ -201,4 +201,4 @@ Missing ROUTE_MANIFEST.md must not invalidate existing v1.5.0 Route Cards.
 
 ## Status
 
-Frozen Candidate
+Frozen
