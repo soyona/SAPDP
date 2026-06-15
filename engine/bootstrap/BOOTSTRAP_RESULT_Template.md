@@ -17,7 +17,10 @@ Bootstrap is not considered operationally complete until the Bootstrap Completio
 PASS indicates that:
 
 - Project workspace exists
+- Project Name is resolved before Project Root creation
+- Project Root is derived from Project Name
 - Project scaffold has been generated
+- Project scaffold conforms to SAPDP Project Scaffold
 - Runtime authority (PROJECT_BOOTSTRAP.md) exists
 - Artifact authority (ARTIFACT_INDEX.md) exists
 - Required protocol sources have been resolved
@@ -152,6 +155,10 @@ even when the Bootstrap Audit Result is PASS.
 
 ## Bootstrap Completion Information
 
+Project Name:
+
+<PROJECT_NAME>
+
 Project Root:
 
 <PROJECT_ROOT>
@@ -200,6 +207,10 @@ Load SAPDP Product Project
 Audit Scope:
 
 Project Structure
+
+Project Identity Readiness
+
+Scaffold Conformance Readiness
 
 Bootstrap Completion Handoff
 

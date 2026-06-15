@@ -1,10 +1,10 @@
 {
-  "manifest_version": "1.0.0",
+  "manifest_version": "1.1.1",
   "protocol": "SAPDP",
-  "protocol_version": "1.0.0",
-  "bootstrap_version": "1.0.0",
-  "bootstrap_contract_version": "1.0.0",
-  "bootstrap_validation_contract_version": "1.0.0",
+  "protocol_version": "1.1.1",
+  "bootstrap_version": "1.1.1",
+  "bootstrap_contract_version": "1.1.1",
+  "bootstrap_validation_contract_version": "1.1.1",
   "authority": {
     "configuration_authority": "bootstrap/bootstrap_manifest.json",
     "execution_authority": "contracts/bootstrap/BootstrapContract.md",
@@ -29,7 +29,13 @@
     "templates/tasks",
     "templates/verification",
     "templates/validation",
-    "templates/release"
+    "templates/release",
+    "src",
+    "tests"
+  ],
+  "forbidden_final_project_directories": [
+    "outputs",
+    "work"
   ],
   "required_files": [
     "PROJECT_BOOTSTRAP.md",
@@ -70,9 +76,14 @@
   "validation_rule_ids": [
     "product_repository_exists",
     "sapdp_repository_accessible",
+    "project_name_resolved_before_project_root",
+    "project_root_derived_from_project_name",
+    "project_identity_consistent",
     "required_directories_exist",
     "required_files_exist",
     "required_templates_exist",
+    "forbidden_final_project_directories_absent",
+    "scaffold_conforms_to_sapdp_project_scaffold",
     "project_bootstrap_exists",
     "artifact_index_exists",
     "bootstrap_result_exists",

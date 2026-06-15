@@ -25,6 +25,16 @@ Bootstrap Audit Result:
 <PASS | FAIL>
 ```
 
+## Project Identity
+
+```text
+Project Name:
+<PROJECT_NAME>
+
+Project Root:
+<PROJECT_ROOT>
+```
+
 ---
 
 ## Current Stage

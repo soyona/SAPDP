@@ -791,6 +791,15 @@ Purpose:
 Provide a standard executable project structure.
 ```
 
+Bootstrap internal execution directories must not exist in the final Product Project Root.
+
+Forbidden final Product Project Root directories:
+
+```text
+outputs/
+work/
+```
+
 ---
 
 # 11. Project Runtime
@@ -1107,6 +1116,10 @@ Lifecycle Stage.
 ```text
 Create Project Workspace
 ↓
+Resolve Project Name
+↓
+Resolve Project Root From Project Name
+↓
 Generate Project Scaffold
 ↓
 Create Runtime Authority
@@ -1146,6 +1159,48 @@ Git Repository
 Local Directory
 
 Cloud Workspace
+```
+
+---
+
+## Resolve Project Name
+
+Bootstrap must resolve:
+
+```text
+Project Name
+```
+
+before creating Project Root.
+
+If Project Name is omitted:
+
+```text
+NewProduct
+```
+
+is used as the default Project Name.
+
+---
+
+## Resolve Project Root From Project Name
+
+Project Root must be derived only from:
+
+```text
+Project Name
+```
+
+Project Root must not be derived from:
+
+```text
+Prompt Name
+
+Conversation Name
+
+Task Name
+
+Workspace Name
 ```
 
 ---
@@ -1246,6 +1301,10 @@ Project Bootstrap is complete only when:
 Project Workspace Exists
 
 Project Scaffold Exists
+
+Project Name and Project Root are consistent
+
+Final Product Project Root conforms to SAPDP Project Scaffold
 
 PROJECT_BOOTSTRAP.md Exists
 
@@ -1732,6 +1791,10 @@ Bootstrap Completion Handoff
 
 Template Availability
 
+Project Identity Readiness
+
+Scaffold Conformance Readiness
+
 Project Setup Readiness
 
 Lifecycle Entry Readiness
@@ -2214,4 +2277,3 @@ SAPDP v1 is considered:
 ```text
 Released
 ```
-

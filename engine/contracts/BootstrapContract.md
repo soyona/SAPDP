@@ -76,11 +76,39 @@ Bootstrap source files are resolved from the SAPDP Repository:
 
 Bootstrap may use:
 
-    Product Name
+    Project Name
 
-Product Name is initialization metadata.
+Project Name is initialization metadata.
 
-Product Name must not be used to infer:
+If Project Name is omitted:
+
+    NewProduct
+
+must be used as the default Project Name.
+
+Project Name must be resolved before Project Root is created.
+
+Project Root must be derived only from:
+
+    Project Name
+
+Project Root must not be derived from:
+
+    Prompt Name
+
+    Conversation Name
+
+    Task Name
+
+    Workspace Name
+
+Valid Project Root forms include:
+
+    Project Name
+
+    Project-Name
+
+Project Name must not be used to infer:
 
     Product Idea
 
@@ -152,6 +180,8 @@ Bootstrap must not create:
     TaskPackage artifacts
 
     Build artifacts
+
+    Bootstrap internal execution directories in the final Product Project Root
 
 Bootstrap prepares Lifecycle entry only.
 
@@ -293,33 +323,37 @@ Codex must execute:
 
     5. Verify version compatibility.
 
-    6. Check repository state.
+    6. Resolve Project Name.
 
-    7. Check environment availability.
+    7. Resolve Project Root from Project Name.
 
-    8. Create required directories.
+    8. Check repository state.
 
-    9.  Create required files.
+    9. Check environment availability.
 
-    10. Copy required templates.
+    10. Create required directories.
 
-    11. Copy protocol snapshot.
+    11. Create required files.
 
-    12. Record SAPDP source commit hash.
+    12. Copy required templates.
 
-    13. Create PROJECT_BOOTSTRAP.md.
+    13. Copy protocol snapshot.
 
-    14. Create ARTIFACT_INDEX.md.
+    14. Record SAPDP source commit hash.
 
-    15. Create BOOTSTRAP_RESULT.md.
+    15. Create PROJECT_BOOTSTRAP.md.
 
-    16. Create POST_BOOTSTRAP_ENTRY.md.
+    16. Create ARTIFACT_INDEX.md.
 
-    17. Run Bootstrap Validation.
+    17. Create BOOTSTRAP_RESULT.md.
 
-    18. Produce Bootstrap Result.
+    18. Create POST_BOOTSTRAP_ENTRY.md.
 
-    19. Stop.
+    19. Run Bootstrap Validation.
+
+    20. Produce Bootstrap Result.
+
+    21. Stop.
 
 ---
 
@@ -332,6 +366,10 @@ Bootstrap must stop when:
     POST_BOOTSTRAP_ENTRY.md exists
 
     Runtime State has been initialized
+
+    Project Name and Project Root are consistent across required Bootstrap artifacts
+
+    Final Product Project Root conforms to SAPDP Project Scaffold
 
     Lifecycle is ready to enter Problem Stage
 
@@ -363,6 +401,8 @@ Result
 Product Repository
 
 Product Name
+
+Project Root
 
 SAPDP Source
 

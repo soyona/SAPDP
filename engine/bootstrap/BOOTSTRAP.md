@@ -30,11 +30,31 @@ Before running Bootstrap, Human must prepare:
 
 Optional:
 
-    Product Name
+    Project Name
 
-Product Name is initialization metadata only.
+Project Name is initialization metadata only.
 
-Product Name must not be used to infer:
+If Project Name is omitted:
+
+    NewProduct
+
+must be used as the default Project Name.
+
+Project Name must be resolved before creating Project Root.
+
+Project Root must be derived only from Project Name.
+
+Project Root must not be derived from:
+
+    Prompt Name
+
+    Conversation Name
+
+    Task Name
+
+    Workspace Name
+
+Project Name must not be used to infer:
 
     Product Idea
 
@@ -56,7 +76,9 @@ Human may give Codex the following command:
 
     Bootstrap this Product Repository according to bootstrap/bootstrap_manifest.json.
 
-    Use Product Name if provided.
+    Use Project Name if provided.
+
+    Resolve Project Root from Project Name only.
 
     Do not create product artifacts.
 
@@ -67,6 +89,8 @@ Human may give Codex the following command:
     Stop after BOOTSTRAP_RESULT.md and POST_BOOTSTRAP_ENTRY.md are created.
 
     Run Bootstrap Validation.
+
+    Run Bootstrap Productionization Audit.
 
 ---
 
@@ -185,6 +209,8 @@ Bootstrap must produce:
     Required directories
 
     Required templates
+
+Bootstrap must not leave Bootstrap internal execution directories in the final Product Project Root.
 
 ---
 

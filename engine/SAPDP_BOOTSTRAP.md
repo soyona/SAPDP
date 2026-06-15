@@ -72,6 +72,8 @@ Released
 
 SAPDP v1.1 Bootstrap Productionization Release
 
+SAPDP v1.1.1 Bootstrap Scaffold Repair released.
+
 Protocol Consolidation completed.
 
 Bootstrap Completion System v2 released.
@@ -102,7 +104,7 @@ Protocol Change Proposal
 
 ## 5. 当前目标
 
-Maintain SAPDP v1.1 Release.
+Maintain SAPDP v1.1.1 Release.
 
 Ensure Bootstrap remains:
 

@@ -1285,6 +1285,65 @@ Protocol Engineering Boundary Problem
 
 Validated
 
+---
+
+### P-039
+
+#### Original Observation
+
+Reality Validation Round-2 observed:
+
+Project Name:
+
+```text
+The Super Mario
+```
+
+but generated Project Root:
+
+```text
+initialize-a-new-project-using-sapdp
+```
+
+Project Root was derived from startup instruction instead of Project Name.
+
+#### Tag
+
+Project Identity Resolution Problem
+
+#### Why It Matters
+
+Bootstrap can appear valid while initializing the wrong Product Project Root.
+
+#### Status
+
+Validated
+
+---
+
+### P-040
+
+#### Original Observation
+
+Reality Validation Round-2 observed Bootstrap internal execution directories inside the final Product Project Root:
+
+```text
+outputs/
+work/
+```
+
+#### Tag
+
+Bootstrap Scaffold Conformance Problem
+
+#### Why It Matters
+
+Bootstrap can pass existence checks while producing a scaffold that does not conform to SAPDP Project Scaffold.
+
+#### Status
+
+Validated
+
 
 
 # Maintenance Rule

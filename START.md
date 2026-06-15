@@ -54,6 +54,22 @@ NewProduct
 
 will be used as the default project name.
 
+Bootstrap must resolve Project Name before creating Project Root.
+
+Project Root must be derived only from Project Name.
+
+Project Root must not be derived from:
+
+```text
+Prompt Name
+
+Conversation Name
+
+Task Name
+
+Workspace Name
+```
+
 ---
 
 ## Expected Result
@@ -65,21 +81,23 @@ Codex will:
 
 2. Generate Project Scaffold
 
-3. Generate Bootstrap Files
+3. Resolve Project Root from Project Name
 
-4. Generate Workspace Files
+4. Generate Bootstrap Files
 
-5. Generate Runtime Files
+5. Generate Workspace Files
 
-6. Generate POST_BOOTSTRAP_ENTRY.md
+6. Generate Runtime Files
 
-7. Execute Bootstrap Validation
+7. Generate POST_BOOTSTRAP_ENTRY.md
 
-8. Execute Bootstrap Productionization Audit
+8. Execute Bootstrap Validation
 
-9. Produce Bootstrap Completion Handoff
+9. Execute Bootstrap Productionization Audit
 
-10. Enter Problem Stage
+10. Produce Bootstrap Completion Handoff
+
+11. Enter Problem Stage
 ```
 
 ---
@@ -107,6 +125,16 @@ Bootstrap is successful only when Codex reports:
 ```text
 Bootstrap Audit Result:
 PASS
+```
+
+and verifies:
+
+```text
+Project Name Resolution
+
+Project Identity Consistency
+
+Scaffold Conformance
 ```
 
 and generates an executable Bootstrap Completion Handoff:

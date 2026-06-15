@@ -106,6 +106,20 @@ Product Repository is accessible.
 Required directories exist.
 
 Required files exist.
+
+Forbidden Bootstrap internal execution directories do not exist in the final Product Project Root.
+```
+
+### Project Identity Validation
+
+```
+Project Name is resolved.
+
+Project Root is derived only from Project Name.
+
+Project Name is consistent across PROJECT_BOOTSTRAP.md, BOOTSTRAP_RESULT.md, and POST_BOOTSTRAP_ENTRY.md.
+
+Project Root is consistent across PROJECT_BOOTSTRAP.md, BOOTSTRAP_RESULT.md, and POST_BOOTSTRAP_ENTRY.md.
 ```
 
 ### Artifact Validation
@@ -152,6 +166,16 @@ No lifecycle artifact has been created.
 No product source code has been created.
 
 No forbidden action has been executed.
+```
+
+### Scaffold Conformance Validation
+
+```
+Final Product Project Root conforms to SAPDP Project Scaffold.
+
+All required scaffold directories and files defined by bootstrap_manifest.json exist.
+
+Bootstrap internal execution directories defined by bootstrap_manifest.json do not exist.
 ```
 
 Only when all PASS conditions are satisfied:
@@ -240,6 +264,20 @@ Bootstrap Manifest unavailable.
 Required directories missing.
 
 Required files missing.
+
+Forbidden Bootstrap internal execution directory exists in final Product Project Root.
+```
+
+### Project Identity Failure
+
+```
+Project Name unresolved.
+
+Project Root not derived from Project Name.
+
+Project Name mismatch across required Bootstrap artifacts.
+
+Project Root mismatch across required Bootstrap artifacts.
 ```
 
 ### Artifact Failure
@@ -276,6 +314,12 @@ Product source code created.
 Forbidden action executed.
 ```
 
+### Scaffold Conformance Failure
+
+```
+Final Product Project Root does not conform to SAPDP Project Scaffold.
+```
+
 ### Recovery Failure
 
 ```
@@ -297,6 +341,8 @@ Bootstrap validation must execute in the following order:
 ```
 Structure Validation
 
+Project Identity Validation
+
 Artifact Validation
 
 Runtime Validation
@@ -304,6 +350,8 @@ Runtime Validation
 Protocol Validation
 
 Boundary Validation
+
+Scaffold Conformance Validation
 
 Result Determination
 ```
@@ -420,6 +468,10 @@ Bootstrap Artifacts
 
 Bootstrap Completion Handoff
 
+Project Identity Readiness
+
+Scaffold Conformance Readiness
+
 Template Availability
 
 Lifecycle Entry Readiness
@@ -453,9 +505,59 @@ docs/
 
 templates/
 
+src/
+
+tests/
+
+Forbidden:
+
+outputs/
+
+work/
+
 PASS Criteria:
 
 All required files and directories exist.
+
+No forbidden Bootstrap internal execution directories exist.
+
+---
+
+### Project Identity Readiness
+
+Required:
+
+Project Name
+
+Project Root
+
+PROJECT_BOOTSTRAP.md
+
+BOOTSTRAP_RESULT.md
+
+POST_BOOTSTRAP_ENTRY.md
+
+PASS Criteria:
+
+Project Root is derived only from Project Name.
+
+Project Name and Project Root match across all required Bootstrap artifacts.
+
+---
+
+### Scaffold Conformance Readiness
+
+Required:
+
+Final Product Project Root
+
+SAPDP Project Scaffold
+
+PASS Criteria:
+
+Final Product Project Root equals the SAPDP Project Scaffold defined by bootstrap_manifest.json.
+
+Bootstrap internal execution directories are absent.
 
 ---
 

@@ -9123,3 +9123,40 @@ FAIL
 Status:
 
 Accepted
+
+---
+
+## D-0102 | SAPDP v1.1.1 Bootstrap Scaffold Repair
+
+Title:
+
+SAPDP v1.1.1 Bootstrap Scaffold Repair
+
+Summary:
+
+Bootstrap must resolve Project Name before Project Root creation, derive Project Root only from Project Name, validate Project Identity consistency across required Bootstrap artifacts, validate final scaffold conformance, and exclude Bootstrap internal execution directories from the final Product Project Root.
+
+Impacted Files:
+
+```text
+engine/contracts/BootstrapContract.md
+engine/contracts/BootstrapValidationContract.md
+engine/bootstrap/BOOTSTRAP.md
+engine/bootstrap/BOOTSTRAP_RESULT_Template.md
+engine/bootstrap/POST_BOOTSTRAP_ENTRY_Template.md
+engine/bootstrap/bootstrap_manifest.json
+engine/SAPDP_CANONICAL_PROTOCOL.md
+START.md
+internal/SAPDP_PROBLEM_BASELINE.md
+internal/SAPDP_DECISION_LOG.md
+```
+
+Release Version:
+
+```text
+v1.1.1
+```
+
+Status:
+
+Accepted
