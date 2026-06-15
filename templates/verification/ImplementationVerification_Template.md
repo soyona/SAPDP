@@ -66,6 +66,28 @@ Decision Log
 
 ---
 
+# Artifact Routing
+
+Route Manifest:
+ROUTE_MANIFEST.md
+
+Route Role:
+Implementation Verification to User Validation or Codex Patch handoff
+
+Producer:
+ChatGPT
+
+Consumer:
+ChatGPT or Codex
+
+Next Action:
+Route to User Validation on PASS or Codex patch on PATCH REQUIRED.
+
+Audit Source:
+ImplementationVerification_CORE_v1.md and Build commit URL
+
+---
+
 # Codex Completion Handoff Input
 
 Codex implementation completion must provide:

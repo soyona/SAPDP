@@ -119,6 +119,7 @@ Local Bootstrap Result PASS indicates that:
 - Required scaffold persistence files exist.
 - Runtime authority `PROJECT_BOOTSTRAP.md` exists.
 - Artifact authority `ARTIFACT_INDEX.md` exists.
+- Route manifest authority `ROUTE_MANIFEST.md` exists.
 - `BOOTSTRAP_RESULT.md` exists.
 - `POST_BOOTSTRAP_ENTRY.md` exists.
 - Project Root and Working Directory are resolved.
@@ -176,6 +177,7 @@ Fallback upload files:
 ```text
 PROJECT_BOOTSTRAP.md
 ARTIFACT_INDEX.md
+ROUTE_MANIFEST.md
 BOOTSTRAP_RESULT.md
 POST_BOOTSTRAP_ENTRY.md
 Product repository file tree
@@ -334,6 +336,7 @@ Conflicting Commit:
 ```text
 PROJECT_BOOTSTRAP.md
 ARTIFACT_INDEX.md
+ROUTE_MANIFEST.md
 BOOTSTRAP_RESULT.md
 POST_BOOTSTRAP_ENTRY.md
 README.md

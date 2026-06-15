@@ -45,6 +45,7 @@ File upload is fallback only:
 ```text
 PROJECT_BOOTSTRAP.md
 ARTIFACT_INDEX.md
+ROUTE_MANIFEST.md
 BOOTSTRAP_RESULT.md
 POST_BOOTSTRAP_ENTRY.md
 Product repository file tree
@@ -76,6 +77,7 @@ For an existing product, read:
 
 ```text
 PROJECT_BOOTSTRAP.md
+ROUTE_MANIFEST.md
 POST_BOOTSTRAP_ENTRY.md
 ```
 
@@ -96,9 +98,13 @@ Do not continue product implementation from the SAPDP protocol repository.
 For an existing product:
 
 ```text
-Follow the Current, Next, Action, Start, and Audit fields in the latest Route Card or POST_BOOTSTRAP_ENTRY.md.
+Follow the Current, Next, Action, Start, and Audit fields in ROUTE_MANIFEST.md, the latest Route Card, or POST_BOOTSTRAP_ENTRY.md.
 ```
 
 Every stage completion must show only the current transition by default.
 
 Use the full route map only when explicitly requested.
+
+Codex owns route generation.
+
+ChatGPT owns route consumption.

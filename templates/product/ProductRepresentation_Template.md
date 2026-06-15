@@ -62,6 +62,28 @@ Decision Log
 
 ---
 
+# Artifact Routing
+
+Route Manifest:
+ROUTE_MANIFEST.md
+
+Route Role:
+Product Representation to UX, Visual, Technical, and MVP planning handoff
+
+Producer:
+ChatGPT
+
+Consumer:
+ChatGPT
+
+Next Action:
+Generate UXSpecification_CORE_v1.md, VisualDesignSpecification_CORE_v1.md, and TechnicalConstraint_CORE_v1.md
+
+Audit Source:
+ProductRepresentation_CORE_v1.md
+
+---
+
 # Product Overview
 
 ## Product Name

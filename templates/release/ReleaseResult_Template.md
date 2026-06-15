@@ -55,6 +55,28 @@ Decision Log
 
 ---
 
+# Artifact Routing
+
+Route Manifest:
+ROUTE_MANIFEST.md
+
+Route Role:
+Release decision to lifecycle closure handoff
+
+Producer:
+Human
+
+Consumer:
+Git
+
+Next Action:
+Persist release decision and close lifecycle.
+
+Audit Source:
+ReleaseResult_CORE_v1.md
+
+---
+
 # Release Summary
 
 ## Release Scope

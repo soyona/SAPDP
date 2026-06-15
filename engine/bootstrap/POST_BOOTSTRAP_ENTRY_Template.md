@@ -12,6 +12,7 @@ It must clearly answer:
 - Which ChatGPT Project and session mode should be used?
 - What Startup prompt should begin the next session?
 - What executable action should be performed next?
+- Where is the route manifest?
 - Is Git remote validation pending?
 
 POST_BOOTSTRAP_ENTRY.md does not own Lifecycle Stage rules.
@@ -103,10 +104,27 @@ Fallback upload files:
 ```text
 PROJECT_BOOTSTRAP.md
 ARTIFACT_INDEX.md
+ROUTE_MANIFEST.md
 BOOTSTRAP_RESULT.md
 POST_BOOTSTRAP_ENTRY.md
 Product repository file tree
 ```
+
+---
+
+## Route Manifest
+
+```text
+ROUTE_MANIFEST.md
+=
+Route Manifest Authority
+
+Codex owns route generation.
+
+ChatGPT owns route consumption.
+```
+
+ChatGPT must read ROUTE_MANIFEST.md when it needs to recover the current route without reloading the full artifact graph.
 
 ---
 

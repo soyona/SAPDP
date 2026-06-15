@@ -53,6 +53,20 @@ Created
 ---
 
 Artifact Name:
+ROUTE_MANIFEST.md
+
+Artifact Type:
+Route Manifest Authority
+
+Artifact Path:
+ROUTE_MANIFEST.md
+
+Status:
+Created
+
+---
+
+Artifact Name:
 BOOTSTRAP_RESULT.md
 
 Artifact Type:
@@ -112,6 +126,16 @@ Created
 
 ARTIFACT_INDEX.md is the Artifact Discovery Authority.
 
+ROUTE_MANIFEST.md is the Route Manifest Authority.
+
+Route Manifest ownership is:
+
+```text
+Codex owns route generation.
+
+ChatGPT owns route consumption.
+```
+
 Only artifacts that currently exist may be recorded.
 
 Bootstrap must not register future lifecycle artifacts.
@@ -136,6 +160,8 @@ Register artifact status
 
 in ARTIFACT_INDEX.md.
 
+Route metadata must be recorded in ROUTE_MANIFEST.md, not duplicated as artifact discovery state.
+
 ---
 
 ## Notes
@@ -143,6 +169,8 @@ in ARTIFACT_INDEX.md.
 Bootstrap creates the initial Artifact Index.
 
 Bootstrap registers only Bootstrap-created artifacts.
+
+Bootstrap creates the initial Route Manifest.
 
 Problem Stage, Solution Stage, MVP Stage, Build Stage, Verification Stage, Validation Stage, and Release Stage must update ARTIFACT_INDEX.md when creating new artifacts.
 

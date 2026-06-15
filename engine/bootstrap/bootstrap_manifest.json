@@ -1,16 +1,17 @@
 {
-  "manifest_version": "1.2.1",
+  "manifest_version": "1.6.0",
   "protocol": "SAPDP",
-  "protocol_version": "1.2.1",
-  "bootstrap_version": "1.2.1",
-  "bootstrap_contract_version": "1.2.1",
-  "bootstrap_validation_contract_version": "1.2.1",
+  "protocol_version": "1.6.0",
+  "bootstrap_version": "1.6.0",
+  "bootstrap_contract_version": "1.6.0",
+  "bootstrap_validation_contract_version": "1.6.0",
   "authority": {
     "configuration_authority": "bootstrap/bootstrap_manifest.json",
     "execution_authority": "contracts/bootstrap/BootstrapContract.md",
     "validation_authority": "contracts/bootstrap/BootstrapValidationContract.md",
     "runtime_authority": "PROJECT_BOOTSTRAP.md",
-    "artifact_index_authority": "ARTIFACT_INDEX.md"
+    "artifact_index_authority": "ARTIFACT_INDEX.md",
+    "route_manifest_authority": "ROUTE_MANIFEST.md"
   },
   "required_directories": [
     "docs/problem",
@@ -41,6 +42,7 @@
     "README.md",
     "PROJECT_BOOTSTRAP.md",
     "ARTIFACT_INDEX.md",
+    "ROUTE_MANIFEST.md",
     "BOOTSTRAP_RESULT.md",
     "POST_BOOTSTRAP_ENTRY.md",
     "docs/protocol/SAPDP_CANONICAL_PROTOCOL.md",
@@ -106,6 +108,8 @@
     "protocol_snapshot_exists",
     "sapdp_source_commit_hash_exists",
     "protocol_version_exists",
+    "route_manifest_exists",
+    "route_manifest_ownership_valid",
     "runtime_initialized",
     "lifecycle_ready_for_problem_stage",
     "no_lifecycle_artifact_created",
@@ -142,6 +146,17 @@
   "result_files": {
     "bootstrap_result": "BOOTSTRAP_RESULT.md",
     "post_bootstrap_entry": "POST_BOOTSTRAP_ENTRY.md"
+  },
+  "route_manifest": {
+    "required_file": "ROUTE_MANIFEST.md",
+    "template": "bootstrap/ROUTE_MANIFEST_TEMPLATE.md",
+    "generation_owner": "Codex",
+    "consumption_owner": "ChatGPT",
+    "authority_boundary": {
+      "runtime_authority": "PROJECT_BOOTSTRAP.md",
+      "artifact_discovery_authority": "ARTIFACT_INDEX.md",
+      "lifecycle_authority": "SAPDP_LIFECYCLE.md"
+    }
   },
   "status": "Frozen Candidate"
 }

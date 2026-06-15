@@ -61,6 +61,28 @@ Decision Log
 
 ---
 
+# Artifact Routing
+
+Route Manifest:
+ROUTE_MANIFEST.md
+
+Route Role:
+User Validation to Release or issue handling handoff
+
+Producer:
+Human
+
+Consumer:
+ChatGPT or Codex
+
+Next Action:
+Generate ReleaseResult_CORE_v1.md on PASS or route required issues to ChatGPT or Codex.
+
+Audit Source:
+UserValidation_CORE_v1.md
+
+---
+
 # Validation Summary
 
 ## Validation Scope

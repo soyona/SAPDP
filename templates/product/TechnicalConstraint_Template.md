@@ -72,6 +72,28 @@ Decision Log
 
 ---
 
+# Artifact Routing
+
+Route Manifest:
+ROUTE_MANIFEST.md
+
+Route Role:
+Technical Constraint to MVP planning and Task Package handoff
+
+Producer:
+ChatGPT
+
+Consumer:
+ChatGPT
+
+Next Action:
+Generate or update MVPDefinition_CORE_v1.md
+
+Audit Source:
+TechnicalConstraint_CORE_v1.md
+
+---
+
 # Platform Constraints
 
 <PLATFORM_CONSTRAINTS>

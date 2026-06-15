@@ -131,6 +131,8 @@ README.md
 
 ARTIFACT_INDEX.md
 
+ROUTE_MANIFEST.md
+
 BOOTSTRAP_RESULT.md
 
 POST_BOOTSTRAP_ENTRY.md
@@ -146,6 +148,18 @@ Required Templates
 PROJECT_BOOTSTRAP.md is the authoritative runtime state source.
 
 No other Bootstrap artifact may redefine runtime state.
+
+ROUTE_MANIFEST.md is the authoritative route manifest.
+
+ROUTE_MANIFEST.md records route metadata only and must not redefine runtime state, artifact discovery, lifecycle stage rules, or artifact formats.
+
+Route Manifest ownership:
+
+```
+Codex owns route generation.
+
+ChatGPT owns route consumption.
+```
 
 Bootstrap must create README.md during project initialization.
 
@@ -357,7 +371,9 @@ Codex must execute:
 
     17. Create ARTIFACT_INDEX.md.
 
-    18. Create BOOTSTRAP_RESULT.md.
+    18. Create ROUTE_MANIFEST.md.
+
+    19. Create BOOTSTRAP_RESULT.md.
 
     19. Create POST_BOOTSTRAP_ENTRY.md.
 

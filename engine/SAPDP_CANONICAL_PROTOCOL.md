@@ -478,6 +478,10 @@ Do not request broad implementation beyond current stage scope.
 
 Every product lifecycle stage completion must output one compact Route Card.
 
+The Route Card is the user-facing handoff for the current transition.
+
+ROUTE_MANIFEST.md is the persistent route recovery artifact.
+
 Required format:
 
 ```text
@@ -528,6 +532,10 @@ Do not require Human to infer the next environment, project, session, source, or
 
 Do not include generic guidance.
 ```
+
+The Route Card must be compatible with the current route recorded in ROUTE_MANIFEST.md when ROUTE_MANIFEST.md exists.
+
+Missing ROUTE_MANIFEST.md in a pre-v1.6.0 product repository must not invalidate a valid v1.5.0 Route Card.
 
 ## 5.3.4 Stage Route Map
 
@@ -630,7 +638,127 @@ Push commit and tag, then return Commit URL or Tag URL.
 
 Human and Git exception paths must preserve Git-first audit rules.
 
-## 5.3.9 Git Memory Rule
+## 5.3.9 Route Manifest Rule
+
+SAPDP v1.6.0 introduces ROUTE_MANIFEST.md for context routing optimization.
+
+ROUTE_MANIFEST.md records compact route metadata so ChatGPT can recover the current route without reloading the full artifact graph.
+
+Ownership:
+
+```text
+Codex
+=
+Route Generation Owner
+
+ChatGPT
+=
+Route Consumption Owner
+```
+
+ROUTE_MANIFEST.md owns:
+
+```text
+Current Route
+
+Next Route
+
+Artifact Routing Blocks
+
+Route Audit Source
+
+Route Update Timestamp
+```
+
+ROUTE_MANIFEST.md must not own:
+
+```text
+Runtime State
+
+Artifact Discovery
+
+Artifact Existence
+
+Lifecycle Stage Rules
+
+Artifact Formats
+```
+
+Authority remains:
+
+```text
+PROJECT_BOOTSTRAP.md
+=
+Runtime Authority
+
+ARTIFACT_INDEX.md
+=
+Artifact Discovery Authority
+
+SAPDP_LIFECYCLE.md
+=
+Lifecycle Authority
+```
+
+Rules:
+
+```text
+Codex creates ROUTE_MANIFEST.md during Bootstrap.
+
+Codex persists accepted route updates when repository state changes.
+
+ChatGPT reads ROUTE_MANIFEST.md when consuming or recovering route context.
+
+ChatGPT may propose route updates through Artifact Routing Blocks.
+
+Route Manifest absence in pre-v1.6.0 repositories is migration-required, not protocol failure.
+```
+
+## 5.3.10 Artifact Routing Block Rule
+
+Every SAPDP artifact template must include an Artifact Routing Block.
+
+Required block:
+
+```text
+# Artifact Routing
+
+Route Manifest:
+ROUTE_MANIFEST.md
+
+Route Role:
+<how this artifact participates in routing>
+
+Producer:
+<Human | ChatGPT | Codex | Git>
+
+Consumer:
+<Human | ChatGPT | Codex | Git>
+
+Next Action:
+<one executable action after this artifact is accepted>
+
+Audit Source:
+<artifact path or commit URL>
+```
+
+Rules:
+
+```text
+The block must use route metadata only.
+
+The block must not redefine lifecycle stage rules.
+
+The block must not duplicate full Required Load Sets.
+
+The block must not paste full artifact content.
+
+The block must be usable by Codex to update ROUTE_MANIFEST.md.
+
+The block must be usable by ChatGPT to consume the next route.
+```
+
+## 5.3.11 Git Memory Rule
 
 Git is the default audit memory for product development workflow.
 
@@ -642,7 +770,7 @@ ChatGPT audit should use Commit URL before asking Human to paste files.
 
 Human copy/paste is fallback only.
 
-## 5.3.10 Product Bootstrap Route Card Rule
+## 5.3.12 Product Bootstrap Route Card Rule
 
 After product bootstrap, Codex final output must use:
 
@@ -851,6 +979,10 @@ The Route Card must show only the current transition by default.
 
 The full route map may be shown only when the user asks for it.
 
+ROUTE_MANIFEST.md may be read when route recovery is needed.
+
+ROUTE_MANIFEST.md must not replace the Route Card as the stage completion output.
+
 ---
 
 # 7. Artifact System
@@ -1035,6 +1167,10 @@ Stores Resolved Required Load Set
 PROJECT_BOOTSTRAP.md
 =
 Stores Current Required Load Set
+
+ROUTE_MANIFEST.md
+=
+Stores Current Route Metadata
 ```
 
 Responsibility:
@@ -1059,6 +1195,13 @@ PROJECT_BOOTSTRAP.md records:
 ```text
 The active Required Load Set
 for the current Lifecycle Stage.
+```
+
+ROUTE_MANIFEST.md records:
+
+```text
+The compact route metadata
+needed to recover the current transition.
 ```
 
 Lifecycle progression must stop if:
@@ -1736,6 +1879,38 @@ Artifact Version Tracking
 
 Required Load Set Resolution
 ```
+
+---
+
+## Create Route Manifest Authority
+
+Create:
+
+```text
+ROUTE_MANIFEST.md
+```
+
+ROUTE_MANIFEST.md owns:
+
+```text
+Route Recovery
+
+Current Route Metadata
+
+Next Route Metadata
+
+Artifact Routing Blocks
+```
+
+Route Manifest ownership:
+
+```text
+Codex owns route generation.
+
+ChatGPT owns route consumption.
+```
+
+ROUTE_MANIFEST.md must not redefine PROJECT_BOOTSTRAP.md, ARTIFACT_INDEX.md, or SAPDP_LIFECYCLE.md authority.
 
 ---
 

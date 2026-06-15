@@ -473,6 +473,70 @@ Next artifact or action
 
 For new products, create or use a ChatGPT Project named after the product.
 
+## SAPDP v1.6.0 Context Routing Optimization
+
+SAPDP v1.6.0 adds ROUTE_MANIFEST.md as a persistent route recovery artifact.
+
+Compatibility rule:
+
+```text
+Valid v1.5.0 Route Cards remain valid.
+
+Missing ROUTE_MANIFEST.md in an existing v1.5.0 product repository requires migration, not lifecycle failure.
+```
+
+Ownership:
+
+```text
+Codex owns route generation.
+
+ChatGPT owns route consumption.
+```
+
+Authority boundaries:
+
+```text
+PROJECT_BOOTSTRAP.md
+=
+Runtime Authority
+
+ARTIFACT_INDEX.md
+=
+Artifact Discovery Authority
+
+ROUTE_MANIFEST.md
+=
+Route Manifest Authority
+
+SAPDP_LIFECYCLE.md
+=
+Lifecycle Authority
+```
+
+Every artifact template must include an Artifact Routing block:
+
+```text
+Route Manifest:
+ROUTE_MANIFEST.md
+
+Route Role:
+<how this artifact participates in routing>
+
+Producer:
+<Human | ChatGPT | Codex | Git>
+
+Consumer:
+<Human | ChatGPT | Codex | Git>
+
+Next Action:
+<one executable action after this artifact is accepted>
+
+Audit Source:
+<artifact path or commit URL>
+```
+
+Artifact Routing blocks are route metadata only. They must not redefine lifecycle rules, artifact discovery, or runtime state.
+
 Bootstrap -> Problem uses NEW session by default.
 
 Later ChatGPT stages use CURRENT unless context is heavy.

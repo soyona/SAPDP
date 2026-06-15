@@ -73,6 +73,28 @@ Decision Log
 
 ---
 
+# Artifact Routing
+
+Route Manifest:
+ROUTE_MANIFEST.md
+
+Route Role:
+MVP Scope to Task Package handoff
+
+Producer:
+Human
+
+Consumer:
+ChatGPT
+
+Next Action:
+Generate TaskPackage_CORE_v1.md
+
+Audit Source:
+MVPDefinition_CORE_v1.md
+
+---
+
 # MVP Objective
 
 <MVP_OBJECTIVE>

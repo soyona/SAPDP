@@ -58,6 +58,28 @@ Decision Log
 
 ---
 
+# Artifact Routing
+
+Route Manifest:
+ROUTE_MANIFEST.md
+
+Route Role:
+UX Specification to Visual Design and MVP planning handoff
+
+Producer:
+ChatGPT
+
+Consumer:
+ChatGPT
+
+Next Action:
+Generate or update VisualDesignSpecification_CORE_v1.md
+
+Audit Source:
+UXSpecification_CORE_v1.md
+
+---
+
 # UX Goals
 
 <UX_GOALS>

@@ -46,6 +46,30 @@ Tests
 Result
 ```
 
+---
+
+# Artifact Routing
+
+Route Manifest:
+ROUTE_MANIFEST.md
+
+Route Role:
+Task Package to Codex Build handoff
+
+Producer:
+ChatGPT
+
+Consumer:
+Codex
+
+Next Action:
+Implement the Task Package in Codex.
+
+Audit Source:
+TaskPackage_CORE_v1.md or commit URL
+
+---
+
 Task Package completion routes from ChatGPT to Codex.
 
 The stage completion Route Card must include:

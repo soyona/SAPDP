@@ -59,6 +59,28 @@ Decision Log
 
 ---
 
+# Artifact Routing
+
+Route Manifest:
+ROUTE_MANIFEST.md
+
+Route Role:
+Problem to Solution handoff
+
+Producer:
+Human
+
+Consumer:
+ChatGPT
+
+Next Action:
+Generate SolutionDefinition_CORE_v1.md
+
+Audit Source:
+ProblemDefinition_CORE_v1.md
+
+---
+
 # Problem Summary
 
 ## Problem Name

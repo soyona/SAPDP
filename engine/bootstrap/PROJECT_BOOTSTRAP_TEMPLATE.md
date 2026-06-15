@@ -10,6 +10,7 @@ Serves as the single source for:
     Current Task
     Current Goal
     Required Load Set
+    Route Manifest
     Next Action
     Current Blockers
     Last Updated Timestamp
@@ -31,6 +32,7 @@ Current Task: Create ProblemDefinition_CORE_v1.md
 Required Load Set:
     PROJECT_BOOTSTRAP.md
     ARTIFACT_INDEX.md
+    ROUTE_MANIFEST.md
     docs/protocol/SAPDP_CANONICAL_PROTOCOL.md
 
 Next Action: Create ProblemDefinition_CORE_v1.md
@@ -46,6 +48,10 @@ Last Updated: <TIMESTAMP>
 PROJECT_BOOTSTRAP.md is the Runtime Authority.
 
 Other Bootstrap artifacts must not redefine these values.
+
+ROUTE_MANIFEST.md is the Route Manifest Authority.
+
+PROJECT_BOOTSTRAP.md may reference ROUTE_MANIFEST.md but does not duplicate route metadata.
 
 ---
 

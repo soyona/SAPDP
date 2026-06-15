@@ -219,6 +219,18 @@ Do not repeat Repository, Branch, Commit SHA, Tag, remote verification, validati
 
 SAPDP v1.5.0 requires every stage completion to output one compact Route Card.
 
+SAPDP v1.6.0 adds ROUTE_MANIFEST.md as the persistent route recovery artifact for context routing optimization.
+
+Ownership:
+
+```text
+Codex owns route generation.
+
+ChatGPT owns route consumption.
+```
+
+ROUTE_MANIFEST.md does not replace Route Cards, PROJECT_BOOTSTRAP.md, or ARTIFACT_INDEX.md.
+
 Required Route Card:
 
 ```text
@@ -272,6 +284,34 @@ Release: ChatGPT/Codex/Git -> Release Result
 ```
 
 Git is the default audit memory. Human copy/paste is fallback only.
+
+---
+
+# Artifact Routing Block
+
+SAPDP v1.6.0 requires every artifact template to include an Artifact Routing block:
+
+```text
+Route Manifest:
+ROUTE_MANIFEST.md
+
+Route Role:
+<how this artifact participates in routing>
+
+Producer:
+<Human | ChatGPT | Codex | Git>
+
+Consumer:
+<Human | ChatGPT | Codex | Git>
+
+Next Action:
+<one executable action after this artifact is accepted>
+
+Audit Source:
+<artifact path or commit URL>
+```
+
+The block is route metadata only. It must not redefine lifecycle rules or duplicate full artifact content.
 
 ---
 

@@ -357,11 +357,25 @@ Route Card is a handoff contract.
 
 Route Card is not a Runtime Authority.
 
+Route Card is not the Route Manifest.
+
 Lifecycle completion is not operationally complete until the Route Card has been produced.
 
 Authoritative runtime state remains:
 
 PROJECT_BOOTSTRAP.md
+
+Persistent route recovery state is:
+
+ROUTE_MANIFEST.md
+
+Route Manifest ownership:
+
+```text
+Codex owns route generation.
+
+ChatGPT owns route consumption.
+```
 
 ### Default Stage Route Map
 
@@ -453,7 +467,7 @@ Project Bootstrap is a prerequisite system and not part of the Lifecycle.
 After Bootstrap PASS, Lifecycle defines the Stage Entry Rule:
 
 - Current Stage: Problem
-- Inputs: Required Load Set from Bootstrap (PROJECT_BOOTSTRAP.md, ARTIFACT_INDEX.md, BOOTSTRAP_RESULT.md, POST_BOOTSTRAP_ENTRY.md, ProblemDefinition_Template.md)
+- Inputs: Required Load Set from Bootstrap (PROJECT_BOOTSTRAP.md, ARTIFACT_INDEX.md, ROUTE_MANIFEST.md, BOOTSTRAP_RESULT.md, POST_BOOTSTRAP_ENTRY.md, ProblemDefinition_Template.md)
 - Environment: ChatGPT
 - Session: NEW by default, or REUSE_EXISTING when a product-bound ChatGPT Project already exists
 - Startup: Bootstrap Route Card Start prompt
@@ -461,6 +475,8 @@ After Bootstrap PASS, Lifecycle defines the Stage Entry Rule:
 - Runtime Update Target: PROJECT_BOOTSTRAP.md
 
 Lifecycle owns Stage Entry Rule. POST_BOOTSTRAP_ENTRY.md only contains actionable instructions instantiated for this project.
+
+ROUTE_MANIFEST.md records recoverable route metadata for the transition but does not define the Stage Entry Rule.
 
 Rationale:
 
@@ -470,6 +486,7 @@ PATCH PASS criteria:
 
 - ProblemDefinition_CORE_v1.md is generated according to template.
 - Route Card is produced.
+- ROUTE_MANIFEST.md exists or a pre-v1.6.0 migration path is identified.
 - Action is executable and identifies the next stage action.
 
 ---

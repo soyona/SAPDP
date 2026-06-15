@@ -63,6 +63,28 @@ Decision Log
 
 ---
 
+# Artifact Routing
+
+Route Manifest:
+ROUTE_MANIFEST.md
+
+Route Role:
+Product Requirement to Product Representation continuation
+
+Producer:
+ChatGPT
+
+Consumer:
+ChatGPT
+
+Next Action:
+Generate ProductRepresentation_CORE_v1.md
+
+Audit Source:
+ProductRequirement_CORE_v1.md
+
+---
+
 # Product Summary
 
 ## Product Name

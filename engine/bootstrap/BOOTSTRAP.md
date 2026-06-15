@@ -140,6 +140,10 @@ Codex must read Bootstrap sources in this order:
     =
     Artifact Discovery Authority
 
+    ROUTE_MANIFEST.md
+    =
+    Route Manifest Authority
+
 ---
 
 ## Execution Rule
@@ -201,6 +205,8 @@ Bootstrap must produce:
     PROJECT_BOOTSTRAP.md
 
     ARTIFACT_INDEX.md
+
+    ROUTE_MANIFEST.md
 
     BOOTSTRAP_RESULT.md
 

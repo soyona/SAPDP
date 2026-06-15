@@ -126,6 +126,7 @@ Bootstrap returns PASS only when all of the following conditions are satisfied.
 ```text
 Local scaffold valid
 Required bootstrap artifacts exist
+Route Manifest exists
 Project Root resolved
 ChatGPT Audit exists
 Codex Workspace exists
@@ -172,6 +173,7 @@ Project Root is resolved in the Bootstrap Handoff.
 ```text
 PROJECT_BOOTSTRAP.md exists.
 ARTIFACT_INDEX.md exists.
+ROUTE_MANIFEST.md exists.
 BOOTSTRAP_RESULT.md exists.
 POST_BOOTSTRAP_ENTRY.md exists.
 Generated artifacts exist in committed local repository state.
@@ -179,6 +181,16 @@ Committed local Git state proves the scaffold structure.
 ChatGPT Audit exists.
 Codex Workspace exists and points to absolute Project Root.
 Problem Stage Entry exists.
+Route Manifest ownership is valid.
+```
+
+Route Manifest ownership is valid when:
+
+```text
+Codex owns route generation.
+ChatGPT owns route consumption.
+ROUTE_MANIFEST.md does not redefine runtime state.
+ROUTE_MANIFEST.md does not redefine artifact discovery.
 ```
 
 ### Handoff Validation
@@ -335,6 +347,7 @@ Incorrect formatting.
 Incorrect status wording.
 Missing non-critical template.
 Missing non-critical index entry.
+Missing ROUTE_MANIFEST.md in an existing pre-v1.6.0 product repository.
 ```
 
 PATCH REQUIRED indicates:

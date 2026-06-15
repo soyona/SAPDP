@@ -251,6 +251,16 @@ SAPDP v1.5.0 统一产品研发 workflow 的 Route Card 与 Git 审计来源。
 
 它不新增生命周期阶段，不新增 artifact，也不新增状态模型。
 
+SAPDP v1.6.0 新增 ROUTE_MANIFEST.md，用于持久化当前 route metadata，降低跨环境恢复上下文成本。
+
+```text
+Codex owns route generation.
+
+ChatGPT owns route consumption.
+```
+
+ROUTE_MANIFEST.md 不替代 Route Card、PROJECT_BOOTSTRAP.md 或 ARTIFACT_INDEX.md。
+
 Codex 完成产品实现任务后的最终输出必须使用：
 
 ```text
@@ -348,6 +358,34 @@ Release: ChatGPT/Codex/Git -> Release Result
 默认不得输出完整生命周期；只有用户要求 route map 时才显示。
 
 Git 是默认审计记忆。人工复制粘贴仅作为 fallback。
+
+---
+
+# Artifact Routing Block
+
+SAPDP v1.6.0 要求每个 artifact template 包含 Artifact Routing block：
+
+```text
+Route Manifest:
+ROUTE_MANIFEST.md
+
+Route Role:
+<how this artifact participates in routing>
+
+Producer:
+<Human | ChatGPT | Codex | Git>
+
+Consumer:
+<Human | ChatGPT | Codex | Git>
+
+Next Action:
+<one executable action after this artifact is accepted>
+
+Audit Source:
+<artifact path or commit URL>
+```
+
+该 block 只记录 route metadata，不重新定义 lifecycle rules、artifact discovery 或 runtime state。
 
 ---
 
