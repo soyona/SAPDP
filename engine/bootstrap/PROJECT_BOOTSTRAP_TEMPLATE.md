@@ -70,3 +70,29 @@ This template does not include:
 ## Status
 
 Frozen Candidate
+
+
+## Runtime Navigation
+
+```text
+Lifecycle Progress
+
+● Problem                    CURRENT
+
+○ Solution
+
+○ Product Representation
+
+○ MVP Scope
+
+○ Build
+
+○ Implementation Verification
+
+○ User Validation
+
+○ Release
+```
+
+
+```

@@ -73,9 +73,13 @@ Codex will:
 
 6. Generate POST_BOOTSTRAP_ENTRY.md
 
-7. Execute Bootstrap Audit
+7. Execute Bootstrap Validation
 
-8. Enter Problem Stage
+8. Execute Bootstrap Productionization Audit
+
+9. Produce Bootstrap Completion Handoff
+
+10. Enter Problem Stage
 ```
 
 ---
@@ -146,6 +150,33 @@ Create ProblemDefinition_CORE_v1.md
 ```
 
 ---
+
+## Bootstrap Completion Output
+
+A successful Bootstrap must disclose:
+
+```text
+Project Root
+
+Working Directory
+
+Execution Environment
+
+Required Load Set
+
+Codex Project Setup Guide
+
+ChatGPT Project Setup Guide
+```
+
+These fields are required by:
+
+```text
+D-0098
+Bootstrap Completion System v2
+```
+
+Bootstrap PASS is operationally incomplete if these fields are missing.
 
 ## Expected Next Action After Bootstrap
 

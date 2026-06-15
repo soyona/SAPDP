@@ -434,3 +434,24 @@ These responsibilities belong to their respective SAPDP authorities.
 ## Status
 
 Frozen Candidate
+
+
+## Bootstrap Completion System v2
+
+Bootstrap completion must disclose:
+
+Project Root
+
+Working Directory
+
+Execution Environment
+
+Required Load Set
+
+Codex Project Setup Guide
+
+ChatGPT Project Setup Guide
+
+Bootstrap is not operationally complete
+until all required Bootstrap Completion Handoff information
+has been produced.

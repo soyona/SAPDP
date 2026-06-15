@@ -70,37 +70,49 @@ Other canonical documents must not maintain runtime state.
 
 Released
 
-SAPDP v1.0.1 Protocol Repair successfully applied.
+SAPDP v1.1 Bootstrap Productionization Release
 
-All Bootstrap Completion Handoff issues (P-038) resolved.
+Protocol Consolidation completed.
 
-Current Stage reflects that the protocol repair is now fully frozen.
+Bootstrap Completion System v2 released.
+
+Runtime Navigation System released.
+
+Lifecycle Progress UI Standard released.
+
+Bootstrap Productionization Audit released.
 
 ---
 
 ## 4. 当前任务
 
-SAPDP v1.0.1 Protocol Repair Release
+Maintenance
 
-Task is complete. No active research or patch required for this release.
+No active protocol repair is required.
 
-Bootstrap Completion Handoff is operational and validated.
+Future work must enter through:
+
+Reality Validation
+
+and
+
+Protocol Change Proposal
 
 ---
 
 ## 5. 当前目标
 
-Maintain SAPDP v1.0.1 Protocol Repair Release.
+Maintain SAPDP v1.1 Release.
 
-Ensure future Reality Validation rounds start from a clean project bootstrap.
+Ensure Bootstrap remains:
 
-Key goals:
+Executable
 
-- All Bootstrap → Problem Stage transitions are fully executable.
-- POST_BOOTSTRAP_ENTRY.md correctly instantiates Stage Entry Instructions.
-- Authority Ownership and Runtime Ownership are preserved.
-- Lifecycle Entry Rules are respected.
-- Patch-1 ~ Patch-10 updates remain frozen.
+Discoverable
+
+Operationally Complete
+
+Reality Validation remains the primary source of future protocol evolution.
 
 ---
 
@@ -236,24 +248,27 @@ Section-Level Update
 
 ## 10. 下一步任务
 
-Execute Reality Validation Round-1
+Execute Reality Validation Round-2
 
 Validation Target:
 
 A completely new product
 
-Validation Flow:
+Validation Scope:
 
-README.md
-↓
-START.md
-↓
-Codex Bootstrap
-↓
-Bootstrap Audit
-↓
-Problem Stage Entry
+Bootstrap
 
+Problem
+
+Solution
+
+MVP
+
+Lifecycle Navigation
+
+Runtime Completion
+
+Bootstrap Productionization Audit
 
 ---
 

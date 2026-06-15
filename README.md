@@ -152,6 +152,119 @@ A new SAPDP project can typically be initialized within minutes using Codex.
 
 ---
 
+# Bootstrap Completion System
+
+SAPDP v1.1 introduces:
+
+```text
+Bootstrap Completion System v2
+```
+
+A successful Bootstrap must now provide:
+
+```text
+Project Root
+
+Working Directory
+
+Execution Environment
+
+Required Load Set
+
+Codex Project Setup Guide
+
+ChatGPT Project Setup Guide
+```
+
+Bootstrap PASS alone is insufficient.
+
+Bootstrap is operationally complete only when:
+
+```text
+Bootstrap Completion Handoff
+```
+
+has been produced.
+
+The Bootstrap Completion Handoff is instantiated in:
+
+```text
+POST_BOOTSTRAP_ENTRY.md
+```
+
+and enables direct entry into:
+
+```text
+Problem Stage
+```
+
+without additional workflow discovery.
+
+---
+
+# Runtime Navigation
+
+SAPDP v1.1 introduces:
+
+```text
+Runtime Navigation System
+```
+
+Runtime Navigation provides:
+
+```text
+Current Stage
+
+Next Stage
+
+Lifecycle Progress
+```
+
+Navigation information is derived from:
+
+```text
+PROJECT_BOOTSTRAP.md
+```
+
+and never becomes an independent runtime authority.
+
+---
+
+# Bootstrap Productionization Audit
+
+SAPDP v1.1 introduces:
+
+```text
+Bootstrap Productionization Audit
+```
+
+Bootstrap Validation verifies:
+
+```text
+Correctness
+```
+
+Bootstrap Productionization Audit verifies:
+
+```text
+Operational Usability
+```
+
+A project is ready to enter the Lifecycle only when:
+
+```text
+Bootstrap Validation
+PASS
+
+and
+
+Bootstrap Productionization Audit
+PASS
+```
+
+
+---
+
 # Repository Structure
 
 ```text

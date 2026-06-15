@@ -1061,3 +1061,67 @@ Execution Orientation
 
 Problem-Driven Validation
 ```
+
+
+## Lifecycle Progress UI Standard
+
+The following format is mandatory.
+
+```text
+Lifecycle Progress
+
+● Problem                    CURRENT
+
+○ Solution
+
+○ Product Representation
+
+○ MVP Scope
+
+○ Build
+
+○ Implementation Verification
+
+○ User Validation
+
+○ Release
+```
+
+Definitions:
+
+●
+
+=
+Current Lifecycle Stage
+
+○
+
+=
+Future Lifecycle Stage
+
+CURRENT
+
+=
+Active Lifecycle Position
+
+Rules:
+
+Only one stage may contain:
+
+●
+
+and
+
+CURRENT
+
+at any time.
+
+All remaining stages must use:
+
+○
+
+The display order must follow
+the SAPDP Lifecycle definition.
+
+Alternative display formats are prohibited.
+```

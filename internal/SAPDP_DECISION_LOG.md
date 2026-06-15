@@ -8619,3 +8619,507 @@ Conclusion:
 ```text
 SAPDP v1.0.1 Protocol Repair Release fully frozen and ready for new Reality Validation rounds.
 ```
+
+---
+
+## D-0098 | Bootstrap Completion System v2 Freeze
+
+Decision:
+
+SAPDP adopts:
+
+Bootstrap Completion System v2
+
+Bootstrap PASS is not considered operationally complete
+until Bootstrap Completion Handoff information
+is fully instantiated.
+
+Bootstrap Completion Handoff must provide:
+
+Project Root
+
+Working Directory
+
+Execution Environment
+
+Required Load Set
+
+Codex Project Setup Guide
+
+ChatGPT Project Setup Guide
+
+Definitions:
+
+Project Root
+
+=
+The absolute location of the initialized product project.
+
+Working Directory
+
+=
+The directory that Codex must use for future project execution.
+
+Execution Environment
+
+=
+The target environment responsible for executing the immediate next action.
+
+Allowed values:
+
+ChatGPT Project
+
+Codex Project
+
+Human
+
+Git
+
+Required Load Set
+
+=
+Files that must be loaded into the target execution environment
+before the next action can be executed.
+
+Codex Project Setup Guide
+
+=
+Instructions for creating or opening the Codex Project
+and setting the correct working directory.
+
+ChatGPT Project Setup Guide
+
+=
+Instructions for creating or opening the ChatGPT Project
+and loading the required project context.
+
+Rules:
+
+Bootstrap PASS must disclose:
+
+Project Root
+
+Working Directory
+
+Execution Environment
+
+Required Load Set
+
+Codex Project Setup Guide
+
+ChatGPT Project Setup Guide
+
+Bootstrap PASS must not terminate with:
+
+Current Stage
+
+Next Action
+
+only.
+
+Bootstrap Completion Handoff must enable
+direct continuation into Lifecycle execution
+without additional workflow discovery.
+
+Bootstrap Completion Handoff remains:
+
+Execution Guidance
+
+only.
+
+Bootstrap Completion Handoff is not:
+
+Lifecycle Authority
+
+Runtime Authority
+
+Artifact Authority
+
+Project Runtime Authority remains:
+
+PROJECT_BOOTSTRAP.md
+
+Reason:
+
+Reality Validation Round-1 demonstrated that:
+
+Bootstrap PASS
+
+does not guarantee that users know:
+
+Where the project exists
+
+Which environment should continue execution
+
+Which files should be loaded
+
+How to start the next session
+
+Bootstrap Completion System v2 closes this execution gap
+without introducing new authorities.
+
+Status:
+
+Accepted
+
+
+---
+
+## D-0099 | Runtime Navigation System Freeze
+
+Decision:
+
+SAPDP adopts:
+
+Runtime Navigation System
+
+Purpose:
+
+Runtime Navigation System exists to improve:
+
+Lifecycle Visibility
+
+Workflow Discoverability
+
+Execution Continuity
+
+Runtime Navigation System provides:
+
+Lifecycle Progress Display
+
+Current Position Display
+
+Next Stage Display
+
+The Runtime Navigation System is:
+
+Navigation Information
+
+only.
+
+Runtime Navigation System is not:
+
+Runtime State
+
+Runtime Authority
+
+Lifecycle Authority
+
+Artifact Authority
+
+Definitions:
+
+Lifecycle Progress Display
+
+=
+A visual representation of Lifecycle progression.
+
+Current Position Display
+
+=
+The current Lifecycle Stage resolved from:
+
+PROJECT_BOOTSTRAP.md
+
+Next Stage Display
+
+=
+The next Lifecycle Stage determined by:
+
+SAPDP Lifecycle Rules
+
+Rules:
+
+Runtime Navigation information must be derived from:
+
+PROJECT_BOOTSTRAP.md
+
+SAPDP Lifecycle Rules
+
+Runtime Navigation information must never become an independently maintained state.
+
+Navigation displays must not require manual updates.
+
+Project Runtime Authority remains:
+
+PROJECT_BOOTSTRAP.md
+
+Reason:
+
+Reality Validation demonstrated that users frequently lose visibility into:
+
+Current Progress
+
+Overall Lifecycle Position
+
+Next Execution Target
+
+Runtime Navigation improves execution continuity without introducing additional runtime ownership.
+
+
+Implementation Note:
+
+Lifecycle Progress Display formatting is defined by:
+
+D-0100
+
+Lifecycle Progress UI Standard
+
+D-0099 owns:
+
+Navigation Semantics
+
+D-0100 owns:
+
+Navigation Presentation
+
+
+Status:
+
+Accepted
+
+---
+
+## D-0100 | Lifecycle Progress UI Standard Freeze
+
+Decision:
+
+SAPDP adopts:
+
+Lifecycle Progress UI Standard
+
+Purpose:
+
+Provide a single standardized visual format
+for Lifecycle progress display.
+
+The standard applies to:
+
+Bootstrap Completion Handoff
+
+PROJECT_BOOTSTRAP.md
+
+POST_BOOTSTRAP_ENTRY.md
+
+Lifecycle Navigation Output
+
+ChatGPT Runtime Navigation Output
+
+Codex Runtime Navigation Output
+
+Definitions:
+
+Lifecycle Progress UI
+
+=
+The visual representation of current Lifecycle position.
+
+Current Stage Indicator
+
+=
+The visual marker identifying the active Lifecycle Stage.
+
+Rules:
+
+All Lifecycle progress displays must use
+the standardized SAPDP Lifecycle Progress UI.
+
+Multiple display formats are prohibited.
+
+The Lifecycle Progress UI is:
+
+Navigation Information
+
+only.
+
+The Lifecycle Progress UI is not:
+
+Runtime State
+
+Runtime Authority
+
+Lifecycle Authority
+
+Lifecycle Progress UI information must be derived from:
+
+PROJECT_BOOTSTRAP.md
+
+Current Stage
+
+The Lifecycle Progress UI must be automatically updated
+whenever Current Stage changes.
+
+Reason:
+
+Reality Validation demonstrated that:
+
+Users rely heavily on visual navigation.
+
+Inconsistent progress displays increase:
+
+Cognitive Load
+
+Workflow Confusion
+
+Session Transition Cost
+
+A single visual standard improves:
+
+Readability
+
+Execution Continuity
+
+Cross-Session Navigation
+
+Status:
+
+Accepted
+
+---
+
+## D-0101 | Bootstrap Productionization Audit Freeze
+
+Decision:
+
+SAPDP adopts:
+
+Bootstrap Productionization Audit
+
+Purpose:
+
+Verify that Bootstrap output
+is operationally usable.
+
+Bootstrap Productionization Audit verifies:
+
+Project Structure
+
+Bootstrap Artifacts
+
+Bootstrap Completion Handoff
+
+Template Availability
+
+Lifecycle Entry Readiness
+
+Definitions:
+
+Project Structure
+
+=
+Required project directories
+and required bootstrap files.
+
+Bootstrap Artifacts
+
+=
+Artifacts produced by Bootstrap.
+
+Bootstrap Completion Handoff
+
+=
+The Bootstrap completion information
+defined by D-0098.
+
+Template Availability
+
+=
+Required templates exist
+and are discoverable.
+
+Lifecycle Entry Readiness
+
+=
+The project can directly enter
+Problem Stage.
+
+Rules:
+
+Bootstrap Productionization Audit
+must execute after:
+
+Bootstrap Validation PASS
+
+Bootstrap Productionization Audit
+must not redefine:
+
+Lifecycle Rules
+
+Runtime State
+
+Artifact Quality
+
+Product Quality
+
+Bootstrap Productionization Audit
+is a compliance audit.
+
+Bootstrap Productionization Audit
+is not a runtime authority.
+
+Bootstrap Productionization Audit
+is not a lifecycle authority.
+
+Audit Results:
+
+PASS
+
+PATCH REQUIRED
+
+Reason:
+
+Reality Validation Round-1 demonstrated that:
+
+Bootstrap may technically pass.
+
+However:
+
+Project structure may be incomplete.
+
+Required templates may be missing.
+
+Users may not be able to continue
+into Problem Stage.
+
+Bootstrap Productionization Audit
+closes this gap.
+
+Bootstrap Productionization Audit Result Rule
+
+Bootstrap Validation:
+PASS
+
+and
+
+Bootstrap Productionization Audit:
+PASS
+
+↓
+
+Final Bootstrap Status:
+READY FOR LIFECYCLE
+
+Bootstrap Validation:
+PASS
+
+and
+
+Bootstrap Productionization Audit:
+PATCH REQUIRED
+
+↓
+
+Final Bootstrap Status:
+PATCH REQUIRED
+
+Bootstrap Validation:
+FAIL
+
+↓
+
+Final Bootstrap Status:
+FAIL
+
+Status:
+
+Accepted

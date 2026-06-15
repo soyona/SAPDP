@@ -87,10 +87,10 @@ ProblemDefinition_CORE_v1.md
 
 ## Exact Next User Action
 
-Open a ChatGPT SAPDP project session and input:
+Open a ChatGPT Project and input:
 
 ```text
-Load SAPDP Project
+Load SAPDP Product Project
 
 Project:
 <ProjectName>
@@ -109,11 +109,17 @@ Task:
 Generate ProblemDefinition_CORE_v1.md using ProblemDefinition_Template.md.
 
 Rules:
+
 1. Focus only on problem definition.
+
 2. Do not enter solution design.
+
 3. Do not enter MVP scope.
+
 4. Do not enter UI design.
+
 5. Output complete Markdown.
+
 6. After generation, provide Runtime Completion Block.
 ```
 
@@ -147,7 +153,7 @@ Produced Artifact:
 ProblemDefinition_CORE_v1.md
 
 Stage Result:
-PASS
+ACCEPTED
 
 Next Stage:
 Solution
@@ -172,4 +178,90 @@ Generate SolutionDefinition_CORE_v1.md
 
 ```text
 Solution
+```
+
+---
+
+## Codex Project Setup Guide
+
+Create or Open Codex Project.
+
+Project Root:
+
+<PROJECT_ROOT>
+
+Working Directory:
+
+<PROJECT_ROOT>
+
+Expected Responsibility:
+
+Implementation
+
+Testing
+
+Refactoring
+
+Build Execution
+
+---
+
+## ChatGPT Project Setup Guide
+
+Create or Open ChatGPT Project.
+
+Upload:
+
+```text
+PROJECT_BOOTSTRAP.md
+
+ARTIFACT_INDEX.md
+
+BOOTSTRAP_RESULT.md
+
+POST_BOOTSTRAP_ENTRY.md
+
+Required Lifecycle Artifacts
+```
+
+Start Prompt:
+
+```text
+Load SAPDP Product Project
+```
+
+Expected Responsibility:
+
+Problem Definition
+
+Solution Definition
+
+Product Design
+
+Verification
+
+Lifecycle Navigation
+
+---
+
+## Lifecycle Progress
+
+```text
+Lifecycle Progress
+
+● Problem                    CURRENT
+
+○ Solution
+
+○ Product Representation
+
+○ MVP Scope
+
+○ Build
+
+○ Implementation Verification
+
+○ User Validation
+
+○ Release
 ```
