@@ -294,6 +294,19 @@ MVP Definition must consume Product Shape artifacts.
 Build is blocked without required Product Shape artifacts.
 ```
 
+Artifact Materialization Contract decision:
+
+```text
+Artifact Materialization Contract adopted.
+Reality source: AA.
+Scope: Materialization tasks only.
+Not a lifecycle stage.
+Not bootstrap.
+Not runtime recovery.
+Not template system.
+Contract layer ownership.
+```
+
 Standard route:
 
 ```text

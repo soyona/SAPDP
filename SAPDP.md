@@ -248,6 +248,8 @@ Template responsibilities include:
 - Protocol snapshot strategy
 - Transition checks
 - MUST, STOP, PASS, PATCH REQUIRED, and FAIL rules
+- Materialization tasks must comply with `engine/contracts/ArtifactMaterializationContract.md`.
+- `Action: Materialize` is the protocol action for frozen artifact materialization.
 
 Contracts must define required inputs, outputs, authority boundaries, forbidden actions, validation order, and stop conditions.
 
