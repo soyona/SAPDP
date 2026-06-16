@@ -264,7 +264,7 @@ Protocol Version
 
 Detected Protocol Version
 
-Latest Stable Version
+Resolved Protocol Source Ref
 
 Protocol Source
 
@@ -283,19 +283,28 @@ Version compatibility rules are defined by:
 bootstrap/bootstrap_manifest.json
 ```
 
-If Protocol Version is omitted, Bootstrap must resolve to Latest Stable Version.
+If Protocol Version is omitted, Bootstrap must load SAPDP from latest `origin/main`.
 
-If Protocol Version is `latest`, Bootstrap must resolve to Latest Stable Version.
+If Protocol Version is `latest`, Bootstrap must load SAPDP from latest `origin/main`.
 
-Latest Stable Version is the highest semantic tag in Git.
+Bootstrap must not trust a local cached protocol clone.
 
-If Protocol Version is specified as a tag, Bootstrap must pin that exact tag.
+Before Bootstrap, protocol source must be refreshed:
+
+```sh
+rm -rf .sapdp-source
+git clone --depth 1 --branch main https://github.com/soyona/SAPDP.git .sapdp-source
+```
+
+Bootstrap must read `.sapdp-source/SAPDP.md` after refresh.
+
+If Protocol Version, tag, or commit is explicitly specified, Bootstrap must use that ref instead of `main`.
 
 `latest` must not be written as the authoritative Protocol Version.
 
-Bootstrap must write `Version Lock: true` after Protocol Version resolves to a concrete tag.
+Bootstrap must write `Version Lock: true` after the protocol source ref resolves.
 
-After Version Lock is true, normal operation must not re-check latest tag, output Latest Stable Version, or repeat Detected Protocol Version.
+After Version Lock is true, normal operation must not re-resolve latest, output stale cached protocol source metadata, or repeat Detected Protocol Version.
 
 PROJECT_STATE.md, PROJECT_BOOTSTRAP.md, BOOTSTRAP_RESULT.md, and POST_BOOTSTRAP_ENTRY.md must display the same resolved Protocol Version.
 
@@ -551,7 +560,7 @@ Protocol Version
 
 Detected Protocol Version
 
-Latest Stable Version
+Resolved Protocol Source Ref
 
 Protocol Source
 

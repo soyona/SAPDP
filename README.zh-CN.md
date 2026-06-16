@@ -5,19 +5,23 @@ AI 原生单人产品研发系统
 当前协议版本：
 v1.6.4
 
-最新稳定版本：
-v1.6.4
+最新协议来源：
+origin/main
 
 版本识别规则：
 
 ```text
-Latest Stable Version = Git 中最高语义化版本标签。
-如果省略 Protocol Version，则解析为 Latest Stable Version。
-如果 Protocol Version 为 latest，则解析为 Latest Stable Version。
-如果指定具体标签，则固定该标签。
+如果省略 Protocol Version，则从最新 origin/main 加载 SAPDP。
+如果 Protocol Version 为 latest，则从最新 origin/main 加载 SAPDP。
+不得信任本地缓存的协议 clone。
+Bootstrap 前必须刷新协议来源：
+  rm -rf .sapdp-source
+  git clone --depth 1 --branch main https://github.com/soyona/SAPDP.git .sapdp-source
+刷新后读取 .sapdp-source/SAPDP.md。
+如果明确指定版本、标签或 commit，则使用该 ref 而不是 main。
 版本解析只在 Bootstrap 执行一次。
-Bootstrap 必须把具体 Protocol Version 和 Version Lock: true 写入 PROJECT_STATE.md。
-Version Lock: true 之后，正常运行不得重新检查 latest 标签。
+Bootstrap 必须把已解析的协议来源 ref 和 Version Lock: true 写入 PROJECT_STATE.md。
+Version Lock: true 之后，正常运行不得重新解析 latest。
 State Source 为 PROJECT_STATE.md。
 缺少 PROJECT_STATE.md 时状态为 BLOCKED。
 文档或状态文件版本不一致时状态为 BLOCKED。

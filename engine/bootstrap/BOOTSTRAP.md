@@ -80,13 +80,19 @@ Human may give Codex the following command:
 
     Use Protocol Version if provided.
 
-    If Protocol Version is omitted, resolve to latest.
+    If Protocol Version is omitted, load SAPDP from latest origin/main.
 
-    Resolve latest to the highest semantic Git tag before writing state.
+    Do not trust a local cached protocol clone.
 
-    Pin exact tag if Protocol Version is specified.
+    Before Bootstrap, refresh protocol source:
+        rm -rf .sapdp-source
+        git clone --depth 1 --branch main https://github.com/soyona/SAPDP.git .sapdp-source
 
-    Write Version Lock: true after Protocol Version resolves to a concrete tag.
+    Read .sapdp-source/SAPDP.md after refresh.
+
+    If Protocol Version, tag, or commit is explicitly specified, use that ref instead of main.
+
+    Write Version Lock: true after Protocol Version resolves to a concrete source ref.
 
     Resolve Project Root from Project Name only.
 
@@ -364,8 +370,8 @@ https://github.com/soyona/SAPDP
 Protocol Version:
 <resolved version>
 
-Latest Stable Version:
-<repo latest tag>
+Resolved Protocol Source Ref:
+<origin/main commit or explicit ref>
 
 Audit product commit:
 <remote product commit URL>
@@ -433,8 +439,8 @@ https://github.com/soyona/SAPDP
 Protocol Version:
 <resolved version>
 
-Latest Stable Version:
-<repo latest tag>
+Resolved Protocol Source Ref:
+<origin/main commit or explicit ref>
 
 Audit product commit:
 <remote product commit URL>

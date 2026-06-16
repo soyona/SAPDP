@@ -11,19 +11,23 @@ If you only want to start a new product project, use:
 Current Protocol Version:
 v1.6.4
 
-Latest Stable Version:
-v1.6.4
+Latest Protocol Source:
+origin/main
 
 Version Detection Rules:
 
 ```text
-Latest Stable Version = highest semantic tag in Git.
-If Protocol Version is omitted, resolve to Latest Stable Version.
-If Protocol Version is `latest`, resolve to Latest Stable Version.
-If Protocol Version is specified as a tag, pin that exact tag.
+If Protocol Version is omitted, load SAPDP from latest origin/main.
+If Protocol Version is `latest`, load SAPDP from latest origin/main.
+Do not trust a local cached protocol clone.
+Before Bootstrap, refresh protocol source:
+  rm -rf .sapdp-source
+  git clone --depth 1 --branch main https://github.com/soyona/SAPDP.git .sapdp-source
+Read .sapdp-source/SAPDP.md after refresh.
+If Protocol Version, tag, or commit is explicitly specified, use that ref instead of main.
 Version resolution happens once during Bootstrap.
-Bootstrap writes the concrete Protocol Version and Version Lock: true to PROJECT_STATE.md.
-After Version Lock: true, do not re-check latest tag during normal operation.
+Bootstrap writes the resolved protocol source ref and Version Lock: true to PROJECT_STATE.md.
+After Version Lock: true, do not re-resolve latest during normal operation.
 State Source is PROJECT_STATE.md.
 Missing PROJECT_STATE.md means BLOCKED.
 Version mismatch between docs or state files means BLOCKED.

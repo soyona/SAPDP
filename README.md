@@ -47,6 +47,8 @@ Upgrade SAPDP
 
 Advanced startup fields such as `Protocol Repo`, `Protocol Version`, and `Protocol Entry` are internal protocol metadata. Users do not need to provide them. The previous startup syntax with those fields remains supported for backward compatibility.
 
+When no protocol version, tag, or commit is specified, SAPDP loads from the latest `origin/main` before Bootstrap. It refreshes `.sapdp-source`, reads `.sapdp-source/SAPDP.md`, and does not rely on a local cached protocol clone. Explicit version, tag, or commit refs remain supported.
+
 ## What Is SAPDP
 
 SAPDP is a platform-neutral protocol for Human, AI, and Git collaboration. It moves product work from idea to validated release through explicit artifacts, deterministic routing, and verifiable handoffs.

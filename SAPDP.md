@@ -75,13 +75,27 @@ If mode is omitted, use Product Development mode. The v2 entry contract must sta
 
 Coverage: CAP-002, CAP-004.
 
-Bootstrap prepares a product workspace before lifecycle execution. It resolves protocol version once, pins the concrete version, initializes runtime state, creates required scaffold artifacts, copies protocol reference material as configured, and stops before product lifecycle artifacts are created.
+Bootstrap prepares a product workspace before lifecycle execution. It resolves the protocol source ref once, pins that ref, initializes runtime state, creates required scaffold artifacts, copies protocol reference material as configured, and stops before product lifecycle artifacts are created.
+
+Latest-first protocol load rule:
+- User startup remains `SAPDP` plus `Goal`.
+- If no protocol version, tag, or commit is specified, load SAPDP from latest `origin/main`.
+- Do not trust a local cached protocol clone.
+- Before Bootstrap, refresh protocol source:
+
+```sh
+rm -rf .sapdp-source
+git clone --depth 1 --branch main https://github.com/soyona/SAPDP.git .sapdp-source
+```
+
+- Read `.sapdp-source/SAPDP.md` after refresh.
+- If a protocol version, tag, or commit is explicitly specified, use that ref instead of `main`.
 
 Version rules:
-- Omitted protocol version resolves to the latest stable protocol version.
-- `latest` resolves to a concrete version before state is written.
-- A specified version pins that version.
-- Runtime state records the resolved version and version lock.
+- Omitted protocol version resolves to refreshed `origin/main`.
+- `latest` resolves to refreshed `origin/main`.
+- A specified version, tag, or commit pins that explicit ref.
+- Runtime state records the resolved protocol source ref and version lock.
 - After version lock, normal operation reads state and does not re-resolve latest.
 
 Bootstrap output must be minimal and must not include lifecycle theory.
