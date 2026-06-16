@@ -8,6 +8,15 @@ Runtime constraints:
 - Historical research records are not runtime authority.
 - Problem, purpose, scope, and goals must be distilled into current runtime constraints before they affect execution.
 
+Authority Override Principle:
+
+For SAPDP work, current protocol authority always overrides:
+- historical understanding
+- session assumptions
+- prior protocol knowledge
+
+When a conflict exists, the current protocol authority must be treated as the source of truth.
+
 ## 1. Invocation
 
 Coverage: CAP-001, CAP-040.
