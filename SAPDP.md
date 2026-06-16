@@ -1,0 +1,232 @@
+# SAPDP v2 Protocol
+
+SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
+
+Runtime constraints:
+- Product work must be driven by explicit artifacts, not conversation memory.
+- Git is the durable audit source.
+- Historical research records are not runtime authority.
+- Problem, purpose, scope, and goals must be distilled into current runtime constraints before they affect execution.
+
+## 1. Invocation
+
+Coverage: CAP-001, CAP-040.
+
+SAPDP starts in one of two modes:
+- Product Development mode initializes or resumes a product workspace.
+- Protocol Evolution mode starts or resumes a protocol upgrade route.
+
+Invocation input may include:
+- Protocol source
+- Protocol version
+- Project name
+- Mode
+
+If mode is omitted, use Product Development mode. The v2 entry contract must state the protocol purpose, product scope, non-goals, and operating unit in concise terms before execution begins.
+
+## 2. Bootstrap
+
+Coverage: CAP-002, CAP-004.
+
+Bootstrap prepares a product workspace before lifecycle execution. It resolves protocol version once, pins the concrete version, initializes runtime state, creates required scaffold artifacts, copies protocol reference material as configured, and stops before product lifecycle artifacts are created.
+
+Version rules:
+- Omitted protocol version resolves to the latest stable protocol version.
+- `latest` resolves to a concrete version before state is written.
+- A specified version pins that version.
+- Runtime state records the resolved version and version lock.
+- After version lock, normal operation reads state and does not re-resolve latest.
+
+Bootstrap output must be minimal and must not include lifecycle theory.
+
+## 3. Project Initialization
+
+Coverage: CAP-008.
+
+Project initialization creates a SAPDP-compatible product workspace from the project name and bootstrap contract. It must not infer product idea, problem, target user, solution, MVP, or implementation scope.
+
+Initialization must:
+- Create required runtime, route, artifact, template, protocol, source, and test locations.
+- Preserve empty required directories with Git-persistable placeholders when needed.
+- Avoid overwriting existing SAPDP files without explicit Human confirmation.
+- Stop at readiness for Problem stage.
+
+## 4. Current Stage and Next Action
+
+Coverage: CAP-012, CAP-013, CAP-037.
+
+Runtime state, not chat history, determines current stage and next action. If runtime state is missing or inconsistent, the next action is blocked.
+
+State recovery reads:
+- `PROJECT_STATE.md` for lifecycle state.
+- `ROUTE_MANIFEST.md` and latest Route Card for route recovery.
+- Bootstrap handoff artifacts for initial Problem-stage entry.
+
+Next action recovery returns one executable action or one blocker. A minimal lifecycle progress display may be used to show current stage and inactive stages, but it must not replace runtime state.
+
+## 5. Human-AI Handoff
+
+Coverage: CAP-019, CAP-021, CAP-022, CAP-023, CAP-024.
+
+SAPDP uses explicit handoffs among Human, ChatGPT, Codex, and Git.
+
+Route Card is the required stage-completion handoff. It contains:
+- Current stage, environment, project, and session
+- Completed artifact, result, or commit
+- Next stage, environment, project, and session
+- One executable action
+- Optional startup prompt
+- Audit source when needed
+
+ChatGPT to Codex handoff must be compact and executable:
+- Repo
+- Action
+- Files or source artifacts
+- Validation
+- Required return format
+
+Codex to ChatGPT handoff must return:
+- Result
+- Changed files
+- Commit or local commit fallback
+- Updated state summary
+- One blocker if failed
+
+ChatGPT stages normally continue in the current product-bound session unless context size requires a new session. Bootstrap to Problem uses a new product-bound session by default. Human and Git exception paths must state the required Human or Git action explicitly.
+
+## 6. Lifecycle
+
+Coverage: CAP-015, CAP-016, CAP-017, CAP-018.
+
+Product lifecycle stages:
+1. Problem
+2. Solution
+3. Product Representation
+4. Product Requirement
+5. UX Specification
+6. Visual Design Specification when required
+7. MVP Definition
+8. Task Package
+9. Build
+10. Implementation Verification
+11. User Validation
+12. Release
+
+Bootstrap is prerequisite work, not a lifecycle stage.
+
+Entry rules:
+- New Feature enters Problem.
+- Bug Fix enters Implementation Verification.
+- Refactor enters Build.
+
+Rollback rules:
+- Implementation Verification failure returns to Build.
+- User Validation failure returns to MVP Definition.
+
+Stage definitions must declare objective, inputs, outputs, owner, exit criteria, and completion action. Lifecycle progression is commit-gated: no committed, validated stage output means no transition.
+
+## 7. Artifacts
+
+Coverage: CAP-026, CAP-028, CAP-039.
+
+Artifacts are the runtime memory of product work. Each artifact must have a clear producer, consumer, route role, next action, and audit source when routing is required.
+
+Product Shape layer:
+- Product Representation
+- Product Requirement
+- UX Specification
+- Visual Design Specification when required
+- Technical Constraint when needed
+
+UX Specification is mandatory. Visual Design Specification is mandatory for experience products and optional for functional products unless the Human requires it. MVP Definition and Build must not proceed without required Product Shape artifacts.
+
+Distilled problem constraints from prior research may define artifact boundaries, but full historical research records are not runtime inputs.
+
+## 8. Templates and Contracts
+
+Coverage: CAP-005, CAP-006, CAP-007, CAP-009, CAP-010, CAP-011, CAP-014, CAP-020, CAP-025, CAP-027, CAP-029, CAP-030, CAP-031, CAP-032, CAP-036.
+
+`templates/` owns artifact formats and required load sets. SAPDP.md references template responsibilities but does not duplicate template bodies.
+
+Template responsibilities include:
+- Lifecycle state
+- Route manifest
+- Artifact index
+- Problem, Solution, Product Shape, MVP, Task Package, Verification, Validation, and Release artifacts
+
+`contracts/` owns executable rules and result criteria. Contract responsibilities include:
+- Bootstrap execution
+- Bootstrap validation
+- Manifest configuration
+- Idempotency
+- Protocol snapshot strategy
+- Transition checks
+- MUST, STOP, PASS, PATCH REQUIRED, and FAIL rules
+
+Contracts must define required inputs, outputs, authority boundaries, forbidden actions, validation order, and stop conditions.
+
+## 9. Verification and Validation
+
+Coverage: CAP-035.
+
+Verification and validation must prefer committed Git evidence over pasted files or runtime-only output.
+
+Rules:
+- ChatGPT audits committed repository state when a commit exists.
+- Codex must commit completed implementation work.
+- If a remote exists, Codex pushes and returns a commit URL.
+- If no remote exists, Codex returns local commit SHA and exact push instructions.
+- Runtime-only artifacts do not satisfy verification.
+
+Implementation Verification checks implementation against approved artifacts and constraints. User Validation checks whether the product creates value for intended users.
+
+## 10. Release
+
+Coverage: CAP-033.
+
+Product Release consumes Implementation Verification and User Validation results and closes the product lifecycle when release criteria pass.
+
+Protocol release PASS requires remotely verifiable Git evidence:
+- Release commit exists remotely.
+- Release tag exists remotely.
+- Commit URL is provided.
+- Tag URL is provided.
+
+If required remote evidence cannot be verified, protocol release result must not be PASS.
+
+## 11. Protocol Evolution
+
+Coverage: CAP-034.
+
+Protocol Evolution is separate from product development. It must not invoke product Bootstrap or change product lifecycle stages by default.
+
+Protocol Evolution route:
+1. Reality Validation
+2. Issue
+3. Proposal
+4. Design Audit
+5. Codex Upgrade
+6. Release Audit
+7. Freeze
+8. Reality Validation
+
+Protocol upgrade handoff to Codex must include version, release name, problem, goal, scope, required changes, validation, and final output format.
+
+## 12. Token and Context Minimization
+
+Coverage: CAP-003.
+
+Default runtime mode is compressed execution. Explanations are opt-in.
+
+Normal operation:
+1. Read state.
+2. Execute next action or block.
+3. Return the minimal result.
+
+Continue and Next-style commands must return only one `NEXT_ACTION`:
+- `CODEX_UPDATE <file/path> <purpose>`
+- `HUMAN_INPUT <missing decision or content>`
+- `BLOCKED <missing artifact / missing commit / invalid state>`
+- `TRANSITION <next stage>`
+
+Task packages, Codex returns, audits, route cards, and release handoffs must use compact formats and prefer paths, commit URLs, and artifact references over pasted document bodies.
