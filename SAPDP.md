@@ -1,4 +1,4 @@
-# SAPDP v2.2.0 Protocol
+# SAPDP v2.3.0 Protocol
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
@@ -274,14 +274,16 @@ Coverage: CAP-033.
 
 Product Release consumes Implementation Verification and User Validation results and closes the product lifecycle when release criteria pass.
 
-Protocol release PASS requires remotely verifiable Git evidence:
-- Release commit exists remotely.
-- Release tag exists remotely.
-- Commit URL is provided.
-- Tag URL is not required as Human handoff input.
-- ChatGPT may verify the release tag directly from Git during Release Audit.
+Protocol Release Audit PASS AND FROZEN is the freeze authority for protocol releases. It requires:
+- Remote Commit URL exists.
+- Commit is verifiable from GitHub.
+- Version is updated correctly.
+- Changes match Design Freeze.
+- No blocker remains.
 
-If required remote evidence cannot be verified, protocol release result must not be PASS.
+Commit URL is sufficient minimum Git-native evidence. Tag URL, Git tag, and GitHub Release are not required as minimum solo Git-native evidence.
+
+If required remote evidence cannot be verified, protocol release result must be PATCH REQUIRED, not PASS AND FROZEN.
 
 ## 11. Protocol Evolution
 
@@ -296,8 +298,9 @@ Protocol Evolution route:
 4. Design Audit
 5. Codex Upgrade
 6. Release Audit
-7. Freeze
-8. Reality Validation
+7. Reality Validation
+
+Release Audit successful result is PASS AND FROZEN and the next stage is Reality Validation. Failed Release Audit result is PATCH REQUIRED and returns to Codex Upgrade.
 
 Protocol upgrade handoff to Codex must include version, release name, problem, goal, scope, required changes, validation, and final output format.
 
