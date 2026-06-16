@@ -38,10 +38,10 @@
 | CAP-034 | Protocol Evolution Lifecycle | YES | SAPDP.md section 11. Protocol Evolution | Protocol upgrade routing belongs in protocol evolution. |
 | CAP-035 | Git-First Audit Memory | YES | SAPDP.md section 9. Verification and Validation | Git evidence is the default audit and verification source. |
 | CAP-036 | MUST/STOP/PASS/FAIL Rules | YES | contracts/ | Mandatory stop and result rules belong in validation contracts. |
-| CAP-037 | Lifecycle Progress UI | REVIEW_REQUIRED | REVIEW_REQUIRED | Step 1 marked v2 runtime necessity unclear, so target remains unresolved. |
-| CAP-038 | Decision Log Governance | REVIEW_REQUIRED | REVIEW_REQUIRED | Step 1 marked governance versus runtime unclear, so target remains unresolved. |
-| CAP-039 | Problem Baseline Governance | REVIEW_REQUIRED | REVIEW_REQUIRED | Step 1 marked normal runtime need unclear, so target remains unresolved. |
-| CAP-040 | Foundation and Goals Records | REVIEW_REQUIRED | REVIEW_REQUIRED | Step 1 marked possible distillation need unclear, so target remains unresolved. |
+| CAP-037 | Lifecycle Progress UI | YES | SAPDP.md section 4. Current Stage and Next Action | A minimal stage-progress display supports runtime recovery without carrying the old UI checklist. |
+| CAP-038 | Decision Log Governance | NO | Git history | Append-only historical decisions are traceability records, not required v2 runtime capability. |
+| CAP-039 | Problem Baseline Governance | YES | SAPDP.md section 7. Artifacts | Distilled problem constraints should anchor v2 artifact rules without preserving the full research record. |
+| CAP-040 | Foundation and Goals Records | YES | SAPDP.md section 1. Invocation | Distilled purpose, scope, and goals belong in the v2 entry contract. |
 | CAP-041 | Historical Bootstrap Runtime Context | NO | Git history | Historical release state should remain available through repository history. |
 | CAP-042 | Historical Research Sequence | NO | Git history | Research path is traceability-only and can remain in history. |
 | CAP-043 | Product Marketing Overview | NO | Removed | Marketing overview is not protocol runtime, template, or contract capability. |
