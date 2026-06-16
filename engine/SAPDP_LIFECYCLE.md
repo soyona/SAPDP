@@ -384,11 +384,11 @@ The default routing reference is:
 ```text
 Bootstrap: Codex -> ChatGPT, NEW session, next Problem
 Problem: ChatGPT -> ChatGPT, CURRENT session, next Solution
-Solution: ChatGPT -> ChatGPT, CURRENT session, next Product Requirement
-Product Requirement: ChatGPT -> ChatGPT, CURRENT session, next Product Representation
-Product Representation: ChatGPT -> ChatGPT, CURRENT session, next UX Specification
+Solution: ChatGPT -> ChatGPT, CURRENT session, next Product Representation
+Product Representation: ChatGPT -> ChatGPT, CURRENT session, next Product Requirement
+Product Requirement: ChatGPT -> ChatGPT, CURRENT session, next UX Specification
 UX Specification: ChatGPT -> ChatGPT, CURRENT session, next Visual Design Specification when required, otherwise MVP Definition
-Visual Design Specification: ChatGPT -> ChatGPT, CURRENT session, next MVP Definition
+Visual Design Specification: ChatGPT -> ChatGPT, CURRENT session, next stage: MVP Definition
 MVP Definition: ChatGPT -> ChatGPT, CURRENT session, next Task Package
 Task Package: ChatGPT -> Codex, REUSE_EXISTING product workspace, next Build
 Build: Codex -> ChatGPT, CURRENT or NEW if context is heavy, next Implementation Verification
@@ -410,9 +410,9 @@ Problem
 ↓
 Solution
 ↓
-Product Requirement
-↓
 Product Representation
+↓
+Product Requirement
 ↓
 UX Specification
 ↓
@@ -461,9 +461,9 @@ Project Bootstrap is a prerequisite system before Lifecycle begins.
 | --------------------------- | ------------- | ---------------------------------- | ---------------------------------- |
 | Problem                     | Human         | Lifecycle Entry                    | Problem Definition                 |
 | Solution                    | ChatGPT       | Problem Definition                 | Solution Definition                |
-| Product Requirement         | ChatGPT       | Solution Definition                | Product Requirement                |
-| Product Representation      | ChatGPT       | Product Requirement                | Product Representation Artifact    |
-| UX Specification            | ChatGPT       | Product Representation Artifact    | UX Specification                   |
+| Product Representation      | ChatGPT       | Solution Definition                | Product Representation Artifact    |
+| Product Requirement         | ChatGPT       | Product Representation Artifact    | Product Requirement                |
+| UX Specification            | ChatGPT       | Product Requirement                | UX Specification                   |
 | Visual Design Specification | ChatGPT       | UX Specification                   | Visual Design Specification        |
 | MVP Definition              | Human         | Product Shape Artifacts            | MVP Definition                     |
 | Task Package                | ChatGPT       | MVP Definition                     | Task Package                       |
@@ -509,13 +509,13 @@ PATCH PASS criteria:
 
 ## 4.4 Product Shape Layer
 
-Product Shape is the lifecycle layer between Solution Definition and MVP Definition.
+Product Shape is the lifecycle layer between Solution Definition and MVP Definition. It begins with Product Representation, then derives Product Requirement before UX Specification.
 
 Product Shape artifacts are:
 
 ```text
-Product Requirement
 Product Representation
+Product Requirement
 UX Specification
 Visual Design Specification when required
 Technical Constraint
@@ -528,7 +528,7 @@ UX Specification is mandatory.
 
 Visual Design Specification is conditional.
 
-MVP Definition must consume Product Shape outputs.
+MVP Definition must consume Product Shape artifacts.
 
 Build must not proceed without required Product Shape artifacts.
 ```
@@ -543,13 +543,13 @@ Experience Product
 Functional Product:
 
 ```text
-Visual Design Specification optional unless the product requires visual judgment for validation.
+Functional Product treats Visual Design Specification as optional unless the Human explicitly requires it.
 ```
 
 Experience Product:
 
 ```text
-Visual Design Specification mandatory.
+Experience Product requires Visual Design Specification.
 ```
 
 Default Experience Products:
@@ -677,47 +677,19 @@ Solution definition accepted.
 
 ### Completion Action
 
-Load Product Requirement.
-
----
-
-## 5.3 Product Requirement
-
-### Objective
-
-Translate the approved solution into explicit product requirements.
-
-### Inputs
-
-Solution Definition
-
-### Outputs
-
-Product Requirement
-
-### Primary Owner
-
-ChatGPT
-
-### Exit Criteria
-
-Product requirement accepted.
-
-### Completion Action
-
 Load Product Representation.
 
 ---
 
-## 5.4 Product Representation
+## 5.3 Product Representation
 
 ### Objective
 
-Transform the intended product into an executable and reviewable representation.
+Transform the approved solution into an executable and reviewable product representation.
 
 ### Inputs
 
-Product Requirement
+Solution Definition
 
 ### Outputs
 
@@ -730,6 +702,34 @@ ChatGPT
 ### Exit Criteria
 
 Product representation accepted.
+
+### Completion Action
+
+Load Product Requirement.
+
+---
+
+## 5.4 Product Requirement
+
+### Objective
+
+Translate the approved product representation into explicit product requirements.
+
+### Inputs
+
+Product Requirement
+
+### Outputs
+
+Product Requirement
+
+### Primary Owner
+
+ChatGPT
+
+### Exit Criteria
+
+Product requirement accepted.
 
 ### Completion Action
 
@@ -1025,9 +1025,9 @@ Problem
 ↓
 Solution
 ↓
-Product Requirement
-↓
 Product Representation
+↓
+Product Requirement
 ↓
 UX Specification
 ↓
@@ -1176,8 +1176,9 @@ Stage Complete requires all of:
 Artifact Exists
 Artifact Validation Pass
 PROJECT_STATE.md Updated
+ARTIFACT_INDEX.md Updated where applicable
 Commit Exists
-Commit URL Available when a remote exists
+Commit URL Returned
 ```
 
 A commit alone is insufficient.
@@ -1622,9 +1623,9 @@ Lifecycle Progress
 
 ○ Solution
 
-○ Product Requirement
-
 ○ Product Representation
+
+○ Product Requirement
 
 ○ UX Specification
 

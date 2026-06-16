@@ -23,6 +23,12 @@ State Source is PROJECT_STATE.md.
 Missing PROJECT_STATE.md means BLOCKED.
 ```
 
+Transition Review Rule:
+
+```text
+Continue, Next, Next Step, Proceed, 进入下一阶段, 下一步, and 继续 must read PROJECT_STATE.md, run Transition Review, execute the authoritative Next Action, or block transition.
+```
+
 ---
 
 # Repository Model
@@ -187,6 +193,8 @@ ImplementationVerification_Template.md
 UserValidation_Template.md
 
 ReleaseResult_Template.md
+
+PROJECT_STATE_TEMPLATE.md
 ```
 
 Rules:
@@ -247,6 +255,29 @@ Do not store release packages, patch dumps, audit reports, migration guides, or 
 Historical release evidence belongs in Git tags, GitHub Releases, and committed source history.
 
 Temporary release artifacts must be removed before release commit.
+```
+
+Commit-gated lifecycle rule:
+
+```text
+No Commit
+↓
+No Transition
+```
+
+Stage complete requires artifact existence, artifact validation pass, `PROJECT_STATE.md` update, `ARTIFACT_INDEX.md` update where applicable, commit existence, and returned Commit URL.
+
+Commit alone is not enough.
+
+Product Shape Rules:
+
+```text
+UX Specification is mandatory.
+Visual Design Specification is conditional.
+Experience Product requires Visual Design Specification.
+Functional Product treats Visual Design Specification as optional unless the Human explicitly requires it.
+MVP Definition must consume Product Shape artifacts.
+Build is blocked without required Product Shape artifacts.
 ```
 
 Standard route:
@@ -562,8 +593,12 @@ Default route map:
 ```text
 Bootstrap: Codex -> ChatGPT, NEW session, next Problem
 Problem: ChatGPT -> ChatGPT, CURRENT session, next Solution
-Solution: ChatGPT -> ChatGPT, CURRENT session, next MVP
-MVP: ChatGPT -> ChatGPT, CURRENT session, next Task Package
+Solution: ChatGPT -> ChatGPT, CURRENT session, next Product Representation
+Product Representation: ChatGPT -> ChatGPT, CURRENT session, next Product Requirement
+Product Requirement: ChatGPT -> ChatGPT, CURRENT session, next UX Specification
+UX Specification: ChatGPT -> ChatGPT, CURRENT session, next Visual Design Specification when required, otherwise MVP Definition
+Visual Design Specification: ChatGPT -> ChatGPT, CURRENT session, next stage: MVP Definition
+MVP Definition: ChatGPT -> ChatGPT, CURRENT session, next Task Package
 Task Package: ChatGPT -> Codex, REUSE_EXISTING product workspace, next Build
 Build: Codex -> ChatGPT, CURRENT or NEW if context is heavy, next Implementation Verification
 Implementation Verification: ChatGPT -> ChatGPT if PASS, ChatGPT -> Codex if PATCH REQUIRED

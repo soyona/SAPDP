@@ -34,9 +34,9 @@ This artifact must not define:
 
 # Inputs
 
-Product Requirement
-
 Product Representation
+
+Product Requirement
 
 UX Specification
 
@@ -62,9 +62,9 @@ PROJECT_BOOTSTRAP.md
 
 ARTIFACT_INDEX.md
 
-Product Requirement
-
 Product Representation
+
+Product Requirement
 
 UX Specification
 

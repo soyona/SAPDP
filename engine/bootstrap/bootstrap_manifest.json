@@ -32,6 +32,7 @@
     "templates/verification",
     "templates/validation",
     "templates/release",
+    "templates/state",
     "src",
     "tests"
   ],
@@ -72,7 +73,8 @@
     "templates/tasks/TaskPackage_Template.md",
     "templates/verification/ImplementationVerification_Template.md",
     "templates/validation/UserValidation_Template.md",
-    "templates/release/ReleaseResult_Template.md"
+    "templates/release/ReleaseResult_Template.md",
+    "templates/state/PROJECT_STATE_TEMPLATE.md"
   ],
   "initial_runtime": {
     "initial_lifecycle_stage": "Problem",

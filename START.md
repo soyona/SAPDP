@@ -17,6 +17,12 @@ State Source is PROJECT_STATE.md.
 Missing PROJECT_STATE.md means BLOCKED.
 ```
 
+Transition Review Rule:
+
+```text
+Continue, Next, Next Step, Proceed, 进入下一阶段, 下一步, and 继续 must read PROJECT_STATE.md, run Transition Review, execute the authoritative Next Action, or block transition.
+```
+
 It tells a Human or AI where to begin. It does not own governance rules, workflow rules, lifecycle definitions, protocol implementation details, or status models.
 
 ---

@@ -30,9 +30,9 @@ This artifact must not define:
 
 # Inputs
 
-Product Requirement
-
 Product Representation
+
+Product Requirement
 
 ---
 
@@ -65,9 +65,9 @@ PROJECT_BOOTSTRAP.md
 
 ARTIFACT_INDEX.md
 
-Product Requirement
-
 Product Representation
+
+Product Requirement
 
 Decision Log
 

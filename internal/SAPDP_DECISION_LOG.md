@@ -813,7 +813,7 @@ Validate Problem
 ↓
 Record Problem
 ↓
-Continue Research
+Resume Research
 ↓
 Design Solution
 ↓
@@ -1041,7 +1041,7 @@ Solution
 ↓
 Product Representation
 ↓
-MVP Scope
+MVP Definition
 ↓
 Build
 ↓
@@ -1065,7 +1065,7 @@ Product Representation
 =
 Transform the intended product into an executable and reviewable representation.
 
-MVP Scope
+MVP Definition
 =
 Define the minimum product boundary required for validation.
 
@@ -1566,7 +1566,7 @@ Solution
 
 Product Representation
 
-MVP Scope
+MVP Definition
 
 Build
 
@@ -1664,7 +1664,7 @@ Solution
 
 Product Representation
 
-MVP Scope
+MVP Definition
 
 Build
 
@@ -1740,10 +1740,10 @@ Exit Criteria:
 Product representation accepted.
 
 Completion Action:
-Load MVP Scope.
+Load MVP Definition.
 
 
-MVP Scope
+MVP Definition
 
 Objective:
 Define the minimum product boundary required for validation.
@@ -1934,7 +1934,7 @@ Solution
 ↓
 Product Representation
 ↓
-MVP Scope
+MVP Definition
 ↓
 Build
 ↓
@@ -1968,7 +1968,7 @@ Release
 
 FAIL
 →
-MVP Scope
+MVP Definition
 
 Lifecycle Advancement Rules:
 
@@ -2764,9 +2764,9 @@ Quality is injected throughout the product development lifecycle.
 
 Quality must not only be verified after implementation but must be built in from:
 
-Product Requirement
-
 Product Representation
+
+Product Requirement
 
 MVP Definition
 
@@ -3129,13 +3129,13 @@ Solution
 → Solution Definition
 
 Product Representation
-→ Product Requirement Artifact
 → Product Representation Artifact
+→ Product Requirement Artifact
 → UX Specification Artifact
 → Visual Design Specification Artifact
 → Technical Constraint Artifact
 
-MVP Scope
+MVP Definition
 → MVP Definition
 
 Build
@@ -3719,7 +3719,7 @@ Create ProblemDefinition_CORE_v1.md
 
 ↓
 
-Continue Lifecycle
+Transition Review Lifecycle
 ```
 
 Reason:
@@ -4260,7 +4260,7 @@ Navigation Exists
 
 Multi-Step Workflow Exists
 
-Product Behavior Cannot Be Clearly Represented By MVP Scope Alone
+Product Behavior Cannot Be Clearly Represented By MVP Definition Alone
 ```
 
 Otherwise:

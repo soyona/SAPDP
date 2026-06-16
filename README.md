@@ -17,6 +17,12 @@ State Source is PROJECT_STATE.md.
 Missing PROJECT_STATE.md means BLOCKED.
 ```
 
+Transition Review Rule:
+
+```text
+Continue, Next, Next Step, Proceed, 进入下一阶段, 下一步, and 继续 must read PROJECT_STATE.md, run Transition Review, execute the authoritative Next Action, or block transition.
+```
+
 SAPDP is a development operating system designed for:
 
 ```text
@@ -126,9 +132,9 @@ Problem
 ↓
 Solution
 ↓
-Product Requirement
-↓
 Product Representation
+↓
+Product Requirement
 ↓
 UX Specification
 ↓
@@ -161,13 +167,24 @@ Next Action
 
 so workflow state does not depend on human memory.
 
+Product Shape Rules:
+
+```text
+UX Specification is mandatory.
+Visual Design Specification is conditional.
+Experience Product requires Visual Design Specification.
+Functional Product treats Visual Design Specification as optional unless the Human explicitly requires it.
+MVP Definition must consume Product Shape artifacts.
+Build is blocked without required Product Shape artifacts.
+```
+
 ---
 
 # Quick Start
 
 To start a new project:
 
-[Open START.md](./START.md)
+[Start SAPDP](./START.md)
 
 A new SAPDP project can typically be initialized within minutes using Codex.
 
@@ -269,7 +286,21 @@ Protocol Evolution
 
 Protocol Evolution mode is distinct from Product Development mode.
 
-It does not change product lifecycle stages, product bootstrap behavior, product artifacts, template directory structure, or v1.6.1 routing and Git-first rules.
+Commit-gated lifecycle rule:
+
+```text
+No Commit
+↓
+No Transition
+```
+
+Stage complete requires artifact existence, artifact validation pass, `PROJECT_STATE.md` update, `ARTIFACT_INDEX.md` update where applicable, commit existence, and returned Commit URL.
+
+Commit alone is not enough.
+
+It changes product lifecycle enforcement only for the accepted Product Shape Layer and commit-gated lifecycle rules.
+
+It does not otherwise change product bootstrap behavior, unrelated product artifacts, unrelated template directory structure, or v1.6.1 routing and Git-first rules.
 
 ChatGPT Release Audit must use Commit URL and Tag URL.
 
@@ -336,8 +367,12 @@ Default routing:
 ```text
 Bootstrap: Codex -> ChatGPT, NEW session, next Problem
 Problem: ChatGPT -> ChatGPT, CURRENT session, next Solution
-Solution: ChatGPT -> ChatGPT, CURRENT session, next MVP
-MVP: ChatGPT -> ChatGPT, CURRENT session, next Task Package
+Solution: ChatGPT -> ChatGPT, CURRENT session, next Product Representation
+Product Representation: ChatGPT -> ChatGPT, CURRENT session, next Product Requirement
+Product Requirement: ChatGPT -> ChatGPT, CURRENT session, next UX Specification
+UX Specification: ChatGPT -> ChatGPT, CURRENT session, next Visual Design Specification when required, otherwise MVP Definition
+Visual Design Specification: ChatGPT -> ChatGPT, CURRENT session, next stage: MVP Definition
+MVP Definition: ChatGPT -> ChatGPT, CURRENT session, next Task Package
 Task Package: ChatGPT -> Codex, REUSE_EXISTING product workspace, next Build
 Build: Codex -> ChatGPT, CURRENT or NEW if context is heavy, next Implementation Verification
 Implementation Verification: ChatGPT -> ChatGPT if PASS, ChatGPT -> Codex if PATCH REQUIRED
@@ -711,8 +746,8 @@ The system owns the workflow.
 
 If you want to start a project:
 
-[Open START.md](./START.md)
+[Start SAPDP](./START.md)
 
 If you want to contribute to SAPDP:
 
-[Open DEVELOPER.md](./DEVELOPER.md)
+[Read DEVELOPER.md](./DEVELOPER.md)

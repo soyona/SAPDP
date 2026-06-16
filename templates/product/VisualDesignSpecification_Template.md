@@ -20,7 +20,7 @@ This artifact exists to ensure visual consistency, usability, clarity, and brand
 
 This artifact is mandatory for Experience Products.
 
-For Functional Products, this artifact is optional unless visual judgment is required for validation.
+For Functional Products, this artifact is optional unless the Human explicitly requires it.
 
 This artifact must not define:
 
@@ -34,9 +34,9 @@ This artifact must not define:
 
 # Inputs
 
-Product Requirement
-
 Product Representation
+
+Product Requirement
 
 UX Specification
 
@@ -58,9 +58,9 @@ PROJECT_BOOTSTRAP.md
 
 ARTIFACT_INDEX.md
 
-Product Requirement
-
 Product Representation
+
+Product Requirement
 
 UX Specification
 

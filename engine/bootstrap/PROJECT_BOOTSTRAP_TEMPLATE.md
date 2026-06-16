@@ -92,7 +92,15 @@ Lifecycle Progress
 
 ○ Product Representation
 
+○ Product Requirement
+
+○ UX Specification
+
+○ Visual Design Specification
+
 ○ MVP Definition
+
+○ Task Package
 
 ○ Build
 

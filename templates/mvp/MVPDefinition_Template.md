@@ -37,9 +37,9 @@ If any required Product Shape artifact is missing, MVP Definition is BLOCKED.
 
 # Inputs
 
-Product Requirement
-
 Product Representation
+
+Product Requirement
 
 UX Specification
 
@@ -67,9 +67,9 @@ PROJECT_BOOTSTRAP.md
 
 ARTIFACT_INDEX.md
 
-Product Requirement
-
 Product Representation
+
+Product Requirement
 
 UX Specification
 

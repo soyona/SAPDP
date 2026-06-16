@@ -155,6 +155,12 @@ PROJECT_STATE.md is the authoritative lifecycle state source.
 
 PROJECT_BOOTSTRAP.md records Bootstrap metadata and must not redefine lifecycle authority.
 
+PROJECT_STATE.md must be generated from:
+
+```
+templates/state/PROJECT_STATE_TEMPLATE.md
+```
+
 No other Bootstrap artifact may redefine runtime state.
 
 ROUTE_MANIFEST.md is the authoritative route manifest.

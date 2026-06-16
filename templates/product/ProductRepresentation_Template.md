@@ -16,7 +16,7 @@
 
 Define the overall product structure.
 
-This artifact exists to transform product requirements into a coherent product representation.
+This artifact exists to transform the approved solution into a coherent product representation.
 
 This artifact must not define:
 
@@ -30,19 +30,13 @@ This artifact must not define:
 
 # Inputs
 
-Product Requirement
+Solution Definition
 
 ---
 
 # Outputs
 
-UX Specification
-
-Visual Design Specification
-
-Technical Constraint
-
-MVP Definition
+Product Requirement
 
 Product Classification:
 
@@ -70,7 +64,7 @@ Visual Design Requirement:
 
 ```text
 Mandatory for Experience Product.
-Optional for Functional Product unless visual judgment is required for validation.
+Optional for Functional Product unless the Human explicitly requires it.
 ```
 
 ---
@@ -87,8 +81,6 @@ Problem Definition
 
 Solution Definition
 
-Product Requirement
-
 Decision Log
 
 ---
@@ -99,7 +91,7 @@ Route Manifest:
 ROUTE_MANIFEST.md
 
 Route Role:
-Product Representation to UX, Visual, Technical, and MVP planning handoff
+Product Representation to Product Requirement handoff
 
 Producer:
 ChatGPT
@@ -108,7 +100,7 @@ Consumer:
 ChatGPT
 
 Next Action:
-Generate UXSpecification_CORE_v1.md, classify visual design requirement, generate VisualDesignSpecification_CORE_v1.md when required, and generate TechnicalConstraint_CORE_v1.md.
+Generate ProductRequirement_CORE_v1.md.
 
 Audit Source:
 ProductRepresentation_CORE_v1.md

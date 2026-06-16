@@ -25,19 +25,19 @@ Protocol Version:
 v1.6.3
 
 Current Stage:
-Protocol Evolution
+Protocol Evolution Hotfix
 
 Current Artifact:
-PROJECT_STATE.md
+v1.6.3 lifecycle consistency hotfix
 
 Stage Status:
-READY
+IN_PROGRESS
 
 Next Action:
-Release Audit
+Commit hotfix and return Commit URL for ChatGPT audit.
 
 Allowed Transition:
-None until committed Git state and remote Commit URL are available.
+None until hotfix commit exists and remote Commit URL is available.
 
 Required Artifacts:
 
@@ -50,17 +50,17 @@ Required Artifacts:
 - [BootstrapContract.md](./engine/contracts/BootstrapContract.md)
 - [BootstrapValidationContract.md](./engine/contracts/BootstrapValidationContract.md)
 - [bootstrap_manifest.json](./engine/bootstrap/bootstrap_manifest.json)
-- [PROJECT_STATE_TEMPLATE.md](./engine/bootstrap/PROJECT_STATE_TEMPLATE.md)
+- [PROJECT_STATE_TEMPLATE.md](./templates/state/PROJECT_STATE_TEMPLATE.md)
 
 Required Commits:
 
-- SAPDP v1.6.3 Protocol Evolution and Repository Hygiene Upgrade
+- Hotfix v1.6.3 lifecycle consistency and state template references
 
 Last Verified Commit:
 Pending
 
 Blocked Reason:
-Pending commit and remote verification.
+Pending hotfix commit and remote verification.
 
 Updated By:
 Codex

@@ -188,7 +188,22 @@ Bootstrap registers only Bootstrap-created artifacts.
 
 Bootstrap creates the initial Route Manifest.
 
-Problem Stage, Solution Stage, Product Requirement Stage, Product Representation Stage, UX Specification Stage, Visual Design Specification Stage, MVP Definition Stage, Task Package Stage, Build Stage, Verification Stage, Validation Stage, and Release Stage must update ARTIFACT_INDEX.md when creating new artifacts.
+The following stages must update ARTIFACT_INDEX.md when creating new artifacts:
+
+```text
+Problem Stage
+Solution Stage
+Product Representation Stage
+Product Requirement Stage
+UX Specification Stage
+Visual Design Specification Stage
+MVP Definition Stage
+Task Package Stage
+Build Stage
+Verification Stage
+Validation Stage
+Release Stage
+```
 
 ---
 

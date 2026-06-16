@@ -17,6 +17,12 @@ State Source 为 PROJECT_STATE.md。
 缺少 PROJECT_STATE.md 时状态为 BLOCKED。
 ```
 
+转换审查规则：
+
+```text
+Continue、Next、Next Step、Proceed、进入下一阶段、下一步、继续 必须读取 PROJECT_STATE.md，执行 Transition Review，然后执行权威 Next Action 或阻止转换。
+```
+
 SAPDP（Solo AI Product Development Protocol）是一套面向：
 
 ```text
@@ -104,7 +110,7 @@ SaaS 产品
 
 输出不一致
 
-不知道下一步做什么
+不知道后续动作是什么
 
 文档混乱
 
@@ -154,9 +160,9 @@ Problem
 ↓
 Solution
 ↓
-Product Requirement
-↓
 Product Representation
+↓
+Product Requirement
 ↓
 UX Specification
 ↓
@@ -184,10 +190,21 @@ Release
 
 期望输出
 
-下一步动作
+后续动作
 ```
 
 开发者无需手工维护流程状态。
+
+Product Shape Rules:
+
+```text
+UX Specification is mandatory.
+Visual Design Specification is conditional.
+Experience Product requires Visual Design Specification.
+Functional Product treats Visual Design Specification as optional unless the Human explicitly requires it.
+MVP Definition must consume Product Shape artifacts.
+Build is blocked without required Product Shape artifacts.
+```
 
 ---
 
@@ -195,9 +212,7 @@ Release
 
 请打开：
 
-```text
-START.md
-```
+[START.md](./START.md)
 
 按照其中的说明启动项目。
 
@@ -301,7 +316,9 @@ Protocol Evolution
 
 Protocol Evolution mode 与 Product Development mode 明确区分。
 
-它不改变产品生命周期阶段、产品 Bootstrap 行为、产品 artifacts、template 目录结构，且保留 v1.6.1 routing 与 Git-first rules。
+v1.6.3 仅通过已接受的 Product Shape Layer 与 commit-gated lifecycle rules 改变产品生命周期执行规则。
+
+除此之外，它不改变产品 Bootstrap 行为、无关产品 artifacts、无关 template 目录结构，且保留 v1.6.1 routing 与 Git-first rules。
 
 ChatGPT Release Audit 必须使用 Commit URL 和 Tag URL。
 
@@ -410,8 +427,12 @@ Session 取值只能是 CURRENT、NEW、REUSE_EXISTING。
 ```text
 Bootstrap: Codex -> ChatGPT, NEW session, next Problem
 Problem: ChatGPT -> ChatGPT, CURRENT session, next Solution
-Solution: ChatGPT -> ChatGPT, CURRENT session, next MVP
-MVP: ChatGPT -> ChatGPT, CURRENT session, next Task Package
+Solution: ChatGPT -> ChatGPT, CURRENT session, next Product Representation
+Product Representation: ChatGPT -> ChatGPT, CURRENT session, next Product Requirement
+Product Requirement: ChatGPT -> ChatGPT, CURRENT session, next UX Specification
+UX Specification: ChatGPT -> ChatGPT, CURRENT session, next Visual Design Specification when required, otherwise MVP Definition
+Visual Design Specification: ChatGPT -> ChatGPT, CURRENT session, next stage: MVP Definition
+MVP Definition: ChatGPT -> ChatGPT, CURRENT session, next Task Package
 Task Package: ChatGPT -> Codex, REUSE_EXISTING product workspace, next Build
 Build: Codex -> ChatGPT, CURRENT or NEW if context is heavy, next Implementation Verification
 Implementation Verification: ChatGPT -> ChatGPT if PASS, ChatGPT -> Codex if PATCH REQUIRED
@@ -525,15 +546,13 @@ Codex must not continue product work from the SAPDP protocol repository.
 
 # 仓库结构
 
-```text
-README.md
-START.md
-DEVELOPER.md
-
-engine/
-templates/
-internal/
-```
+- [README.md](./README.md)
+- [README.zh-CN.md](./README.zh-CN.md)
+- [START.md](./START.md)
+- [DEVELOPER.md](./DEVELOPER.md)
+- [engine/](./engine/)
+- [templates/](./templates/)
+- [internal/](./internal/)
 
 ### engine/
 
@@ -553,15 +572,11 @@ SAPDP 协议源文件、决策记录、问题基线以及维护资料。
 
 如果你想使用 SAPDP 开发产品：
 
-```text
-打开 START.md
-```
+[启动 SAPDP](./START.md)
 
 如果你想参与 SAPDP 本身的维护与演进：
 
-```text
-打开 DEVELOPER.md
-```
+[阅读 DEVELOPER.md](./DEVELOPER.md)
 
 ---
 

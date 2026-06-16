@@ -210,6 +210,8 @@ Bootstrap must produce:
 
     PROJECT_STATE.md
 
+    PROJECT_STATE.md generated from templates/state/PROJECT_STATE_TEMPLATE.md
+
     ARTIFACT_INDEX.md
 
     ROUTE_MANIFEST.md

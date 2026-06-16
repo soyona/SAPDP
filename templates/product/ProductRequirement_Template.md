@@ -16,7 +16,7 @@
 
 Define what value and capabilities the product must provide.
 
-This artifact exists to translate the approved solution into product requirements.
+This artifact exists to translate the approved product representation into product requirements.
 
 This artifact must not define:
 
@@ -33,13 +33,11 @@ These subjects belong to other artifacts.
 
 # Inputs
 
-Solution Definition
+Product Representation
 
 ---
 
 # Outputs
-
-Product Representation
 
 UX Specification
 
@@ -61,6 +59,8 @@ Problem Definition
 
 Solution Definition
 
+Product Representation
+
 Decision Log
 
 ---
@@ -71,7 +71,7 @@ Route Manifest:
 ROUTE_MANIFEST.md
 
 Route Role:
-Product Requirement to Product Representation continuation
+Product Requirement to UX, Visual, and Technical handoff
 
 Producer:
 ChatGPT
@@ -80,7 +80,7 @@ Consumer:
 ChatGPT
 
 Next Action:
-Generate ProductRepresentation_CORE_v1.md
+Generate UXSpecification_CORE_v1.md, classify visual design requirement, generate VisualDesignSpecification_CORE_v1.md when required, and generate TechnicalConstraint_CORE_v1.md.
 
 Audit Source:
 ProductRequirement_CORE_v1.md

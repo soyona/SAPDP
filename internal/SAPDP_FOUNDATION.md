@@ -497,7 +497,7 @@ Validate Problem
 ↓
 Record Problem
 ↓
-Continue Research
+Resume Research
 ↓
 Design Solution
 ↓
@@ -543,7 +543,7 @@ Solution
 ↓
 Product Representation
 ↓
-MVP Scope
+MVP Definition
 ↓
 Build
 ↓
@@ -890,8 +890,8 @@ Quality Domains:
 
 Injection Points:
 
-- Product Requirement Artifact
 - Product Representation Artifact
+- Product Requirement Artifact
 - MVP Definition
 - Task Package
 - Build
@@ -2010,7 +2010,7 @@ When a bootstrap phrase is detected, the assistant should:
 
 4. Perform Freeze Impact Checklist when applicable
 
-5. Continue the current SAPDP lifecycle stage
+5. Run Transition Review for the current SAPDP lifecycle stage
 
 Humans are not responsible for remembering the current stage.
 

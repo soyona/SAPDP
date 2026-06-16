@@ -313,9 +313,9 @@ Lifecycle Progress
 
 ○ Solution
 
-○ Product Requirement
-
 ○ Product Representation
+
+○ Product Requirement
 
 ○ UX Specification
 

@@ -183,9 +183,9 @@ Problem
 ↓
 Solution
 ↓
-Product Requirement
-↓
 Product Representation
+↓
+Product Requirement
 ↓
 UX Specification
 ↓
@@ -323,8 +323,9 @@ Stage Complete requires:
 Artifact Exists
 Artifact Validation Pass
 PROJECT_STATE.md Updated
+ARTIFACT_INDEX.md Updated where applicable
 Commit Exists
-Commit URL Available when remote exists
+Commit URL Returned
 ```
 
 A commit alone is insufficient.
@@ -340,9 +341,9 @@ Problem Definition
 ↓
 Solution Definition
 ↓
-Product Requirement
-↓
 Product Representation
+↓
+Product Requirement
 ↓
 UX Specification
 ↓
@@ -360,7 +361,7 @@ Rules:
 ```text
 UX Specification is mandatory.
 Visual Design Specification is conditional.
-MVP Definition must consume Product Shape outputs.
+MVP Definition must consume Product Shape artifacts.
 Build must not proceed without required Product Shape artifacts.
 ```
 
@@ -374,13 +375,13 @@ Experience Product
 Functional Product:
 
 ```text
-Visual Optional
+Functional Product treats Visual Design Specification as optional unless the Human explicitly requires it.
 ```
 
 Experience Product:
 
 ```text
-Visual Mandatory
+Experience Product requires Visual Design Specification.
 ```
 
 Default Experience Products:
@@ -840,9 +841,17 @@ Bootstrap: Codex -> ChatGPT, NEW session, next Problem
 
 Problem: ChatGPT -> ChatGPT, CURRENT session, next Solution
 
-Solution: ChatGPT -> ChatGPT, CURRENT session, next MVP
+Solution: ChatGPT -> ChatGPT, CURRENT session, next Product Representation
 
-MVP: ChatGPT -> ChatGPT, CURRENT session, next Task Package
+Product Representation: ChatGPT -> ChatGPT, CURRENT session, next Product Requirement
+
+Product Requirement: ChatGPT -> ChatGPT, CURRENT session, next UX Specification
+
+UX Specification: ChatGPT -> ChatGPT, CURRENT session, next Visual Design Specification when required, otherwise MVP Definition
+
+Visual Design Specification: ChatGPT -> ChatGPT, CURRENT session, next stage: MVP Definition
+
+MVP Definition: ChatGPT -> ChatGPT, CURRENT session, next Task Package
 
 Task Package: ChatGPT -> Codex, REUSE_EXISTING product workspace, next Build
 
@@ -1316,8 +1325,8 @@ Release Traceability
 Core Execution Artifacts are mandatory.
 
 ### Quality Layer Artifacts
-Product Requirement Artifact
 Product Representation Artifact
+Product Requirement Artifact
 UX Specification Artifact
 Visual Design Specification Artifact
 Technical Constraint Artifact
@@ -1388,17 +1397,25 @@ Solution
 → Solution Definition
 
 Product Representation
-→ Product Requirement Artifact
 → Product Representation Artifact
-→ UX Specification Artifact
-→ Visual Design Specification Artifact
+
+Product Requirement
+→ Product Requirement Artifact
 → Technical Constraint Artifact
+
+UX Specification
+→ UX Specification Artifact
+
+Visual Design Specification
+→ Visual Design Specification Artifact
 
 MVP Definition
 → MVP Definition
 
-Build
+Task Package
 → Task Package
+
+Build
 → Build Artifact
 
 Implementation Verification
@@ -1614,9 +1631,13 @@ Benchmark Quality
 Quality Injection Points:
 
 ```text
+Product Representation
+
 Product Requirement
 
-Product Representation
+UX Specification
+
+Visual Design Specification
 
 MVP Definition
 
@@ -2711,7 +2732,15 @@ Lifecycle Progress
 
 ○ Product Representation
 
+○ Product Requirement
+
+○ UX Specification
+
+○ Visual Design Specification
+
 ○ MVP Definition
+
+○ Task Package
 
 ○ Build
 

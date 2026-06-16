@@ -4,7 +4,7 @@
 
 Authoritative lifecycle state for a SAPDP Product Repository.
 
-`PROJECT_STATE.md` is the only file that owns current lifecycle stage, stage status, next action, allowed transition, required artifacts, required commits, last verified commit, and blocked reason.
+`PROJECT_STATE.md` owns current lifecycle stage, current artifact, stage status, next action, allowed transition, required artifacts, required commits, last verified commit, blocked reason, updater, and update time.
 
 Conversation history is not authority.
 
@@ -46,6 +46,7 @@ None
 Required Artifacts:
 
 - PROJECT_STATE.md
+- PROJECT_BOOTSTRAP.md
 - ARTIFACT_INDEX.md
 - ROUTE_MANIFEST.md
 - BOOTSTRAP_RESULT.md
@@ -72,9 +73,9 @@ Updated At:
 
 ---
 
-## Transition Guard
+## Transition Review
 
-Any transition request must:
+Any request such as `Continue`, `Next`, `Next Step`, `Proceed`, `进入下一阶段`, `下一步`, or `继续` must:
 
 1. Read `PROJECT_STATE.md`.
 2. Determine the current stage.
@@ -82,4 +83,5 @@ Any transition request must:
 4. Verify required artifacts.
 5. Verify required commits.
 6. Decide `BLOCKED`, `EXECUTE_NEXT_ACTION`, or `ALLOW_TRANSITION`.
-7. Update `PROJECT_STATE.md` when repository state changes.
+7. Execute the authoritative `Next Action` or block transition.
+8. Update `PROJECT_STATE.md` when repository state changes.

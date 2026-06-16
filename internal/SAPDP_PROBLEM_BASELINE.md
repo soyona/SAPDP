@@ -933,7 +933,7 @@ Validated
 
 产品设计可能位于新的会话。
 
-MVP Scope 可能位于新的会话。
+MVP Definition 可能位于新的会话。
 
 Build 可能位于新的会话。
 
@@ -1011,7 +1011,7 @@ Validated
 
 通常依赖人工判断：
 
-下一步做什么。
+后续动作是什么。
 
 导致流程推进不稳定。
 
@@ -1685,7 +1685,7 @@ TaskPackage生成后。
 
 没有明确说明：
 
-下一步应该在Codex执行什么。
+后续动作应该在 Codex 执行什么。
 
 #### Tag
 
@@ -1717,7 +1717,7 @@ Codex完成实现后。
 
 不知道：
 
-下一步进入哪个阶段。
+后续应进入哪个阶段。
 
 需要提交什么材料。
 
@@ -1839,7 +1839,7 @@ Create ProblemDefinition_CORE_v1.md
 
 但没有明确说明：
 
-下一步应在哪个环境执行
+后续动作应在哪个环境执行
 
 需要加载哪些文件
 
@@ -1853,7 +1853,7 @@ Create ProblemDefinition_CORE_v1.md
 
 完成后如何进入下一阶段
 
-导致使用者不知道 Bootstrap PASS 后如何继续。
+导致使用者不知道 Bootstrap PASS 后如何恢复执行。
 
 #### Tag
 
@@ -1863,7 +1863,7 @@ Bootstrap Completion Handoff Problem
 
 Bootstrap 虽然完成了项目初始化，但没有形成可执行的 Lifecycle Entry Handoff。
 
-如果 Bootstrap PASS 后仍需要 Human 自行判断下一步操作，SAPDP 仍然没有彻底解决：
+如果 Bootstrap PASS 后仍需要 Human 自行判断后续动作，SAPDP 仍然没有彻底解决：
 
 Workflow Memory Ownership Problem
 
