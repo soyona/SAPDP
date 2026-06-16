@@ -26,61 +26,32 @@ SAPDP_LIFECYCLE.md
 
 ---
 
-## Bootstrap Route Card
+## Bootstrap Output
 
 ```text
-Route
+RESULT:
+PASS / FAIL
 
-Current:
-Bootstrap · Codex · <PROJECT_NAME>
-
-Detected Protocol Version:
+PROTOCOL:
 <RESOLVED_PROTOCOL_VERSION>
 
-Latest Stable Version:
-<LATEST_STABLE_VERSION>
+STATE:
+Problem -> Create ProblemDefinition_CORE_v1.md
 
-Protocol Source:
-GitHub URL
-
-Done:
-<remote product commit URL>
-
-Next:
-Problem · ChatGPT · <PROJECT_NAME> Project · NEW session
-
-Action:
-Create ProblemDefinition_CORE_v1.md
-
-Start:
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-
-Protocol Version:
-<RESOLVED_PROTOCOL_VERSION>
-
-Latest Stable Version:
-<LATEST_STABLE_VERSION>
-
-Audit product commit:
-<remote product commit URL>
-
-State Source:
-PROJECT_STATE.md
-
-Audit:
-<remote product commit URL>
-
-Workspace:
+PROJECT_DIR:
 <absolute project root>
+```
 
-Result:
-PASS | PATCH REQUIRED | FAIL
+If FAIL, Codex may add only:
 
-Do not continue product implementation from the SAPDP protocol repository.
+```text
+BLOCKER:
+<one concise blocker>
 ```
 
 This is the required minimal Codex final output after product bootstrap.
+
+Detailed route and audit fields may remain in POST_BOOTSTRAP_ENTRY.md, but must not be repeated in final user-facing output unless the Human explicitly asks.
 
 Problem Stage is executed in ChatGPT by default.
 
@@ -223,11 +194,11 @@ When the remote product commit is missing, Result must not be PASS.
 
 ## Final Decision
 
-The final user-facing decision must be expressed only through the `Result:` line in the minimal Bootstrap Route Card.
+The final user-facing decision must be expressed only through compact Bootstrap output.
 
 ```text
-Result:
-PASS | PATCH REQUIRED | FAIL
+RESULT:
+PASS / FAIL
 ```
 
 Do not show internal Bootstrap states in final user-facing output.

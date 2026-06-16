@@ -86,7 +86,7 @@ Human may give Codex the following command:
 
     Pin exact tag if Protocol Version is specified.
 
-    Display Detected Protocol Version, Latest Stable Version, and Protocol Source.
+    Write Version Lock: true after Protocol Version resolves to a concrete tag.
 
     Resolve Project Root from Project Name only.
 
@@ -314,49 +314,38 @@ Frozen Candidate
 
 ## Bootstrap Completion Output Contract
 
-Codex final output after initialization must contain these sections in this order:
+Codex final output after initialization must contain only:
 
 ```text
-A. Bootstrap Summary
-B. ChatGPT Handoff
-C. Codex Workspace Handoff
-D. Problem Stage Entry
-E. Remote Git Validation
-F. Final Decision
-```
+RESULT:
+PASS / FAIL
 
-### A. Bootstrap Summary
+PROTOCOL:
+vX.Y.Z
 
-```text
-Project:
-<Project Name>
+STATE:
+Problem -> Create ProblemDefinition_CORE_v1.md
 
-Project Root:
+PROJECT_DIR:
 <absolute project root>
-
-Working Directory:
-<absolute working directory>
-
-Detected Protocol Version:
-<resolved version>
-
-Latest Stable Version:
-<repo latest tag>
-
-Protocol Source:
-GitHub URL
-
-Local Bootstrap Result:
-LOCAL_BOOTSTRAP_PASS or LOCAL_BOOTSTRAP_FAIL
-
-Remote Git Validation:
-REMOTE_VALIDATION_PASS or REMOTE_VALIDATION_PENDING or REMOTE_VALIDATION_FAIL
-
-Overall Stage Entry:
-PROBLEM_STAGE_ALLOWED or PROBLEM_STAGE_BLOCKED
 ```
 
-### B. Environment Handoff
+If FAIL, Codex may add only:
+
+```text
+BLOCKER:
+<one concise blocker>
+```
+
+Detailed Bootstrap artifacts may retain audit details.
+
+## Detailed Artifact Fields
+
+The following fields may appear inside Bootstrap artifacts for audit and recovery.
+
+They must not appear in the final user-facing Bootstrap output unless the Human explicitly asks for details.
+
+### Environment Handoff
 
 ```text
 Environment:
@@ -405,7 +394,7 @@ POST_BOOTSTRAP_ENTRY.md
 Product repository file tree
 ```
 
-### C. Codex Workspace Handoff
+### Codex Workspace Handoff
 
 ```text
 Open or switch Codex workspace to:
@@ -492,11 +481,17 @@ PROBLEM_STAGE_ALLOWED
 REMOTE_VALIDATION_PENDING
 ```
 
-Incorrect:
+Audit output must use:
 
 ```text
-Bootstrap Audit Result:
-FAIL
+AUDIT:
+PASS / FAIL
+
+BLOCKERS:
+<none or concise list>
+
+NEXT_ACTION:
+<single action>
 ```
 
 ---

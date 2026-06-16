@@ -34,6 +34,9 @@ Latest Stable Version:
 Protocol Source:
 https://github.com/soyona/SAPDP.git
 
+Version Lock:
+true
+
 Current Stage:
 Problem
 
@@ -87,6 +90,12 @@ Protocol Version is authoritative state.
 
 ChatGPT and Codex must both display the resolved Protocol Version.
 
+After Version Lock is true, do not re-check latest tag, do not output Latest Stable Version, and do not repeat Detected Protocol Version in normal operation.
+
+Normal operation is compressed execution by default.
+
+Explanations are opt-in.
+
 Version mismatch between docs or state files means BLOCKED.
 
 Any request such as `Continue`, `Next`, `Next Step`, `Proceed`, `进入下一阶段`, `下一步`, or `继续` must:
@@ -99,3 +108,31 @@ Any request such as `Continue`, `Next`, `Next Step`, `Proceed`, `进入下一阶
 6. Decide `BLOCKED`, `EXECUTE_NEXT_ACTION`, or `ALLOW_TRANSITION`.
 7. Execute the authoritative `Next Action` or block transition.
 8. Update `PROJECT_STATE.md` when repository state changes.
+
+Runtime output for those requests must be only:
+
+```text
+NEXT_ACTION:
+CODEX_UPDATE <file/path> <purpose>
+```
+
+or:
+
+```text
+NEXT_ACTION:
+HUMAN_INPUT <missing decision or content>
+```
+
+or:
+
+```text
+NEXT_ACTION:
+BLOCKED <missing artifact / missing commit / invalid state>
+```
+
+or:
+
+```text
+NEXT_ACTION:
+TRANSITION <next stage>
+```

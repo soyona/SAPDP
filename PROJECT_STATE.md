@@ -30,17 +30,20 @@ v1.6.4
 Protocol Source:
 https://github.com/soyona/SAPDP.git
 
+Version Lock:
+true
+
 Current Stage:
 Protocol Evolution
 
 Current Artifact:
-v1.6.4 Protocol Version Standardization and Bootstrap Version Transparency
+v1.6.4 Token-Minimal Execution Protocol
 
 Stage Status:
 IN_PROGRESS
 
 Next Action:
-Commit protocol version standardization and return Commit URL for ChatGPT audit.
+Commit token-minimal execution protocol and return Commit URL for ChatGPT audit.
 
 Allowed Transition:
 None until v1.6.4 commit exists and remote Commit URL is available.
@@ -60,7 +63,7 @@ Required Artifacts:
 
 Required Commits:
 
-- SAPDP v1.6.4 Protocol Version Standardization and Bootstrap Version Transparency
+- SAPDP v1.6.4 Token-Minimal Execution Protocol
 
 Last Verified Commit:
 Pending
@@ -86,8 +89,14 @@ Protocol Version in `PROJECT_STATE.md` is authoritative state.
 
 `latest` must resolve to a concrete Git tag at runtime before execution continues.
 
-ChatGPT and Codex must both display the resolved Protocol Version.
+Version Lock means protocol version resolution is complete.
+
+After Version Lock is true, ChatGPT and Codex must use `PROJECT_STATE.md` and must not re-check latest tag during normal operation.
+
+Normal operation is compressed execution by default.
+
+Explanations are opt-in.
 
 Version mismatch between docs or state files means BLOCKED.
 
-Commands such as `Continue`, `Next`, `Next Step`, `Proceed`, `进入下一阶段`, `下一步`, and `继续` must invoke the Transition Contract before any stage transition.
+Commands such as `Continue`, `Next`, `Next Step`, `Proceed`, `进入下一阶段`, `下一步`, and `继续` must return only one `NEXT_ACTION:` line.

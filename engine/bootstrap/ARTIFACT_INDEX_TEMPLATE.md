@@ -147,7 +147,12 @@ Latest Stable Version:
 Protocol Source:
 GitHub URL
 
+Version Lock:
+true
+
 `latest` must resolve to the concrete Detected Protocol Version before Bootstrap writes artifact state.
+
+After Version Lock is true, normal operation must not re-check latest tag or repeat version detection output.
 
 Version mismatch between artifact index references and PROJECT_STATE.md means BLOCKED.
 

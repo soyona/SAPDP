@@ -44,53 +44,30 @@ BOOTSTRAP_RESULT.md may record internal Bootstrap validation states.
 
 Codex final user-facing output after product bootstrap must not expose internal Bootstrap states.
 
-Codex final output after initialization must use only this Route Card format:
+Codex final output after initialization must use only:
 
 ```text
-Route
+RESULT:
+PASS / FAIL
 
-Current:
-Bootstrap · Codex · <PROJECT_NAME>
-
-Detected Protocol Version:
+PROTOCOL:
 <RESOLVED_PROTOCOL_VERSION>
 
-Latest Stable Version:
-<LATEST_STABLE_VERSION>
+STATE:
+Problem -> Create ProblemDefinition_CORE_v1.md
 
-Protocol Source:
-GitHub URL
-
-Done:
-<remote product commit URL>
-
-Next:
-Problem · ChatGPT · <PROJECT_NAME> Project · NEW session
-
-Action:
-Create ProblemDefinition_CORE_v1.md
-
-Start:
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-
-Audit product commit:
-<remote product commit URL>
-
-State Source:
-PROJECT_STATE.md
-
-Audit:
-<remote product commit URL>
-
-Workspace:
-<absolute project root>
-
-Result:
-PASS | PATCH REQUIRED | FAIL
-
-Do not continue product implementation from the SAPDP protocol repository.
+PROJECT_DIR:
+<PROJECT_ROOT>
 ```
+
+If FAIL, Codex may add only:
+
+```text
+BLOCKER:
+<one concise blocker>
+```
+
+Route Card details may remain in BOOTSTRAP_RESULT.md for audit and recovery, but must not be repeated in final user-facing output unless the Human explicitly asks.
 
 Problem Stage is executed in ChatGPT by default.
 
@@ -120,6 +97,9 @@ Latest Stable Version:
 
 Protocol Source:
 GitHub URL
+
+Version Lock:
+true
 
 Local Bootstrap Result:
 <LOCAL_BOOTSTRAP_PASS | LOCAL_BOOTSTRAP_FAIL>
@@ -348,8 +328,8 @@ Audit:
 Workspace:
 <absolute project root>
 
-Result:
-PASS | PATCH REQUIRED | FAIL
+RESULT:
+PASS / FAIL
 
 Do not continue product implementation from the SAPDP protocol repository.
 ```
@@ -414,12 +394,22 @@ Lifecycle Entry Readiness
 Remote Git Validation State
 ```
 
-Audit Result:
+AUDIT:
 
 ```text
-PASS
-PATCH REQUIRED
-FAIL
+PASS / FAIL
+```
+
+BLOCKERS:
+
+```text
+<none or concise list>
+```
+
+NEXT_ACTION:
+
+```text
+<single action>
 ```
 
 Audit Notes:

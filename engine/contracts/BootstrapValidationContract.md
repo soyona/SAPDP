@@ -196,7 +196,22 @@ ROUTE_MANIFEST.md does not redefine artifact discovery.
 
 ### Handoff Validation
 
-Bootstrap Handoff must include:
+Bootstrap final user-facing output must include only:
+
+```text
+RESULT
+PROTOCOL
+STATE
+PROJECT_DIR
+```
+
+If FAIL, final output may add only:
+
+```text
+BLOCKER
+```
+
+Detailed Bootstrap artifacts must include:
 
 ```text
 Project
@@ -276,6 +291,8 @@ Latest Stable Version exists.
 Protocol Source exists.
 Protocol Version resolves to a concrete Git tag.
 Protocol Version is not `latest`.
+Version Lock exists.
+Version Lock is true.
 Protocol Version matches across PROJECT_STATE.md, PROJECT_BOOTSTRAP.md, BOOTSTRAP_RESULT.md, and POST_BOOTSTRAP_ENTRY.md.
 ```
 
@@ -528,49 +545,30 @@ FAIL
 
 ## Bootstrap Completion Output Contract Validation
 
-Codex final user-facing output after product bootstrap must contain only this handoff:
+Codex final user-facing output after product bootstrap must contain only:
 
 ```text
-Bootstrap Handoff
+RESULT:
+PASS / FAIL
 
-Project:
-<Name>
+PROTOCOL:
+vX.Y.Z
 
-Commit URL:
-<remote product commit URL>
+STATE:
+Problem -> Create ProblemDefinition_CORE_v1.md
 
-Environment:
-ChatGPT
-
-ChatGPT Project:
-<Name>
-
-Session:
-NEW
-
-Startup:
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-
-Audit product commit:
-<remote product commit URL>
-
-State Source:
-PROJECT_STATE.md
-
-Action:
-Create ProblemDefinition_CORE_v1.md
-
-Workspace:
+PROJECT_DIR:
 <absolute project root>
-
-Result:
-PASS | PATCH REQUIRED | FAIL
-
-Do not continue product implementation from the SAPDP protocol repository.
 ```
 
-Problem Stage must be clearly assigned to ChatGPT.
+If FAIL, Codex may add only:
+
+```text
+BLOCKER:
+<one concise blocker>
+```
+
+Problem Stage assignment details remain in Bootstrap artifacts and must not be repeated in final output unless Human explicitly asks.
 
 For a new product, the handoff must recommend creating a ChatGPT Project named after the product and starting a NEW session inside it.
 
@@ -587,11 +585,11 @@ File upload list is fallback only.
 Result may be PASS only when all other PASS criteria are satisfied.
 ```
 
-The Commit URL in the final Bootstrap Handoff must be the default ChatGPT audit target.
+The Commit URL in Bootstrap artifacts must be the default ChatGPT audit target.
 
 Final output must not include conflicting verified commit values, duplicate commit identifiers, git logs, or verbose status summaries.
 
-If no origin remote exists, output:
+If no origin remote exists, Bootstrap artifacts may include:
 
 ```text
 Local Commit:
@@ -622,8 +620,8 @@ These values may remain in BOOTSTRAP_RESULT.md for validation traceability.
 Final user-facing output must use:
 
 ```text
-Result:
-PASS | PATCH REQUIRED | FAIL
+RESULT:
+PASS / FAIL
 ```
 
 It must not expose internal state lines such as:

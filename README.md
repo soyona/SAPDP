@@ -15,31 +15,22 @@ Latest Stable Version = highest semantic tag in Git.
 If Protocol Version is omitted, resolve to Latest Stable Version.
 If Protocol Version is `latest`, resolve to Latest Stable Version.
 If Protocol Version is specified as a tag, pin that exact tag.
-`latest` must resolve to a concrete tag at runtime before execution continues.
-Protocol Load Output must include Protocol Version, Latest Stable Version, Protocol Source, Current Stage, State Source, and Next Action.
-ChatGPT and Codex must both display the resolved Protocol Version.
+Version resolution happens once during Bootstrap.
+Bootstrap writes the concrete Protocol Version and Version Lock: true to PROJECT_STATE.md.
+After Version Lock: true, do not re-check latest tag during normal operation.
 State Source is PROJECT_STATE.md.
 Missing PROJECT_STATE.md means BLOCKED.
 Version mismatch between docs or state files means BLOCKED.
 ```
 
-Transition Review Rule:
+Token-Minimal Runtime Rule:
 
 ```text
-Continue, Next, Next Step, Proceed, 进入下一阶段, 下一步, and 继续 must read PROJECT_STATE.md, run Transition Review, execute the authoritative Next Action, or block transition.
-```
-
-Bootstrap Version Detection Output:
-
-```text
-Detected Protocol Version:
-<resolved version>
-
-Latest Stable Version:
-<repo latest tag>
-
-Protocol Source:
-GitHub URL
+Default mode is compressed execution.
+Explanations are opt-in.
+Normal operation reads PROJECT_STATE.md, executes the next action, and returns a minimal result.
+Continue, Next, Next Step, Proceed, 进入下一阶段, 下一步, and 继续 must return only NEXT_ACTION.
+Codex task packages and Codex returns must use compact protocol formats.
 ```
 
 SAPDP is a development operating system designed for:
@@ -433,42 +424,29 @@ The block is route metadata only. It must not redefine lifecycle rules or duplic
 
 # Bootstrap Completion Route Card
 
-SAPDP v1.5.0 requires product bootstrap completion to use the Route Card format.
+SAPDP v1.6.4 requires product bootstrap completion to use compressed output.
 
 After product bootstrap, Codex final output must use:
 
 ```text
-Route
+RESULT:
+PASS / FAIL
 
-Current:
-Bootstrap · Codex · <Project>
+PROTOCOL:
+vX.Y.Z
 
-Done:
-<Commit URL>
+STATE:
+Problem -> Create ProblemDefinition_CORE_v1.md
 
-Next:
-Problem · ChatGPT · <Project> Project · NEW session
-
-Action:
-Create ProblemDefinition_CORE_v1.md
-
-Start:
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-
-Audit product commit:
-<remote product commit URL>
-
-Audit:
-<remote product commit URL>
-
-Workspace:
+PROJECT_DIR:
 <absolute project root>
+```
 
-Result:
-PASS | PATCH REQUIRED | FAIL
+If FAIL, Bootstrap may add only:
 
-Do not continue product implementation from the SAPDP protocol repository.
+```text
+BLOCKER:
+<one concise blocker>
 ```
 
 Problem Stage is executed in ChatGPT by default.
@@ -481,7 +459,7 @@ If a remote product commit exists, ChatGPT audit must use the Commit URL.
 
 File upload is fallback only.
 
-If no remote product commit exists, Codex must output the local commit SHA and exact push commands, and Result must not be PASS.
+If no remote product commit exists, detailed artifact output may record the local commit SHA and exact push commands, and Result must not be PASS.
 
 Codex final output must not show internal Bootstrap state names or conflicting verified commit values.
 

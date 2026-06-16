@@ -3,24 +3,34 @@
 AI 原生单人产品研发系统
 
 当前协议版本：
-v1.6.3
+v1.6.4
 
 最新稳定版本：
-v1.6.3
+v1.6.4
 
 版本识别规则：
 
 ```text
-除非显式固定版本，否则使用最新稳定版本。
-协议加载输出必须包含 Protocol Version、Current Stage、State Source、Next Action。
+Latest Stable Version = Git 中最高语义化版本标签。
+如果省略 Protocol Version，则解析为 Latest Stable Version。
+如果 Protocol Version 为 latest，则解析为 Latest Stable Version。
+如果指定具体标签，则固定该标签。
+版本解析只在 Bootstrap 执行一次。
+Bootstrap 必须把具体 Protocol Version 和 Version Lock: true 写入 PROJECT_STATE.md。
+Version Lock: true 之后，正常运行不得重新检查 latest 标签。
 State Source 为 PROJECT_STATE.md。
 缺少 PROJECT_STATE.md 时状态为 BLOCKED。
+文档或状态文件版本不一致时状态为 BLOCKED。
 ```
 
-转换审查规则：
+Token-Minimal Runtime Rule：
 
 ```text
-Continue、Next、Next Step、Proceed、进入下一阶段、下一步、继续 必须读取 PROJECT_STATE.md，执行 Transition Review，然后执行权威 Next Action 或阻止转换。
+默认模式为压缩执行。
+解释为显式请求时才输出。
+正常运行读取 PROJECT_STATE.md，执行 Next Action，并返回最小结果。
+Continue、Next、Next Step、Proceed、进入下一阶段、下一步、继续 只能返回 NEXT_ACTION。
+Codex 任务包与 Codex 返回必须使用压缩格式。
 ```
 
 SAPDP（Solo AI Product Development Protocol）是一套面向：
@@ -476,42 +486,29 @@ Audit Source:
 
 # Bootstrap 完成交接
 
-SAPDP v1.5.0 要求产品 Bootstrap 完成后使用最小化、Git 优先的 Route Card。
+SAPDP v1.6.4 要求产品 Bootstrap 完成后使用压缩输出。
 
 产品 Bootstrap 完成后，Codex 最终输出必须使用：
 
 ```text
-Route
+RESULT:
+PASS / FAIL
 
-Current:
-Bootstrap · Codex · <Project>
+PROTOCOL:
+vX.Y.Z
 
-Done:
-<remote product commit URL>
+STATE:
+Problem -> Create ProblemDefinition_CORE_v1.md
 
-Next:
-Problem · ChatGPT · <Project> Project · NEW session
-
-Action:
-Create ProblemDefinition_CORE_v1.md
-
-Start:
-Load SAPDP from:
-https://github.com/soyona/SAPDP
-
-Audit product commit:
-<remote product commit URL>
-
-Audit:
-<remote product commit URL>
-
-Workspace:
+PROJECT_DIR:
 <absolute project root>
+```
 
-Result:
-PASS | PATCH REQUIRED | FAIL
+如果 FAIL，Bootstrap 只能额外输出：
 
-Do not continue product implementation from the SAPDP protocol repository.
+```text
+BLOCKER:
+<one concise blocker>
 ```
 
 Problem Stage 默认在 ChatGPT 执行。

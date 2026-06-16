@@ -20,6 +20,8 @@ Latest Stable Version: <LATEST_STABLE_VERSION>
 
 Protocol Source: https://github.com/soyona/SAPDP.git
 
+Version Lock: true
+
 Bootstrap Status: PASS
 
 Current Lifecycle Stage: Problem
@@ -54,6 +56,8 @@ Other Bootstrap artifacts must not redefine lifecycle state values.
 Protocol Version must match PROJECT_STATE.md.
 
 `latest` must not be persisted as the resolved Protocol Version.
+
+After Version Lock is true, normal operation must not re-check latest tag.
 
 Version mismatch between Bootstrap metadata and PROJECT_STATE.md means BLOCKED.
 

@@ -15,31 +15,21 @@ Latest Stable Version = highest semantic tag in Git.
 If Protocol Version is omitted, resolve to Latest Stable Version.
 If Protocol Version is `latest`, resolve to Latest Stable Version.
 If Protocol Version is specified as a tag, pin that exact tag.
-`latest` must resolve to a concrete tag at runtime before execution continues.
-Protocol Load Output must include Protocol Version, Latest Stable Version, Protocol Source, Current Stage, State Source, and Next Action.
-ChatGPT and Codex must both display the resolved Protocol Version.
+Version resolution happens once during Bootstrap.
+Bootstrap writes the concrete Protocol Version and Version Lock: true to PROJECT_STATE.md.
+After Version Lock: true, do not re-check latest tag during normal operation.
 State Source is PROJECT_STATE.md.
 Missing PROJECT_STATE.md means BLOCKED.
 Version mismatch between docs or state files means BLOCKED.
 ```
 
-Transition Review Rule:
+Token-Minimal Runtime Rule:
 
 ```text
-Continue, Next, Next Step, Proceed, 进入下一阶段, 下一步, and 继续 must read PROJECT_STATE.md, run Transition Review, execute the authoritative Next Action, or block transition.
-```
-
-Bootstrap Version Detection Output:
-
-```text
-Detected Protocol Version:
-<resolved version>
-
-Latest Stable Version:
-<repo latest tag>
-
-Protocol Source:
-GitHub URL
+Default mode is compressed execution.
+Explanations are opt-in.
+Continue, Next, Next Step, Proceed, 进入下一阶段, 下一步, and 继续 must return only NEXT_ACTION.
+Bootstrap output must use RESULT / PROTOCOL / STATE / PROJECT_DIR.
 ```
 
 It tells a Human or AI where to begin. It does not own governance rules, workflow rules, lifecycle definitions, protocol implementation details, or status models.

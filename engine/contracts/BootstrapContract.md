@@ -268,6 +268,8 @@ Latest Stable Version
 
 Protocol Source
 
+Version Lock
+
 Bootstrap Version
 
 Bootstrap Contract Version
@@ -290,6 +292,10 @@ Latest Stable Version is the highest semantic tag in Git.
 If Protocol Version is specified as a tag, Bootstrap must pin that exact tag.
 
 `latest` must not be written as the authoritative Protocol Version.
+
+Bootstrap must write `Version Lock: true` after Protocol Version resolves to a concrete tag.
+
+After Version Lock is true, normal operation must not re-check latest tag, output Latest Stable Version, or repeat Detected Protocol Version.
 
 PROJECT_STATE.md, PROJECT_BOOTSTRAP.md, BOOTSTRAP_RESULT.md, and POST_BOOTSTRAP_ENTRY.md must display the same resolved Protocol Version.
 
@@ -548,6 +554,8 @@ Detected Protocol Version
 Latest Stable Version
 
 Protocol Source
+
+Version Lock
 
 Lifecycle State Authority
 

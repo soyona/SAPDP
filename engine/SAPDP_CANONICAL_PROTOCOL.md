@@ -400,7 +400,7 @@ Community Products
 
 ## v1.6.4 Protocol Version Standardization
 
-Protocol Load Output must include:
+Bootstrap Protocol Load Output must include:
 
 ```text
 Protocol Version
@@ -426,6 +426,152 @@ Protocol Version in `PROJECT_STATE.md` is authoritative state.
 ChatGPT and Codex must both display the resolved Protocol Version.
 
 Version mismatch between docs or state files means BLOCKED.
+
+Version resolution happens only during Bootstrap.
+
+If input says:
+
+```text
+Protocol Version:
+latest
+```
+
+Codex resolves latest stable tag once.
+
+Bootstrap then writes:
+
+```text
+Protocol Version: vX.Y.Z
+Version Lock: true
+```
+
+After `Version Lock: true`:
+
+```text
+Do not re-check latest tag.
+Do not output Latest Stable Version during normal operation.
+Do not repeat Detected Protocol Version during normal operation.
+Use PROJECT_STATE.md only.
+```
+
+## v1.6.4 Token-Minimal Execution Protocol
+
+Default SAPDP runtime mode is compressed execution.
+
+Explanations are opt-in.
+
+Normal operation must not repeatedly explain:
+
+```text
+Current lifecycle
+Stage background
+Protocol version
+Transition theory
+Artifact system
+Product Shape rules
+```
+
+Normal operation is:
+
+```text
+Read State
+Execute Next Action
+Return Minimal Result
+```
+
+Continue/Next commands:
+
+```text
+Continue
+Next
+Next Step
+Proceed
+继续
+下一步
+进入下一阶段
+```
+
+must output only one of:
+
+```text
+NEXT_ACTION:
+CODEX_UPDATE <file/path> <purpose>
+```
+
+```text
+NEXT_ACTION:
+HUMAN_INPUT <missing decision or content>
+```
+
+```text
+NEXT_ACTION:
+BLOCKED <missing artifact / missing commit / invalid state>
+```
+
+```text
+NEXT_ACTION:
+TRANSITION <next stage>
+```
+
+No additional explanation is allowed in Continue/Next mode.
+
+When ChatGPT sends work to Codex, it must use:
+
+```text
+CODEX_TASK:
+Repo:
+<repo>
+
+Action:
+<single action>
+
+Files:
+<file list>
+
+Validation:
+<checks>
+
+Return:
+RESULT / COMMIT / STATE
+```
+
+Codex must return:
+
+```text
+RESULT:
+PASS / FAIL
+
+FILES:
+<changed files>
+
+COMMIT:
+<commit url>
+
+STATE:
+<Current Stage> -> <Next Action>
+```
+
+If FAIL, Codex may add only:
+
+```text
+BLOCKER:
+<one concise blocker>
+```
+
+Audit output must be:
+
+```text
+AUDIT:
+PASS / FAIL
+
+BLOCKERS:
+<none or concise list>
+
+NEXT_ACTION:
+<single action>
+```
+
+Detailed reasoning is allowed only when Human asks.
 
 Protocol Release Audit must use remotely verifiable Git state.
 
@@ -2188,6 +2334,8 @@ Latest Stable Version
 
 Protocol Source
 
+Version Lock
+
 Current Lifecycle Stage
 
 Current Artifact
@@ -2331,6 +2479,13 @@ If Protocol Version is specified as a concrete tag, Bootstrap must pin that exac
 
 `PROJECT_STATE.md` must write the resolved concrete Protocol Version.
 
+`PROJECT_STATE.md` must write:
+
+```text
+Version Lock:
+true
+```
+
 Bootstrap must display:
 
 ```text
@@ -2347,6 +2502,8 @@ GitHub URL
 ChatGPT and Codex must both display the resolved Protocol Version.
 
 Version mismatch between docs, `PROJECT_STATE.md`, `PROJECT_BOOTSTRAP.md`, `BOOTSTRAP_RESULT.md`, or `POST_BOOTSTRAP_ENTRY.md` means Bootstrap is BLOCKED.
+
+After Version Lock is true, normal operation must use only `PROJECT_STATE.md` and must not re-check latest tag.
 
 ---
 
@@ -2370,6 +2527,8 @@ ARTIFACT_INDEX.md Exists
 Required Protocol Sources Resolved
 
 Protocol Version resolved to a concrete tag
+
+Version Lock written as true
 
 Detected Protocol Version displayed
 
@@ -2407,8 +2566,32 @@ ARTIFACT_INDEX.md
 BOOTSTRAP_RESULT.md
 POST_BOOTSTRAP_ENTRY.md
 
-Bootstrap output must include:
+Bootstrap output must be:
 
+```text
+RESULT:
+PASS / FAIL
+
+PROTOCOL:
+vX.Y.Z
+
+STATE:
+Problem -> Create ProblemDefinition_CORE_v1.md
+
+PROJECT_DIR:
+<path>
+```
+
+If FAIL, Bootstrap may add only:
+
+```text
+BLOCKER:
+<one concise blocker>
+```
+
+Bootstrap artifacts may record:
+
+```text
 Detected Protocol Version
 Latest Stable Version
 Protocol Source
@@ -2422,6 +2605,7 @@ Audit
 Workspace
 Result
 Codex workspace boundary sentence
+```
 
 Bootstrap PASS is not operationally complete unless all required Bootstrap artifacts exist and the Bootstrap Route Card is produced.
 

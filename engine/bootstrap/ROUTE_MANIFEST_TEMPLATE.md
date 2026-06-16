@@ -119,6 +119,9 @@ Latest Stable Version:
 Protocol Source:
 GitHub URL
 
+Version Lock:
+true
+
 Done:
 <remote product commit URL or local bootstrap artifact set>
 

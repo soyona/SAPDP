@@ -300,6 +300,12 @@ Artifact Formats
 
 ### Runtime Completion Contract
 
+Default runtime mode is compressed execution.
+
+Explanations are opt-in.
+
+Normal operation must read `PROJECT_STATE.md`, execute the next action, and return the minimal result.
+
 Every product Lifecycle Stage completion must produce one Route Card.
 
 The required Route Card contains:
@@ -585,6 +591,7 @@ Project Name
 Protocol Version
 Latest Stable Version
 Protocol Source
+Version Lock
 Current Stage
 Current Artifact
 Stage Status
@@ -1138,6 +1145,36 @@ Proceed
 
 must not directly advance lifecycle.
 
+Continue/Next mode output must contain only:
+
+```text
+NEXT_ACTION:
+CODEX_UPDATE <file/path> <purpose>
+```
+
+or:
+
+```text
+NEXT_ACTION:
+HUMAN_INPUT <missing decision or content>
+```
+
+or:
+
+```text
+NEXT_ACTION:
+BLOCKED <missing artifact / missing commit / invalid state>
+```
+
+or:
+
+```text
+NEXT_ACTION:
+TRANSITION <next stage>
+```
+
+No additional explanation is allowed in Continue/Next mode.
+
 Required transition flow:
 
 ```text
@@ -1160,6 +1197,13 @@ If `PROJECT_STATE.md` is missing, the transition decision is:
 
 ```text
 BLOCKED
+```
+
+Runtime output:
+
+```text
+NEXT_ACTION:
+BLOCKED PROJECT_STATE.md missing
 ```
 
 ### Commit-Gated Lifecycle
