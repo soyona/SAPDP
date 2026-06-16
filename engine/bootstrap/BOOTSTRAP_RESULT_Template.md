@@ -68,6 +68,9 @@ https://github.com/soyona/SAPDP
 Audit product commit:
 <remote product commit URL>
 
+State Source:
+PROJECT_STATE.md
+
 Audit:
 <remote product commit URL>
 
@@ -117,7 +120,8 @@ Local Bootstrap Result PASS indicates that:
 - Project Root is derived from Project Name.
 - Required scaffold has been generated.
 - Required scaffold persistence files exist.
-- Runtime authority `PROJECT_BOOTSTRAP.md` exists.
+- Lifecycle state authority `PROJECT_STATE.md` exists.
+- Bootstrap metadata `PROJECT_BOOTSTRAP.md` exists.
 - Artifact authority `ARTIFACT_INDEX.md` exists.
 - Route manifest authority `ROUTE_MANIFEST.md` exists.
 - `BOOTSTRAP_RESULT.md` exists.
@@ -176,6 +180,7 @@ Fallback upload files:
 
 ```text
 PROJECT_BOOTSTRAP.md
+PROJECT_STATE.md
 ARTIFACT_INDEX.md
 ROUTE_MANIFEST.md
 BOOTSTRAP_RESULT.md
@@ -351,6 +356,7 @@ Required:
 
 ```text
 README.md exists
+PROJECT_STATE.md exists
 
 .gitkeep files exist for Git-empty scaffold directories
 

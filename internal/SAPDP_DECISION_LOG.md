@@ -9145,8 +9145,8 @@ engine/bootstrap/BOOTSTRAP.md
 engine/bootstrap/BOOTSTRAP_RESULT_Template.md
 engine/bootstrap/POST_BOOTSTRAP_ENTRY_Template.md
 engine/bootstrap/bootstrap_manifest.json
-engine/SAPDP_CANONICAL_PROTOCOL.md
-START.md
+[SAPDP_CANONICAL_PROTOCOL.md](../engine/SAPDP_CANONICAL_PROTOCOL.md)
+[START.md](../START.md)
 internal/SAPDP_PROBLEM_BASELINE.md
 internal/SAPDP_DECISION_LOG.md
 ```

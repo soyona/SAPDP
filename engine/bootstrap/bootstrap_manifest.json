@@ -1,15 +1,16 @@
 {
-  "manifest_version": "1.6.0",
+  "manifest_version": "1.6.3",
   "protocol": "SAPDP",
-  "protocol_version": "1.6.0",
-  "bootstrap_version": "1.6.0",
-  "bootstrap_contract_version": "1.6.0",
-  "bootstrap_validation_contract_version": "1.6.0",
+  "protocol_version": "1.6.3",
+  "bootstrap_version": "1.6.3",
+  "bootstrap_contract_version": "1.6.3",
+  "bootstrap_validation_contract_version": "1.6.3",
   "authority": {
     "configuration_authority": "bootstrap/bootstrap_manifest.json",
     "execution_authority": "contracts/bootstrap/BootstrapContract.md",
     "validation_authority": "contracts/bootstrap/BootstrapValidationContract.md",
-    "runtime_authority": "PROJECT_BOOTSTRAP.md",
+    "lifecycle_state_authority": "PROJECT_STATE.md",
+    "bootstrap_metadata_authority": "PROJECT_BOOTSTRAP.md",
     "artifact_index_authority": "ARTIFACT_INDEX.md",
     "route_manifest_authority": "ROUTE_MANIFEST.md"
   },
@@ -40,6 +41,7 @@
   ],
   "required_files": [
     "README.md",
+    "PROJECT_STATE.md",
     "PROJECT_BOOTSTRAP.md",
     "ARTIFACT_INDEX.md",
     "ROUTE_MANIFEST.md",
@@ -74,7 +76,10 @@
   ],
   "initial_runtime": {
     "initial_lifecycle_stage": "Problem",
-    "required_next_action": "Create ProblemDefinition_CORE_v1.md"
+    "stage_status": "READY",
+    "allowed_transition": "None",
+    "required_next_action": "Create ProblemDefinition_CORE_v1.md",
+    "state_authority": "PROJECT_STATE.md"
   },
   "protocol_snapshot": {
     "strategy": "copy_snapshot_with_source_commit_hash",
@@ -102,6 +107,7 @@
     "forbidden_final_project_directories_absent",
     "scaffold_conforms_to_sapdp_project_scaffold",
     "project_bootstrap_exists",
+    "project_state_exists",
     "artifact_index_exists",
     "bootstrap_result_exists",
     "post_bootstrap_entry_exists",
@@ -110,7 +116,7 @@
     "protocol_version_exists",
     "route_manifest_exists",
     "route_manifest_ownership_valid",
-    "runtime_initialized",
+    "lifecycle_state_initialized",
     "lifecycle_ready_for_problem_stage",
     "no_lifecycle_artifact_created",
     "no_product_source_code_created",
@@ -135,7 +141,7 @@
     "infer_product_requirements",
     "infer_target_users",
     "infer_solution_direction",
-    "infer_mvp_scope",
+    "infer_mvp_definition",
     "modify_sapdp_repository",
     "create_second_protocol_repository",
     "rename_sapdp_protocol_files",
@@ -153,7 +159,8 @@
     "generation_owner": "Codex",
     "consumption_owner": "ChatGPT",
     "authority_boundary": {
-      "runtime_authority": "PROJECT_BOOTSTRAP.md",
+      "lifecycle_state_authority": "PROJECT_STATE.md",
+      "bootstrap_metadata_authority": "PROJECT_BOOTSTRAP.md",
       "artifact_discovery_authority": "ARTIFACT_INDEX.md",
       "lifecycle_authority": "SAPDP_LIFECYCLE.md"
     }

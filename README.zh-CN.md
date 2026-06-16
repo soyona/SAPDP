@@ -2,6 +2,21 @@
 
 AI 原生单人产品研发系统
 
+当前协议版本：
+v1.6.3
+
+最新稳定版本：
+v1.6.3
+
+版本识别规则：
+
+```text
+除非显式固定版本，否则使用最新稳定版本。
+协议加载输出必须包含 Protocol Version、Current Stage、State Source、Next Action。
+State Source 为 PROJECT_STATE.md。
+缺少 PROJECT_STATE.md 时状态为 BLOCKED。
+```
+
 SAPDP（Solo AI Product Development Protocol）是一套面向：
 
 ```text
@@ -139,9 +154,17 @@ Problem
 ↓
 Solution
 ↓
+Product Requirement
+↓
 Product Representation
 ↓
-MVP Scope
+UX Specification
+↓
+Visual Design Specification (Conditional)
+↓
+MVP Definition
+↓
+Task Package
 ↓
 Build
 ↓
@@ -184,7 +207,7 @@ START.md
 
 # 协议发布审计交接
 
-SAPDP v1.6.2 要求使用最小化协议发布审计交接输出。
+SAPDP v1.6.3 要求使用最小化协议发布审计交接输出。
 
 Codex 只有在完成以下事项后，才可以报告 SAPDP 协议发布 PASS：
 
@@ -247,7 +270,7 @@ PASS / PATCH REQUIRED / FAIL
 
 # 协议演进生命周期
 
-SAPDP v1.6.2 为 SAPDP 协议自身升级定义正式治理 route：
+SAPDP v1.6.3 为 SAPDP 协议自身升级定义正式治理 route：
 
 ```text
 Reality Validation

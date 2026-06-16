@@ -1,6 +1,21 @@
 # Start SAPDP
 
-START.md is the entry document only.
+[START.md](./START.md) is the entry document only.
+
+Current Protocol Version:
+v1.6.3
+
+Latest Stable Version:
+v1.6.3
+
+Version Detection Rules:
+
+```text
+Use latest stable version unless explicitly pinned.
+Protocol Load Output must include Protocol Version, Current Stage, State Source, and Next Action.
+State Source is PROJECT_STATE.md.
+Missing PROJECT_STATE.md means BLOCKED.
+```
 
 It tells a Human or AI where to begin. It does not own governance rules, workflow rules, lifecycle definitions, protocol implementation details, or status models.
 
@@ -92,15 +107,11 @@ Product repository file tree
 
 For protocol rules, use:
 
-```text
-engine/SAPDP_CANONICAL_PROTOCOL.md
-```
+[engine/SAPDP_CANONICAL_PROTOCOL.md](./engine/SAPDP_CANONICAL_PROTOCOL.md)
 
 For lifecycle stages, inputs, outputs, and gates, use:
 
-```text
-engine/SAPDP_LIFECYCLE.md
-```
+[engine/SAPDP_LIFECYCLE.md](./engine/SAPDP_LIFECYCLE.md)
 
 ---
 
@@ -116,6 +127,7 @@ For an existing product, read:
 
 ```text
 PROJECT_BOOTSTRAP.md
+PROJECT_STATE.md
 ROUTE_MANIFEST.md
 POST_BOOTSTRAP_ENTRY.md
 ```

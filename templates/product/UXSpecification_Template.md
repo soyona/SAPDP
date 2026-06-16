@@ -7,7 +7,7 @@
 | Artifact Type | UX Specification |
 | Owner | ChatGPT |
 | Producer | ChatGPT |
-| Lifecycle Stage | Product Representation |
+| Lifecycle Stage | UX Specification |
 | Status | Template |
 
 ---
@@ -24,7 +24,7 @@ This artifact must not define:
 - Product Structure
 - Visual Design
 - Technical Design
-- MVP Scope
+- MVP Definition
 
 ---
 
@@ -42,9 +42,24 @@ Visual Design Specification
 
 MVP Definition
 
+Visual Design Decision:
+
+```text
+Required
+Not Required
+```
+
+Decision Source:
+
+```text
+Product Classification from ProductRepresentation_CORE_v1.md
+```
+
 ---
 
 # Required Load Set
+
+PROJECT_STATE.md
 
 PROJECT_BOOTSTRAP.md
 
@@ -73,7 +88,7 @@ Consumer:
 ChatGPT
 
 Next Action:
-Generate or update VisualDesignSpecification_CORE_v1.md
+Generate or update VisualDesignSpecification_CORE_v1.md when required, otherwise route to MVPDefinition_CORE_v1.md with visual design marked Not Required.
 
 Audit Source:
 UXSpecification_CORE_v1.md

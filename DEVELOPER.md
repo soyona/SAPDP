@@ -6,8 +6,21 @@ This document is for maintainers of SAPDP.
 
 If you only want to start a new product project, use:
 
+[START.md](./START.md)
+
+Current Protocol Version:
+v1.6.3
+
+Latest Stable Version:
+v1.6.3
+
+Version Detection Rules:
+
 ```text
-START.md
+Use latest stable version unless explicitly pinned.
+Protocol Load Output must include Protocol Version, Current Stage, State Source, and Next Action.
+State Source is PROJECT_STATE.md.
+Missing PROJECT_STATE.md means BLOCKED.
 ```
 
 ---
@@ -16,15 +29,12 @@ START.md
 
 SAPDP repository is organized into four layers:
 
-```text
-README.md
-START.md
-DEVELOPER.md
-
-engine/
-templates/
-internal/
-```
+- [README.md](./README.md)
+- [START.md](./START.md)
+- [DEVELOPER.md](./DEVELOPER.md)
+- [engine/](./engine/)
+- [templates/](./templates/)
+- [internal/](./internal/)
 
 ---
 
@@ -41,10 +51,10 @@ Explain what SAPDP is
 
 Explain who should use SAPDP
 
-Point users to START.md
+Point users to [START.md](./START.md)
 ```
 
-README.md must not contain:
+[README.md](./README.md) must not contain:
 
 ```text
 Runtime State
@@ -68,9 +78,9 @@ Purpose:
 Help a new user initialize a SAPDP project through Codex
 ```
 
-START.md should remain short.
+[START.md](./START.md) should remain short.
 
-START.md must answer only:
+[START.md](./START.md) must answer only:
 
 ```text
 Load SAPDP
@@ -229,6 +239,16 @@ internal/ may influence engine/ only through accepted patches.
 
 SAPDP protocol upgrades follow the Protocol Evolution Lifecycle.
 
+Repository Hygiene Rule:
+
+```text
+Do not store release packages, patch dumps, audit reports, migration guides, or historical release evidence in the repository root.
+
+Historical release evidence belongs in Git tags, GitHub Releases, and committed source history.
+
+Temporary release artifacts must be removed before release commit.
+```
+
 Standard route:
 
 ```text
@@ -283,16 +303,16 @@ Git + Release Package
 
 Protocol Evolution is governance only.
 
-It must not change:
+v1.6.3 changes the product lifecycle only through the accepted Product Shape Layer and commit-gated lifecycle repair.
+
+It must not otherwise change:
 
 ```text
-Product lifecycle stages
-
 Product bootstrap behavior
 
-Product artifact set
+Product artifact set beyond accepted Product Shape artifacts
 
-Template directory structure
+Template directory structure beyond accepted Product Shape templates
 
 v1.6.1 routing and Git-first rules
 ```
@@ -597,7 +617,11 @@ Authority boundaries:
 ```text
 PROJECT_BOOTSTRAP.md
 =
-Runtime Authority
+Bootstrap Metadata Authority
+
+PROJECT_STATE.md
+=
+Lifecycle State Authority
 
 ARTIFACT_INDEX.md
 =
@@ -712,11 +736,8 @@ internal/
 
 User onboarding belongs in:
 
-```text
-README.md
-
-START.md
-```
+- [README.md](./README.md)
+- [START.md](./START.md)
 
 A file should not duplicate authority owned by another layer.
 
@@ -726,13 +747,9 @@ A file should not duplicate authority owned by another layer.
 
 For project initialization, Codex should primarily consume:
 
-```text
-START.md
-
-engine/
-
-templates/
-```
+- [START.md](./START.md)
+- [engine/](./engine/)
+- [templates/](./templates/)
 
 Codex should not need to inspect:
 
@@ -795,7 +812,7 @@ Solution
 ↓
 Product Representation
 ↓
-MVP Scope
+MVP Definition
 ↓
 Build
 ↓

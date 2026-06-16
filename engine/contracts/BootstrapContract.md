@@ -35,6 +35,10 @@ Solution Definition
 
 Product Representation
 
+UX Specification
+
+Visual Design Specification
+
 MVP Definition
 
 Product Design
@@ -118,7 +122,7 @@ Project Name must not be used to infer:
 
     Solution Direction
 
-    MVP Scope
+    MVP Definition
 
 ---
 
@@ -126,6 +130,8 @@ Project Name must not be used to infer:
 
 ```
 PROJECT_BOOTSTRAP.md
+
+PROJECT_STATE.md
 
 README.md
 
@@ -145,7 +151,9 @@ Required Directories
 
 Required Templates
 ```
-PROJECT_BOOTSTRAP.md is the authoritative runtime state source.
+PROJECT_STATE.md is the authoritative lifecycle state source.
+
+PROJECT_BOOTSTRAP.md records Bootstrap metadata and must not redefine lifecycle authority.
 
 No other Bootstrap artifact may redefine runtime state.
 
@@ -183,10 +191,10 @@ Lifecycle must be ready to enter:
 Problem Stage
 ```
 
-Runtime values are owned by:
+Lifecycle state values are owned by:
 
 ```
-PROJECT_BOOTSTRAP.md
+PROJECT_STATE.md
 ```
 
 Bootstrap Contract must not redefine runtime values.
@@ -312,7 +320,7 @@ Infer target users
 
 Infer solution direction
 
-Infer MVP scope
+Infer MVP definition
 
 Modify SAPDP Repository
 
@@ -369,27 +377,29 @@ Codex must execute:
 
     16. Create PROJECT_BOOTSTRAP.md.
 
-    17. Create ARTIFACT_INDEX.md.
+    17. Create PROJECT_STATE.md.
 
-    18. Create ROUTE_MANIFEST.md.
+    18. Create ARTIFACT_INDEX.md.
 
-    19. Create BOOTSTRAP_RESULT.md.
+    19. Create ROUTE_MANIFEST.md.
 
-    19. Create POST_BOOTSTRAP_ENTRY.md.
+    20. Create BOOTSTRAP_RESULT.md.
 
-    20. Add generated Bootstrap artifacts and scaffold persistence files to Git.
+    21. Create POST_BOOTSTRAP_ENTRY.md.
 
-    21. Commit generated Bootstrap artifacts and scaffold persistence files to Git.
+    22. Add generated Bootstrap artifacts and scaffold persistence files to Git.
 
-    22. Push committed Git state.
+    23. Commit generated Bootstrap artifacts and scaffold persistence files to Git.
 
-    23. Run Codex Completion Verification.
+    24. Push committed Git state.
 
-    24. Run Bootstrap Validation.
+    25. Run Codex Completion Verification.
 
-    25. Produce Bootstrap Result.
+    26. Run Bootstrap Validation.
 
-    26. Stop.
+    27. Produce Bootstrap Result.
+
+    28. Stop.
 
 ## Git Artifact Commitment Rule
 
@@ -456,6 +466,8 @@ Bootstrap must stop when:
 
     Runtime State has been initialized
 
+    PROJECT_STATE.md exists and records Current Stage: Problem, Stage Status: READY, Next Action: Create ProblemDefinition_CORE_v1.md, and Allowed Transition: None
+
     Project Name and Project Root are consistent across required Bootstrap artifacts
 
     Final Product Project Root conforms to SAPDP Project Scaffold
@@ -506,6 +518,8 @@ SAPDP Source
 SAPDP Source Commit Hash
 
 Protocol Version
+
+Lifecycle State Authority
 
 Bootstrap Version
 

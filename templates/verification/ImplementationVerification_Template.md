@@ -50,6 +50,8 @@ User Validation Result
 
 # Required Load Set
 
+PROJECT_STATE.md
+
 PROJECT_BOOTSTRAP.md
 
 ARTIFACT_INDEX.md

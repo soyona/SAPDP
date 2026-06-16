@@ -1,5 +1,20 @@
 # SAPDP Bootstrap
 
+Current Protocol Version:
+v1.6.3
+
+Latest Stable Version:
+v1.6.3
+
+Version Detection Rules:
+
+```text
+Use latest stable version unless explicitly pinned.
+Protocol Load Output must include Protocol Version, Current Stage, State Source, and Next Action.
+State Source is PROJECT_STATE.md.
+Missing PROJECT_STATE.md means BLOCKED.
+```
+
 ## 1. 当前项目
 
 项目名称：
@@ -62,9 +77,11 @@ Repository Organization
 ---
 ## Runtime State
 
-The following section is the authoritative runtime state of SAPDP.
+The following section is historical Bootstrap runtime context.
 
-Other canonical documents must not maintain runtime state. 
+`PROJECT_STATE.md` is the authoritative lifecycle state file for v1.6.3 and later.
+
+Other canonical documents must not maintain lifecycle authority state.
 
 ## 3. 当前阶段
 

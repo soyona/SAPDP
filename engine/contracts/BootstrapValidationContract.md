@@ -172,6 +172,7 @@ Project Root is resolved in the Bootstrap Handoff.
 
 ```text
 PROJECT_BOOTSTRAP.md exists.
+PROJECT_STATE.md exists.
 ARTIFACT_INDEX.md exists.
 ROUTE_MANIFEST.md exists.
 BOOTSTRAP_RESULT.md exists.
@@ -232,6 +233,12 @@ Problem Stage Entry must include:
 Current Stage:
 Problem
 
+Stage Status:
+READY
+
+State Source:
+PROJECT_STATE.md
+
 Environment:
 ChatGPT
 
@@ -269,8 +276,13 @@ Protocol Version exists.
 ### Runtime Validation
 
 ```text
-Runtime State has been initialized.
+PROJECT_STATE.md exists.
+Lifecycle State has been initialized.
 Lifecycle is ready to enter Problem Stage.
+Current Stage is Problem.
+Stage Status is READY.
+Next Action is Create ProblemDefinition_CORE_v1.md.
+Allowed Transition is None.
 ```
 
 ### Boundary Validation
@@ -301,9 +313,17 @@ Lifecycle Progress
 
 ○ Solution
 
+○ Product Requirement
+
 ○ Product Representation
 
-○ MVP Scope
+○ UX Specification
+
+○ Visual Design Specification
+
+○ MVP Definition
+
+○ Task Package
 
 ○ Build
 
@@ -443,6 +463,7 @@ Project Root is unresolved.
 
 ```text
 PROJECT_BOOTSTRAP.md missing.
+PROJECT_STATE.md missing.
 ARTIFACT_INDEX.md missing.
 BOOTSTRAP_RESULT.md missing.
 POST_BOOTSTRAP_ENTRY.md missing.
@@ -464,6 +485,7 @@ Version compatibility failure.
 ```text
 Runtime State not initialized.
 Lifecycle state invalid.
+PROJECT_STATE.md missing.
 ```
 
 ### Boundary Failure
@@ -526,6 +548,9 @@ https://github.com/soyona/SAPDP
 
 Audit product commit:
 <remote product commit URL>
+
+State Source:
+PROJECT_STATE.md
 
 Action:
 Create ProblemDefinition_CORE_v1.md
@@ -702,6 +727,7 @@ Required:
 
 ```text
 PROJECT_BOOTSTRAP.md
+PROJECT_STATE.md
 README.md
 ARTIFACT_INDEX.md
 BOOTSTRAP_RESULT.md

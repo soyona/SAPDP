@@ -27,7 +27,7 @@ This artifact must not define:
 - Architecture Design
 - Database Design
 - API Design
-- MVP Scope
+- MVP Definition
 - Build Plan
 
 ---
@@ -55,6 +55,8 @@ Build Artifact
 ---
 
 # Required Load Set
+
+PROJECT_STATE.md
 
 PROJECT_BOOTSTRAP.md
 

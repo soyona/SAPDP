@@ -29,7 +29,7 @@ This artifact must not define:
 - UX Design
 - Visual Design
 - Technical Design
-- MVP Scope
+- MVP Definition
 - Build Plan
 
 These subjects belong to later lifecycle stages.
@@ -49,6 +49,8 @@ Product Representation
 ---
 
 # Required Load Set
+
+PROJECT_STATE.md
 
 PROJECT_BOOTSTRAP.md
 

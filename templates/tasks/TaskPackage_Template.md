@@ -7,7 +7,7 @@
 | Artifact Type | Task Package |
 | Owner | ChatGPT |
 | Producer | ChatGPT |
-| Lifecycle Stage | Build |
+| Lifecycle Stage | Task Package |
 | Status | Frozen |
 
 ---
@@ -21,6 +21,14 @@ This artifact transforms approved product artifacts into one bounded implementat
 This artifact must prefer artifact paths, commit URLs, and repository references over pasted full content.
 
 This artifact must not include lifecycle theory or background unless required for execution.
+
+Task Package must not be generated until required Product Shape artifacts and MVP Definition have passed validation and the lifecycle state authority has been updated.
+
+Required lifecycle state source:
+
+```text
+PROJECT_STATE.md
+```
 
 ---
 

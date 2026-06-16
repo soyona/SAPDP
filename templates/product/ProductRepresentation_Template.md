@@ -23,7 +23,7 @@ This artifact must not define:
 - UX Design
 - Visual Design
 - Technical Design
-- MVP Scope
+- MVP Definition
 - Build Plan
 
 ---
@@ -44,9 +44,40 @@ Technical Constraint
 
 MVP Definition
 
+Product Classification:
+
+```text
+Functional Product
+or
+Experience Product
+```
+
+Default Experience Product categories:
+
+```text
+Educational Products
+Children Products
+Consumer Apps
+Games
+Story-based Products
+World-building Products
+Growth Systems
+Exploration Products
+Community Products
+```
+
+Visual Design Requirement:
+
+```text
+Mandatory for Experience Product.
+Optional for Functional Product unless visual judgment is required for validation.
+```
+
 ---
 
 # Required Load Set
+
+PROJECT_STATE.md
 
 PROJECT_BOOTSTRAP.md
 
@@ -77,7 +108,7 @@ Consumer:
 ChatGPT
 
 Next Action:
-Generate UXSpecification_CORE_v1.md, VisualDesignSpecification_CORE_v1.md, and TechnicalConstraint_CORE_v1.md
+Generate UXSpecification_CORE_v1.md, classify visual design requirement, generate VisualDesignSpecification_CORE_v1.md when required, and generate TechnicalConstraint_CORE_v1.md.
 
 Audit Source:
 ProductRepresentation_CORE_v1.md

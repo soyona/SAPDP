@@ -10,6 +10,8 @@
 | Scope      | Global                       |
 | Owner      | SAPDP                        |
 | Versioning | Git Managed                  |
+| Current Protocol Version | v1.6.3             |
+| Latest Stable Version | v1.6.3                |
 
 ---
 
@@ -181,9 +183,17 @@ Problem
 ↓
 Solution
 ↓
+Product Requirement
+↓
 Product Representation
 ↓
-MVP Scope
+UX Specification
+↓
+Visual Design Specification (Conditional)
+↓
+MVP Definition
+↓
+Task Package
 ↓
 Build
 ↓
@@ -262,6 +272,147 @@ Git owns system memory.
 # 5.1 Git Truth Source Rule
 
 Git remote state is the default audit source for SAPDP governance and workflow verification.
+
+## v1.6.3 Protocol State and Transition Rule
+
+SAPDP v1.6.3 introduces `PROJECT_STATE.md` as the lifecycle state authority.
+
+Authority:
+
+```text
+ChatGPT reads PROJECT_STATE.md
+Codex updates PROJECT_STATE.md
+Git preserves PROJECT_STATE.md
+Conversation history is not authority
+Assistant messages are not authority
+```
+
+New sessions must load `PROJECT_STATE.md`.
+
+Missing `PROJECT_STATE.md` means:
+
+```text
+BLOCKED
+```
+
+Commands such as `Continue`, `Next`, `Next Step`, `Proceed`, `进入下一阶段`, `下一步`, and `继续` must invoke the Transition Contract before lifecycle progression.
+
+Transition Contract:
+
+```text
+Read lifecycle authority state
+Determine current stage
+Verify current stage completion
+Verify required artifacts
+Verify required commits
+Decide BLOCKED, EXECUTE_NEXT_ACTION, or ALLOW_TRANSITION
+Update lifecycle documentation accordingly
+```
+
+Commit-Gated Lifecycle:
+
+```text
+No Commit
+↓
+No Transition
+```
+
+Stage Complete requires:
+
+```text
+Artifact Exists
+Artifact Validation Pass
+PROJECT_STATE.md Updated
+Commit Exists
+Commit URL Available when remote exists
+```
+
+A commit alone is insufficient.
+
+## v1.6.3 Product Shape Layer
+
+The Product Shape Layer sits between Solution Definition and MVP Definition.
+
+Lifecycle:
+
+```text
+Problem Definition
+↓
+Solution Definition
+↓
+Product Requirement
+↓
+Product Representation
+↓
+UX Specification
+↓
+Visual Design Specification (Conditional)
+↓
+MVP Definition
+↓
+Task Package
+↓
+Build
+```
+
+Rules:
+
+```text
+UX Specification is mandatory.
+Visual Design Specification is conditional.
+MVP Definition must consume Product Shape outputs.
+Build must not proceed without required Product Shape artifacts.
+```
+
+Product Classification:
+
+```text
+Functional Product
+Experience Product
+```
+
+Functional Product:
+
+```text
+Visual Optional
+```
+
+Experience Product:
+
+```text
+Visual Mandatory
+```
+
+Default Experience Products:
+
+```text
+Educational Products
+Children Products
+Consumer Apps
+Games
+Story-based Products
+World-building Products
+Growth Systems
+Exploration Products
+Community Products
+```
+
+## v1.6.3 Protocol Version Visibility
+
+Protocol Load Output must include:
+
+```text
+Protocol Version
+Current Stage
+State Source
+Next Action
+```
+
+Default behavior:
+
+```text
+Use latest stable version unless explicitly pinned.
+```
 
 Protocol Release Audit must use remotely verifiable Git state.
 
@@ -832,7 +983,11 @@ Authority remains:
 ```text
 PROJECT_BOOTSTRAP.md
 =
-Runtime Authority
+Bootstrap Metadata Authority
+
+PROJECT_STATE.md
+=
+Lifecycle State Authority
 
 ARTIFACT_INDEX.md
 =
@@ -991,7 +1146,7 @@ Solution
 ↓
 Product Representation
 ↓
-MVP Scope
+MVP Definition
 ↓
 Build
 ↓
@@ -1032,7 +1187,7 @@ Implementation Verification FAIL
 → Build
 
 User Validation FAIL
-→ MVP Scope
+→ MVP Definition
 ```
 
 Lifecycle closes at:
@@ -1112,10 +1267,10 @@ Artifact
 Lifecycle Stage
 ```
 
-Authoritative runtime state remains:
+Authoritative lifecycle state is:
 
 ```text
-PROJECT_BOOTSTRAP.md
+PROJECT_STATE.md
 ```
 
 The Route Card must show only the current transition by default.
@@ -1239,7 +1394,7 @@ Product Representation
 → Visual Design Specification Artifact
 → Technical Constraint Artifact
 
-MVP Scope
+MVP Definition
 → MVP Definition
 
 Build
@@ -1333,7 +1488,7 @@ The current valid Artifact
 that satisfies each required Artifact Type.
 ```
 
-PROJECT_BOOTSTRAP.md records:
+PROJECT_STATE.md records:
 
 ```text
 The active Required Load Set
@@ -1546,7 +1701,13 @@ work/
 
 # 11. Project Runtime
 
-Project Runtime Authority:
+Project Lifecycle State Authority:
+
+```text
+PROJECT_STATE.md
+```
+
+Project Bootstrap Metadata Authority:
 
 ```text
 PROJECT_BOOTSTRAP.md
@@ -1826,10 +1987,10 @@ Lifecycle Authority
 Artifact Authority
 ```
 
-Project Runtime Authority remains:
+Project Lifecycle State Authority is:
 
 ```text
-PROJECT_BOOTSTRAP.md
+PROJECT_STATE.md
 ```
 
 
@@ -1870,7 +2031,7 @@ Resolve Project Root From Project Name
 ↓
 Generate Project Scaffold
 ↓
-Create Runtime Authority
+Create Lifecycle State Authority
 ↓
 Create Artifact Authority
 ↓
@@ -1975,30 +2136,42 @@ Bootstrap scaffold proof must be verifiable from committed and pushed Git reposi
 
 ---
 
-## Create Runtime Authority
+## Create Lifecycle State Authority
 
 Create:
 
 ```text
-PROJECT_BOOTSTRAP.md
+PROJECT_STATE.md
 ```
 
-PROJECT_BOOTSTRAP.md owns:
+PROJECT_STATE.md owns:
 
 ```text
 Project Name
 
+Protocol Version
+
 Current Lifecycle Stage
 
-Current Task
+Current Artifact
 
-Current Goal
+Stage Status
 
-Required Load Set
+Allowed Transition
 
 Next Action
 
-Current Blocker
+Required Artifacts
+
+Required Commits
+
+Last Verified Commit
+
+Blocked Reason
+
+Updated By
+
+Updated At
 ```
 
 ---
@@ -2538,7 +2711,7 @@ Lifecycle Progress
 
 ○ Product Representation
 
-○ MVP Scope
+○ MVP Definition
 
 ○ Build
 

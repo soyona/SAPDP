@@ -2,18 +2,11 @@
 
 ## Purpose
 
-Template for the authoritative runtime state of a SAPDP Product Repository.
+Template for Bootstrap metadata in a SAPDP Product Repository.
 
-Serves as the single source for:
+`PROJECT_BOOTSTRAP.md` records Bootstrap identity, source, and scaffold metadata.
 
-    Current Lifecycle Stage
-    Current Task
-    Current Goal
-    Required Load Set
-    Route Manifest
-    Next Action
-    Current Blockers
-    Last Updated Timestamp
+`PROJECT_STATE.md` is the authoritative lifecycle state source.
 
 ---
 
@@ -30,6 +23,7 @@ Current Goal: Define validated problem worth solving
 Current Task: Create ProblemDefinition_CORE_v1.md
 
 Required Load Set:
+    PROJECT_STATE.md
     PROJECT_BOOTSTRAP.md
     ARTIFACT_INDEX.md
     ROUTE_MANIFEST.md
@@ -45,9 +39,11 @@ Last Updated: <TIMESTAMP>
 
 ## Authority
 
-PROJECT_BOOTSTRAP.md is the Runtime Authority.
+PROJECT_STATE.md is the Lifecycle State Authority.
 
-Other Bootstrap artifacts must not redefine these values.
+PROJECT_BOOTSTRAP.md is the Bootstrap Metadata Authority.
+
+Other Bootstrap artifacts must not redefine lifecycle state values.
 
 ROUTE_MANIFEST.md is the Route Manifest Authority.
 
@@ -96,7 +92,7 @@ Lifecycle Progress
 
 ○ Product Representation
 
-○ MVP Scope
+○ MVP Definition
 
 ○ Build
 

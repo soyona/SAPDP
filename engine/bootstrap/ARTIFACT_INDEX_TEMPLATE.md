@@ -25,10 +25,24 @@ Lifecycle Continuity
 ### Bootstrap Artifacts
 
 Artifact Name:
+PROJECT_STATE.md
+
+Artifact Type:
+Lifecycle State Authority
+
+Artifact Path:
+PROJECT_STATE.md
+
+Status:
+Created
+
+---
+
+Artifact Name:
 PROJECT_BOOTSTRAP.md
 
 Artifact Type:
-Runtime Authority
+Bootstrap Metadata Authority
 
 Artifact Path:
 PROJECT_BOOTSTRAP.md
@@ -126,6 +140,8 @@ Created
 
 ARTIFACT_INDEX.md is the Artifact Discovery Authority.
 
+PROJECT_STATE.md is the Lifecycle State Authority.
+
 ROUTE_MANIFEST.md is the Route Manifest Authority.
 
 Route Manifest ownership is:
@@ -172,7 +188,7 @@ Bootstrap registers only Bootstrap-created artifacts.
 
 Bootstrap creates the initial Route Manifest.
 
-Problem Stage, Solution Stage, MVP Stage, Build Stage, Verification Stage, Validation Stage, and Release Stage must update ARTIFACT_INDEX.md when creating new artifacts.
+Problem Stage, Solution Stage, Product Requirement Stage, Product Representation Stage, UX Specification Stage, Visual Design Specification Stage, MVP Definition Stage, Task Package Stage, Build Stage, Verification Stage, Validation Stage, and Release Stage must update ARTIFACT_INDEX.md when creating new artifacts.
 
 ---
 

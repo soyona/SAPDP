@@ -12,6 +12,7 @@ It must clearly answer:
 - Which ChatGPT Project and session mode should be used?
 - What Startup prompt should begin the next session?
 - What executable action should be performed next?
+- What lifecycle state source should be loaded?
 - Where is the route manifest?
 - Is Git remote validation pending?
 
@@ -49,6 +50,9 @@ https://github.com/soyona/SAPDP
 Audit product commit:
 <remote product commit URL>
 
+State Source:
+PROJECT_STATE.md
+
 Audit:
 <remote product commit URL>
 
@@ -64,6 +68,8 @@ Do not continue product implementation from the SAPDP protocol repository.
 This is the required minimal Codex final output after product bootstrap.
 
 Problem Stage is executed in ChatGPT by default.
+
+ChatGPT must load `PROJECT_STATE.md` before deciding whether to execute the next action or allow a lifecycle transition.
 
 For a new product, create a ChatGPT Project named `<PROJECT_NAME>` and start a NEW session inside that project.
 

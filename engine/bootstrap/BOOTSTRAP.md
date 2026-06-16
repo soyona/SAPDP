@@ -64,7 +64,7 @@ Project Name must not be used to infer:
 
     Solution Direction
 
-    MVP Scope
+    MVP Definition
 
 ---
 
@@ -132,9 +132,13 @@ Codex must read Bootstrap sources in this order:
     =
     Bootstrap Validation Authority
 
+    PROJECT_STATE.md
+    =
+    Lifecycle State Authority
+
     PROJECT_BOOTSTRAP.md
     =
-    Product Runtime Authority
+    Bootstrap Metadata Authority
 
     ARTIFACT_INDEX.md
     =
@@ -186,7 +190,7 @@ Codex must not:
 
     Infer solution direction
 
-    Infer MVP scope
+    Infer MVP definition
 
     Modify the SAPDP Repository
 
@@ -203,6 +207,8 @@ Codex must not:
 Bootstrap must produce:
 
     PROJECT_BOOTSTRAP.md
+
+    PROJECT_STATE.md
 
     ARTIFACT_INDEX.md
 
@@ -240,6 +246,8 @@ Codex must not continue into:
 
     Solution Definition
 
+    Product Requirement
+
     MVP Definition
 
     Build
@@ -257,6 +265,8 @@ Required audit inputs:
     POST_BOOTSTRAP_ENTRY.md
 
     PROJECT_BOOTSTRAP.md
+
+    PROJECT_STATE.md
 
     ARTIFACT_INDEX.md
 
@@ -344,6 +354,9 @@ https://github.com/soyona/SAPDP
 Audit product commit:
 <remote product commit URL>
 
+State Source:
+PROJECT_STATE.md
+
 Action:
 Create ProblemDefinition_CORE_v1.md
 ```
@@ -358,6 +371,7 @@ Uploading bootstrap files is fallback only:
 
 ```text
 PROJECT_BOOTSTRAP.md
+PROJECT_STATE.md
 ARTIFACT_INDEX.md
 BOOTSTRAP_RESULT.md
 POST_BOOTSTRAP_ENTRY.md
@@ -380,6 +394,12 @@ Do not continue product implementation from the SAPDP protocol repository.
 ```text
 Current Stage:
 Problem
+
+Stage Status:
+READY
+
+State Source:
+PROJECT_STATE.md
 
 Environment:
 ChatGPT

@@ -7,7 +7,7 @@
 | Artifact Type | Product Requirement |
 | Owner | ChatGPT |
 | Producer | ChatGPT |
-| Lifecycle Stage | Product Representation |
+| Lifecycle Stage | Product Requirement |
 | Status | Template |
 
 ---
@@ -24,7 +24,7 @@ This artifact must not define:
 - UX Design
 - Visual Design
 - Technical Design
-- MVP Scope
+- MVP Definition
 - Build Plan
 
 These subjects belong to other artifacts.
@@ -50,6 +50,8 @@ Technical Constraint
 ---
 
 # Required Load Set
+
+PROJECT_STATE.md
 
 PROJECT_BOOTSTRAP.md
 

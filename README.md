@@ -2,6 +2,21 @@
 
 AI-Native Solo Product Development System
 
+Current Protocol Version:
+v1.6.3
+
+Latest Stable Version:
+v1.6.3
+
+Version Detection Rules:
+
+```text
+Use latest stable version unless explicitly pinned.
+Protocol Load Output must include Protocol Version, Current Stage, State Source, and Next Action.
+State Source is PROJECT_STATE.md.
+Missing PROJECT_STATE.md means BLOCKED.
+```
+
 SAPDP is a development operating system designed for:
 
 ```text
@@ -111,9 +126,17 @@ Problem
 ↓
 Solution
 ↓
+Product Requirement
+↓
 Product Representation
 ↓
-MVP Scope
+UX Specification
+↓
+Visual Design Specification (Conditional)
+↓
+MVP Definition
+↓
+Task Package
 ↓
 Build
 ↓
@@ -144,9 +167,7 @@ so workflow state does not depend on human memory.
 
 To start a new project:
 
-```text
-Open START.md
-```
+[Open START.md](./START.md)
 
 A new SAPDP project can typically be initialized within minutes using Codex.
 
@@ -154,7 +175,7 @@ A new SAPDP project can typically be initialized within minutes using Codex.
 
 # Protocol Release Audit Handoff
 
-SAPDP v1.6.2 requires a minimal protocol release handoff backed by remotely verifiable Git state.
+SAPDP v1.6.3 requires a minimal protocol release handoff backed by remotely verifiable Git state.
 
 Codex may report a SAPDP protocol release PASS only after:
 
@@ -217,7 +238,7 @@ Do not repeat Repository, Branch, Commit SHA, Tag, remote verification, validati
 
 # Protocol Evolution Lifecycle
 
-SAPDP v1.6.2 defines a formal governance route for upgrading SAPDP itself:
+SAPDP v1.6.3 defines a formal governance route for upgrading SAPDP itself:
 
 ```text
 Reality Validation
@@ -599,7 +620,7 @@ Lifecycle Progress
 Navigation information is derived from:
 
 ```text
-PROJECT_BOOTSTRAP.md
+PROJECT_STATE.md
 ```
 
 and never becomes an independent runtime authority.
@@ -643,21 +664,18 @@ PASS
 
 # Repository Structure
 
-```text
-README.md
-START.md
-DEVELOPER.md
+- [README.md](./README.md)
+- [START.md](./START.md)
+- [DEVELOPER.md](./DEVELOPER.md)
+- [engine/](./engine/)
+- [templates/](./templates/)
+- [internal/](./internal/)
 
-engine/
-templates/
-internal/
-```
-
-### START.md
+### [START.md](./START.md)
 
 Project startup entry.
 
-### DEVELOPER.md
+### [DEVELOPER.md](./DEVELOPER.md)
 
 SAPDP maintainer guide.
 
@@ -693,12 +711,8 @@ The system owns the workflow.
 
 If you want to start a project:
 
-```text
-Open START.md
-```
+[Open START.md](./START.md)
 
 If you want to contribute to SAPDP:
 
-```text
-Open DEVELOPER.md
-```
+[Open DEVELOPER.md](./DEVELOPER.md)

@@ -55,9 +55,13 @@ Artifact Formats
 Authority remains:
 
 ```text
+PROJECT_STATE.md
+=
+Lifecycle State Authority
+
 PROJECT_BOOTSTRAP.md
 =
-Runtime Authority
+Bootstrap Metadata Authority
 
 ARTIFACT_INDEX.md
 =
@@ -115,6 +119,9 @@ https://github.com/soyona/SAPDP
 
 Audit:
 <remote product commit URL or fallback local commit SHA>
+
+State Source:
+PROJECT_STATE.md
 
 Workspace:
 <absolute project root>
@@ -186,7 +193,9 @@ Use artifact paths, commit URLs, and compact route metadata.
 If ROUTE_MANIFEST.md is missing in a pre-v1.6.0 Product Repository:
 
 ```text
-Use PROJECT_BOOTSTRAP.md for runtime state.
+Use PROJECT_STATE.md for lifecycle state.
+
+Use PROJECT_BOOTSTRAP.md for Bootstrap metadata.
 
 Use ARTIFACT_INDEX.md for artifact discovery.
 

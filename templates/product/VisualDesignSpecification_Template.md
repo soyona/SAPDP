@@ -7,7 +7,7 @@
 | Artifact Type | Visual Design Specification |
 | Owner | ChatGPT |
 | Producer | ChatGPT |
-| Lifecycle Stage | Product Representation |
+| Lifecycle Stage | Visual Design Specification |
 | Status | Template |
 
 ---
@@ -18,13 +18,17 @@ Define the visual design requirements of the product.
 
 This artifact exists to ensure visual consistency, usability, clarity, and brand alignment.
 
+This artifact is mandatory for Experience Products.
+
+For Functional Products, this artifact is optional unless visual judgment is required for validation.
+
 This artifact must not define:
 
 - Product Requirements
 - Product Structure
 - UX Logic
 - Technical Design
-- MVP Scope
+- MVP Definition
 
 ---
 
@@ -36,6 +40,8 @@ Product Representation
 
 UX Specification
 
+Product Classification
+
 ---
 
 # Outputs
@@ -45,6 +51,8 @@ MVP Definition
 ---
 
 # Required Load Set
+
+PROJECT_STATE.md
 
 PROJECT_BOOTSTRAP.md
 

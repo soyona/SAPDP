@@ -7,7 +7,7 @@
 | Artifact Type | MVP Definition |
 | Owner | Human |
 | Producer | Human |
-| Lifecycle Stage | MVP Scope |
+| Lifecycle Stage | MVP Definition |
 | Status | Template |
 
 ---
@@ -29,6 +29,10 @@ This artifact must not define:
 - Build Plan
 - Implementation Details
 
+MVP Definition must consume Product Shape outputs before Task Package or Build may proceed.
+
+If any required Product Shape artifact is missing, MVP Definition is BLOCKED.
+
 ---
 
 # Inputs
@@ -43,6 +47,8 @@ Visual Design Specification
 
 Technical Constraint
 
+Product Classification
+
 ---
 
 # Outputs
@@ -54,6 +60,8 @@ Build Artifact
 ---
 
 # Required Load Set
+
+PROJECT_STATE.md
 
 PROJECT_BOOTSTRAP.md
 
@@ -79,7 +87,7 @@ Route Manifest:
 ROUTE_MANIFEST.md
 
 Route Role:
-MVP Scope to Task Package handoff
+MVP Definition to Task Package handoff
 
 Producer:
 Human

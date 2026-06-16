@@ -361,9 +361,9 @@ Route Card is not the Route Manifest.
 
 Lifecycle completion is not operationally complete until the Route Card has been produced.
 
-Authoritative runtime state remains:
+Authoritative lifecycle state is:
 
-PROJECT_BOOTSTRAP.md
+PROJECT_STATE.md
 
 Persistent route recovery state is:
 
@@ -384,8 +384,12 @@ The default routing reference is:
 ```text
 Bootstrap: Codex -> ChatGPT, NEW session, next Problem
 Problem: ChatGPT -> ChatGPT, CURRENT session, next Solution
-Solution: ChatGPT -> ChatGPT, CURRENT session, next MVP
-MVP: ChatGPT -> ChatGPT, CURRENT session, next Task Package
+Solution: ChatGPT -> ChatGPT, CURRENT session, next Product Requirement
+Product Requirement: ChatGPT -> ChatGPT, CURRENT session, next Product Representation
+Product Representation: ChatGPT -> ChatGPT, CURRENT session, next UX Specification
+UX Specification: ChatGPT -> ChatGPT, CURRENT session, next Visual Design Specification when required, otherwise MVP Definition
+Visual Design Specification: ChatGPT -> ChatGPT, CURRENT session, next MVP Definition
+MVP Definition: ChatGPT -> ChatGPT, CURRENT session, next Task Package
 Task Package: ChatGPT -> Codex, REUSE_EXISTING product workspace, next Build
 Build: Codex -> ChatGPT, CURRENT or NEW if context is heavy, next Implementation Verification
 Implementation Verification: ChatGPT -> ChatGPT if PASS, ChatGPT -> Codex if PATCH REQUIRED
@@ -406,9 +410,17 @@ Problem
 ↓
 Solution
 ↓
+Product Requirement
+↓
 Product Representation
 ↓
-MVP Scope
+UX Specification
+↓
+Visual Design Specification (Conditional)
+↓
+MVP Definition
+↓
+Task Package
 ↓
 Build
 ↓
@@ -422,7 +434,7 @@ Release
 SAPDP Lifecycle contains:
 
 ```text
-8 Stages
+12 Stages
 ```
 
 Lifecycle begins at:
@@ -449,9 +461,13 @@ Project Bootstrap is a prerequisite system before Lifecycle begins.
 | --------------------------- | ------------- | ---------------------------------- | ---------------------------------- |
 | Problem                     | Human         | Lifecycle Entry                    | Problem Definition                 |
 | Solution                    | ChatGPT       | Problem Definition                 | Solution Definition                |
-| Product Representation      | ChatGPT       | Solution Definition                | Product Representation Artifact    |
-| MVP Scope                   | Human         | Product Representation Artifact    | MVP Definition                     |
-| Build                       | Codex         | MVP Definition                     | Build Artifact                     |
+| Product Requirement         | ChatGPT       | Solution Definition                | Product Requirement                |
+| Product Representation      | ChatGPT       | Product Requirement                | Product Representation Artifact    |
+| UX Specification            | ChatGPT       | Product Representation Artifact    | UX Specification                   |
+| Visual Design Specification | ChatGPT       | UX Specification                   | Visual Design Specification        |
+| MVP Definition              | Human         | Product Shape Artifacts            | MVP Definition                     |
+| Task Package                | ChatGPT       | MVP Definition                     | Task Package                       |
+| Build                       | Codex         | Task Package                       | Build Artifact                     |
 | Implementation Verification | ChatGPT       | Build Artifact                     | Implementation Verification Result |
 | User Validation             | Human         | Implementation Verification Result | User Validation Result             |
 | Release                     | Git           | User Validation Result             | Release Result                     |
@@ -467,12 +483,12 @@ Project Bootstrap is a prerequisite system and not part of the Lifecycle.
 After Bootstrap PASS, Lifecycle defines the Stage Entry Rule:
 
 - Current Stage: Problem
-- Inputs: Required Load Set from Bootstrap (PROJECT_BOOTSTRAP.md, ARTIFACT_INDEX.md, ROUTE_MANIFEST.md, BOOTSTRAP_RESULT.md, POST_BOOTSTRAP_ENTRY.md, ProblemDefinition_Template.md)
+- Inputs: Required Load Set from Bootstrap (PROJECT_STATE.md, PROJECT_BOOTSTRAP.md, ARTIFACT_INDEX.md, ROUTE_MANIFEST.md, BOOTSTRAP_RESULT.md, POST_BOOTSTRAP_ENTRY.md, ProblemDefinition_Template.md)
 - Environment: ChatGPT
 - Session: NEW by default, or REUSE_EXISTING when a product-bound ChatGPT Project already exists
 - Startup: Bootstrap Route Card Start prompt
 - Produced Artifact: ProblemDefinition_CORE_v1.md
-- Runtime Update Target: PROJECT_BOOTSTRAP.md
+- Runtime Update Target: PROJECT_STATE.md
 
 Lifecycle owns Stage Entry Rule. POST_BOOTSTRAP_ENTRY.md only contains actionable instructions instantiated for this project.
 
@@ -488,6 +504,122 @@ PATCH PASS criteria:
 - Route Card is produced.
 - ROUTE_MANIFEST.md exists or a pre-v1.6.0 migration path is identified.
 - Action is executable and identifies the next stage action.
+
+---
+
+## 4.4 Product Shape Layer
+
+Product Shape is the lifecycle layer between Solution Definition and MVP Definition.
+
+Product Shape artifacts are:
+
+```text
+Product Requirement
+Product Representation
+UX Specification
+Visual Design Specification when required
+Technical Constraint
+```
+
+Rules:
+
+```text
+UX Specification is mandatory.
+
+Visual Design Specification is conditional.
+
+MVP Definition must consume Product Shape outputs.
+
+Build must not proceed without required Product Shape artifacts.
+```
+
+Product Classification:
+
+```text
+Functional Product
+Experience Product
+```
+
+Functional Product:
+
+```text
+Visual Design Specification optional unless the product requires visual judgment for validation.
+```
+
+Experience Product:
+
+```text
+Visual Design Specification mandatory.
+```
+
+Default Experience Products:
+
+```text
+Educational Products
+Children Products
+Consumer Apps
+Games
+Story-based Products
+World-building Products
+Growth Systems
+Exploration Products
+Community Products
+```
+
+If classification is unclear, ChatGPT must classify before MVP Definition.
+
+If a required Product Shape artifact is missing, the transition decision is:
+
+```text
+BLOCKED
+```
+
+## 4.5 Lifecycle Authority File
+
+`PROJECT_STATE.md` is the authoritative lifecycle state file.
+
+Required fields:
+
+```text
+Project Name
+Protocol Version
+Current Stage
+Current Artifact
+Stage Status
+Next Action
+Allowed Transition
+Required Artifacts
+Required Commits
+Last Verified Commit
+Blocked Reason
+Updated By
+Updated At
+```
+
+Authority rules:
+
+```text
+ChatGPT reads
+Codex updates
+Git preserves
+Conversation history is not authority
+Assistant messages are not authority
+New sessions must load PROJECT_STATE.md
+Missing PROJECT_STATE.md means BLOCKED
+```
+
+## 4.6 Closed ChatGPT Codex Loop
+
+Protocol behavior:
+
+```text
+ChatGPT determines required change.
+ChatGPT outputs Codex Action Package.
+Codex performs repository update.
+Codex commits.
+Codex returns Files Changed, Validation Result, Commit URL, and Updated PROJECT_STATE Summary.
+Only then may ChatGPT permit transition.
+```
 
 ---
 
@@ -545,11 +677,39 @@ Solution definition accepted.
 
 ### Completion Action
 
+Load Product Requirement.
+
+---
+
+## 5.3 Product Requirement
+
+### Objective
+
+Translate the approved solution into explicit product requirements.
+
+### Inputs
+
+Solution Definition
+
+### Outputs
+
+Product Requirement
+
+### Primary Owner
+
+ChatGPT
+
+### Exit Criteria
+
+Product requirement accepted.
+
+### Completion Action
+
 Load Product Representation.
 
 ---
 
-## 5.3 Product Representation
+## 5.4 Product Representation
 
 ### Objective
 
@@ -557,7 +717,7 @@ Transform the intended product into an executable and reviewable representation.
 
 ### Inputs
 
-Solution Definition
+Product Requirement
 
 ### Outputs
 
@@ -573,11 +733,73 @@ Product representation accepted.
 
 ### Completion Action
 
-Load MVP Scope.
+Load UX Specification.
 
 ---
 
-## 5.4 MVP Scope
+## 5.5 UX Specification
+
+### Objective
+
+Define the mandatory user experience requirements for the product.
+
+### Inputs
+
+Product Representation Artifact
+
+### Outputs
+
+UX Specification
+
+### Primary Owner
+
+ChatGPT
+
+### Exit Criteria
+
+UX specification accepted.
+
+### Completion Action
+
+Experience Product
+→
+Load Visual Design Specification.
+
+Functional Product
+→
+Load Visual Design Specification when required, otherwise load MVP Definition.
+
+---
+
+## 5.6 Visual Design Specification
+
+### Objective
+
+Define visual design requirements when product classification requires visual design.
+
+### Inputs
+
+UX Specification
+
+### Outputs
+
+Visual Design Specification
+
+### Primary Owner
+
+ChatGPT
+
+### Exit Criteria
+
+Visual design specification accepted, or explicitly marked not required for a Functional Product.
+
+### Completion Action
+
+Load MVP Definition.
+
+---
+
+## 5.7 MVP Definition
 
 ### Objective
 
@@ -585,7 +807,7 @@ Define the minimum product boundary required for validation.
 
 ### Inputs
 
-Product Representation Artifact
+Product Shape Artifacts
 
 ### Outputs
 
@@ -601,11 +823,39 @@ MVP definition accepted.
 
 ### Completion Action
 
+Load Task Package.
+
+---
+
+## 5.8 Task Package
+
+### Objective
+
+Create a bounded Codex-executable implementation package.
+
+### Inputs
+
+MVP Definition
+
+### Outputs
+
+Task Package
+
+### Primary Owner
+
+ChatGPT
+
+### Exit Criteria
+
+Task Package accepted.
+
+### Completion Action
+
 Load Build.
 
 ---
 
-## 5.5 Build
+## 5.9 Build
 
 ### Objective
 
@@ -613,7 +863,7 @@ Implement the MVP.
 
 ### Inputs
 
-MVP Definition
+Task Package
 
 ### Outputs
 
@@ -633,11 +883,11 @@ Load Implementation Verification.
 
 ---
 
-## 5.6 Implementation Verification
+## 5.10 Implementation Verification
 
 ### Objective
 
-Verify that implementation matches the intended product representation and MVP scope.
+Verify that implementation matches the intended product shape, MVP definition, and task package.
 
 ### Inputs
 
@@ -667,7 +917,7 @@ Return Build
 
 ---
 
-## 5.7 User Validation
+## 5.11 User Validation
 
 ### Objective
 
@@ -697,11 +947,11 @@ Load Release
 
 FAIL
 →
-Return MVP Scope
+Return MVP Definition
 
 ---
 
-## 5.8 Release
+## 5.12 Release
 
 ### Objective
 
@@ -775,9 +1025,17 @@ Problem
 ↓
 Solution
 ↓
+Product Requirement
+↓
 Product Representation
 ↓
-MVP Scope
+UX Specification
+↓
+Visual Design Specification (Conditional)
+↓
+MVP Definition
+↓
+Task Package
 ↓
 Build
 ↓
@@ -813,7 +1071,7 @@ User Validation
 
 FAIL
 →
-MVP Scope
+MVP Definition
 ```
 
 No additional rollback paths are defined.
@@ -861,6 +1119,70 @@ Persist Lifecycle State
 ```
 
 but may not advance lifecycle stages.
+
+### Transition Contract
+
+User commands such as:
+
+```text
+Continue
+Next
+Next Step
+Proceed
+进入下一阶段
+下一步
+继续
+```
+
+must not directly advance lifecycle.
+
+Required transition flow:
+
+```text
+Read PROJECT_STATE.md
+↓
+Determine current stage
+↓
+Verify current stage completion
+↓
+Verify required artifacts
+↓
+Verify required commits
+↓
+Decide BLOCKED, EXECUTE_NEXT_ACTION, or ALLOW_TRANSITION
+↓
+Update PROJECT_STATE.md and route documentation when repository state changes
+```
+
+If `PROJECT_STATE.md` is missing, the transition decision is:
+
+```text
+BLOCKED
+```
+
+### Commit-Gated Lifecycle
+
+SAPDP adopts:
+
+```text
+No Commit
+↓
+No Transition
+```
+
+Stage Complete requires all of:
+
+```text
+Artifact Exists
+Artifact Validation Pass
+PROJECT_STATE.md Updated
+Commit Exists
+Commit URL Available when a remote exists
+```
+
+A commit alone is insufficient.
+
+Uncommitted artifacts, runtime-only artifacts, assistant messages, and conversation history do not satisfy stage completion.
 
 ---
 
@@ -921,7 +1243,7 @@ Lifecycle Closure Rules
 Protocol release governance is owned by:
 
 ```text
-engine/SAPDP_CANONICAL_PROTOCOL.md
+[SAPDP_CANONICAL_PROTOCOL.md](./SAPDP_CANONICAL_PROTOCOL.md)
 ```
 
 ---
@@ -951,7 +1273,7 @@ Product Bootstrap behavior
 Product workflow handoff, Git audit source, and token budget rules are owned by:
 
 ```text
-engine/SAPDP_CANONICAL_PROTOCOL.md
+[SAPDP_CANONICAL_PROTOCOL.md](./SAPDP_CANONICAL_PROTOCOL.md)
 ```
 
 ---
@@ -1050,7 +1372,7 @@ Protocol Evolution mode must not invoke product Bootstrap.
 Protocol Evolution governance is owned by:
 
 ```text
-engine/SAPDP_CANONICAL_PROTOCOL.md
+[SAPDP_CANONICAL_PROTOCOL.md](./SAPDP_CANONICAL_PROTOCOL.md)
 ```
 
 ---
@@ -1138,7 +1460,7 @@ SAPDP_DECISION_LOG.md
 Lifecycle runtime state is maintained by:
 
 ```text
-SAPDP_BOOTSTRAP.md
+PROJECT_STATE.md
 ```
 
 No other SAPDP document may redefine Lifecycle rules.
@@ -1300,9 +1622,17 @@ Lifecycle Progress
 
 ○ Solution
 
+○ Product Requirement
+
 ○ Product Representation
 
-○ MVP Scope
+○ UX Specification
+
+○ Visual Design Specification
+
+○ MVP Definition
+
+○ Task Package
 
 ○ Build
 
