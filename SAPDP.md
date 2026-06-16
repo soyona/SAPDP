@@ -1,4 +1,4 @@
-# SAPDP v2.1.0 Protocol
+# SAPDP v2.2.0 Protocol
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
@@ -123,6 +123,13 @@ State recovery reads:
 - `ROUTE_MANIFEST.md` and latest Route Card for route recovery.
 - Bootstrap handoff artifacts for initial Problem-stage entry.
 
+Stage Readiness Gate:
+- Mandatory before every lifecycle transition.
+- `ROUTE_MANIFEST.md` proposes the next stage only; it does not authorize transition.
+- Generic progression commands, including `请进入下一步`, `请继续`, `下一步`, `继续`, `Next`, `Continue`, `Go on`, and `Proceed`, request transition evaluation and must trigger this gate.
+- Required artifacts, required commits, and required Human decisions must exist before PASS.
+- FAIL returns `BLOCKED` and must not auto-transition or auto-generate the proposed next-stage artifact.
+
 Next action recovery returns one executable action or one blocker. A minimal lifecycle progress display may be used to show current stage and inactive stages, but it must not replace runtime state.
 
 ## 5. Human-AI Handoff
@@ -146,6 +153,8 @@ Route Card is the required stage-completion handoff. It contains:
 - One executable action
 - Optional startup prompt
 - Audit source when needed
+
+`ROUTE_MANIFEST.md` and Route Cards may propose the next stage and action only. They are routing inputs, not lifecycle transition authority.
 
 ChatGPT to Codex handoff must be compact and executable:
 - Repo
@@ -192,6 +201,8 @@ Rollback rules:
 
 Stage definitions must declare objective, inputs, outputs, owner, exit criteria, and completion action. Lifecycle progression is commit-gated: no committed, validated stage output means no transition.
 
+Lifecycle transition requires Runtime State + Route Manifest + Stage Readiness Gate PASS. Continue Lifecycle must return `BLOCKED` when required artifacts, commits, decisions, or readiness are missing. If readiness PASS, return the next executable action; generate the next artifact only when the Human request clearly asks execution.
+
 ## 7. Artifacts
 
 Coverage: CAP-026, CAP-028, CAP-039.
@@ -205,7 +216,15 @@ Product Shape layer:
 - Visual Design Specification when required
 - Technical Constraint when needed
 
-UX Specification is mandatory. Visual Design Specification is mandatory for experience products and optional for functional products unless the Human requires it. MVP Definition and Build must not proceed without required Product Shape artifacts.
+UX Specification is mandatory. Missing `UXSpecification_CORE_v1.md` blocks MVP Definition and Build.
+
+Visual Design Specification readiness:
+- Missing `VisualDesignSpecification_CORE_v1.md` blocks transition for Experience Product.
+- Missing `VisualDesignSpecification_CORE_v1.md` blocks transition when the Human explicitly requires visual quality, UI design, brand style, or visual consistency.
+- Visual Design Specification is optional for Functional Product unless visual quality is release-critical.
+- Unknown product type returns `BLOCKED` when product type is required to decide visual design applicability.
+
+MVP Definition and Build must not proceed without required Product Shape artifacts.
 
 Distilled problem constraints from prior research may define artifact boundaries, but full historical research records are not runtime inputs.
 
@@ -296,7 +315,11 @@ Normal operation:
 Continue and Next-style commands must return only one `NEXT_ACTION`:
 - `CODEX_UPDATE <file/path> <purpose>`
 - `HUMAN_INPUT <missing decision or content>`
-- `BLOCKED <missing artifact / missing commit / invalid state>`
+- `BLOCKED <missing artifact / missing decision / missing commit / invalid state / readiness failed>`
 - `TRANSITION <next stage>`
+
+Generic natural language progression commands request Stage Readiness Gate evaluation only; they do not bypass readiness or authorize transition.
+
+After lifecycle stage results, SAPDP should provide one compact suggested next prompt for the Human when useful.
 
 Task packages, Codex returns, audits, route cards, and release handoffs must use compact formats and prefer paths, commit URLs, and artifact references over pasted document bodies.
