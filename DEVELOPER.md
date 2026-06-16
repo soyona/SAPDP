@@ -395,13 +395,13 @@ Final Output Format
 
 The Codex command must be sufficient for Codex Upgrade without pasted protocol history or duplicated lifecycle theory.
 
-Codex Upgrade must return minimal Git URL evidence for Release Audit.
+Codex Upgrade must return the Git Commit URL only for Release Audit.
 
 ---
 
-# Minimal Protocol Release Audit Handoff
+# Git-Native Protocol Release Audit
 
-SAPDP protocol upgrade releases require a remote audit handoff before PASS.
+SAPDP protocol upgrade releases require remote Git evidence before PASS.
 
 Scope:
 
@@ -426,30 +426,20 @@ Codex may report protocol release PASS only after:
 ```text
 Changes are committed
 
-Commit is pushed to remote main
-
-Version tag is created
-
-Tag is pushed to remote
-
 Remote commit is verified on remote main
 
-Remote tag is verified on remote
-
-Final output includes Commit URL and Tag URL
+Final output includes Commit URL only
 ```
 
 ChatGPT Release Audit input must use:
 
 ```text
 Commit URL
-
-Tag URL
 ```
 
 Human paste of changed files is fallback only.
 
-If the remote commit or remote tag cannot be verified, the final protocol release result must be:
+If the remote commit cannot be verified, the protocol release must be treated as:
 
 ```text
 PATCH REQUIRED
@@ -470,22 +460,7 @@ PASS
 Required final protocol release output format:
 
 ```text
-Protocol Release Audit Handoff
-
-Version:
-vX.Y.Z
-
-Commit URL:
 https://github.com/soyona/SAPDP/commit/<sha>
-
-Tag URL:
-https://github.com/soyona/SAPDP/releases/tag/vX.Y.Z
-
-Files Changed:
-<n>
-
-Release Result:
-PASS / PATCH REQUIRED / FAIL
 ```
 
 Final protocol release output must not repeat:
@@ -532,33 +507,15 @@ Acceptance:
 
 Output:
 Commit URL
-Tests
-Result
 ```
 
-Codex product implementation completion must use:
+Codex product implementation completion must return the Git Commit URL only when a remote commit URL exists:
 
 ```text
-Codex Completion Handoff
-
-Project:
-<name>
-
-Commit URL:
 <url>
-
-Changed:
-<n>
-
-Tests:
-PASS / FAIL / NOT RUN
-
-Result:
-PASS / PATCH REQUIRED / FAIL
-
-ChatGPT Audit:
-<Commit URL>
 ```
+
+If no remote exists, Codex returns the local commit SHA and exact push instructions. Execution summaries, changed-file lists, test summaries, and audit handoff packages are optional diagnostics, not required handoff fields.
 
 Every stage completion must output one Route Card:
 

@@ -90,35 +90,19 @@ ImplementationVerification_CORE_v1.md and Build commit URL
 
 ---
 
-# Codex Completion Handoff Input
+# Git-Native Completion Input
 
-Codex implementation completion must provide:
+Codex implementation completion must provide the Git Commit URL only when a remote commit URL exists:
 
 ```text
-Codex Completion Handoff
-
-Project:
-<name>
-
-Commit URL:
 <url>
-
-Changed:
-<n>
-
-Tests:
-PASS / FAIL / NOT RUN
-
-Result:
-PASS / PATCH REQUIRED / FAIL
-
-ChatGPT Audit:
-<Commit URL>
 ```
 
 If origin is missing, Codex must provide the local commit SHA and exact push commands instead of Commit URL.
 
-Implementation Verification must use Commit URL before asking the Human to paste files.
+Implementation Verification must use the Commit URL as the audit input before asking the Human to paste files.
+
+Audit handoff packages, execution summaries, changed-file lists, and test summaries are not required completion inputs.
 
 ---
 

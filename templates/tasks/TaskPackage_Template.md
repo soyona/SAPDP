@@ -50,8 +50,6 @@ Acceptance:
 
 Output:
 Commit URL
-Tests
-Result
 ```
 
 ---
@@ -105,8 +103,6 @@ Audit:
 
 Expected output:
 Commit URL
-Tests
-Result
 ```
 
 ---
@@ -120,7 +116,8 @@ Result
 - Do not request broad implementation beyond current stage scope.
 - Scope must include both required work and explicit non-goals.
 - Acceptance must contain 3 to 7 concrete checks.
-- Output must require Commit URL, Tests, and Result.
+- Output must require Commit URL only when a remote commit URL exists.
+- Tests, result summaries, changed-file lists, and execution summaries are optional diagnostics, not required handoff fields.
 - The Route Card must identify Codex workspace, source artifact or commit URL, minimal Codex startup instruction, and expected output.
 
 ---
@@ -148,8 +145,6 @@ Acceptance:
 
 Output:
 Commit URL
-Tests
-Result
 ```
 
 ---

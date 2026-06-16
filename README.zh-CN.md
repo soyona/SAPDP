@@ -271,25 +271,10 @@ FAIL
 必需最终输出：
 
 ```text
-Protocol Release Audit Handoff
-
-Version:
-vX.Y.Z
-
-Commit URL:
 https://github.com/soyona/SAPDP/commit/<sha>
-
-Tag URL:
-https://github.com/soyona/SAPDP/releases/tag/vX.Y.Z
-
-Files Changed:
-<n>
-
-Release Result:
-PASS / PATCH REQUIRED / FAIL
 ```
 
-最终输出不得重复 Repository、Branch、Commit SHA、Tag、remote verification、validation checklist 或 git execution logs。
+最终输出不得重复 Repository、Branch、Commit SHA、Tag、remote verification、validation checklist、execution summary 或 git execution logs。
 
 ---
 
@@ -352,28 +337,10 @@ ChatGPT owns route consumption.
 
 ROUTE_MANIFEST.md 不替代 Route Card、PROJECT_BOOTSTRAP.md 或 ARTIFACT_INDEX.md。
 
-Codex 完成产品实现任务后的最终输出必须使用：
+Codex 完成产品实现任务后的最终输出必须只返回远程 Commit URL：
 
 ```text
-Codex Completion Handoff
-
-Project:
-<name>
-
-Commit URL:
 <url>
-
-Changed:
-<n>
-
-Tests:
-PASS / FAIL / NOT RUN
-
-Result:
-PASS / PATCH REQUIRED / FAIL
-
-ChatGPT Audit:
-<Commit URL>
 ```
 
 有 origin remote 时 Commit URL 必填。

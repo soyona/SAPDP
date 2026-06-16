@@ -1,4 +1,4 @@
-# SAPDP v2 Protocol
+# SAPDP v2.1.0 Protocol
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
@@ -12,15 +12,62 @@ Runtime constraints:
 
 Coverage: CAP-001, CAP-040.
 
+Default startup format:
+
+```text
+SAPDP
+
+Goal: <goal>
+```
+
+Examples:
+
+```text
+SAPDP
+
+Goal:
+Build Student Typing Practice
+```
+
+```text
+SAPDP
+
+Goal:
+Continue TOBY
+```
+
+```text
+SAPDP
+
+Goal:
+Upgrade SAPDP
+```
+
 SAPDP starts in one of two modes:
 - Product Development mode initializes or resumes a product workspace.
 - Protocol Evolution mode starts or resumes a protocol upgrade route.
 
-Invocation input may include:
-- Protocol source
-- Protocol version
+Startup routing rules:
+- Goal starts with `Build` -> Bootstrap.
+- Goal starts with `Continue` -> Continue Lifecycle.
+- Goal starts with `Upgrade SAPDP` -> Protocol Evolution.
+
+Routing uses the normalized first words of `Goal`, after trimming whitespace. If no routing rule matches, request one Human clarification instead of inferring a route.
+
+Internal protocol metadata:
+- Protocol Repo
+- Protocol Version
+- Protocol Entry
+
+Users are not required to provide internal protocol metadata. Runtime tooling may resolve, pin, and record these fields as internal protocol state.
+
+Backward-compatible invocation input may include:
+- Protocol Repo
+- Protocol Version
+- Protocol Entry
 - Project name
 - Mode
+- Action
 
 If mode is omitted, use Product Development mode. The v2 entry contract must state the protocol purpose, product scope, non-goals, and operating unit in concise terms before execution begins.
 
@@ -70,6 +117,14 @@ Coverage: CAP-019, CAP-021, CAP-022, CAP-023, CAP-024.
 
 SAPDP uses explicit handoffs among Human, ChatGPT, Codex, and Git.
 
+Git-native handoff is the default execution contract:
+- ChatGPT Design -> Codex Execute -> Git Commit -> Return Commit URL -> ChatGPT Audit.
+- Execution Result = Git Commit.
+- Audit Input = Git Commit URL.
+- Git is the single source of truth for audit.
+- Codex final output after committed execution must be the Commit URL only when a remote commit URL exists.
+- Audit handoff packages and execution summaries are not required.
+
 Route Card is the required stage-completion handoff. It contains:
 - Current stage, environment, project, and session
 - Completed artifact, result, or commit
@@ -86,11 +141,9 @@ ChatGPT to Codex handoff must be compact and executable:
 - Required return format
 
 Codex to ChatGPT handoff must return:
-- Result
-- Changed files
-- Commit or local commit fallback
-- Updated state summary
-- One blocker if failed
+- Commit URL only when a remote commit URL exists.
+- Local commit SHA and exact push instructions only when no remote exists.
+- One blocker only when no commit can be created.
 
 ChatGPT stages normally continue in the current product-bound session unless context size requires a new session. Bootstrap to Problem uses a new product-bound session by default. Human and Git exception paths must state the required Human or Git action explicitly.
 
@@ -172,10 +225,12 @@ Coverage: CAP-035.
 Verification and validation must prefer committed Git evidence over pasted files or runtime-only output.
 
 Rules:
-- ChatGPT audits committed repository state when a commit exists.
+- ChatGPT audits the Git Commit URL when a remote commit exists.
 - Codex must commit completed implementation work.
 - If a remote exists, Codex pushes and returns a commit URL.
 - If no remote exists, Codex returns local commit SHA and exact push instructions.
+- Commit URL is the only required audit input for committed remote execution.
+- Execution summaries, audit handoff packages, changed-file lists, and test summaries are optional diagnostics, not required handoff fields.
 - Runtime-only artifacts do not satisfy verification.
 
 Implementation Verification checks implementation against approved artifacts and constraints. User Validation checks whether the product creates value for intended users.
