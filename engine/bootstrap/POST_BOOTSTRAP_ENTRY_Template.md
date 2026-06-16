@@ -34,6 +34,15 @@ Route
 Current:
 Bootstrap · Codex · <PROJECT_NAME>
 
+Detected Protocol Version:
+<RESOLVED_PROTOCOL_VERSION>
+
+Latest Stable Version:
+<LATEST_STABLE_VERSION>
+
+Protocol Source:
+GitHub URL
+
 Done:
 <remote product commit URL>
 
@@ -46,6 +55,12 @@ Create ProblemDefinition_CORE_v1.md
 Start:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
+
+Protocol Version:
+<RESOLVED_PROTOCOL_VERSION>
+
+Latest Stable Version:
+<LATEST_STABLE_VERSION>
 
 Audit product commit:
 <remote product commit URL>
@@ -142,6 +157,15 @@ Route
 Current:
 Bootstrap · Codex · <PROJECT_NAME>
 
+Detected Protocol Version:
+<RESOLVED_PROTOCOL_VERSION>
+
+Latest Stable Version:
+<LATEST_STABLE_VERSION>
+
+Protocol Source:
+GitHub URL
+
 Done:
 <remote product commit URL>
 
@@ -154,6 +178,12 @@ Create ProblemDefinition_CORE_v1.md
 Start:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
+
+Protocol Version:
+<RESOLVED_PROTOCOL_VERSION>
+
+Latest Stable Version:
+<LATEST_STABLE_VERSION>
 
 Audit product commit:
 <remote product commit URL>

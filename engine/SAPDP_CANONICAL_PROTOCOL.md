@@ -10,8 +10,8 @@
 | Scope      | Global                       |
 | Owner      | SAPDP                        |
 | Versioning | Git Managed                  |
-| Current Protocol Version | v1.6.3             |
-| Latest Stable Version | v1.6.3                |
+| Current Protocol Version | v1.6.4             |
+| Latest Stable Version | v1.6.4                |
 
 ---
 
@@ -398,22 +398,34 @@ Exploration Products
 Community Products
 ```
 
-## v1.6.3 Protocol Version Visibility
+## v1.6.4 Protocol Version Standardization
 
 Protocol Load Output must include:
 
 ```text
 Protocol Version
+Latest Stable Version
+Protocol Source
 Current Stage
 State Source
 Next Action
 ```
 
-Default behavior:
+Version resolution:
 
 ```text
-Use latest stable version unless explicitly pinned.
+Latest Stable Version = highest semantic tag in Git.
+If Protocol Version is omitted, resolve to Latest Stable Version.
+If Protocol Version is `latest`, resolve to Latest Stable Version.
+If Protocol Version is specified as a tag, pin that exact tag.
+`latest` must resolve to a concrete tag at runtime before execution continues.
 ```
+
+Protocol Version in `PROJECT_STATE.md` is authoritative state.
+
+ChatGPT and Codex must both display the resolved Protocol Version.
+
+Version mismatch between docs or state files means BLOCKED.
 
 Protocol Release Audit must use remotely verifiable Git state.
 
@@ -2172,6 +2184,10 @@ Project Name
 
 Protocol Version
 
+Latest Stable Version
+
+Protocol Source
+
 Current Lifecycle Stage
 
 Current Artifact
@@ -2277,6 +2293,63 @@ according to project needs.
 
 ---
 
+## Resolve Protocol Version
+
+Bootstrap must resolve:
+
+```text
+Protocol Version
+Latest Stable Version
+Protocol Source
+```
+
+before creating project state.
+
+If Protocol Version is omitted:
+
+```text
+Resolve to Latest Stable Version.
+```
+
+If Protocol Version is:
+
+```text
+latest
+```
+
+resolve to Latest Stable Version.
+
+Latest Stable Version is:
+
+```text
+Highest semantic tag in Git.
+```
+
+If Protocol Version is specified as a concrete tag, Bootstrap must pin that exact tag.
+
+`latest` must not be written as authoritative project state.
+
+`PROJECT_STATE.md` must write the resolved concrete Protocol Version.
+
+Bootstrap must display:
+
+```text
+Detected Protocol Version:
+<resolved version>
+
+Latest Stable Version:
+<repo latest tag>
+
+Protocol Source:
+GitHub URL
+```
+
+ChatGPT and Codex must both display the resolved Protocol Version.
+
+Version mismatch between docs, `PROJECT_STATE.md`, `PROJECT_BOOTSTRAP.md`, `BOOTSTRAP_RESULT.md`, or `POST_BOOTSTRAP_ENTRY.md` means Bootstrap is BLOCKED.
+
+---
+
 ## Bootstrap Validation
 
 Project Bootstrap is complete only when:
@@ -2295,6 +2368,14 @@ PROJECT_BOOTSTRAP.md Exists
 ARTIFACT_INDEX.md Exists
 
 Required Protocol Sources Resolved
+
+Protocol Version resolved to a concrete tag
+
+Detected Protocol Version displayed
+
+Latest Stable Version displayed
+
+Protocol Source displayed
 
 Required .gitkeep scaffold persistence files exist
 
@@ -2328,6 +2409,9 @@ POST_BOOTSTRAP_ENTRY.md
 
 Bootstrap output must include:
 
+Detected Protocol Version
+Latest Stable Version
+Protocol Source
 Route Card
 Current stage/environment/project/session
 Done commit or result

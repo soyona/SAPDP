@@ -1,18 +1,37 @@
 # SAPDP Bootstrap
 
 Current Protocol Version:
-v1.6.3
+v1.6.4
 
 Latest Stable Version:
-v1.6.3
+v1.6.4
 
 Version Detection Rules:
 
 ```text
-Use latest stable version unless explicitly pinned.
-Protocol Load Output must include Protocol Version, Current Stage, State Source, and Next Action.
+Latest Stable Version = highest semantic tag in Git.
+If Protocol Version is omitted, resolve to Latest Stable Version.
+If Protocol Version is `latest`, resolve to Latest Stable Version.
+If Protocol Version is specified as a tag, pin that exact tag.
+`latest` must resolve to a concrete tag at runtime before execution continues.
+Protocol Load Output must include Protocol Version, Latest Stable Version, Protocol Source, Current Stage, State Source, and Next Action.
+ChatGPT and Codex must both display the resolved Protocol Version.
 State Source is PROJECT_STATE.md.
 Missing PROJECT_STATE.md means BLOCKED.
+Version mismatch between docs or state files means BLOCKED.
+```
+
+Bootstrap Version Detection Output:
+
+```text
+Detected Protocol Version:
+<resolved version>
+
+Latest Stable Version:
+<repo latest tag>
+
+Protocol Source:
+GitHub URL
 ```
 
 ## 1. 当前项目

@@ -136,6 +136,23 @@ Created
 
 ---
 
+## Protocol Version Visibility
+
+Detected Protocol Version:
+<RESOLVED_PROTOCOL_VERSION>
+
+Latest Stable Version:
+<LATEST_STABLE_VERSION>
+
+Protocol Source:
+GitHub URL
+
+`latest` must resolve to the concrete Detected Protocol Version before Bootstrap writes artifact state.
+
+Version mismatch between artifact index references and PROJECT_STATE.md means BLOCKED.
+
+---
+
 ## Authority
 
 ARTIFACT_INDEX.md is the Artifact Discovery Authority.

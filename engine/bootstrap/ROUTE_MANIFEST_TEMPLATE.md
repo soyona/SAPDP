@@ -31,6 +31,12 @@ Current Route
 
 Next Route
 
+Detected Protocol Version
+
+Latest Stable Version
+
+Protocol Source
+
 Artifact Routing Blocks
 
 Route Audit Source
@@ -104,6 +110,15 @@ Human may inspect or approve routing decisions but does not manually maintain RO
 Current:
 Bootstrap · Codex · <PROJECT_NAME>
 
+Detected Protocol Version:
+<RESOLVED_PROTOCOL_VERSION>
+
+Latest Stable Version:
+<LATEST_STABLE_VERSION>
+
+Protocol Source:
+GitHub URL
+
 Done:
 <remote product commit URL or local bootstrap artifact set>
 
@@ -116,6 +131,12 @@ Create ProblemDefinition_CORE_v1.md
 Start:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
+
+Protocol Version:
+<RESOLVED_PROTOCOL_VERSION>
+
+Latest Stable Version:
+<LATEST_STABLE_VERSION>
 
 Audit:
 <remote product commit URL or fallback local commit SHA>

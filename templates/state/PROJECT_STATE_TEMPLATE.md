@@ -4,7 +4,7 @@
 
 Authoritative lifecycle state for a SAPDP Product Repository.
 
-`PROJECT_STATE.md` owns current lifecycle stage, current artifact, stage status, next action, allowed transition, required artifacts, required commits, last verified commit, blocked reason, updater, and update time.
+`PROJECT_STATE.md` owns protocol version, latest stable version, protocol source, current lifecycle stage, current artifact, stage status, next action, allowed transition, required artifacts, required commits, last verified commit, blocked reason, updater, and update time.
 
 Conversation history is not authority.
 
@@ -26,7 +26,13 @@ Project Name:
 <PROJECT_NAME>
 
 Protocol Version:
-v1.6.3
+<RESOLVED_PROTOCOL_VERSION>
+
+Latest Stable Version:
+<LATEST_STABLE_VERSION>
+
+Protocol Source:
+https://github.com/soyona/SAPDP.git
 
 Current Stage:
 Problem
@@ -74,6 +80,14 @@ Updated At:
 ---
 
 ## Transition Review
+
+Protocol Version is authoritative state.
+
+`latest` must resolve to a concrete Git tag at runtime before `PROJECT_STATE.md` is written.
+
+ChatGPT and Codex must both display the resolved Protocol Version.
+
+Version mismatch between docs or state files means BLOCKED.
 
 Any request such as `Continue`, `Next`, `Next Step`, `Proceed`, `进入下一阶段`, `下一步`, or `继续` must:
 

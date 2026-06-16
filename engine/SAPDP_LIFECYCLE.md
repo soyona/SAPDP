@@ -583,6 +583,8 @@ Required fields:
 ```text
 Project Name
 Protocol Version
+Latest Stable Version
+Protocol Source
 Current Stage
 Current Artifact
 Stage Status

@@ -78,6 +78,16 @@ Human may give Codex the following command:
 
     Use Project Name if provided.
 
+    Use Protocol Version if provided.
+
+    If Protocol Version is omitted, resolve to latest.
+
+    Resolve latest to the highest semantic Git tag before writing state.
+
+    Pin exact tag if Protocol Version is specified.
+
+    Display Detected Protocol Version, Latest Stable Version, and Protocol Source.
+
     Resolve Project Root from Project Name only.
 
     Do not create product artifacts.
@@ -327,6 +337,15 @@ Project Root:
 Working Directory:
 <absolute working directory>
 
+Detected Protocol Version:
+<resolved version>
+
+Latest Stable Version:
+<repo latest tag>
+
+Protocol Source:
+GitHub URL
+
 Local Bootstrap Result:
 LOCAL_BOOTSTRAP_PASS or LOCAL_BOOTSTRAP_FAIL
 
@@ -352,6 +371,12 @@ NEW
 Startup:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
+
+Protocol Version:
+<resolved version>
+
+Latest Stable Version:
+<repo latest tag>
 
 Audit product commit:
 <remote product commit URL>
@@ -415,6 +440,12 @@ NEW
 Startup:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
+
+Protocol Version:
+<resolved version>
+
+Latest Stable Version:
+<repo latest tag>
 
 Audit product commit:
 <remote product commit URL>

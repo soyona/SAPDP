@@ -22,22 +22,28 @@ Project Name:
 SAPDP
 
 Protocol Version:
-v1.6.3
+v1.6.4
+
+Latest Stable Version:
+v1.6.4
+
+Protocol Source:
+https://github.com/soyona/SAPDP.git
 
 Current Stage:
-Protocol Evolution Hotfix
+Protocol Evolution
 
 Current Artifact:
-v1.6.3 lifecycle consistency hotfix
+v1.6.4 Protocol Version Standardization and Bootstrap Version Transparency
 
 Stage Status:
 IN_PROGRESS
 
 Next Action:
-Commit hotfix and return Commit URL for ChatGPT audit.
+Commit protocol version standardization and return Commit URL for ChatGPT audit.
 
 Allowed Transition:
-None until hotfix commit exists and remote Commit URL is available.
+None until v1.6.4 commit exists and remote Commit URL is available.
 
 Required Artifacts:
 
@@ -54,13 +60,13 @@ Required Artifacts:
 
 Required Commits:
 
-- Hotfix v1.6.3 lifecycle consistency and state template references
+- SAPDP v1.6.4 Protocol Version Standardization and Bootstrap Version Transparency
 
 Last Verified Commit:
 Pending
 
 Blocked Reason:
-Pending hotfix commit and remote verification.
+Pending v1.6.4 commit and remote verification.
 
 Updated By:
 Codex
@@ -75,5 +81,13 @@ Updated At:
 Missing `PROJECT_STATE.md` means lifecycle transition is BLOCKED.
 
 New sessions must load `PROJECT_STATE.md` before deciding stage, next action, or transition permission.
+
+Protocol Version in `PROJECT_STATE.md` is authoritative state.
+
+`latest` must resolve to a concrete Git tag at runtime before execution continues.
+
+ChatGPT and Codex must both display the resolved Protocol Version.
+
+Version mismatch between docs or state files means BLOCKED.
 
 Commands such as `Continue`, `Next`, `Next Step`, `Proceed`, `进入下一阶段`, `下一步`, and `继续` must invoke the Transition Contract before any stage transition.

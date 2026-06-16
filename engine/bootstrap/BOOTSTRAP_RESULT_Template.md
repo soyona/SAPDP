@@ -52,6 +52,15 @@ Route
 Current:
 Bootstrap · Codex · <PROJECT_NAME>
 
+Detected Protocol Version:
+<RESOLVED_PROTOCOL_VERSION>
+
+Latest Stable Version:
+<LATEST_STABLE_VERSION>
+
+Protocol Source:
+GitHub URL
+
 Done:
 <remote product commit URL>
 
@@ -103,6 +112,15 @@ Project Root:
 Working Directory:
 <WORKING_DIRECTORY>
 
+Detected Protocol Version:
+<RESOLVED_PROTOCOL_VERSION>
+
+Latest Stable Version:
+<LATEST_STABLE_VERSION>
+
+Protocol Source:
+GitHub URL
+
 Local Bootstrap Result:
 <LOCAL_BOOTSTRAP_PASS | LOCAL_BOOTSTRAP_FAIL>
 
@@ -142,6 +160,12 @@ Commit URL:
 Startup:
 Load SAPDP from:
 https://github.com/soyona/SAPDP
+
+Protocol Version:
+<RESOLVED_PROTOCOL_VERSION>
+
+Latest Stable Version:
+<LATEST_STABLE_VERSION>
 
 Audit product commit:
 <remote product commit URL>
@@ -211,6 +235,15 @@ Route
 
 Current:
 Bootstrap · Codex · <PROJECT_NAME>
+
+Detected Protocol Version:
+<RESOLVED_PROTOCOL_VERSION>
+
+Latest Stable Version:
+<LATEST_STABLE_VERSION>
+
+Protocol Source:
+GitHub URL
 
 Done:
 <remote product commit URL>

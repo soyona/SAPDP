@@ -262,6 +262,12 @@ Bootstrap must verify:
 ```
 Protocol Version
 
+Detected Protocol Version
+
+Latest Stable Version
+
+Protocol Source
+
 Bootstrap Version
 
 Bootstrap Contract Version
@@ -274,6 +280,18 @@ Version compatibility rules are defined by:
 ```
 bootstrap/bootstrap_manifest.json
 ```
+
+If Protocol Version is omitted, Bootstrap must resolve to Latest Stable Version.
+
+If Protocol Version is `latest`, Bootstrap must resolve to Latest Stable Version.
+
+Latest Stable Version is the highest semantic tag in Git.
+
+If Protocol Version is specified as a tag, Bootstrap must pin that exact tag.
+
+`latest` must not be written as the authoritative Protocol Version.
+
+PROJECT_STATE.md, PROJECT_BOOTSTRAP.md, BOOTSTRAP_RESULT.md, and POST_BOOTSTRAP_ENTRY.md must display the same resolved Protocol Version.
 
 Bootstrap must stop if version compatibility requirements are not satisfied.
 
@@ -524,6 +542,12 @@ SAPDP Source
 SAPDP Source Commit Hash
 
 Protocol Version
+
+Detected Protocol Version
+
+Latest Stable Version
+
+Protocol Source
 
 Lifecycle State Authority
 

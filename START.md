@@ -3,24 +3,43 @@
 [START.md](./START.md) is the entry document only.
 
 Current Protocol Version:
-v1.6.3
+v1.6.4
 
 Latest Stable Version:
-v1.6.3
+v1.6.4
 
 Version Detection Rules:
 
 ```text
-Use latest stable version unless explicitly pinned.
-Protocol Load Output must include Protocol Version, Current Stage, State Source, and Next Action.
+Latest Stable Version = highest semantic tag in Git.
+If Protocol Version is omitted, resolve to Latest Stable Version.
+If Protocol Version is `latest`, resolve to Latest Stable Version.
+If Protocol Version is specified as a tag, pin that exact tag.
+`latest` must resolve to a concrete tag at runtime before execution continues.
+Protocol Load Output must include Protocol Version, Latest Stable Version, Protocol Source, Current Stage, State Source, and Next Action.
+ChatGPT and Codex must both display the resolved Protocol Version.
 State Source is PROJECT_STATE.md.
 Missing PROJECT_STATE.md means BLOCKED.
+Version mismatch between docs or state files means BLOCKED.
 ```
 
 Transition Review Rule:
 
 ```text
 Continue, Next, Next Step, Proceed, 进入下一阶段, 下一步, and 继续 must read PROJECT_STATE.md, run Transition Review, execute the authoritative Next Action, or block transition.
+```
+
+Bootstrap Version Detection Output:
+
+```text
+Detected Protocol Version:
+<resolved version>
+
+Latest Stable Version:
+<repo latest tag>
+
+Protocol Source:
+GitHub URL
 ```
 
 It tells a Human or AI where to begin. It does not own governance rules, workflow rules, lifecycle definitions, protocol implementation details, or status models.
@@ -45,8 +64,20 @@ Initialize a new project using SAPDP.
 Protocol:
 https://github.com/soyona/SAPDP.git
 
+Protocol Version:
+latest
+
 Project Name:
 <ProjectName>
+```
+
+If Protocol Version is omitted, SAPDP resolves it to Latest Stable Version.
+
+If Protocol Version is specified, SAPDP pins that exact tag, such as:
+
+```text
+Protocol Version:
+v1.6.3
 ```
 
 If Project Name is omitted, SAPDP uses:

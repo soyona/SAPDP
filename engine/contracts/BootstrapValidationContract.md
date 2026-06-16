@@ -271,6 +271,12 @@ Create ProblemDefinition_CORE_v1.md.
 Protocol Snapshot exists.
 SAPDP Source Commit Hash exists.
 Protocol Version exists.
+Detected Protocol Version exists.
+Latest Stable Version exists.
+Protocol Source exists.
+Protocol Version resolves to a concrete Git tag.
+Protocol Version is not `latest`.
+Protocol Version matches across PROJECT_STATE.md, PROJECT_BOOTSTRAP.md, BOOTSTRAP_RESULT.md, and POST_BOOTSTRAP_ENTRY.md.
 ```
 
 ### Runtime Validation

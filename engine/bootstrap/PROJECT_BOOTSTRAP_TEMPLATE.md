@@ -14,6 +14,12 @@ Template for Bootstrap metadata in a SAPDP Product Repository.
 
 Project Name: <PRODUCT_NAME>
 
+Detected Protocol Version: <RESOLVED_PROTOCOL_VERSION>
+
+Latest Stable Version: <LATEST_STABLE_VERSION>
+
+Protocol Source: https://github.com/soyona/SAPDP.git
+
 Bootstrap Status: PASS
 
 Current Lifecycle Stage: Problem
@@ -44,6 +50,12 @@ PROJECT_STATE.md is the Lifecycle State Authority.
 PROJECT_BOOTSTRAP.md is the Bootstrap Metadata Authority.
 
 Other Bootstrap artifacts must not redefine lifecycle state values.
+
+Protocol Version must match PROJECT_STATE.md.
+
+`latest` must not be persisted as the resolved Protocol Version.
+
+Version mismatch between Bootstrap metadata and PROJECT_STATE.md means BLOCKED.
 
 ROUTE_MANIFEST.md is the Route Manifest Authority.
 
