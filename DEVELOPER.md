@@ -426,7 +426,13 @@ Codex may report protocol release PASS only after:
 ```text
 Changes are committed
 
+Version tag is created
+
+Version tag is pushed to remote
+
 Remote commit is verified on remote main
+
+Remote tag is verified from Git
 
 Final output includes Commit URL only
 ```
@@ -439,7 +445,7 @@ Commit URL
 
 Human paste of changed files is fallback only.
 
-If the remote commit cannot be verified, the protocol release must be treated as:
+If the remote commit or remote version tag cannot be verified, the protocol release must be treated as:
 
 ```text
 PATCH REQUIRED

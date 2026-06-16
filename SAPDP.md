@@ -245,7 +245,8 @@ Protocol release PASS requires remotely verifiable Git evidence:
 - Release commit exists remotely.
 - Release tag exists remotely.
 - Commit URL is provided.
-- Tag URL is provided.
+- Tag URL is not required as Human handoff input.
+- ChatGPT may verify the release tag directly from Git during Release Audit.
 
 If required remote evidence cannot be verified, protocol release result must not be PASS.
 
