@@ -1,4 +1,4 @@
-# SAPDP v2.3.0 Protocol
+# SAPDP v2.3.1 Protocol
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
@@ -289,10 +289,16 @@ Protocol Release Audit PASS AND FROZEN is the freeze authority for protocol rele
 - Remote Commit URL exists.
 - Commit is verifiable from GitHub.
 - Version is updated correctly.
+- Version tag is created and verifiable from GitHub.
 - Changes match Design Freeze.
 - No blocker remains.
 
-Commit URL is sufficient minimum Git-native evidence. Tag URL, Git tag, and GitHub Release are not required as minimum solo Git-native evidence.
+Simple Sequential Version Policy:
+- Every protocol release must create a new tag.
+- Release Audit PASS results in a sequential version increment.
+- The latest tag represents the latest protocol authority.
+
+Commit URL and Tag URL are required minimum Git-native evidence for protocol releases. GitHub Release is not required as minimum solo Git-native evidence.
 
 If required remote evidence cannot be verified, protocol release result must be PATCH REQUIRED, not PASS AND FROZEN.
 

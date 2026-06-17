@@ -451,13 +451,15 @@ Remote commit is verified on remote main
 
 Remote tag is verified from Git
 
-Final output includes Commit URL only
+Final output includes Commit URL and Tag URL
 ```
 
 ChatGPT Release Audit input must use:
 
 ```text
 Commit URL
+
+Tag URL
 ```
 
 Human paste of changed files is fallback only.
@@ -484,6 +486,7 @@ Required final protocol release output format:
 
 ```text
 https://github.com/soyona/SAPDP/commit/<sha>
+https://github.com/soyona/SAPDP/releases/tag/<tag>
 ```
 
 Final protocol release output must not repeat:
@@ -494,8 +497,6 @@ Repository
 Branch
 
 Commit SHA
-
-Tag
 
 Remote verification
 
