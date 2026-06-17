@@ -145,6 +145,34 @@ ProductRepresentation_CORE_v1.md
 
 ---
 
+# Reference Authorities
+
+Reference Authorities are not part of the Required Load Set.
+
+Load authority details on demand only when needed for Product Representation decisions.
+
+## Primary Authority
+
+Exactly 1.
+
+```text
+<PRIMARY_AUTHORITY_NAME> -> <REFERENCE_BEHAVIOR_OR_MODEL>
+```
+
+## Secondary Authorities
+
+1 to 3.
+
+```text
+<SECONDARY_AUTHORITY_NAME> -> <REFERENCE_BEHAVIOR_OR_MODEL>
+```
+
+## Authority Usage Boundary
+
+<AUTHORITY_USAGE_BOUNDARY>
+
+---
+
 # External Interfaces
 
 <EXTERNAL_INTERFACES>
@@ -179,6 +207,9 @@ A valid Product Representation must satisfy:
 - Core user flows identified
 - Functional domains identified
 - Information structure defined
+- Primary Authority defined
+- 1 to 3 Secondary Authorities defined
+- Reference Authorities treated as on-demand inputs only
 - Scope boundary defined
 - No UX specification included
 - No visual design included

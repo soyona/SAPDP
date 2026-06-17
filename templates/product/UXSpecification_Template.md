@@ -125,6 +125,30 @@ UXSpecification_CORE_v1.md
 
 ---
 
+# Authority Alignment
+
+Reference Authorities are not part of the Required Load Set.
+
+Load selected authority details on demand only when needed to align UX decisions.
+
+## Primary Authority Alignment
+
+<PRIMARY_AUTHORITY_UX_ALIGNMENT>
+
+## Secondary Authority Alignment
+
+<SECONDARY_AUTHORITY_UX_ALIGNMENT>
+
+## UX Decisions From Authorities
+
+<AUTHORITY_ALIGNED_UX_DECISIONS>
+
+## Authority UX Non-Goals
+
+<AUTHORITY_UX_NON_GOALS>
+
+---
+
 # Navigation Rules
 
 <NAVIGATION_RULES>
@@ -162,6 +186,7 @@ A valid UX Specification must satisfy:
 - User journeys defined
 - User flows defined
 - Interaction principles defined
+- Authority alignment defined
 - Navigation rules defined
 - Feedback rules defined
 - Error handling principles defined

@@ -102,6 +102,30 @@ VisualDesignSpecification_CORE_v1.md
 
 ---
 
+# Authority Alignment
+
+Reference Authorities are not part of the Required Load Set.
+
+Load selected authority details on demand only when needed to align visual design decisions.
+
+## Primary Authority Alignment
+
+<PRIMARY_AUTHORITY_VISUAL_ALIGNMENT>
+
+## Secondary Authority Alignment
+
+<SECONDARY_AUTHORITY_VISUAL_ALIGNMENT>
+
+## Visual Decisions From Authorities
+
+<AUTHORITY_ALIGNED_VISUAL_DECISIONS>
+
+## Authority Visual Non-Goals
+
+<AUTHORITY_VISUAL_NON_GOALS>
+
+---
+
 # Visual Style
 
 <VISUAL_STYLE>
@@ -162,6 +186,7 @@ A valid Visual Design Specification must satisfy:
 
 - Visual goals defined
 - Design principles defined
+- Authority alignment defined
 - Visual style defined
 - Color system defined
 - Typography system defined
