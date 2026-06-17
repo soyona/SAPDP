@@ -283,6 +283,8 @@ Version compatibility rules are defined by:
 bootstrap/bootstrap_manifest.json
 ```
 
+`SAPDP.md` is the single protocol version authority. Bootstrap compatibility metadata must derive the current protocol version from `SAPDP.md` or the resolved protocol Git ref.
+
 If Protocol Version is omitted, Bootstrap must load SAPDP from latest `origin/main`.
 
 If Protocol Version is `latest`, Bootstrap must load SAPDP from latest `origin/main`.
@@ -306,7 +308,7 @@ Bootstrap must write `Version Lock: true` after the protocol source ref resolves
 
 After Version Lock is true, normal operation must not re-resolve latest, output stale cached protocol source metadata, or repeat Detected Protocol Version.
 
-PROJECT_STATE.md, PROJECT_BOOTSTRAP.md, BOOTSTRAP_RESULT.md, and POST_BOOTSTRAP_ENTRY.md must display the same resolved Protocol Version.
+PROJECT_STATE.md, PROJECT_BOOTSTRAP.md, BOOTSTRAP_RESULT.md, and POST_BOOTSTRAP_ENTRY.md must display the same resolved Protocol Version derived from `SAPDP.md` or the resolved protocol Git ref.
 
 Bootstrap must stop if version compatibility requirements are not satisfied.
 

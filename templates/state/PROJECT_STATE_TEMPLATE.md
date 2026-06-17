@@ -4,7 +4,9 @@
 
 Authoritative lifecycle state for a SAPDP Product Repository.
 
-`PROJECT_STATE.md` owns protocol version, latest stable version, protocol source, current lifecycle stage, current artifact, stage status, next action, allowed transition, required artifacts, required commits, last verified commit, blocked reason, updater, and update time.
+`PROJECT_STATE.md` owns the resolved runtime protocol version record, latest stable version, protocol source, current lifecycle stage, current artifact, stage status, next action, allowed transition, required artifacts, required commits, last verified commit, blocked reason, updater, and update time.
+
+`SAPDP.md` is the single protocol version authority. `PROJECT_STATE.md` records the resolved version for a product repository; it does not independently define the protocol version.
 
 Conversation history is not authority.
 
@@ -84,7 +86,7 @@ Updated At:
 
 ## Transition Review
 
-Protocol Version is authoritative state.
+Protocol Version is authoritative runtime state after it is resolved from `SAPDP.md` or the resolved protocol Git ref.
 
 `latest` must resolve to a concrete Git tag at runtime before `PROJECT_STATE.md` is written.
 
@@ -96,7 +98,7 @@ Normal operation is compressed execution by default.
 
 Explanations are opt-in.
 
-Version mismatch between docs or state files means BLOCKED.
+Version mismatch between resolved runtime state files means BLOCKED.
 
 Any request such as `Continue`, `Next`, `Next Step`, `Proceed`, `进入下一阶段`, `下一步`, or `继续` must:
 

@@ -8,8 +8,11 @@ If you only want to start a new product project, use:
 
 [START.md](./START.md)
 
-Current Protocol Version:
-v1.6.4
+Current Protocol Version Authority:
+SAPDP.md
+
+Rule:
+The current protocol version is declared only by the first heading of SAPDP.md.
 
 Latest Protocol Source:
 origin/main
@@ -30,7 +33,7 @@ Bootstrap writes the resolved protocol source ref and Version Lock: true to PROJ
 After Version Lock: true, do not re-resolve latest during normal operation.
 State Source is PROJECT_STATE.md.
 Missing PROJECT_STATE.md means BLOCKED.
-Version mismatch between docs or state files means BLOCKED.
+Current protocol version mismatch outside SAPDP.md means BLOCKED.
 ```
 
 Token-Minimal Runtime Rule:
@@ -441,6 +444,8 @@ New status models
 Codex may report protocol release PASS only after:
 
 ```text
+SAPDP.md declares the target protocol version
+No other current protocol file declares an independent protocol version authority
 Changes are committed
 
 Version tag is created

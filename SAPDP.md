@@ -1,4 +1,4 @@
-# SAPDP v2.3.1 Protocol
+# SAPDP v2.4.1 Protocol
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
@@ -7,6 +7,13 @@ Runtime constraints:
 - Git is the durable audit source.
 - Historical research records are not runtime authority.
 - Problem, purpose, scope, and goals must be distilled into current runtime constraints before they affect execution.
+
+Protocol Version Authority Rule:
+- `SAPDP.md` is the single protocol version authority.
+- The protocol version is the version declared in the first heading of `SAPDP.md`.
+- Other protocol files, manifests, templates, contracts, release notes, and runtime artifacts must not independently own or redefine the protocol version.
+- When another file must display or persist a protocol version, it must derive that value from `SAPDP.md` or from the resolved Git ref that points to `SAPDP.md`.
+- Any conflicting current protocol version identifier outside `SAPDP.md` is invalid and must be repaired before release.
 
 Authority Override Principle:
 
@@ -296,7 +303,8 @@ Protocol Release Audit PASS AND FROZEN is the freeze authority for protocol rele
 Simple Sequential Version Policy:
 - Every protocol release must create a new tag.
 - Release Audit PASS results in a sequential version increment.
-- The latest tag represents the latest protocol authority.
+- `SAPDP.md` declares the protocol version authority.
+- The latest release tag is Git evidence for the released `SAPDP.md` version.
 
 Commit URL and Tag URL are required minimum Git-native evidence for protocol releases. GitHub Release is not required as minimum solo Git-native evidence.
 
@@ -343,3 +351,19 @@ Generic natural language progression commands request Stage Readiness Gate evalu
 After lifecycle stage results, SAPDP should provide one compact suggested next prompt for the Human when useful.
 
 Task packages, Codex returns, audits, route cards, and release handoffs must use compact formats and prefer paths, commit URLs, and artifact references over pasted document bodies.
+
+## 13. Version Consistency Audit
+
+Version Consistency Audit is required for protocol releases.
+
+Audit rules:
+- Read the first heading of `SAPDP.md`.
+- Treat that heading as the only current protocol version authority.
+- Verify maintainer documentation references `SAPDP.md` instead of declaring an independent current protocol version.
+- Verify bootstrap manifest metadata references `SAPDP.md` for protocol version authority.
+- Verify no other current protocol file declares a conflicting protocol version authority.
+- Historical version references are allowed only when clearly scoped as history, compatibility notes, or release evidence.
+
+PASS requires one protocol version authority only: `SAPDP.md`.
+
+FAIL requires governance repair before release tagging.

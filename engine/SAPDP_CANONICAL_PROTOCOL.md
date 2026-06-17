@@ -1,6 +1,8 @@
-# SAPDP v2.4.0 Reference Authorities System
+# Reference Authorities System Addendum
 
-This file defines the v2.4.0 Reference Authorities System addendum for SAPDP v2.
+This file defines the Reference Authorities System addendum for SAPDP v2.
+
+Historical release context: introduced in v2.4.0.
 
 The active consolidated protocol remains `SAPDP.md`. This addendum is limited to the approved Reference Authorities System and does not redesign protocol structure.
 
@@ -74,4 +76,4 @@ Authority Alignment and Authority Compliance Check sections must remain scoped t
 
 # Status
 
-Approved v2.4.0 addendum.
+Approved Reference Authorities System addendum.

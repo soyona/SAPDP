@@ -293,6 +293,7 @@ Protocol Version resolves to a concrete Git tag.
 Protocol Version is not `latest`.
 Version Lock exists.
 Version Lock is true.
+Protocol Version derives from SAPDP.md or the resolved protocol Git ref.
 Protocol Version matches across PROJECT_STATE.md, PROJECT_BOOTSTRAP.md, BOOTSTRAP_RESULT.md, and POST_BOOTSTRAP_ENTRY.md.
 ```
 
