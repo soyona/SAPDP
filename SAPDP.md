@@ -1,4 +1,4 @@
-# SAPDP v2.5.7 Protocol
+# SAPDP v2.6.0 Protocol
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
@@ -127,6 +127,88 @@ Initialization must:
 - Preserve empty required directories with Git-persistable placeholders when needed.
 - Avoid overwriting existing SAPDP files without explicit Human confirmation.
 - Stop at readiness for Problem stage.
+
+## Runtime Information Architecture
+
+### Startup Input
+
+Goal = User Request.
+
+Goal is used for startup routing.
+
+Goal is not Runtime State.
+
+### Context Information
+
+Context Information includes:
+- Project
+- Repository
+- Branch
+- Environment
+- Workspace
+- Session
+
+Context Information describes execution context.
+
+Context Information is not Runtime State.
+
+### Runtime State
+
+Runtime State includes:
+- Mode = work category.
+- Flow = execution route.
+- Stage = current step inside a Flow.
+- Action = next executable operation.
+
+Runtime State is authoritative for protocol execution and transition.
+
+### User Runtime Information
+
+User Runtime Information includes:
+- Next Action
+- Execution Target
+- Current Flow
+- Flow Progress
+
+User Runtime Information is the minimum information required for a Human to continue execution without losing direction.
+
+### Flow Progress Information
+
+Flow Progress Information communicates:
+- Completed steps
+- Current step
+- Remaining steps
+
+Flow Progress Information is explanatory.
+
+Runtime State remains authoritative.
+
+### Runtime Presentation Example
+
+```text
+→ Next Action:
+Collect Official Evidence
+
+Execute In:
+Codex
+
+▶ Flow:
+DNA Governance
+
+Progress:
+
+[1] Human Input ✓
+[2] Reality Validation ← Current
+[3] Materialization
+[4] Repository Audit
+[5] Release
+
+2 / 5
+```
+
+This example is illustrative only.
+
+Presentation format is not mandated by SAPDP.
 
 ## 4. Current Stage and Next Action
 
