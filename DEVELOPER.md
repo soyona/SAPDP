@@ -30,6 +30,14 @@ The repository follows **One Concept = One Authority**. A maintenance document m
 
 When a change affects an owned concept, edit its authority. Elsewhere, replace duplicated definitions with a reference to that authority.
 
+## Authority Resolution Maintenance Rule
+
+- For protocol fact questions, identify the concept first.
+- Resolve the owning authority from the Authority Ownership Map.
+- Read the owning authority before answering or editing.
+- Do not answer protocol facts from memory, discussion history, release notes, or old decisions.
+- If authority evidence is missing, report `BLOCKED` instead of inferring.
+
 ## Layer Responsibilities
 
 ### Public entry points
@@ -84,6 +92,13 @@ SAPDP/
 ```
 
 Add files only when they have a distinct responsibility that cannot be served by an existing authority or layer.
+
+## Repository Model Verification Rule
+
+- DEVELOPER.md must describe only committed repository structure.
+- Do not document planned or speculative directories.
+- Before release, verify every path listed in Repository Structure exists on `main`.
+- Remove or correct any non-existent path.
 
 ## Maintenance Workflow
 
