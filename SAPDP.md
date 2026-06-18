@@ -1,4 +1,4 @@
-# SAPDP v2.5.6 Protocol
+# SAPDP v2.5.7 Protocol
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
@@ -253,7 +253,18 @@ The DNA Library belongs to the SAPDP Protocol Repository under `dna/library/`. L
 
 ### 7.1 DNA Template Foundation
 
-`templates/dna/DNA_Template.md` is the standard extraction structure for official Product DNA entries. An official DNA instance must use the template section order and must not introduce custom sections.
+`templates/dna/DNA_Template.md` is the standard extraction structure for official Product DNA entries. An official DNA instance must use exactly these seven mandatory sections, in this order, and must not introduce custom sections:
+1. Experience Pattern
+2. Layout Pattern
+3. Visual Tokens
+4. Component Rules
+5. Interaction / Motion Rules
+6. Do / Do Not Rules
+7. Evidence References
+
+Visual Tokens must be expressed as executable parameters with explicit values, units or formats where applicable, and the scope or state in which each parameter applies. Descriptive prose without executable parameter values is invalid.
+
+Evidence References is mandatory. Every Product DNA instance must map its extracted patterns, tokens, and rules to evidence identifiers and official source references. Missing Evidence References blocks DNA Governance Release Audit.
 
 DNA extraction is fact-based:
 - Every extracted fact must identify supporting evidence and its source.

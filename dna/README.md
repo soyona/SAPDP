@@ -21,6 +21,22 @@ The Human selects DNA and may propose DNA Evolution. The Human does not design D
 
 DNA MUST NOT prescribe a framework, language, database, or technology stack. DNA MUST define interaction constraints, experience constraints, implementation constraints, and execution constraints.
 
+## Mandatory Structure
+
+Every official Product DNA entry MUST use exactly these seven sections, in this order:
+
+1. Experience Pattern
+2. Layout Pattern
+3. Visual Tokens
+4. Component Rules
+5. Interaction / Motion Rules
+6. Do / Do Not Rules
+7. Evidence References
+
+Visual Tokens MUST be executable parameters. Each token must state an explicit value, a unit or format where applicable, and the scope or state in which it applies. Descriptive prose without executable parameter values is invalid.
+
+Evidence References is mandatory. Every extracted pattern, token, and rule must map to an evidence identifier and an official source reference. Missing Evidence References blocks DNA Governance Release Audit.
+
 ## Consumption
 
 The Selected DNA is mandatory from Product Representation through User Validation. See `contracts/DNA_Consumption_Contract.md`.
