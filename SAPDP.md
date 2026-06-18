@@ -1,4 +1,4 @@
-# SAPDP v2.5.4 Protocol
+# SAPDP v2.5.5 Protocol
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
@@ -250,6 +250,18 @@ Coverage: CAP-026, CAP-028, CAP-039.
 Artifacts are the runtime memory of product work. Each artifact must have a clear producer, consumer, route role, next action, and audit source when routing is required.
 
 The DNA Library belongs to the SAPDP Protocol Repository under `dna/library/`. Library entries are governed protocol assets, not product-workspace inventions. A product workspace records the Selected DNA and its resolved protocol source ref.
+
+### 7.1 DNA Template Foundation
+
+`templates/dna/DNA_Template.md` is the standard extraction structure for official Product DNA entries. An official DNA instance must use the template section order and must not introduce custom sections.
+
+DNA extraction is fact-based:
+- Every extracted fact must identify supporting evidence and its source.
+- Evidence used by a DNA instance must be stored under `dna/evidence/<Product>/`.
+- Allowed evidence sources are official product reality, official documentation, and the official help center.
+- Blogs, reviews, forums, AI-generated content, personal opinions, and unsupported statements are prohibited extraction inputs.
+
+`dna/library/NotionDNA/NotionDNA_v1.md` is the first DNA instance governed by this foundation. Its evidence is stored under `dna/evidence/Notion/`.
 
 The Selected DNA is a mandatory input for Product Representation, Product Requirement, UX Specification, Visual Design Specification, MVP Definition, Task Package, Build, Implementation Verification, and User Validation. Missing Selected DNA blocks each of these stages. Consumption is governed by `dna/contracts/DNA_Consumption_Contract.md`.
 

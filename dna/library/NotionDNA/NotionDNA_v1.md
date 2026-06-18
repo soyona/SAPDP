@@ -1,126 +1,289 @@
-# NotionDNA
+# Product Positioning
 
-Version: `v1`
+## Description
 
-Status: Official
+Verified scope and use of the Notion workspace.
 
-## DNA Name
+## Facts
 
-NotionDNA
+- F-001: Work in Notion takes place in a workspace that can be used by an individual, a team, or a company to organize information and create content.
 
-## Source Product
+## Evidence
 
-Notion
+- F-001 is supported by E-001 in `dna/evidence/Notion/Official_Evidence_Register.md`.
 
-This DNA derives from observable product-experience patterns. It does not copy proprietary code, assets, content, or internal implementation.
+## Source
 
-## Applicable Product Types
+- F-001: [Intro to workspaces — Notion Help Center](https://www.notion.com/help/intro-to-workspaces)
 
-- Collaborative knowledge workspaces
-- Document and wiki products
-- Structured note-taking products
-- Lightweight project or content-management tools
-- Products whose primary object is an editable, composable page
+# Core Mental Model
 
-## Experience Target
+## Description
 
-Create a calm, direct-manipulation workspace where users can turn ideas into structured information without leaving the page or managing visible system complexity.
+Verified organizing model for content in Notion.
 
-## Experience Constraints
+## Facts
 
-- Primary authoring must feel continuous: navigation, editing, organization, and feedback must not fragment the user's working context.
-- System complexity must remain subordinate to the user's content and current intent.
-- Common actions must be discoverable without making all controls permanently visible.
-- User input must survive recoverable network, synchronization, validation, and permission failures.
-- The same conceptual action must behave consistently across page and content-unit contexts.
+- F-002: A workspace contains pages, pages are stacks of blocks, and a database is a collection of pages.
 
-## Interaction Patterns
+## Evidence
 
-- The page is the primary work surface; reading and editing occur in place.
-- Content is composed from movable blocks with predictable selection, insertion, duplication, transformation, and deletion behavior.
-- Commands are discoverable near the user's focus through contextual controls and a searchable command surface.
-- Keyboard operation supports the complete high-frequency authoring path.
-- Drag and drop communicates destination before commit and preserves content integrity on cancellation.
-- Progressive disclosure keeps secondary controls hidden until hover, focus, selection, or explicit invocation.
-- Navigation preserves the user's editing context and makes the current location unambiguous.
+- F-002 is supported by E-001, E-002, and E-004 in `dna/evidence/Notion/Official_Evidence_Register.md`.
 
-## Information Architecture Patterns
+## Source
 
-- Organize durable content as pages in a visible hierarchy.
-- Permit pages to contain content and child pages without splitting the mental model.
-- Use a persistent workspace navigation region for hierarchy, search, and high-frequency destinations.
-- Give every page a stable identity independent of its current title or parent.
-- Represent structured collections through consistent views over the same underlying items, not duplicated datasets.
-- Keep workspace, page, block, and property scopes distinguishable.
+- F-002: [Intro to workspaces](https://www.notion.com/help/intro-to-workspaces), [What is a block?](https://www.notion.com/help/what-is-a-block), and [Intro to databases](https://www.notion.com/help/intro-to-databases) — Notion Help Center
 
-## Visual Patterns
+# Core Objects
 
-- Prioritize content over chrome with restrained surfaces, borders, color, and elevation.
-- Maintain generous whitespace and a readable content measure.
-- Use typography and indentation to express hierarchy before decoration.
-- Reveal action affordances contextually without causing layout shift.
-- Use icons and color as optional recognition aids, never as the sole carrier of meaning.
-- Keep dense collection views aligned, scannable, and visually subordinate to their content.
+## Description
 
-## Feedback Patterns
+Verified primary content objects.
 
-- Reflect edits immediately and communicate persistence without interrupting flow.
-- Show collaboration presence and remote changes without obscuring local work.
-- Provide visible focus, selection, drag destination, loading, empty, error, and permission states.
-- Keep routine success feedback quiet; reserve prominent feedback for blocked, destructive, or failed actions.
-- Make destructive actions reversible when feasible and confirm irreversible scope before commit.
-- Preserve user input through retryable failures and reconnection.
+## Facts
 
-## Implementation Constraints
+- F-003: Pages hold content blocks including text, images, and tables.
+- F-004: Each database item is a page and can carry typed properties.
 
-- Model page content as addressable ordered units that can be edited and moved independently.
-- Preserve stable identifiers across reorder, rename, nesting, synchronization, and view changes.
-- Separate canonical content from its presentation in collection views.
-- Support deterministic conflict handling so concurrent edits do not silently overwrite accepted work.
-- Keep primary authoring interactions responsive and provide immediate optimistic feedback when safe.
-- Enforce permissions consistently at workspace, page, and content-unit boundaries.
-- These constraints prescribe no framework, language, database, or technology stack.
+## Evidence
 
-## Execution Constraints
+- F-003 is supported by E-002 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+- F-004 is supported by E-004 and E-005 in `dna/evidence/Notion/Official_Evidence_Register.md`.
 
-- Build one complete page-authoring path before expanding secondary features.
-- Materialize states for empty, loading, editing, selected, dragging, saving, saved, offline, failed, and permission denied.
-- Verify keyboard, pointer, focus, and recovery behavior for every primary interaction.
-- Reuse one content-unit interaction grammar across supported unit types.
-- Do not imitate Notion branding, trademarks, proprietary assets, or exact visual trade dress.
+## Source
 
-## Anti Patterns
+- F-003: [What is a block? — Notion Help Center](https://www.notion.com/help/what-is-a-block)
+- F-004: [Intro to databases](https://www.notion.com/help/intro-to-databases) and [Database properties](https://www.notion.com/help/database-properties) — Notion Help Center
 
-- Permanent toolbars that compete with content for attention
-- Modal dialogs for routine inline authoring
-- Separate read and edit pages for the primary workflow
-- Unstable hierarchy after rename, move, or synchronization
-- Hidden persistence failures or destructive conflict resolution
-- Block behaviors that change unpredictably by content type
-- Decorative complexity that weakens hierarchy or readability
-- Copying source-product branding instead of reproducing experience constraints
+# Information Architecture
 
-## Codex Execution Rules
+## Description
 
-1. Treat the page and content units as the primary implementation model.
-2. Implement direct manipulation, progressive disclosure, and keyboard parity as acceptance criteria.
-3. Preserve stable identity and user input through all state transitions.
-4. Implement observable feedback states before declaring a workflow complete.
-5. Choose technology from approved product constraints; never infer it from this DNA.
-6. Return `BLOCKED DNA_CONFLICT` when an approved artifact requires behavior incompatible with this DNA.
-7. Do not combine NotionDNA with another Product DNA.
+Verified hierarchy and structured-information organization.
 
-## Verification Checklist
+## Facts
 
-- [ ] Exactly one Product DNA is selected and it is NotionDNA v1.
-- [ ] The primary workflow stays on an editable page surface.
-- [ ] Content units support predictable creation, selection, transformation, movement, and deletion.
-- [ ] Page hierarchy and current location are visible and stable.
-- [ ] High-frequency authoring is keyboard-accessible.
-- [ ] Contextual controls use progressive disclosure without layout shift.
-- [ ] Persistence, collaboration, failure, permission, and recovery states are observable.
-- [ ] Stable identity survives rename, move, reorder, synchronization, and view changes.
-- [ ] Destructive operations communicate scope and provide recovery when feasible.
-- [ ] No prohibited anti pattern is present.
-- [ ] No framework, language, database, or technology stack is prescribed.
-- [ ] No Notion branding, proprietary asset, or exact visual trade dress is copied.
+- F-005: Pages can be nested inside pages without a stated depth limit and exposed as an expandable hierarchy in the sidebar.
+- F-006: Database views can present the same data with different layouts, visible properties, filters, sorts, and groups.
+
+## Evidence
+
+- F-005 is supported by E-001 and E-003 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+- F-006 is supported by E-004 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+
+## Source
+
+- F-005: [Intro to workspaces](https://www.notion.com/help/intro-to-workspaces) and [Navigate with the sidebar](https://www.notion.com/help/navigate-with-the-sidebar) — Notion Help Center
+- F-006: [Intro to databases — Notion Help Center](https://www.notion.com/help/intro-to-databases)
+
+# Navigation Model
+
+## Description
+
+Verified workspace navigation mechanisms.
+
+## Facts
+
+- F-007: The sidebar provides hierarchical page navigation, workspace sections, search, recently visited pages, and workspace tools.
+- F-008: Pages can be reorganized by dragging them in the sidebar, and the sidebar can be opened or closed by a control or keyboard shortcut.
+
+## Evidence
+
+- F-007 and F-008 are supported by E-003 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+
+## Source
+
+- F-007 and F-008: [Navigate with the sidebar — Notion Help Center](https://www.notion.com/help/navigate-with-the-sidebar)
+
+# Interaction Model
+
+## Description
+
+Verified content creation and direct-manipulation behaviors.
+
+## Facts
+
+- F-009: The slash menu inserts content blocks, and block handles expose block actions.
+- F-010: Blocks can transform into other block types and can be rearranged by drag and drop.
+- F-011: Notion documents keyboard operations for creating, styling, selecting, navigating, and moving content.
+
+## Evidence
+
+- F-009 is supported by E-010 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+- F-010 is supported by E-002 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+- F-011 is supported by E-011 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+
+## Source
+
+- F-009: [Writing & editing basics — Notion Help Center](https://www.notion.com/help/writing-and-editing-basics)
+- F-010: [What is a block? — Notion Help Center](https://www.notion.com/help/what-is-a-block)
+- F-011: [Keyboard shortcuts — Notion Help Center](https://www.notion.com/help/keyboard-shortcuts)
+
+# UX Model
+
+## Description
+
+Verified mechanisms for contextual controls and flexible presentation.
+
+## Facts
+
+- F-012: Text selection exposes formatting controls, while inline database controls remain hidden until hover.
+- F-013: A database view can be configured independently without changing the underlying database items.
+
+## Evidence
+
+- F-012 is supported by E-004 and E-010 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+- F-013 is supported by E-004 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+
+## Source
+
+- F-012: [Intro to databases](https://www.notion.com/help/intro-to-databases) and [Writing & editing basics](https://www.notion.com/help/writing-and-editing-basics) — Notion Help Center
+- F-013: [Intro to databases — Notion Help Center](https://www.notion.com/help/intro-to-databases)
+
+# Collaboration Model
+
+## Description
+
+Verified sharing and collaboration capabilities.
+
+## Facts
+
+- F-014: Multiple people can view and edit the same page or database concurrently, with collaborator locations and changes shown in real time.
+- F-015: Pages can be shared with members, groups, teamspaces, or guests using assigned permission levels.
+- F-016: Notion supports page discussions, inline comments, mentions, replies, and comment resolution and reopening.
+
+## Evidence
+
+- F-014 is supported by E-007 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+- F-015 is supported by E-006 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+- F-016 is supported by E-008 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+
+## Source
+
+- F-014: [Collaborate in a workspace — Notion Help Center](https://www.notion.com/help/collaborate-within-a-workspace)
+- F-015: [Sharing & permissions settings — Notion Help Center](https://www.notion.com/help/sharing-and-permissions)
+- F-016: [Comments, mentions & reactions — Notion Help Center](https://www.notion.com/help/comments-mentions-and-reminders)
+
+# UI Layout System
+
+## Description
+
+Verified top-level workspace and page layout controls.
+
+## Facts
+
+- F-017: The workspace interface is split into a sidebar and an editor.
+- F-018: Pages can use the default content width or a full-width layout, and blocks can be arranged into columns.
+
+## Evidence
+
+- F-017 is supported by E-001 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+- F-018 is supported by E-009 and E-010 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+
+## Source
+
+- F-017: [Intro to workspaces — Notion Help Center](https://www.notion.com/help/intro-to-workspaces)
+- F-018: [Style & customize your page](https://www.notion.com/help/customize-and-style-your-content) and [Writing & editing basics](https://www.notion.com/help/writing-and-editing-basics) — Notion Help Center
+
+# Visual Design System
+
+## Description
+
+Verified user-configurable page presentation options.
+
+## Facts
+
+- F-019: A page can use Default, Serif, or Mono typography and can enable a small-text option.
+- F-020: Pages support icons, covers, backlinks, page discussions, and callout blocks.
+
+## Evidence
+
+- F-019 and F-020 are supported by E-009 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+
+## Source
+
+- F-019 and F-020: [Style & customize your page — Notion Help Center](https://www.notion.com/help/customize-and-style-your-content)
+
+# Color System
+
+## Description
+
+Verified color controls available to authors.
+
+## Facts
+
+- F-021: Authors can apply colors or highlights to selected text and can apply a color to an entire text block.
+
+## Evidence
+
+- F-021 is supported by E-009 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+
+## Source
+
+- F-021: [Style & customize your page — Notion Help Center](https://www.notion.com/help/customize-and-style-your-content)
+
+# Motion System
+
+## Description
+
+Verified interface visibility transitions and movement feedback.
+
+## Facts
+
+- F-022: Editor top controls recede after typing begins, and inline database controls are hidden until hover.
+- F-023: When blocks are dragged to form columns, a blue guide indicates the placement destination.
+
+## Evidence
+
+- F-022 is supported by E-001 and E-004 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+- F-023 is supported by E-010 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+
+## Source
+
+- F-022: [Intro to workspaces](https://www.notion.com/help/intro-to-workspaces) and [Intro to databases](https://www.notion.com/help/intro-to-databases) — Notion Help Center
+- F-023: [Writing & editing basics — Notion Help Center](https://www.notion.com/help/writing-and-editing-basics)
+
+# Content Model
+
+## Description
+
+Verified composition and structured-data model.
+
+## Facts
+
+- F-024: A page is composed of blocks that can represent multiple content types.
+- F-025: Database items are pages augmented by typed properties, including relations and rollups that connect and summarize related database information.
+
+## Evidence
+
+- F-024 is supported by E-002 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+- F-025 is supported by E-004 and E-005 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+
+## Source
+
+- F-024: [What is a block? — Notion Help Center](https://www.notion.com/help/what-is-a-block)
+- F-025: [Intro to databases](https://www.notion.com/help/intro-to-databases) and [Database properties](https://www.notion.com/help/database-properties) — Notion Help Center
+
+# Product Principles
+
+## Description
+
+Verified recurring product behaviors documented by Notion.
+
+## Facts
+
+- F-026: Content can be reorganized directly: blocks and sidebar pages support drag-and-drop movement.
+- F-027: One database can expose the same underlying items through multiple configurable views.
+- F-028: Shared work combines permission levels, concurrent editing, real-time collaborator visibility, and contextual comments.
+
+## Evidence
+
+- F-026 is supported by E-002 and E-003 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+- F-027 is supported by E-004 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+- F-028 is supported by E-006, E-007, and E-008 in `dna/evidence/Notion/Official_Evidence_Register.md`.
+
+## Source
+
+- F-026: [What is a block?](https://www.notion.com/help/what-is-a-block) and [Navigate with the sidebar](https://www.notion.com/help/navigate-with-the-sidebar) — Notion Help Center
+- F-027: [Intro to databases — Notion Help Center](https://www.notion.com/help/intro-to-databases)
+- F-028: [Sharing & permissions settings](https://www.notion.com/help/sharing-and-permissions), [Collaborate in a workspace](https://www.notion.com/help/collaborate-within-a-workspace), and [Comments, mentions & reactions](https://www.notion.com/help/comments-mentions-and-reminders) — Notion Help Center
