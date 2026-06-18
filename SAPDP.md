@@ -1,4 +1,4 @@
-# SAPDP v2.5.1 Protocol
+# SAPDP v2.5.2 Protocol
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
@@ -193,16 +193,17 @@ Coverage: CAP-015, CAP-016, CAP-017, CAP-018.
 Product lifecycle stages:
 1. Problem
 2. Solution
-3. Product Representation
-4. Product Requirement
-5. UX Specification
-6. Visual Design Specification when required
-7. MVP Definition
-8. Task Package
-9. Build
-10. Implementation Verification
-11. User Validation
-12. Release
+3. Product DNA Selection
+4. Product Representation
+5. Product Requirement
+6. UX Specification
+7. Visual Design Specification
+8. MVP Definition
+9. Task Package
+10. Build
+11. Implementation Verification
+12. User Validation
+13. Release
 
 Bootstrap is prerequisite work, not a lifecycle stage.
 
@@ -219,11 +220,38 @@ Stage definitions must declare objective, inputs, outputs, owner, exit criteria,
 
 Lifecycle transition requires Runtime State + Route Manifest + Stage Readiness Gate PASS. Continue Lifecycle must return `BLOCKED` when required artifacts, commits, decisions, or readiness are missing. If readiness PASS, return the next executable action; generate the next artifact only when the Human request clearly asks execution.
 
+### 6.1 Product DNA Selection
+
+Product DNA is a Protocol Asset used to replicate world-class product experience.
+
+Product DNA Selection consumes the approved Problem and Solution and outputs one Selected DNA. Selection may use:
+- DNA Recommendation, governed by `dna/contracts/DNA_Recommendation_Contract.md`.
+- Direct DNA Library Selection.
+
+Single DNA Policy:
+- Exactly one Product DNA must be selected.
+- Multi DNA, DNA Mixing, and DNA Composition are invalid.
+- Missing or ambiguous selection returns `BLOCKED` before Product Representation.
+
+The Human is responsible for selecting DNA and may propose DNA Evolution. The Human does not design DNA, define the DNA schema, or define the replication standard. Those responsibilities belong to SAPDP protocol governance.
+
+### 6.2 DNA Technology Principle
+
+Product DNA is technology-neutral. It MUST NOT contain a required framework, language, database, or technology stack. It MUST contain interaction constraints, experience constraints, implementation constraints, and execution constraints.
+
+### 6.3 Low-Token Replication Principle
+
+Product DNA encodes reusable experience constraints to reduce drift, reduce rework, reduce token consumption, and enable stable replication. Downstream stages reference the Selected DNA instead of repeatedly reconstructing the source-product experience from conversation or ad hoc research.
+
 ## 7. Artifacts
 
 Coverage: CAP-026, CAP-028, CAP-039.
 
 Artifacts are the runtime memory of product work. Each artifact must have a clear producer, consumer, route role, next action, and audit source when routing is required.
+
+The DNA Library belongs to the SAPDP Protocol Repository under `dna/library/`. Library entries are governed protocol assets, not product-workspace inventions. A product workspace records the Selected DNA and its resolved protocol source ref.
+
+The Selected DNA is a mandatory input for Product Representation, Product Requirement, UX Specification, Visual Design Specification, MVP Definition, Task Package, Build, Implementation Verification, and User Validation. Missing Selected DNA blocks each of these stages. Consumption is governed by `dna/contracts/DNA_Consumption_Contract.md`.
 
 Product Shape layer:
 - Product Representation
@@ -254,7 +282,7 @@ Template responsibilities include:
 - Lifecycle state
 - Route manifest
 - Artifact index
-- Problem, Solution, Product Shape, MVP, Task Package, Verification, Validation, and Release artifacts
+- Problem, Solution, Product DNA, Product Shape, MVP, Task Package, Verification, Validation, and Release artifacts
 
 `contracts/` owns executable rules and result criteria. Contract responsibilities include:
 - Bootstrap execution
@@ -338,6 +366,17 @@ Protocol Evolution route:
 Release Audit successful result is PASS AND FROZEN and the next stage is Reality Validation. Failed Release Audit result is PATCH REQUIRED and returns to Codex Upgrade.
 
 Protocol upgrade handoff to Codex must include version, release name, problem, goal, scope, required changes, validation, and final output format.
+
+Product DNA Governance reuses the protocol governance lifecycle:
+1. Reality Validation
+2. Issue
+3. Proposal
+4. Design Audit
+5. Materialization
+6. Release Audit
+7. Reality Validation
+
+Only governance-approved proposals may change the DNA schema, replication standard, templates, or official library entries. Materialization creates or updates the governed DNA asset. Release Audit verifies schema compliance, technology neutrality, single-DNA compatibility, executable constraints, and absence of blockers before the asset becomes selectable.
 
 ## 12. Token and Context Minimization
 

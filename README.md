@@ -2,6 +2,10 @@
 
 SAPDP 是一套面向 Human 用户的 AI 协同产品研发协议。它帮助你在 ChatGPT、Codex、Git/GitHub 之间建立清晰分工，用文件和 Git 替代不可靠的会话记忆，让产品研发过程可以被继续、审核和修复。
 
+当前协议引入 Product DNA：一种用于复刻世界级产品体验的协议资产。完成 Problem 和 Solution 后，Human 必须从 SAPDP DNA Library 中选择且只选择一个 DNA，再进入 Product Representation。DNA 只约束交互、体验、实现和执行，不绑定框架、语言、数据库或技术栈。
+
+完整启动入口见 [`START.md`](START.md)，DNA 目录与使用规则见 [`dna/README.md`](dna/README.md)。
+
 ## SAPDP 能带来什么
 
 SAPDP 主要解决 AI 协同开发中的这些问题：
@@ -9,6 +13,7 @@ SAPDP 主要解决 AI 协同开发中的这些问题：
 - 降低上下文丢失：关键决策、阶段状态、任务结果都沉淀到文件和 Git 中，而不是只留在聊天记录里。
 - 明确 ChatGPT / Codex / Git 分工：ChatGPT 负责规划和审核，Codex 负责读取协议并修改工作区，Git/GitHub 负责保存事实。
 - 用文件和 Git 替代会话记忆：产品定义、阶段产物、执行结果以仓库文件和 commit 记录为准。
+- 稳定复刻产品体验：Product DNA 减少设计漂移、返工和重复上下文消耗。
 - 用 Commit URL 作为审核依据：ChatGPT 审核 Codex 工作时，应基于 Commit URL，而不是基于口头描述。
 - 支持闭环修复：ChatGPT 给出 `PATCH REQUIRED` 后，Codex 按审核结果修复、提交，并返回新的 Commit URL。
 
@@ -97,6 +102,24 @@ Bootstrap 不是写业务代码。
 Bootstrap 是把空产品工作区初始化成遵循 SAPDP 协议的工作区。它应建立必要的协议文件、状态文件和后续阶段入口，让产品工作区可以被 ChatGPT 审核和继续。
 
 Bootstrap PASS 后，不要直接开始写代码，应回到 ChatGPT 进入 Problem 阶段。
+
+## Product DNA Selection
+
+Product DNA Selection 位于 Solution 和 Product Representation 之间：
+
+```text
+Problem
+↓
+Solution
+↓
+Product DNA Selection
+↓
+Product Representation
+```
+
+输入为已批准的 Problem 和 Solution，输出为一个 Selected DNA。Human 可以请求 DNA Recommendation，也可以直接从 DNA Library 选择。必须遵守 Single DNA Policy：禁止 Multi DNA、DNA Mixing 和 DNA Composition。
+
+Selected DNA 是 Product Representation、Product Requirement、UX Specification、Visual Design Specification、MVP Definition、Task Package、Build、Implementation Verification 和 User Validation 的必需输入。
 
 ## Bootstrap 审核
 
