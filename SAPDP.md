@@ -1,4 +1,4 @@
-# SAPDP v2.5.3 Protocol
+# SAPDP v2.5.4 Protocol
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
@@ -366,6 +366,12 @@ Protocol Evolution route:
 Release Audit successful result is PASS AND FROZEN and the next stage is Reality Validation. Failed Release Audit result is PATCH REQUIRED and returns to Codex Upgrade.
 
 Protocol upgrade handoff to Codex must include version, release name, problem, goal, scope, required changes, validation, and final output format.
+
+Repository Reality Validation Rule:
+
+Before any Materialization Planning, SAPDP must verify the current repository reality from Git/GitHub.
+
+Materialization Planning must be based on committed repository state, not session memory, historical assumptions, previous file structures, or inferred paths.
 
 Product DNA Governance reuses the protocol governance lifecycle:
 1. Reality Validation
