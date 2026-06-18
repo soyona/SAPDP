@@ -1,4 +1,4 @@
-# SAPDP v2.6.0 Protocol
+# SAPDP v2.6.1 Protocol
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
@@ -59,14 +59,30 @@ Goal:
 Upgrade SAPDP
 ```
 
-SAPDP starts in one of two modes:
+```text
+SAPDP
+
+Goal:
+Add DNA Duolingo
+```
+
+```text
+SAPDP
+
+Goal:
+Add DNA https://www.duolingo.com
+```
+
+SAPDP starts in one of three modes:
 - Product Development mode initializes or resumes a product workspace.
 - Protocol Evolution mode starts or resumes a protocol upgrade route.
+- Protocol Governance mode starts or resumes a DNA governance route.
 
 Startup routing rules:
 - Goal starts with `Build` -> Bootstrap.
 - Goal starts with `Continue` -> Continue Lifecycle.
 - Goal starts with `Upgrade SAPDP` -> Protocol Evolution.
+- Goal starts with `Add DNA` -> DNA Governance.
 
 Routing uses the normalized first words of `Goal`, after trimming whitespace. If no routing rule matches, request one Human clarification instead of inferring a route.
 
@@ -209,6 +225,77 @@ Progress:
 This example is illustrative only.
 
 Presentation format is not mandated by SAPDP.
+
+### Add DNA Runtime Mapping
+
+Goal:
+
+```text
+Add DNA <Product>
+```
+
+or
+
+```text
+Add DNA <Official URL>
+```
+
+Runtime State:
+
+Mode:
+Protocol Governance
+
+Flow:
+DNA Governance
+
+Initial Stage:
+Human Input
+
+Initial Action:
+Collect Official Evidence
+
+DNA Governance Flow:
+
+```text
+[1] Human Input
+[2] Reality Validation
+[3] Materialization
+[4] Repository Audit
+[5] Release
+```
+
+Human Input:
+Human provides Product Name or Official URL.
+
+Reality Validation:
+Official evidence is collected and validated.
+
+Materialization:
+DNA artifacts are generated.
+
+Repository Audit:
+ChatGPT validates repository changes.
+
+Release:
+Codex creates release commit and tag.
+
+Human responsibilities:
+- Product selection
+- Official URL selection
+
+Human is not responsible for:
+- DNA schema design
+- DNA extraction methodology
+- DNA governance structure
+
+Codex responsibilities:
+- Collect evidence
+- Generate DNA artifacts
+- Materialize repository changes
+
+Codex must not approve release.
+
+Release approval remains governed by Repository Audit.
 
 ## 4. Current Stage and Next Action
 
