@@ -1,4 +1,4 @@
-# SAPDP v2.4.1 Protocol
+# SAPDP v2.5.0 Protocol
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
@@ -305,6 +305,16 @@ Simple Sequential Version Policy:
 - Release Audit PASS results in a sequential version increment.
 - `SAPDP.md` declares the protocol version authority.
 - The latest release tag is Git evidence for the released `SAPDP.md` version.
+
+Universal Version Increment Rule:
+- Any committed change to the SAPDP repository creates a new protocol version.
+- No repository change may be released without a protocol version increment.
+
+Before release:
+1. Update the version in `SAPDP.md`.
+2. Commit the repository change.
+3. Tag the commit with the new protocol version.
+4. Release the new protocol version.
 
 Commit URL and Tag URL are required minimum Git-native evidence for protocol releases. GitHub Release is not required as minimum solo Git-native evidence.
 
