@@ -4,7 +4,7 @@ SAPDP 是一套面向 Human 用户的 AI 协同产品研发协议。它帮助你
 
 当前协议引入 Product DNA：一种用于复刻世界级产品体验的协议资产。完成 Problem 和 Solution 后，Human 必须从 SAPDP DNA Library 中选择且只选择一个 DNA，再进入 Product Representation。DNA 只约束交互、体验、实现和执行，不绑定框架、语言、数据库或技术栈。
 
-完整启动入口见 [`START.md`](START.md)，DNA 目录与使用规则见 [`dna/README.md`](dna/README.md)。
+DNA 目录与使用规则见 [`dna/README.md`](dna/README.md)。
 
 ## SAPDP 能带来什么
 

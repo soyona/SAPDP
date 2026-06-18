@@ -1,4 +1,4 @@
-# SAPDP v2.5.2 Protocol
+# SAPDP v2.5.3 Protocol
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
