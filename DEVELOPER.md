@@ -21,7 +21,8 @@ The repository follows **One Concept = One Authority**. A maintenance document m
 | Concept | Authority |
 | --- | --- |
 | Protocol Version | [SAPDP.md](./SAPDP.md) |
-| Protocol Evolution Lifecycle | [SAPDP.md](./SAPDP.md) |
+| Protocol Evolution Lifecycle and Status Card | [SAPDP.md](./SAPDP.md) |
+| Protocol Evolution Completion | [Protocol Evolution Completion Contract](./engine/contracts/ProtocolEvolutionCompletionContract.md) |
 | Bootstrap Rules | [Bootstrap Contract](./engine/contracts/BootstrapContract.md) |
 | Bootstrap Validation | [Bootstrap Validation Contract](./engine/contracts/BootstrapValidationContract.md) |
 | Artifact Materialization | [Artifact Materialization Contract](./engine/contracts/ArtifactMaterializationContract.md) |
@@ -56,6 +57,7 @@ Contract definitions belong only in their respective authority documents:
 - [Bootstrap Contract](./engine/contracts/BootstrapContract.md)
 - [Bootstrap Validation Contract](./engine/contracts/BootstrapValidationContract.md)
 - [Artifact Materialization Contract](./engine/contracts/ArtifactMaterializationContract.md)
+- [Protocol Evolution Completion Contract](./engine/contracts/ProtocolEvolutionCompletionContract.md)
 
 ### Templates
 

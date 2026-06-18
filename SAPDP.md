@@ -1,4 +1,4 @@
-# SAPDP v2.5.5 Protocol
+# SAPDP v2.5.6 Protocol
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
@@ -366,18 +366,67 @@ Coverage: CAP-034.
 
 Protocol Evolution is separate from product development. It must not invoke product Bootstrap or change product lifecycle stages by default.
 
-Protocol Evolution route:
-1. Reality Validation
-2. Issue
-3. Proposal
-4. Design Audit
-5. Codex Upgrade
-6. Release Audit
-7. Reality Validation
+Protocol Evolution uses exactly seven stages with fixed execution environments:
 
-Release Audit successful result is PASS AND FROZEN and the next stage is Reality Validation. Failed Release Audit result is PATCH REQUIRED and returns to Codex Upgrade.
+1. Protocol Evolution -> ChatGPT
+2. Design -> ChatGPT
+3. Design Audit -> ChatGPT
+4. Design Freeze -> ChatGPT
+5. Materialization -> Codex
+6. Repository Audit -> ChatGPT
+7. Release -> Codex
 
-Protocol upgrade handoff to Codex must include version, release name, problem, goal, scope, required changes, validation, and final output format.
+No Protocol Evolution stage may be added. The fixed flow, stage input and output contracts, ChatGPT to Codex handoff, Codex to ChatGPT returns, and completion rules are governed by `engine/contracts/ProtocolEvolutionCompletionContract.md`.
+
+### 11.1 Protocol Evolution Status Card
+
+For Protocol Evolution discussions, output this Status Card first. Do not repeat long workflow explanations unless the Human explicitly asks to explain the flow.
+
+```text
+SAPDP Protocol Evolution Status
+
+Target Version:
+<vX.Y.Z>
+
+Progress:
+<progress bar>
+
+Flow:
+
+1. Protocol Evolution  (ChatGPT) <status>
+2. Design              (ChatGPT) <status>
+3. Design Audit        (ChatGPT) <status>
+4. Design Freeze       (ChatGPT) <status>
+5. Materialization     (Codex) <status>
+6. Repository Audit    (ChatGPT) <status>
+7. Release             (Codex) <status>
+
+Next:
+<next stage>
+```
+
+Status markers:
+- Completed: `✓`
+- Current: `← Current`
+- Not started: no marker
+
+Progress rules:
+
+```text
+1/7  ■□□□□□□
+2/7  ■■□□□□□
+3/7  ■■■□□□□
+4/7  ■■■■□□□
+5/7  ■■■■■□□
+6/7  ■■■■■■□
+7/7  ■■■■■■■
+```
+
+### 11.2 Version Field Rule
+
+- `Current Version` appears only in the Design Freeze handoff.
+- `Target Version` must be used after Design Freeze.
+- The ambiguous standalone handoff field `Version` is prohibited.
 
 Repository Reality Validation Rule:
 
