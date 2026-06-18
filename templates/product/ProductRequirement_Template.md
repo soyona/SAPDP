@@ -137,30 +137,6 @@ ProductRequirement_CORE_v1.md
 
 ---
 
-# Authority Alignment
-
-Reference Authorities are not part of the Required Load Set.
-
-Load selected authority details on demand only when needed to align requirements.
-
-## Primary Authority Alignment
-
-<PRIMARY_AUTHORITY_ALIGNMENT>
-
-## Secondary Authority Alignment
-
-<SECONDARY_AUTHORITY_ALIGNMENT>
-
-## Requirement Decisions From Authorities
-
-<AUTHORITY_ALIGNED_REQUIREMENT_DECISIONS>
-
-## Authority Non-Goals
-
-<AUTHORITY_NON_GOALS>
-
----
-
 # Product Boundary
 
 ## In Scope
@@ -197,7 +173,6 @@ A valid Product Requirement must satisfy:
 - Product goals defined
 - Required capabilities defined
 - Success metrics defined
-- Authority alignment defined
 - Scope boundary defined
 - No product structure defined
 - No UX design defined

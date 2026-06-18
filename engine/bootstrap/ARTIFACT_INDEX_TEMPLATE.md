@@ -109,13 +109,13 @@ Created
 ---
 
 Artifact Name:
-SAPDP_CANONICAL_PROTOCOL.md
+SAPDP.md
 
 Artifact Type:
 Protocol Snapshot
 
 Artifact Path:
-docs/protocol/SAPDP_CANONICAL_PROTOCOL.md
+docs/protocol/SAPDP.md
 
 Status:
 Created

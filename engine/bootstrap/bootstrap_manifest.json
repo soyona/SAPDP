@@ -62,7 +62,7 @@
     "ROUTE_MANIFEST.md",
     "BOOTSTRAP_RESULT.md",
     "POST_BOOTSTRAP_ENTRY.md",
-    "docs/protocol/SAPDP_CANONICAL_PROTOCOL.md",
+    "docs/protocol/SAPDP.md",
     "docs/protocol/SAPDP_SOURCE_VERSION.md",
     "docs/problem/.gitkeep",
     "docs/solution/.gitkeep",
@@ -99,7 +99,7 @@
   },
   "protocol_snapshot": {
     "strategy": "copy_snapshot_with_source_commit_hash",
-    "required_snapshot_file": "docs/protocol/SAPDP_CANONICAL_PROTOCOL.md",
+    "required_snapshot_file": "docs/protocol/SAPDP.md",
     "required_source_version_file": "docs/protocol/SAPDP_SOURCE_VERSION.md",
     "forbidden_strategies": [
       "git_submodule",

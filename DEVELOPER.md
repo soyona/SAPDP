@@ -6,14 +6,13 @@ For protocol behavior and evolution, use [SAPDP.md](./SAPDP.md). For the public 
 
 ## Repository Model
 
-The repository separates public entry points, protocol authority, executable assets, reusable templates, reference authorities, and maintainer guidance:
+The repository separates public entry points, protocol authority, executable assets, reusable templates, and maintainer guidance:
 
 - [README.md](./README.md) introduces SAPDP.
 - [SAPDP.md](./SAPDP.md) owns the protocol version and protocol evolution lifecycle.
 - [DEVELOPER.md](./DEVELOPER.md) owns repository maintenance guidance.
 - [engine/](./engine/) contains Codex-consumable execution assets and contracts.
 - [templates/](./templates/) contains reusable project artifact templates.
-- [library/authorities/](./library/authorities/) indexes reference authorities.
 
 The repository follows **One Concept = One Authority**. A maintenance document may link to an authority, but must not restate or reinterpret the rules that authority owns.
 
@@ -62,10 +61,6 @@ Contract definitions belong only in their respective authority documents:
 
 [templates/](./templates/) contains reusable artifact templates grouped by purpose. Templates define artifact shape; they must not become independent authorities for protocol, lifecycle, bootstrap, or repository maintenance rules.
 
-### Reference authorities
-
-[library/authorities/](./library/authorities/) provides the reference-authority index. Keep references traceable to their owning documents and avoid copying normative content into the index.
-
 ## Repository Structure
 
 ```text
@@ -74,10 +69,9 @@ SAPDP/
 ├── SAPDP.md
 ├── DEVELOPER.md
 ├── engine/
-│   ├── SAPDP_CANONICAL_PROTOCOL.md
 │   ├── bootstrap/
 │   └── contracts/
-├── templates/
+└── templates/
 │   ├── mvp/
 │   ├── problem/
 │   ├── product/
@@ -87,8 +81,6 @@ SAPDP/
 │   ├── tasks/
 │   ├── validation/
 │   └── verification/
-└── library/
-    └── authorities/
 ```
 
 Add files only when they have a distinct responsibility that cannot be served by an existing authority or layer.
@@ -133,7 +125,7 @@ Release packages, audit dumps, migration scratch files, and generated evidence d
 - Keep each concept in its single owning authority.
 - Use references instead of duplicated normative text.
 - Keep the repository root limited to stable entry points and repository-level files.
-- Keep execution assets in [engine/](./engine/), templates in [templates/](./templates/), and reference indexes in [library/authorities/](./library/authorities/).
+- Keep execution assets in [engine/](./engine/) and templates in [templates/](./templates/).
 - Do not commit caches, local environment files, temporary release artifacts, generated audit output, or editor metadata.
 - Preserve existing naming and directory conventions.
 - Check links and paths after moving or renaming files.

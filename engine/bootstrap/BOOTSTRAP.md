@@ -124,7 +124,7 @@ Codex must read Bootstrap sources in this order:
 
     4. contracts/bootstrap/BootstrapValidationContract.md
 
-    5. SAPDP_CANONICAL_PROTOCOL.md
+    5. SAPDP.md
 
     6. templates/
 
@@ -236,7 +236,7 @@ Bootstrap must produce:
 
     POST_BOOTSTRAP_ENTRY.md
 
-    docs/protocol/SAPDP_CANONICAL_PROTOCOL.md
+    docs/protocol/SAPDP.md
 
     docs/protocol/SAPDP_SOURCE_VERSION.md
 

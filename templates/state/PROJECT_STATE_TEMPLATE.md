@@ -62,7 +62,7 @@ Required Artifacts:
 - ROUTE_MANIFEST.md
 - BOOTSTRAP_RESULT.md
 - POST_BOOTSTRAP_ENTRY.md
-- docs/protocol/SAPDP_CANONICAL_PROTOCOL.md
+- docs/protocol/SAPDP.md
 - docs/protocol/SAPDP_SOURCE_VERSION.md
 - templates/problem/ProblemDefinition_Template.md
 

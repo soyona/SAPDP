@@ -35,7 +35,7 @@ Required Load Set:
     PROJECT_BOOTSTRAP.md
     ARTIFACT_INDEX.md
     ROUTE_MANIFEST.md
-    docs/protocol/SAPDP_CANONICAL_PROTOCOL.md
+    docs/protocol/SAPDP.md
 
 Next Action: Create ProblemDefinition_CORE_v1.md
 

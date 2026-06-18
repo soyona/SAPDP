@@ -72,7 +72,7 @@ Bootstrap source files are resolved from the SAPDP Repository:
 
     contracts/bootstrap/BootstrapValidationContract.md
 
-    SAPDP_CANONICAL_PROTOCOL.md
+    SAPDP.md
 
     templates/
 
@@ -143,7 +143,7 @@ BOOTSTRAP_RESULT.md
 
 POST_BOOTSTRAP_ENTRY.md
 
-docs/protocol/SAPDP_CANONICAL_PROTOCOL.md
+docs/protocol/SAPDP.md
 
 docs/protocol/SAPDP_SOURCE_VERSION.md
 
@@ -238,7 +238,7 @@ Copy Snapshot + Source Commit Hash
 The Product Repository must contain:
 
 ```
-docs/protocol/SAPDP_CANONICAL_PROTOCOL.md
+docs/protocol/SAPDP.md
 
 docs/protocol/SAPDP_SOURCE_VERSION.md
 ```

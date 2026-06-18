@@ -157,34 +157,6 @@ MVPDefinition_CORE_v1.md
 
 ---
 
-# Authority Compliance Check
-
-Reference Authorities are not part of the Required Load Set.
-
-Load selected authority details on demand only when needed to check MVP compliance.
-
-## Primary Authority Compliance
-
-<PRIMARY_AUTHORITY_COMPLIANCE>
-
-## Secondary Authority Compliance
-
-<SECONDARY_AUTHORITY_COMPLIANCE>
-
-## MVP Authority Tradeoffs
-
-<MVP_AUTHORITY_TRADEOFFS>
-
-## Authority Compliance Result
-
-```text
-Pass
-or
-Blocked
-```
-
----
-
 # Assumptions
 
 <ASSUMPTIONS>
@@ -201,7 +173,6 @@ A valid MVP Definition must satisfy:
 - Excluded scope defined
 - Validation metrics defined
 - Release readiness criteria defined
-- Authority compliance checked
 - No task decomposition included
 - No implementation details included
 - No build instructions included
