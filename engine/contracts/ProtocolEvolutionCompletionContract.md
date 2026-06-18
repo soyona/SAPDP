@@ -107,7 +107,10 @@ Rules:
 - `Current Version` appears only in the Design Freeze handoff.
 - `Target Version` must be used after Design Freeze.
 - Do not use the ambiguous standalone handoff field `Version`.
-- Do not add Evolution ID, Stage, or Mode fields.
+- Do not add Evolution ID fields.
+- Runtime concepts are owned by `SAPDP.md`.
+- Contracts may consume Runtime concepts.
+- Contracts must not redefine Runtime concepts.
 - Do not add new Protocol Evolution stages.
 
 ### 5. Materialization
@@ -234,7 +237,7 @@ Blocker:
 
 - The first heading of `SAPDP.md` equals Target Version.
 - The Protocol Evolution flow contains exactly the seven fixed stages.
-- The Protocol Evolution Status Card includes the full flow, current stage, next stage, progress, and environment.
+- Flow Progress Information includes the full flow, current stage, next stage, progress, and environment.
 - Current Version and Target Version follow the Version Field Rule.
 - Materialization and Release returns use only their defined minimal fields.
 - Git Commit Diff remains the source of truth for Repository Audit.

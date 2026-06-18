@@ -21,7 +21,7 @@ The repository follows **One Concept = One Authority**. A maintenance document m
 | Concept | Authority |
 | --- | --- |
 | Protocol Version | [SAPDP.md](./SAPDP.md) |
-| Protocol Evolution Lifecycle and Status Card | [SAPDP.md](./SAPDP.md) |
+| Protocol Evolution Lifecycle and Flow Progress Information | [SAPDP.md](./SAPDP.md) |
 | Protocol Evolution Completion | [Protocol Evolution Completion Contract](./engine/contracts/ProtocolEvolutionCompletionContract.md) |
 | Bootstrap Rules | [Bootstrap Contract](./engine/contracts/BootstrapContract.md) |
 | Bootstrap Validation | [Bootstrap Validation Contract](./engine/contracts/BootstrapValidationContract.md) |
