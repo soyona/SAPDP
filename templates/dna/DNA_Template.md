@@ -1,3 +1,7 @@
+# Backward Compatibility Template
+
+This template is backward compatibility only. It MUST NOT be used for new Visual DNA or Product DNA assets. New assets use `VisualDNA_Template.md` or `ProductDNA_Template.md` and declare `DNA Type`.
+
 # Experience Pattern
 
 ## Pattern

@@ -103,16 +103,16 @@ Bootstrap 是把空产品工作区初始化成遵循 SAPDP 协议的工作区。
 
 Bootstrap PASS 后，不要直接开始写代码，应回到 ChatGPT 进入 Problem 阶段。
 
-## Product DNA Selection
+## DNA Selection
 
-Product DNA Selection 位于 Solution 和 Product Representation 之间：
+DNA Selection 位于 Solution 和 Product Representation 之间：
 
 ```text
 Problem
 ↓
 Solution
 ↓
-Product DNA Selection
+DNA Selection
 ↓
 Product Representation
 ```

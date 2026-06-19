@@ -63,6 +63,20 @@ Upgrade SAPDP
 SAPDP
 
 Goal:
+Add Visual DNA Linear
+```
+
+```text
+SAPDP
+
+Goal:
+Add Product DNA Duolingo
+```
+
+```text
+SAPDP
+
+Goal:
 Add DNA Duolingo
 ```
 
@@ -82,7 +96,9 @@ Startup routing rules:
 - Goal starts with `Build` -> Bootstrap.
 - Goal starts with `Continue` -> Continue Lifecycle.
 - Goal starts with `Upgrade SAPDP` -> Protocol Evolution.
-- Goal starts with `Add DNA` -> DNA Governance.
+- Goal starts with `Add Visual DNA` -> DNA Governance with `DNA Type = Visual DNA`.
+- Goal starts with `Add Product DNA` -> DNA Governance with `DNA Type = Product DNA`.
+- Goal starts with `Add DNA` -> `HUMAN_INPUT: Select DNA Type` before DNA Governance evidence collection.
 
 Routing uses the normalized first words of `Goal`, after trimming whitespace. If no routing rule matches, request one Human clarification instead of inferring a route.
 
@@ -231,6 +247,18 @@ Presentation format is not mandated by SAPDP.
 Goal:
 
 ```text
+Add Visual DNA <Product>
+```
+
+or
+
+```text
+Add Product DNA <Product>
+```
+
+or
+
+```text
 Add DNA <Product>
 ```
 
@@ -239,6 +267,11 @@ or
 ```text
 Add DNA <Official URL>
 ```
+
+Routing behavior:
+- `Add Visual DNA <Product>` sets `DNA Type = Visual DNA`.
+- `Add Product DNA <Product>` sets `DNA Type = Product DNA`.
+- `Add DNA <Product>` or `Add DNA <Official URL>` returns `HUMAN_INPUT: Select DNA Type`; evidence collection must not begin until the Human selects `Visual DNA` or `Product DNA`.
 
 Runtime State:
 
@@ -252,7 +285,8 @@ Initial Stage:
 Human Input
 
 Initial Action:
-Collect Official Evidence
+- `Add Visual DNA` or `Add Product DNA`: Collect Official Evidence.
+- `Add DNA`: `HUMAN_INPUT: Select DNA Type`.
 
 DNA Governance Flow:
 
@@ -265,7 +299,7 @@ DNA Governance Flow:
 ```
 
 Human Input:
-Human provides Product Name or Official URL.
+Human provides Product Name or Official URL and, when the generic `Add DNA` entry is used, selects DNA Type.
 
 Reality Validation:
 Official evidence is collected and validated.
@@ -362,7 +396,7 @@ Coverage: CAP-015, CAP-016, CAP-017, CAP-018.
 Product lifecycle stages:
 1. Problem
 2. Solution
-3. Product DNA Selection
+3. DNA Selection
 4. Product Representation
 5. Product Requirement
 6. UX Specification
@@ -389,13 +423,13 @@ Stage definitions must declare objective, inputs, outputs, owner, exit criteria,
 
 Lifecycle transition requires Runtime State + Route Manifest + Stage Readiness Gate PASS. Continue Lifecycle must return `BLOCKED` when required artifacts, commits, decisions, or readiness are missing. If readiness PASS, return the next executable action; generate the next artifact only when the Human request clearly asks execution.
 
-### 6.1 Product DNA Selection
+### 6.1 DNA Selection
 
 DNA is a Protocol Asset with two non-overlapping types:
 - Visual DNA = How It Looks.
 - Product DNA = How It Works.
 
-Product DNA Selection consumes the approved Problem and Solution and outputs:
+DNA Selection consumes the approved Problem and Solution and outputs:
 - one Selected Visual DNA
 - one Selected Product DNA
 
@@ -403,12 +437,15 @@ Selection may use:
 - DNA Recommendation, governed by `dna/contracts/DNA_Recommendation_Contract.md`.
 - Direct DNA Library Selection.
 
-Selection rules:
-- Exactly one Visual DNA and exactly one Product DNA must be selected.
-- A Selected Visual DNA and a Selected Product DNA may be freely combined.
-- The protocol must not restrict valid Visual DNA + Product DNA combinations.
-- Multiple Visual DNA selections or multiple Product DNA selections are invalid.
-- Missing or ambiguous selection of either type returns `BLOCKED` before Product Representation.
+Single DNA Type Selection Policy:
+- Exactly one Visual DNA must be selected.
+- Exactly one Product DNA must be selected.
+- Multiple Visual DNA selections are invalid.
+- Multiple Product DNA selections are invalid.
+- Missing either selection returns `BLOCKED` before Product Representation.
+- Visual DNA + Product DNA combination is valid, and the protocol must not restrict valid combinations.
+- Visual DNA + Visual DNA is invalid.
+- Product DNA + Product DNA is invalid.
 
 The Human is responsible for selecting DNA and may propose DNA Evolution. The Human does not design DNA, define the DNA schema, or define the replication standard. Those responsibilities belong to SAPDP protocol governance.
 
@@ -447,7 +484,10 @@ Every new DNA asset must declare the standard field `DNA Type`. Allowed values a
 - `Visual DNA`
 - `Product DNA`
 
-`templates/dna/VisualDNA_Template.md` is the standard extraction structure for new Visual DNA assets. `templates/dna/ProductDNA_Template.md` is the standard extraction structure for new Product DNA assets. `templates/dna/DNA_Template.md` remains available only for backward compatibility with existing DNA assets.
+Template mapping is explicit:
+- New Visual DNA assets use `templates/dna/VisualDNA_Template.md`.
+- New Product DNA assets use `templates/dna/ProductDNA_Template.md`.
+- `templates/dna/DNA_Template.md` is backward compatibility only and must not be used for new DNA assets.
 
 Visual DNA purpose: replicate visual appearance and UI implementation.
 
@@ -672,7 +712,7 @@ Before any Materialization Planning, SAPDP must verify the current repository re
 
 Materialization Planning must be based on committed repository state, not session memory, historical assumptions, previous file structures, or inferred paths.
 
-Product DNA Governance reuses the protocol governance lifecycle:
+DNA Governance reuses the protocol governance lifecycle:
 1. Reality Validation
 2. Issue
 3. Proposal
@@ -681,7 +721,7 @@ Product DNA Governance reuses the protocol governance lifecycle:
 6. Release Audit
 7. Reality Validation
 
-Only governance-approved proposals may change the DNA schema, replication standard, templates, or official library entries. Materialization creates or updates the governed DNA asset. Release Audit verifies schema compliance, technology neutrality, single-DNA compatibility, executable constraints, and absence of blockers before the asset becomes selectable.
+Only governance-approved proposals may change the DNA schema, replication standard, templates, or official library entries. Materialization creates or updates the governed DNA asset. Release Audit verifies schema compliance, technology neutrality, Single DNA Type Selection Policy compatibility, executable constraints, and absence of blockers before the asset becomes selectable.
 
 ## 12. Token and Context Minimization
 

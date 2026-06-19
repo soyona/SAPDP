@@ -7,7 +7,13 @@ DNA is split into two non-overlapping Protocol Asset types:
 
 ## Library
 
-New official entries live under `dna/visual/` or `dna/product/`, declare `DNA Type`, use the corresponding typed template, and become selectable only after DNA Governance Release Audit passes. Evidence lives under `dna/evidence/`.
+New official entries live under `dna/visual/` or `dna/product/`, declare `DNA Type`, and become selectable only after DNA Governance Release Audit passes. Evidence lives under `dna/evidence/`.
+
+Template mapping:
+
+- New Visual DNA assets use `templates/dna/VisualDNA_Template.md`.
+- New Product DNA assets use `templates/dna/ProductDNA_Template.md`.
+- `templates/dna/DNA_Template.md` is backward compatibility only and must not be used for new DNA assets.
 
 ```text
 dna/
@@ -23,7 +29,7 @@ The legacy `dna/library/` location remains valid for existing Product DNA assets
 
 ## Selection
 
-Product DNA Selection consumes an approved Problem and Solution and returns exactly one Selected Visual DNA and exactly one Selected Product DNA. A Human may select directly from the library or request a recommendation under `contracts/DNA_Recommendation_Contract.md`.
+DNA Selection consumes an approved Problem and Solution and returns exactly one Selected Visual DNA and exactly one Selected Product DNA. A Human may select directly from the library or request a recommendation under `contracts/DNA_Recommendation_Contract.md`.
 
 A Selected Visual DNA and a Selected Product DNA may be freely combined. The protocol does not restrict valid combinations. Multiple selections within the same DNA type are invalid.
 
