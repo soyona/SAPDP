@@ -2,19 +2,20 @@
 
 ## Purpose
 
-Make the Selected DNA an executable, traceable constraint for downstream product development.
+Make the Selected Visual DNA and Selected Product DNA executable, traceable constraints for downstream product development.
 
 ## Required Input
 
-Exactly one Selected DNA with:
+Exactly one Selected Visual DNA and exactly one Selected Product DNA. Each selection must include:
 - DNA name and version
+- DNA Type, except for backward-compatible existing Product DNA assets
 - Official library path
 - Resolved SAPDP protocol ref
 - Human selection evidence
 
 ## Mandatory Consumers
 
-The Selected DNA is a mandatory input for:
+The Selected Visual DNA and Selected Product DNA are mandatory inputs for:
 - Product Representation
 - Product Requirement
 - UX Specification
@@ -27,12 +28,14 @@ The Selected DNA is a mandatory input for:
 
 ## Consumption Rules
 
-1. Each consumer records the Selected DNA reference.
+1. Each consumer records both DNA references.
 2. Each consumer translates relevant DNA constraints into its own acceptance criteria without copying irrelevant prose.
 3. Conflicts between approved Problem or Solution and DNA return `BLOCKED DNA_CONFLICT`; they must not be silently resolved.
-4. Implementation choices may vary, but interaction, experience, implementation, and execution constraints remain binding.
+4. Visual DNA governs How It Looks; Product DNA governs How It Works. Their responsibilities must not overlap.
 5. A DNA change invalidates downstream artifacts and requires readiness evaluation from Product Representation.
-6. Multi DNA, DNA Mixing, and DNA Composition are invalid.
+6. Any Selected Visual DNA may be freely combined with any Selected Product DNA. The protocol must not restrict valid combinations.
+7. Multiple Visual DNA selections or multiple Product DNA selections are invalid.
+8. Existing Product DNA assets remain valid without relocation or a `DNA Type` field and are treated as Product DNA when selected.
 
 ## Verification
 
@@ -40,7 +43,7 @@ Implementation Verification checks every applicable DNA checklist item against c
 
 ## PASS Criteria
 
-- Exactly one released DNA is traceable.
-- Every mandatory consumer references and applies it.
+- Exactly one released Visual DNA and one released Product DNA are traceable.
+- Every mandatory consumer references and applies both.
 - Deviations are absent or governed by an approved DNA Evolution release.
 - Verification evidence has no blocker.

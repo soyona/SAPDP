@@ -1,5 +1,9 @@
 # ProductDNA_v1
 
+## DNA Type
+
+`Product DNA`
+
 ## DNA Name
 
 `<NameDNA>`
@@ -30,10 +34,6 @@ Version: `v1`
 
 - `<Required structure, hierarchy, or navigation constraint>`
 
-## Visual Patterns
-
-- `<Required visual relationship or presentation constraint>`
-
 ## Feedback Patterns
 
 - `<Required system feedback, status, error, or recovery behavior>`
@@ -55,15 +55,17 @@ Version: `v1`
 1. Treat every MUST and MUST NOT as acceptance criteria.
 2. Keep implementation choices technology-neutral unless product artifacts independently constrain them.
 3. Report conflicts with approved Problem or Solution as `BLOCKED DNA_CONFLICT`.
-4. Do not mix this DNA with another DNA.
+4. Keep Product DNA responsible only for How It Works.
+5. Do not define Color System, Typography Rules, Visual Tokens, Layout Rules, or Component Visual Design.
+6. Allow this Product DNA to be freely combined with any Visual DNA.
 
 ## Verification Checklist
 
-- [ ] Exactly one DNA is selected.
+- [ ] Exactly one Product DNA is selected.
 - [ ] Interaction constraints are implemented.
 - [ ] Experience constraints are observable.
 - [ ] Information architecture follows the required patterns.
-- [ ] Visual and feedback patterns are present where applicable.
+- [ ] Feedback patterns are present where applicable.
 - [ ] Implementation and execution constraints pass.
 - [ ] No anti pattern is present.
 - [ ] No framework, language, database, or technology stack is prescribed by this DNA.
