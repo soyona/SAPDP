@@ -26,18 +26,6 @@ The fetched GitHub `main` version is the sole protocol authority.
 
 # Git-only Release
 
-When the user explicitly requests a complete SAPDP release, use only the local `git` CLI. Do not use the GitHub Connector or `gh`.
+For an explicit complete-release request, run `./scripts/release patch` and return its stdout only.
 
-1. Increment the protocol version in the first heading of `SAPDP.md` according to the SAPDP sequential version policy.
-2. Run the required repository validation before committing.
-3. Stage the intended release files with `git add`.
-4. Create the release commit with `git commit`.
-5. Create the matching local version tag with `git tag`.
-6. Push the release commit with `git push origin main`.
-7. Push the version tag with `git push origin <tag>`.
-8. Verify the remote commit and tag with `git rev-parse HEAD` and `git ls-remote origin refs/heads/main refs/tags/<tag>`.
-9. Return the verifiable evidence URLs:
-   - `https://github.com/soyona/SAPDP/commit/<commit-sha>`
-   - `https://github.com/soyona/SAPDP/tree/<tag>`
-
-A GitHub Release is not required. A complete release requires the commit and tag to exist remotely; local-only or offline commit/tag creation is insufficient.
+Do not use the GitHub Connector or `gh`. The script owns version increment, validation, commit, annotated tag, atomic push, remote verification, and evidence URLs. A GitHub Release is not required.

@@ -1,0 +1,133 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+readonly REPOSITORY="soyona/SAPDP"
+readonly EXPECTED_REMOTE_HTTPS="https://github.com/${REPOSITORY}"
+readonly EXPECTED_REMOTE_SSH="git@github.com:${REPOSITORY}.git"
+
+fail() {
+  printf 'release: %s\n' "$1" >&2
+  exit 1
+}
+
+usage() {
+  printf 'usage: %s patch [--dry-run]\n' "$0" >&2
+  exit 2
+}
+
+[[ ${1:-} == "patch" ]] || usage
+[[ $# -le 2 ]] || usage
+
+dry_run=false
+if [[ ${2:-} == "--dry-run" ]]; then
+  dry_run=true
+elif [[ $# -eq 2 ]]; then
+  usage
+fi
+
+for command in git python3; do
+  command -v "$command" >/dev/null 2>&1 || fail "missing required command: $command"
+done
+
+repo_root=$(git rev-parse --show-toplevel 2>/dev/null) || fail "not inside a Git repository"
+cd "$repo_root"
+
+[[ $(git branch --show-current) == "main" ]] || fail "release branch must be main"
+
+origin_url=$(git remote get-url origin 2>/dev/null) || fail "origin remote is missing"
+case "$origin_url" in
+  "$EXPECTED_REMOTE_HTTPS"|"${EXPECTED_REMOTE_HTTPS}.git"|"$EXPECTED_REMOTE_SSH") ;;
+  *) fail "origin must point to ${EXPECTED_REMOTE_HTTPS}" ;;
+esac
+
+git fetch --quiet origin main
+remote_main=$(git rev-parse FETCH_HEAD)
+
+heading=$(sed -n '1p' SAPDP.md)
+if [[ $heading =~ ^#\ SAPDP\ v([0-9]+)\.([0-9]+)\.([0-9]+)\ Protocol$ ]]; then
+  major=${BASH_REMATCH[1]}
+  minor=${BASH_REMATCH[2]}
+  patch=${BASH_REMATCH[3]}
+else
+  fail "invalid SAPDP.md version heading"
+fi
+
+current_tag="v${major}.${minor}.${patch}"
+current_head=$(git rev-parse HEAD)
+remote_current_tag=$(git ls-remote --tags origin "refs/tags/${current_tag}" "refs/tags/${current_tag}^{}")
+
+# Resume a release whose local commit and annotated tag were created but whose
+# atomic push did not complete.
+if git rev-parse --verify --quiet "refs/tags/${current_tag}" >/dev/null \
+  && [[ -z $remote_current_tag ]] \
+  && [[ $(git rev-parse "${current_tag}^{}") == "$current_head" ]] \
+  && [[ $(git rev-parse HEAD^) == "$remote_main" ]] \
+  && [[ -z $(git status --porcelain) ]]; then
+  target_tag=$current_tag
+elif [[ $current_head == "$remote_main" ]]; then
+  [[ -n $(git status --porcelain) ]] || fail "no local updates to release"
+
+  target_version="${major}.${minor}.$((patch + 1))"
+  target_tag="v${target_version}"
+
+  git rev-parse --verify --quiet "refs/tags/${target_tag}" >/dev/null \
+    && fail "local tag ${target_tag} already exists"
+  [[ -z $(git ls-remote --tags origin "refs/tags/${target_tag}" "refs/tags/${target_tag}^{}") ]] \
+    || fail "remote tag ${target_tag} already exists"
+
+  if $dry_run; then
+    printf '%s\n' "$target_tag"
+    exit 0
+  fi
+
+  python3 - "$target_version" <<'PY'
+from pathlib import Path
+import re
+import sys
+
+path = Path("SAPDP.md")
+text = path.read_text()
+updated, count = re.subn(
+    r"\A# SAPDP v\d+\.\d+\.\d+ Protocol$",
+    f"# SAPDP v{sys.argv[1]} Protocol",
+    text,
+    count=1,
+    flags=re.MULTILINE,
+)
+if count != 1:
+    raise SystemExit("release: failed to update SAPDP.md version heading")
+path.write_text(updated)
+PY
+
+  [[ $(sed -n '1p' SAPDP.md) == "# SAPDP ${target_tag} Protocol" ]] \
+    || fail "version heading validation failed"
+  [[ $(grep -R -h '^# SAPDP v[0-9]' --include='*.md' . | wc -l | tr -d ' ') == "1" ]] \
+    || fail "version authority validation failed"
+  git diff --check
+
+  git add --all
+  git diff --cached --quiet && fail "release has no staged changes"
+  git diff --cached --check
+  git commit --quiet -m "Release SAPDP ${target_tag}"
+  git tag -a "$target_tag" -m "SAPDP ${target_tag}"
+else
+  fail "local main must match origin/main before release"
+fi
+
+if $dry_run; then
+  printf '%s\n' "$target_tag"
+  exit 0
+fi
+
+release_commit=$(git rev-parse HEAD)
+git push --quiet --atomic origin HEAD:refs/heads/main "refs/tags/${target_tag}"
+
+remote_main_commit=$(git ls-remote origin refs/heads/main | awk '{print $1}')
+remote_tag_commit=$(git ls-remote origin "refs/tags/${target_tag}^{}" | awk '{print $1}')
+[[ $remote_main_commit == "$release_commit" ]] || fail "remote main verification failed"
+[[ $remote_tag_commit == "$release_commit" ]] || fail "remote tag verification failed"
+[[ -z $(git status --porcelain) ]] || fail "working tree is not clean after release"
+
+printf 'https://github.com/%s/commit/%s\n' "$REPOSITORY" "$release_commit"
+printf 'https://github.com/%s/tree/%s\n' "$REPOSITORY" "$target_tag"
