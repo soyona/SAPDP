@@ -1,10 +1,12 @@
-# SAPDP v2.7.1 Protocol
+# SAPDP v2.7.2 Protocol
 
-Protocol Digest: sha256:57af897afec37f8351659af281bc40622f17635488147853c65d9cf3a3bcabee
+Protocol Digest: sha256:88865562175f1ac7a2bdc0ad300e498148a2efa28ee9e58701a95a69cf6dd039
 
 <!-- Runtime Summary Start -->
 Runtime Summary:
 - `SAPDP.md` is the single protocol authority; this summary is derived from it and has no independent protocol authority.
+- Input `sapdp`, case-insensitive, is the canonical lightweight SAPDP load trigger and covers prior variants such as `SAPDP当前版本是什么`, `SAPDP最新版本是什么`, `请检查协议版本`, and `Load SAPDP`.
+- On this trigger, tooling must refresh or load SAPDP from repository state, read `SAPDP.md`, resolve the current protocol version from its first heading, read the Protocol Digest and Runtime Summary, then stop unless deeper protocol work is requested.
 - Lightweight SAPDP loading reads the first heading, Protocol Digest, and this Runtime Summary, resolves Protocol Ref externally from the Git commit or tag, and then stops.
 - Load the full protocol only when deeper protocol work is requested.
 - Protocol Ref is resolved from Git commit or tag and is never stored as a fixed commit SHA in `SAPDP.md`.
