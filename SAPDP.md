@@ -1,6 +1,6 @@
-# SAPDP v2.7.0 Protocol
+# SAPDP v2.7.1 Protocol
 
-Protocol Digest: sha256:b72edfecd77edccfadb807f626ce3de08e48baa2951f2309061b70e46f4086a4
+Protocol Digest: sha256:57af897afec37f8351659af281bc40622f17635488147853c65d9cf3a3bcabee
 
 <!-- Runtime Summary Start -->
 Runtime Summary:
@@ -25,6 +25,13 @@ Protocol Version Authority Rule:
 - Other protocol files, manifests, templates, contracts, release notes, and runtime artifacts must not independently own or redefine the protocol version.
 - When another file must display or persist a protocol version, it must derive that value from `SAPDP.md` or from the resolved Git ref that points to `SAPDP.md`.
 - Any conflicting current protocol version identifier outside `SAPDP.md` is invalid and must be repaired before release.
+
+Release Authority Rule:
+- SAPDP Release is defined by a Git tag.
+- The Latest SAPDP Release Version is the latest valid SAPDP version tag.
+- A GitHub Release page is optional and non-authoritative.
+- When asked for the "SAPDP latest release", tooling must resolve Git tags, not GitHub Release pages.
+- `SAPDP.md` remains the single protocol authority.
 
 Protocol metadata rules:
 - Protocol Digest is calculated deterministically as the SHA-256 hash of `SAPDP.md` with the complete `Protocol Digest:` line excluded.
@@ -654,7 +661,7 @@ with the version already declared in `SAPDP.md` by using
 The scripts execute frozen decisions only. They must not infer protocol changes
 or versions.
 
-Commit URL and Tag URL are required minimum Git-native evidence for protocol releases. GitHub Release is not required as minimum solo Git-native evidence.
+Commit URL and Tag URL are required minimum Git-native evidence for protocol releases. SAPDP Release is defined by its Git tag, and the latest valid SAPDP version tag defines the Latest SAPDP Release Version. A GitHub Release page is optional, non-authoritative, and must not be used by tooling to resolve the SAPDP latest release.
 
 If required remote evidence cannot be verified, protocol release result must be PATCH REQUIRED, not PASS AND FROZEN.
 

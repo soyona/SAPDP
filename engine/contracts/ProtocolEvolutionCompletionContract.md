@@ -229,6 +229,9 @@ Blocker:
 - Validate that Protocol Ref is Git-resolved and not hardcoded as a commit SHA in `SAPDP.md`.
 - Fail when the working tree is dirty or the version tag already exists locally or remotely.
 - Create `vX.Y.Z` on current `HEAD`, push that tag, and print the Tag URL only on success.
+- Create and push the Git tag only; do not create or require a GitHub Release page.
+- Treat a GitHub Release page as optional and non-authoritative for SAPDP Release.
+- Do not require GitHub CLI or the GitHub Release API.
 - Do not modify files, commit, infer a version, or bump a version.
 
 ## Completion Rules
@@ -238,5 +241,5 @@ Blocker:
 - Flow Progress Information includes the full flow, current stage, next stage, progress, and environment.
 - Current Version and Target Version follow the Version Field Rule.
 - Materialization returns only the Commit URL.
-- Release returns only the Tag URL.
+- Release stage output remains only the Tag URL.
 - Git Commit Diff remains the source of truth for Repository Audit.
