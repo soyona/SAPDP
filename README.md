@@ -43,11 +43,15 @@ SAPDP 适用于：
 
 ## 场景路由
 
+- 输入 `sapdp`（不区分大小写）会显示 SAPDP Home，版本从 [`SAPDP.md`](SAPDP.md) 第一行解析，不会自动进入任何流程。
+- 输入 `sapdp` 并附带用户内容时，会直接路由到对应入口，不显示 SAPDP Home。
 - 如果还在探索产品想法：先用 ChatGPT。
 - 如果要创建全新产品：在 Codex 中使用空产品目录/仓库。
 - 如果要继续一个遵循 SAPDP 协议的项目：在 Codex 中打开该产品目录/仓库。
 - 如果已有代码项目想接入 SAPDP：先问 ChatGPT，不要直接 Build。
 - 如果要升级 SAPDP 协议本身：在 SAPDP 协议仓库中操作。
+
+SAPDP Home、Intent Router 和模式边界由 [`SAPDP.md`](SAPDP.md) 的 Invocation 章节定义。
 
 ## 场景 A：产品想法还不清楚
 

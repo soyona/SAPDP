@@ -1,12 +1,6 @@
 # SAPDP Loading
 
-Trigger only when the user's first non-empty line is one of the following active commands. Trim surrounding whitespace and compare case-insensitively:
-- 请加载最新SAPDP协议
-- reload the latest SAPDP protocol
-- 加载SAPDP
-- reload SAPDP
-- load SAPDP
-- SAPDP
+Trigger only when the user's first non-empty line is `SAPDP`. Trim surrounding whitespace and compare case-insensitively.
 
 Quoted, referenced, discussed, or example occurrences do not trigger loading.
 

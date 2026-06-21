@@ -1,14 +1,14 @@
-# SAPDP v2.7.2 Protocol
+# SAPDP v2.8.0 Protocol
 
-Protocol Digest: sha256:88865562175f1ac7a2bdc0ad300e498148a2efa28ee9e58701a95a69cf6dd039
+Protocol Digest: sha256:9bbbea62379546db5601130ac920ac778a11222d742d2047553a4c41701a5234
 
 <!-- Runtime Summary Start -->
 Runtime Summary:
 - `SAPDP.md` is the single protocol authority; this summary is derived from it and has no independent protocol authority.
-- Input `sapdp`, case-insensitive, is the canonical lightweight SAPDP load trigger and covers prior variants such as `SAPDP当前版本是什么`, `SAPDP最新版本是什么`, `请检查协议版本`, and `Load SAPDP`.
-- On this trigger, tooling must refresh or load SAPDP from repository state, read `SAPDP.md`, resolve the current protocol version from its first heading, read the Protocol Digest and Runtime Summary, then stop unless deeper protocol work is requested.
-- Lightweight SAPDP loading reads the first heading, Protocol Digest, and this Runtime Summary, resolves Protocol Ref externally from the Git commit or tag, and then stops.
-- Load the full protocol only when deeper protocol work is requested.
+- Input `sapdp`, case-insensitive, is the canonical SAPDP entry trigger.
+- Bare `sapdp` enters Home Mode and displays only SAPDP Home without entering a flow.
+- `sapdp` with user content enters Router Mode and routes directly without displaying SAPDP Home.
+- After entry into a specific flow, Runtime Mode executes that flow.
 - Protocol Ref is resolved from Git commit or tag and is never stored as a fixed commit SHA in `SAPDP.md`.
 - Protocol Digest is the SHA-256 hash of `SAPDP.md` after excluding the Protocol Digest line itself.
 <!-- Runtime Summary End -->
@@ -54,7 +54,71 @@ When a conflict exists, the current protocol authority must be treated as the so
 
 Coverage: CAP-001, CAP-040.
 
-Default startup format:
+### 1.1 SAPDP Home Contract
+
+Trigger:
+
+```text
+sapdp
+```
+
+Behavior: Display SAPDP Home.
+
+Output template:
+
+```text
+SAPDP v<Current Version>
+
+AI-Assisted Solo Product Development Protocol
+
+你想做什么？
+
+1. 开发一个新产品
+   从Idea开始创建新项目
+
+2. 继续一个已有产品
+   已有项目，需要继续研发
+
+3. 升级SAPDP协议
+   修改、优化、修复协议
+
+4. 新增DNA案例
+   向DNA Library增加产品案例
+
+5. 审核一个Commit
+   对Codex提交结果进行审核
+
+6. 我不知道该选哪个
+   描述你的情况，我帮你路由
+
+直接回复数字或描述你的情况即可。
+```
+
+Rules:
+- Resolve `<Current Version>` from the first heading of `SAPDP.md`.
+- Do not expand protocol details.
+- Do not automatically enter any flow.
+
+### 1.2 SAPDP Intent Router Contract
+
+Trigger: `sapdp` plus user content.
+
+Behavior: Route directly. Do not display SAPDP Home.
+
+Routing rules:
+- `继续TOBY`, `继续XX项目`, and equivalent continue-product intent -> Continue Product Flow.
+- `升级SAPDP`, `修复协议`, and equivalent protocol-evolution intent -> Protocol Evolution.
+- Commit URL input -> Commit Audit.
+- `开发一个XX产品`, `创建一个XX应用`, and equivalent new-product intent -> New Product Flow.
+- `不知道`, `不确定`, and equivalent uncertainty intent -> Intent Clarification.
+
+### 1.3 Mode Boundary
+
+- Home Mode: triggered by bare `sapdp`; shows protocol entry points.
+- Router Mode: triggered by `sapdp` plus content; routes to the correct entry.
+- Runtime Mode: applies after the user has entered a specific flow; executes the protocol.
+
+Backward-compatible structured startup format:
 
 ```text
 SAPDP
@@ -113,14 +177,9 @@ Goal:
 Add DNA https://www.duolingo.com
 ```
 
-SAPDP starts in one of three modes:
-- Product Development mode initializes or resumes a product workspace.
-- Protocol Evolution mode starts or resumes a protocol upgrade route.
-- Protocol Governance mode starts or resumes a DNA governance route.
-
-Startup routing rules:
-- Goal starts with `Build` -> Bootstrap.
-- Goal starts with `Continue` -> Continue Lifecycle.
+Structured startup routing rules:
+- Goal starts with `Build` -> New Product Flow.
+- Goal starts with `Continue` -> Continue Product Flow.
 - Goal starts with `Upgrade SAPDP` -> Protocol Evolution.
 - Goal starts with `Add Visual DNA` -> DNA Governance with `DNA Type = Visual DNA`.
 - Goal starts with `Add Product DNA` -> DNA Governance with `DNA Type = Product DNA`.
@@ -143,7 +202,7 @@ Backward-compatible invocation input may include:
 - Mode
 - Action
 
-If mode is omitted, use Product Development mode. The v2 entry contract must state the protocol purpose, product scope, non-goals, and operating unit in concise terms before execution begins.
+If Goal and other user content are omitted, enter Home Mode. If user content is present, enter Router Mode. A new product entering Runtime Mode must state the protocol purpose, product scope, non-goals, and operating unit in concise terms before execution begins.
 
 ## 2. Bootstrap
 
