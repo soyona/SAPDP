@@ -23,6 +23,23 @@ else
   fail 'invalid SAPDP.md version heading'
 fi
 
+[[ $(grep -c '^<!-- Runtime Summary Start -->$' SAPDP.md) -eq 1 ]] \
+  || fail 'Runtime Summary Start marker missing or duplicated'
+[[ $(grep -c '^<!-- Runtime Summary End -->$' SAPDP.md) -eq 1 ]] \
+  || fail 'Runtime Summary End marker missing or duplicated'
+
+digest_line=$(grep '^Protocol Digest:' SAPDP.md || true)
+[[ $digest_line =~ ^Protocol\ Digest:\ sha256:([0-9a-f]{64})$ ]] \
+  || fail 'invalid Protocol Digest'
+actual_digest=${BASH_REMATCH[1]}
+expected_digest=$(sed '/^Protocol Digest:/d' SAPDP.md | shasum -a 256 | awk '{print $1}')
+[[ $actual_digest == "$expected_digest" ]] \
+  || fail 'Protocol Digest is inconsistent'
+
+if grep -Eiq '^Protocol Ref:[[:space:]]*[0-9a-f]{40}([[:space:]]|$)' SAPDP.md; then
+  fail 'Protocol Ref must be resolved from Git, not hardcoded'
+fi
+
 git rev-parse --verify --quiet "refs/tags/${tag}" >/dev/null \
   && fail "local tag ${tag} already exists"
 [[ -z $(git ls-remote --tags origin "refs/tags/${tag}" "refs/tags/${tag}^{}") ]] \

@@ -9,12 +9,33 @@ fail() {
   exit 1
 }
 
-[[ $# -eq 1 && -n $1 ]] || fail 'usage: sapdp-materialize "<commit message>"'
+[[ $# -eq 1 && $1 =~ [^[:space:]] ]] \
+  || fail 'usage: sapdp-materialize "<commit message>"'
 
 repo_root=$(git rev-parse --show-toplevel 2>/dev/null) || fail 'not inside a Git repository'
 cd "$repo_root"
 
 [[ -n $(git status --porcelain) ]] || fail 'no file changes'
+
+[[ -f SAPDP.md ]] || fail 'SAPDP.md not found'
+heading=$(sed -n '1p' SAPDP.md)
+[[ $heading =~ ^#\ SAPDP\ v[0-9]+\.[0-9]+\.[0-9]+\ Protocol$ ]] \
+  || fail 'invalid SAPDP.md version heading'
+
+[[ $(grep -c '^<!-- Runtime Summary Start -->$' SAPDP.md) -eq 1 ]] \
+  || fail 'Runtime Summary Start marker missing or duplicated'
+[[ $(grep -c '^<!-- Runtime Summary End -->$' SAPDP.md) -eq 1 ]] \
+  || fail 'Runtime Summary End marker missing or duplicated'
+[[ $(grep -c '^Protocol Digest:' SAPDP.md) -eq 1 ]] \
+  || fail 'Protocol Digest line missing or duplicated'
+
+digest=$(sed '/^Protocol Digest:/d' SAPDP.md | shasum -a 256 | awk '{print $1}')
+tmp=$(mktemp)
+trap 'rm -f "$tmp"' EXIT
+awk -v digest="$digest" \
+  '/^Protocol Digest:/ { print "Protocol Digest: sha256:" digest; next } { print }' \
+  SAPDP.md >"$tmp"
+cmp -s SAPDP.md "$tmp" || cp "$tmp" SAPDP.md
 
 git add --all
 git diff --cached --quiet && fail 'no file changes'

@@ -1,4 +1,15 @@
-# SAPDP v2.6.9 Protocol
+# SAPDP v2.7.0 Protocol
+
+Protocol Digest: sha256:b72edfecd77edccfadb807f626ce3de08e48baa2951f2309061b70e46f4086a4
+
+<!-- Runtime Summary Start -->
+Runtime Summary:
+- `SAPDP.md` is the single protocol authority; this summary is derived from it and has no independent protocol authority.
+- Lightweight SAPDP loading reads the first heading, Protocol Digest, and this Runtime Summary, resolves Protocol Ref externally from the Git commit or tag, and then stops.
+- Load the full protocol only when deeper protocol work is requested.
+- Protocol Ref is resolved from Git commit or tag and is never stored as a fixed commit SHA in `SAPDP.md`.
+- Protocol Digest is the SHA-256 hash of `SAPDP.md` after excluding the Protocol Digest line itself.
+<!-- Runtime Summary End -->
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
@@ -14,6 +25,12 @@ Protocol Version Authority Rule:
 - Other protocol files, manifests, templates, contracts, release notes, and runtime artifacts must not independently own or redefine the protocol version.
 - When another file must display or persist a protocol version, it must derive that value from `SAPDP.md` or from the resolved Git ref that points to `SAPDP.md`.
 - Any conflicting current protocol version identifier outside `SAPDP.md` is invalid and must be repaired before release.
+
+Protocol metadata rules:
+- Protocol Digest is calculated deterministically as the SHA-256 hash of `SAPDP.md` with the complete `Protocol Digest:` line excluded.
+- Protocol Ref is resolved externally from the Git commit or tag containing `SAPDP.md`; a fixed commit SHA must never be written into `SAPDP.md`.
+- Runtime Summary is derived only from `SAPDP.md`, is provided for low-token loading, and must not own or redefine protocol authority.
+- Lightweight SAPDP loading reads the `SAPDP.md` first heading, Protocol Digest, and Runtime Summary block, resolves Protocol Ref from Git, and stops without reading the remaining protocol unless deeper protocol work is requested.
 
 Authority Override Principle:
 

@@ -123,6 +123,12 @@ Actions:
 - Apply the frozen repository changes, including the Target Version bump in the first heading of `SAPDP.md`.
 - Run `scripts/sapdp-materialize "<commit message>"`.
 
+Validation:
+- The first heading of `SAPDP.md` equals Target Version.
+- Protocol Digest exists and is consistent with the protocol digest calculation rule.
+- Runtime Summary Start and Runtime Summary End exist.
+- Runtime Summary does not own or redefine protocol authority.
+
 Output:
 - Commit URL
 
@@ -151,10 +157,13 @@ Git Commit Diff is the repository audit source of truth.
 
 `scripts/sapdp-materialize` contract:
 - Accept exactly one non-empty commit message.
+- Fail when not inside a Git repository.
 - Fail when the repository has no file changes.
+- Validate the `SAPDP.md` heading format and Runtime Summary markers.
+- Update only the Protocol Digest protocol metadata field, using the deterministic hash of `SAPDP.md` with the Protocol Digest line excluded.
 - Run Git add, commit, and push.
 - Print the Commit URL only on success.
-- Do not tag or modify files.
+- Do not tag or modify the protocol body except the Protocol Digest metadata field.
 - Do not infer or change the protocol version.
 
 ### 6. Repository Audit
@@ -167,6 +176,9 @@ Input:
 Audit Scope:
 - Repository matches Frozen Design
 - Version Consistency
+- Protocol Digest consistency
+- Runtime Summary presence
+- Protocol Ref is resolved from Git and is not hardcoded in `SAPDP.md`
 - Release criteria
 
 Output:
@@ -213,6 +225,8 @@ Blocker:
 `scripts/sapdp-release` contract:
 - Accept no input.
 - Read the version from the first heading of `SAPDP.md`.
+- Validate Protocol Digest consistency and Runtime Summary presence; fail if either validation fails.
+- Validate that Protocol Ref is Git-resolved and not hardcoded as a commit SHA in `SAPDP.md`.
 - Fail when the working tree is dirty or the version tag already exists locally or remotely.
 - Create `vX.Y.Z` on current `HEAD`, push that tag, and print the Tag URL only on success.
 - Do not modify files, commit, infer a version, or bump a version.
