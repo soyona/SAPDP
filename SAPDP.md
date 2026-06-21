@@ -1,6 +1,6 @@
-# SAPDP v3.0.1 Protocol
+# SAPDP v3.0.2 Protocol
 
-Protocol Digest: sha256:9f9d34ee9380bc420b78dc6345ade362cf530b1cb7e98450dc6124b934812f7d
+Protocol Digest: sha256:2e411e63789a7bdeb8a55ec028fca4dd7c386f20a9ffb0d5257c80231f7fd763
 
 <!-- Runtime Summary Start -->
 Runtime Summary:
@@ -287,8 +287,8 @@ Version rules:
 - Runtime state records the resolved protocol source ref and version lock.
 - After version lock, normal operation reads state and does not re-resolve latest.
 
-Product repository Bootstrap must create the following Git operation scripts
-when they are missing:
+Product repository Bootstrap must create the following executable Git operation
+stub scripts when they are missing:
 
 ```text
 scripts/product-commit
@@ -297,7 +297,9 @@ scripts/product-verify
 ```
 
 Equivalent existing scripts are allowed only when their invocation and output
-contracts are explicit.
+contracts are explicit. Each generated stub must output `NOT_IMPLEMENTED`, exit
+with non-zero status, and execute no Git operations. A stub must not fake a
+Commit URL, Tag URL, Release URL, `PASS`, or any success output.
 
 Bootstrap output must be minimal and must not include lifecycle theory.
 
@@ -728,6 +730,26 @@ For example:
 Invocation:
 ./scripts/product-commit
 ```
+
+If a product Git script returns `NOT_IMPLEMENTED`, SAPDP must return:
+
+```text
+BLOCKED
+Reason: Product Git script not implemented
+Next: Implement required product Git script
+```
+
+### 5.4 Product Git Script Ownership Contract
+
+SAPDP owns product script entry points, contracts, outputs, and failure behavior.
+Product repositories own the concrete implementation details.
+
+SAPDP must not define framework-specific Git, test, or release implementation,
+and must not auto-generate technology-stack-specific script implementations.
+Codex may implement product-specific script bodies later when the product stack
+is known.
+
+The Product Git Script Runtime Standard output contracts remain unchanged.
 
 ChatGPT stages normally continue in the current product-bound session unless context size requires a new session. Bootstrap to Problem uses a new product-bound session by default. Human and Git exception paths must state the required Human or Git action explicitly.
 
