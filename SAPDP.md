@@ -1,6 +1,6 @@
-# SAPDP v2.9.0 Protocol
+# SAPDP v2.9.1 Protocol
 
-Protocol Digest: sha256:6c8747af1a393bf2d25144e87e9a7dca8e3de61eca34da5a52ed5798519b6b0a
+Protocol Digest: sha256:e65de37fe5c0291fa386ec7afee9a26c97cc490bbea42c975481c99696803508
 
 <!-- Runtime Summary Start -->
 Runtime Summary:
@@ -49,6 +49,42 @@ For SAPDP work, current protocol authority always overrides:
 - prior protocol knowledge
 
 When a conflict exists, the current protocol authority must be treated as the source of truth.
+
+Execution Determinism Principle:
+
+For deterministic, low-value, standardized operational tasks, SAPDP must provide explicit executable entry points.
+
+Examples include:
+- Git
+- Release
+- Tag
+- Materialization
+- Audit Trigger
+- Bootstrap Script
+- Validation Script
+
+Codex must not spend reasoning budget on:
+- discovering script names
+- guessing script parameters
+- guessing Git commands
+- inferring execution order
+
+Codex reasoning budget must be reserved for high-value engineering work:
+- architecture design
+- code implementation
+- bug analysis
+- complex refactoring
+- product implementation
+
+Repository Capabilities:
+
+Materialization:
+`./scripts/sapdp-materialize`
+
+Release:
+`./scripts/sapdp-release`
+
+The Repository Capabilities registry is execution fact, not advisory guidance.
 
 ## 1. Invocation
 
@@ -528,6 +564,47 @@ Manual commands only when no suitable automation exists.
 
 Codex must not infer execution steps from task names alone.
 
+For deterministic operations, SAPDP-generated Codex tasks must resolve the Repository Capability first.
+
+Correct task shape:
+
+```text
+SAPDP
+
+Goal:
+Release SAPDP v<X.Y.Z>
+
+Capability:
+Release
+
+Invocation:
+./scripts/sapdp-release
+
+Output:
+Tag URL only.
+```
+
+Incorrect task shape:
+
+```text
+Goal:
+Release SAPDP
+
+Please find the appropriate script and run it.
+```
+
+When a capability exists, Codex must not:
+- replace the script
+- append arguments
+- rewrite the invocation
+- infer an alternate command
+
+Only when no capability exists may Codex resolve execution in this order:
+1. Script
+2. Make target
+3. Task runner
+4. Manual command
+
 Prohibited:
 
 ```text
@@ -934,6 +1011,20 @@ Only governance-approved proposals may change the DNA schema, replication standa
 Coverage: CAP-003.
 
 Default runtime mode is compressed execution. Explanations are opt-in.
+
+Token Allocation Principle:
+
+SAPDP must allocate token budget to high-value work:
+- decision
+- design
+- implementation
+- verification
+
+SAPDP must avoid wasting token budget on low-value deterministic execution discovery:
+- finding scripts
+- guessing commands
+- guessing arguments
+- inferring workflows
 
 Normal operation:
 1. Read state.
