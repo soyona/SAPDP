@@ -39,6 +39,12 @@ Purpose: replicate visual appearance and UI implementation.
 
 Primary sources: HTML, CSS, DOM, Assets, Design Tokens, and Component Libraries.
 
+Source Of Truth is required. Every Visual DNA must declare one or more of these allowed sources:
+
+- Official Website
+- Official Product
+- Official Documentation
+
 Outputs: Visual Tokens, Layout Rules, Typography Rules, Color System, Spacing System, Component Rules, and Motion Rules.
 
 Visual DNA is responsible for How It Looks. It is not responsible for Experience Pattern, Motivation Pattern, Retention Pattern, or Progression Pattern.
@@ -76,8 +82,6 @@ The legacy template remains valid for existing Product DNA assets and uses these
 7. Evidence References
 
 Visual Tokens MUST be executable parameters. Each token must state an explicit value, a unit or format where applicable, and the scope or state in which it applies. Descriptive prose without executable parameter values is invalid.
-
-Evidence References is mandatory. Every extracted pattern, token, and rule must map to an evidence identifier and an official source reference. Missing Evidence References blocks DNA Governance Release Audit.
 
 ## Consumption
 
