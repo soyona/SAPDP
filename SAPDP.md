@@ -1,6 +1,6 @@
-# SAPDP v2.8.0 Protocol
+# SAPDP v2.9.0 Protocol
 
-Protocol Digest: sha256:c81e505a2b702af30ef9a2b5329a527c833099f42ac95995ad41539101d179b0
+Protocol Digest: sha256:6c8747af1a393bf2d25144e87e9a7dca8e3de61eca34da5a52ed5798519b6b0a
 
 <!-- Runtime Summary Start -->
 Runtime Summary:
@@ -480,6 +480,66 @@ ChatGPT to Codex handoff must be compact and executable:
 - Validation
 - Required return format
 
+### 5.1 Codex Execution Instruction Contract
+
+When SAPDP generates a Codex task, and the target repository already provides a standard script for the intended operation, the generated Codex task must explicitly include:
+
+```text
+Execution Method:
+Script
+
+Script:
+<path/to/script>
+
+Arguments:
+<arguments>
+
+Invocation:
+<exact command>
+
+Expected Output:
+<expected-output>
+```
+
+The task must not rely on vague wording such as:
+
+```text
+Run release
+```
+
+or:
+
+```text
+Create tag
+```
+
+When generating Codex execution instructions, SAPDP must prefer existing repository automation over manually described commands.
+
+Priority order:
+1. Repository script
+2. Make target
+3. Package task runner
+4. Explicit manual command
+
+Principle:
+
+Existing automation first.
+Manual commands only when no suitable automation exists.
+
+Codex must not infer execution steps from task names alone.
+
+Prohibited:
+
+```text
+Goal:
+Release SAPDP v<X.Y.Z>
+```
+
+without:
+- Execution Method
+- Invocation
+- Expected Output
+
 Codex to ChatGPT handoff must return:
 - Commit URL only when a remote commit URL exists.
 - Local commit SHA and exact push instructions only when no remote exists.
@@ -735,6 +795,31 @@ with the version already declared in `SAPDP.md` by using
 The scripts execute frozen decisions only. They must not infer protocol changes
 or versions.
 
+During Release, if a release script exists, SAPDP must use the release script instead of manual Git tag commands.
+
+Standard release task shape:
+
+```text
+SAPDP
+
+Goal:
+Release SAPDP v<X.Y.Z>
+
+Execution Method:
+Script
+
+Invocation:
+<release-script> v<X.Y.Z> <commit-sha>
+
+Constraints:
+- Do not edit files unless the script requires it.
+- Do not create extra commits unless the script is explicitly designed to do so.
+- If the script fails, stop and return the error.
+
+Output:
+Tag URL only.
+```
+
 Commit URL and Tag URL are required minimum Git-native evidence for protocol releases. SAPDP Release is defined by its Git tag, and the latest valid SAPDP version tag defines the Latest SAPDP Release Version. A GitHub Release page is optional, non-authoritative, and must not be used by tooling to resolve the SAPDP latest release.
 
 If required remote evidence cannot be verified, protocol release result must be PATCH REQUIRED, not PASS AND FROZEN.
@@ -812,6 +897,26 @@ Repository Reality Validation Rule:
 Before any Materialization Planning, SAPDP must verify the current repository reality from Git/GitHub.
 
 Materialization Planning must be based on committed repository state, not session memory, historical assumptions, previous file structures, or inferred paths.
+
+### 11.3 Evolution Codex Task Generation Rule
+
+During Protocol Evolution, ChatGPT-generated Codex tasks must include:
+
+```text
+Execution Method:
+Script / Make / Task Runner / Manual Command
+
+Invocation:
+<exact command>
+
+Constraints:
+<do / do not>
+
+Output:
+<required return value>
+```
+
+If an execution method is unknown, the Codex task must explicitly instruct Codex to inspect the repository for standard automation first, then use the highest-priority valid method.
 
 DNA Governance reuses the protocol governance lifecycle:
 1. Reality Validation
