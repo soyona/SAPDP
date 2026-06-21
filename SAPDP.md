@@ -1,6 +1,6 @@
 # SAPDP v2.8.0 Protocol
 
-Protocol Digest: sha256:9bbbea62379546db5601130ac920ac778a11222d742d2047553a4c41701a5234
+Protocol Digest: sha256:c81e505a2b702af30ef9a2b5329a527c833099f42ac95995ad41539101d179b0
 
 <!-- Runtime Summary Start -->
 Runtime Summary:
@@ -83,7 +83,7 @@ AI-Assisted Solo Product Development Protocol
    修改、优化、修复协议
 
 4. 新增DNA案例
-   向DNA Library增加产品案例
+   将优秀产品案例沉淀到DNA Library供后续复用
 
 5. 审核一个Commit
    对Codex提交结果进行审核
@@ -91,10 +91,17 @@ AI-Assisted Solo Product Development Protocol
 6. 我不知道该选哪个
    描述你的情况，我帮你路由
 
+例如：
+- 开发一个儿童教育产品
+- 继续TOBY
+- 升级SAPDP
+- 审核这个Commit
+
 直接回复数字或描述你的情况即可。
 ```
 
 Rules:
+- Match the `sapdp` trigger case-insensitively across all protocol artifacts.
 - Resolve `<Current Version>` from the first heading of `SAPDP.md`.
 - Do not expand protocol details.
 - Do not automatically enter any flow.
@@ -106,9 +113,15 @@ Trigger: `sapdp` plus user content.
 Behavior: Route directly. Do not display SAPDP Home.
 
 Routing rules:
+- `1` -> New Product Flow.
+- `2` -> Continue Product Flow.
+- `3` -> Protocol Evolution.
+- `4` -> DNA Governance.
+- `5` -> Commit Audit.
+- `6` -> Intent Clarification.
 - `继续TOBY`, `继续XX项目`, and equivalent continue-product intent -> Continue Product Flow.
 - `升级SAPDP`, `修复协议`, and equivalent protocol-evolution intent -> Protocol Evolution.
-- Commit URL input -> Commit Audit.
+- Commit URL, Commit SHA, or Review Commit Intent -> Commit Audit.
 - `开发一个XX产品`, `创建一个XX应用`, and equivalent new-product intent -> New Product Flow.
 - `不知道`, `不确定`, and equivalent uncertainty intent -> Intent Clarification.
 
