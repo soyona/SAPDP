@@ -1,6 +1,6 @@
-# SAPDP v3.0.0 Protocol
+# SAPDP v3.0.1 Protocol
 
-Protocol Digest: sha256:b7a2e4a6bac9f15ee286cf210ccf99691eecad931b864ec807ddf6a60bc2dea8
+Protocol Digest: sha256:9f9d34ee9380bc420b78dc6345ade362cf530b1cb7e98450dc6124b934812f7d
 
 <!-- Runtime Summary Start -->
 Runtime Summary:
@@ -286,6 +286,18 @@ Version rules:
 - A specified version, tag, or commit pins that explicit ref.
 - Runtime state records the resolved protocol source ref and version lock.
 - After version lock, normal operation reads state and does not re-resolve latest.
+
+Product repository Bootstrap must create the following Git operation scripts
+when they are missing:
+
+```text
+scripts/product-commit
+scripts/product-release
+scripts/product-verify
+```
+
+Equivalent existing scripts are allowed only when their invocation and output
+contracts are explicit.
 
 Bootstrap output must be minimal and must not include lifecycle theory.
 
@@ -679,6 +691,43 @@ Product Script. The GitHub Connector may be used only for:
 - PR Audit
 - Issue Audit
 - Remote Repository Validation
+
+### 5.3 Product Git Script Runtime Standard
+
+The required product Git script invocation shapes are:
+
+```text
+./scripts/product-commit
+./scripts/product-release
+./scripts/product-verify
+```
+
+The scripts must not require Codex to infer Git commands. A script must either
+require no arguments or print explicit usage and stop when its arguments are
+invalid.
+
+Script output contracts:
+- `product-commit`: Commit URL only, or local commit SHA plus the exact push
+  instruction when no remote exists.
+- `product-release`: Release URL or Tag URL only.
+- `product-verify`: `PASS` or `FAIL` plus a concise failure reason.
+
+If a required product Git script is missing outside Bootstrap, return:
+
+```text
+BLOCKED Product Git script missing.
+Next: Create required product Git script first.
+```
+
+Do not fall back to raw Git commands unless the Human explicitly overrides.
+
+Every Codex task for a product Git operation must include the exact invocation.
+For example:
+
+```text
+Invocation:
+./scripts/product-commit
+```
 
 ChatGPT stages normally continue in the current product-bound session unless context size requires a new session. Bootstrap to Problem uses a new product-bound session by default. Human and Git exception paths must state the required Human or Git action explicitly.
 
