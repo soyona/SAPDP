@@ -1,4 +1,4 @@
-# SAPDP v2.6.8 Protocol
+# SAPDP v2.6.9 Protocol
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
@@ -628,11 +628,14 @@ Universal Version Increment Rule:
 - Any committed change to the SAPDP repository creates a new protocol version.
 - No repository change may be released without a protocol version increment.
 
-Before release:
-1. Update the version in `SAPDP.md`.
-2. Commit the repository change.
-3. Tag the commit with the new protocol version.
-4. Release the new protocol version.
+Materialization includes the version bump defined by Design Freeze, commits and
+pushes the repository changes with `scripts/sapdp-materialize`, and outputs the
+Commit URL. Release runs only after Repository Audit, tags the current commit
+with the version already declared in `SAPDP.md` by using
+`scripts/sapdp-release`, and outputs the Tag URL.
+
+The scripts execute frozen decisions only. They must not infer protocol changes
+or versions.
 
 Commit URL and Tag URL are required minimum Git-native evidence for protocol releases. GitHub Release is not required as minimum solo Git-native evidence.
 

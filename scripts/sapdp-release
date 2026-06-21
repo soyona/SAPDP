@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+readonly REPOSITORY="soyona/SAPDP"
+
+fail() {
+  printf 'sapdp-release: %s\n' "$1" >&2
+  exit 1
+}
+
+[[ $# -eq 0 ]] || fail 'usage: sapdp-release'
+
+repo_root=$(git rev-parse --show-toplevel 2>/dev/null) || fail 'not inside a Git repository'
+cd "$repo_root"
+
+[[ -z $(git status --porcelain) ]] || fail 'working tree is dirty'
+
+heading=$(sed -n '1p' SAPDP.md)
+if [[ $heading =~ ^#\ SAPDP\ v([0-9]+\.[0-9]+\.[0-9]+)\ Protocol$ ]]; then
+  tag="v${BASH_REMATCH[1]}"
+else
+  fail 'invalid SAPDP.md version heading'
+fi
+
+git rev-parse --verify --quiet "refs/tags/${tag}" >/dev/null \
+  && fail "local tag ${tag} already exists"
+[[ -z $(git ls-remote --tags origin "refs/tags/${tag}" "refs/tags/${tag}^{}") ]] \
+  || fail "remote tag ${tag} already exists"
+
+git tag -a "$tag" -m "SAPDP ${tag}" HEAD
+git push --quiet origin "refs/tags/${tag}"
+
+printf 'https://github.com/%s/tree/%s\n' "$REPOSITORY" "$tag"

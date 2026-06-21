@@ -117,35 +117,14 @@ Rules:
 
 Input:
 - Design Freeze Output
+- Commit Message
 
-Codex success return:
+Actions:
+- Apply the frozen repository changes, including the Target Version bump in the first heading of `SAPDP.md`.
+- Run `scripts/sapdp-materialize "<commit message>"`.
 
-```text
-Target Version:
-<vX.Y.Z>
-
-Status:
-PASS
-
-Commit URL:
-<url>
-```
-
-Codex local-only return:
-
-```text
-Target Version:
-<vX.Y.Z>
-
-Status:
-PASS_LOCAL
-
-Commit:
-<sha>
-
-Push:
-<exact command>
-```
+Output:
+- Commit URL
 
 Codex failure return:
 
@@ -170,6 +149,14 @@ Codex must not return:
 
 Git Commit Diff is the repository audit source of truth.
 
+`scripts/sapdp-materialize` contract:
+- Accept exactly one non-empty commit message.
+- Fail when the repository has no file changes.
+- Run Git add, commit, and push.
+- Print the Commit URL only on success.
+- Do not tag or modify files.
+- Do not infer or change the protocol version.
+
 ### 6. Repository Audit
 
 Input:
@@ -180,7 +167,7 @@ Input:
 Audit Scope:
 - Repository matches Frozen Design
 - Version Consistency
-- Release Readiness
+- Release criteria
 
 Output:
 
@@ -207,16 +194,6 @@ Input:
 Codex success return:
 
 ```text
-Target Version:
-<vX.Y.Z>
-
-Status:
-PASS
-
-Tag URL:
-<url>
-
-Release URL:
 <url>
 ```
 
@@ -233,11 +210,19 @@ Blocker:
 <one concrete blocker>
 ```
 
+`scripts/sapdp-release` contract:
+- Accept no input.
+- Read the version from the first heading of `SAPDP.md`.
+- Fail when the working tree is dirty or the version tag already exists locally or remotely.
+- Create `vX.Y.Z` on current `HEAD`, push that tag, and print the Tag URL only on success.
+- Do not modify files, commit, infer a version, or bump a version.
+
 ## Completion Rules
 
 - The first heading of `SAPDP.md` equals Target Version.
 - The Protocol Evolution flow contains exactly the seven fixed stages.
 - Flow Progress Information includes the full flow, current stage, next stage, progress, and environment.
 - Current Version and Target Version follow the Version Field Rule.
-- Materialization and Release returns use only their defined minimal fields.
+- Materialization returns only the Commit URL.
+- Release returns only the Tag URL.
 - Git Commit Diff remains the source of truth for Repository Audit.

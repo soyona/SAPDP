@@ -24,8 +24,13 @@ Do not use the GitHub Connector.
 Do not modify the working tree while checking or loading the protocol.
 The fetched GitHub `main` version is the sole protocol authority.
 
-# Git-only Release
+# Low-token Materialization and Release
 
-For an explicit complete-release request, run `./scripts/release patch` and return its stdout only.
+For Materialization, apply the frozen changes and version bump, then run
+`./scripts/sapdp-materialize "<commit message>"` and return its stdout only.
 
-Do not use the GitHub Connector or `gh`. The script owns version increment, validation, commit, annotated tag, atomic push, remote verification, and evidence URLs. A GitHub Release is not required.
+For an explicit Release request after Repository Audit, run
+`./scripts/sapdp-release` and return its stdout only.
+
+Do not use the GitHub Connector or `gh`. The scripts execute protocol decisions
+already made by the governing stage; they do not make or infer those decisions.

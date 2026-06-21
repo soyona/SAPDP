@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+readonly REPOSITORY="soyona/SAPDP"
+
+fail() {
+  printf 'sapdp-materialize: %s\n' "$1" >&2
+  exit 1
+}
+
+[[ $# -eq 1 && -n $1 ]] || fail 'usage: sapdp-materialize "<commit message>"'
+
+repo_root=$(git rev-parse --show-toplevel 2>/dev/null) || fail 'not inside a Git repository'
+cd "$repo_root"
+
+[[ -n $(git status --porcelain) ]] || fail 'no file changes'
+
+git add --all
+git diff --cached --quiet && fail 'no file changes'
+git commit --quiet -m "$1"
+git push --quiet origin HEAD
+
+commit=$(git rev-parse HEAD)
+printf 'https://github.com/%s/commit/%s\n' "$REPOSITORY" "$commit"
