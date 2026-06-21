@@ -1,6 +1,6 @@
-# SAPDP v2.9.1 Protocol
+# SAPDP v3.0.0 Protocol
 
-Protocol Digest: sha256:e65de37fe5c0291fa386ec7afee9a26c97cc490bbea42c975481c99696803508
+Protocol Digest: sha256:b7a2e4a6bac9f15ee286cf210ccf99691eecad931b864ec807ddf6a60bc2dea8
 
 <!-- Runtime Summary Start -->
 Runtime Summary:
@@ -85,6 +85,13 @@ Release:
 `./scripts/sapdp-release`
 
 The Repository Capabilities registry is execution fact, not advisory guidance.
+
+These protocol repository scripts apply only to:
+- SAPDP Protocol Evolution
+- SAPDP Protocol Materialization
+- SAPDP Protocol Release
+
+They must not be treated as generic product repository scripts.
 
 ## 1. Invocation
 
@@ -621,6 +628,57 @@ Codex to ChatGPT handoff must return:
 - Commit URL only when a remote commit URL exists.
 - Local commit SHA and exact push instructions only when no remote exists.
 - One blocker only when no commit can be created.
+
+### 5.2 Product Git Script Standard
+
+Product repositories should expose Git operations through script entry points.
+The recommended minimum set is:
+
+```text
+scripts/
+  product-commit
+  product-release
+  product-verify
+```
+
+Equivalent naming is allowed. One script should represent one deterministic
+operation.
+
+For product repository commit, push, tag, release, and verification operations,
+SAPDP must generate:
+
+```text
+Invocation:
+<exact product script>
+```
+
+Example:
+
+```text
+Invocation:
+./scripts/product-commit
+```
+
+The following instructions are prohibited because they do not provide an exact
+script invocation:
+
+```text
+Please commit the changes.
+Please push the changes.
+Please create a release.
+```
+
+Commit, push, tag, and release are deterministic Git operations. They must
+prefer Product Scripts. Codex must not spend reasoning budget on Git command
+discovery, parameter guessing, or execution-order inference.
+
+The default execution mechanism for product repository Git operations is a
+Product Script. The GitHub Connector may be used only for:
+- Commit Audit
+- Release Audit
+- PR Audit
+- Issue Audit
+- Remote Repository Validation
 
 ChatGPT stages normally continue in the current product-bound session unless context size requires a new session. Bootstrap to Problem uses a new product-bound session by default. Human and Git exception paths must state the required Human or Git action explicitly.
 
