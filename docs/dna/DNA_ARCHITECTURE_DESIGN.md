@@ -566,6 +566,69 @@ After completion, implementation consumes approved specifications, not raw DNA.
 
 ## 9. Governance Rules
 
+### G-001
+Ownership Rule
+
+DNA artifact ownership belongs to SAPDP.
+
+Consumers may use DNA artifacts.
+
+Consumers do not own DNA artifacts.
+
+Consumers do not define DNA artifacts.
+
+---
+
+### G-002
+Authority Rule
+
+DNA authority belongs to the approved DNA artifact.
+
+Consumers may interpret DNA.
+
+Consumers may not redefine DNA.
+
+Conflicting interpretations do not modify DNA meaning.
+
+---
+
+### G-003
+Versioning Rule
+
+DNA artifacts are immutable.
+
+DNA changes create new versions.
+
+Older versions remain valid.
+
+Products may continue using approved older versions.
+
+---
+
+### G-004
+Approval Rule
+
+Only approved DNA artifacts may be consumed.
+
+Approval status is determined by SAPDP governance.
+
+Unapproved DNA artifacts may be researched.
+
+Unapproved DNA artifacts may not influence product design.
+
+---
+
+### G-005
+Conflict Governance Rule
+
+Human owns final conflict resolution authority.
+
+ChatGPT surfaces DNA conflicts.
+
+Codex reports implementation conflicts.
+
+Neither ChatGPT nor Codex may silently resolve DNA conflicts.
+
 ## 10. Open Questions
 
 How should Product DNA and Visual DNA be synthesized?
@@ -577,6 +640,16 @@ Should an Experience Model layer exist?
 How should DNA be consumed by UX Specification?
 
 How should DNA be consumed by Visual Design Specification?
+
+How should multiple Product DNA artifacts be combined?
+
+How should multiple Visual DNA artifacts be combined?
+
+How should Product DNA and Visual DNA be synthesized?
+
+Should an Experience Model layer exist?
+
+What is the internal architecture of DNA Consumption?
 
 ## 11. Design Roadmap
 
@@ -598,11 +671,11 @@ PASS
 
 Phase 5
 Governance Rules Design
-CURRENT
+PASS
 
 Phase 6
 Open Questions Resolution
-PENDING
+CURRENT
 
 
 ### Roadmap Execution Rule
@@ -634,16 +707,21 @@ PASS
 
 Phase 2
 Consumer Model Design
+PASS
 
 Phase 3
 Artifact Model Design
+PASS
 
 Phase 4
 Consumption Model Design
+PASS
 
 Phase 5
 Governance Rules Design
+PASS
 
 Phase 6
 Open Questions Resolution
+CURRENT
 
