@@ -376,6 +376,194 @@ as two separate artifacts.
 
 ## 8. Consumption Model
 
+### C-001
+Consumption Definition
+
+DNA Consumption is the controlled use of approved Product DNA and Visual DNA as design input within SAPDP.
+
+DNA Consumption does not redefine DNA.
+
+DNA Consumption does not create new DNA artifact types.
+
+DNA Consumption does not change Consumer responsibilities.
+
+DNA Consumption does not change the Artifact Model.
+
+---
+
+### C-002
+Consumption Direction Rule
+
+DNA is consumed downstream only.
+
+Allowed direction:
+
+DNA Artifact
+→ Human Selection
+→ ChatGPT Interpretation
+→ SAPDP Design Artifacts
+→ Approved Specifications
+→ Implementation
+
+Implementation does not consume raw DNA directly.
+
+Implementation consumes approved specifications that have already incorporated DNA intent.
+
+---
+
+### C-003
+Human Selection Rule
+
+Human selects which DNA artifacts may be used for a product.
+
+Human may select:
+
+- Product DNA only
+- Visual DNA only
+- Product DNA + Visual DNA
+
+Human approval is required before DNA affects SAPDP design artifacts.
+
+---
+
+### C-004
+ChatGPT Interpretation Rule
+
+ChatGPT interprets selected DNA artifacts and applies them to the appropriate SAPDP design artifacts.
+
+ChatGPT must preserve the boundary between:
+
+- Product DNA
+- Visual DNA
+
+ChatGPT must not convert Visual DNA into experience mechanisms.
+
+ChatGPT must not convert Product DNA into visual implementation details.
+
+---
+
+### C-005
+Product DNA Consumption Rule
+
+Product DNA is consumed by UX Specification.
+
+UX Specification applies Product DNA to experience mechanism design, including:
+
+- Progression
+- Reward
+- Retention
+- Exploration
+- Collection
+- Creation
+- Competition
+- Workflow
+
+Product DNA must not be used to define:
+
+- color values
+- typography values
+- design tokens
+- component definitions
+- visual layout specifications
+
+---
+
+### C-006
+Visual DNA Consumption Rule
+
+Visual DNA is consumed by Visual Design Specification.
+
+Visual Design Specification applies Visual DNA to sensory expression design, including:
+
+- Visual Personality
+- Information Density
+- Visual Hierarchy
+- Motion Language
+- Layout Philosophy
+- Typography Style
+- Illustration Style
+
+Visual DNA must not be used to define:
+
+- reward systems
+- progression systems
+- retention systems
+- economy systems
+- social systems
+
+---
+
+### C-007
+Combined DNA Consumption Rule
+
+When Product DNA and Visual DNA are both selected, they are consumed independently.
+
+Product DNA informs experience mechanisms.
+
+Visual DNA informs sensory expression.
+
+The two artifacts may be combined in product design, but they must not be merged into a single DNA artifact.
+
+---
+
+### C-008
+Conflict Resolution Rule
+
+If selected DNA artifacts conflict during consumption, ChatGPT must surface the conflict to Human.
+
+Human resolves DNA conflicts.
+
+ChatGPT must not silently override one selected DNA artifact with another.
+
+Codex must not resolve DNA conflicts.
+
+Implementation must preserve the Human-approved resolution.
+
+---
+
+### C-009
+Specification Mediation Rule
+
+DNA affects implementation only through approved specifications.
+
+Raw DNA must not be used as direct implementation authority.
+
+Implementation authority remains:
+
+Approved UX Specification
+
+Approved Visual Design Specification
+
+Approved technical and product artifacts
+
+DNA provides design input, not implementation command.
+
+---
+
+### C-011
+Non-Consumption Rule
+
+If no DNA artifact is selected, SAPDP proceeds without DNA consumption.
+
+Absence of DNA does not block product development.
+
+Absence of DNA does not require creating placeholder DNA artifacts.
+
+---
+
+### C-012
+Consumption Completion Rule
+
+DNA Consumption is complete when:
+
+- Human-selected DNA artifacts are recorded
+- Product DNA has been applied only to UX Specification, if selected
+- Visual DNA has been applied only to Visual Design Specification, if selected
+- DNA conflicts have been surfaced and resolved
+- downstream specifications preserve DNA-aligned intent
+
+After completion, implementation consumes approved specifications, not raw DNA.
+
 ## 9. Governance Rules
 
 ## 10. Open Questions
@@ -406,11 +594,11 @@ PASS
 
 Phase 4
 Consumption Model Design
-CURRENT
+PASS
 
 Phase 5
 Governance Rules Design
-PENDING
+CURRENT
 
 Phase 6
 Open Questions Resolution
