@@ -631,25 +631,159 @@ Neither ChatGPT nor Codex may silently resolve DNA conflicts.
 
 ## 10. Open Questions
 
-How should Product DNA and Visual DNA be synthesized?
+### 10.1 Multiple Product DNA Combination
 
-What is the architecture of DNA Consumption?
+#### Product DNA Combination Rule
 
-Should an Experience Model layer exist?
+Multiple Product DNA artifacts may be selected.
 
-How should DNA be consumed by UX Specification?
+Selected Product DNA artifacts remain independent.
 
-How should DNA be consumed by Visual Design Specification?
+Product DNA artifacts are combined through experience mechanism contribution.
 
-How should multiple Product DNA artifacts be combined?
+Each Product DNA artifact contributes experience mechanisms within its authority domain.
 
-How should multiple Visual DNA artifacts be combined?
+Product DNA artifacts must not merge.
 
-How should Product DNA and Visual DNA be synthesized?
+Product DNA artifacts must remain independently identifiable.
 
-Should an Experience Model layer exist?
+---
 
-What is the internal architecture of DNA Consumption?
+### 10.2 Multiple Visual DNA Combination
+
+#### Visual DNA Composition Rule
+
+Multiple Visual DNA artifacts may be selected.
+
+Selected Visual DNA artifacts remain independent.
+
+Visual DNA artifacts contribute visual characteristics within their authority domains.
+
+Visual DNA artifacts must not merge.
+
+Visual DNA artifacts must remain independently identifiable.
+
+---
+
+### 10.3 Product DNA + Visual DNA Synthesis
+
+#### Cross-DNA Synthesis Rule
+
+Product DNA and Visual DNA do not synthesize into a new DNA artifact.
+
+Product DNA remains responsible for experience mechanisms.
+
+Visual DNA remains responsible for sensory expression.
+
+Synthesis occurs only during product design.
+
+The resulting product design is not a DNA artifact.
+
+---
+
+### 10.4 Experience Model Layer
+
+#### Experience Model Layer Decision
+
+SAPDP does not introduce an Experience Model Layer.
+
+Product DNA already provides experience mechanism authority.
+
+UX Specification already owns experience design.
+
+Introducing an Experience Model Layer would duplicate responsibilities.
+
+Introducing an Experience Model Layer would require redesigning the Consumer Model and Consumption Model.
+
+Therefore:
+
+Product DNA is consumed directly by UX Specification through the existing Consumption Model.
+
+No additional intermediate layer exists.
+
+---
+
+### 10.5 Internal Consumption Workflow
+
+#### Internal Consumption Workflow
+
+The following workflow is executed by ChatGPT during DNA Consumption.
+
+Approved DNA Artifacts
+
+↓
+
+Interpretation
+
+↓
+
+Extraction
+
+↓
+
+Mapping
+
+↓
+
+Specification Application
+
+↓
+
+DNA-Aligned Specifications
+
+---
+
+The workflow does not introduce new consumers.
+
+The workflow does not introduce new architecture layers.
+
+The workflow describes internal execution performed by ChatGPT within the existing Consumption Model.
+
+---
+
+#### Interpretation
+
+ChatGPT interprets approved DNA artifacts.
+
+Interpretation does not modify DNA meaning.
+
+---
+
+#### Extraction
+
+Relevant DNA knowledge is extracted within DNA authority boundaries.
+
+Extraction does not create new DNA artifacts.
+
+---
+
+#### Mapping
+
+Extracted DNA knowledge is mapped to the appropriate SAPDP design artifacts.
+
+Product DNA maps to UX Specification.
+
+Visual DNA maps to Visual Design Specification.
+
+---
+
+#### Specification Application
+
+Mapped DNA knowledge is applied during specification creation.
+
+Application does not redefine DNA.
+
+---
+
+#### DNA-Aligned Specifications
+
+The result of DNA Consumption is DNA-aligned specifications.
+
+Implementation consumes approved specifications rather than raw DNA.
+
+
+### Remaining Open Questions
+
 
 ## 11. Design Roadmap
 
@@ -673,9 +807,24 @@ Phase 5
 Governance Rules Design
 PASS
 
-Phase 6
-Open Questions Resolution
-CURRENT
+Phase 6A
+DNA Combination Model
+PASS
+
+Phase 6B-1
+Experience Model Layer
+PASS
+
+Phase 6B-2
+Internal Consumption Workflow
+PASS
+
+Phase 7
+DNA Architecture Final Audit
+PASS
+
+DNA Architecture
+FINAL FREEZE
 
 
 ### Roadmap Execution Rule
@@ -703,25 +852,79 @@ DNA Architecture Design Roadmap
 
 Phase 1
 Definition Layer
-PASS
+FROZEN
 
 Phase 2
 Consumer Model Design
-PASS
+FROZEN
 
 Phase 3
 Artifact Model Design
-PASS
+FROZEN
 
 Phase 4
 Consumption Model Design
-PASS
+FROZEN
 
 Phase 5
 Governance Rules Design
+FROZEN
+
+Phase 6A
+DNA Combination Model
+FROZEN
+
+Phase 6B-1
+Experience Model Layer
+FROZEN
+
+Phase 6B-2
+Internal Consumption Workflow
+FROZEN
+
+Phase 7
+DNA Architecture Final Audit
 PASS
 
-Phase 6
-Open Questions Resolution
-CURRENT
+DNA Architecture
+FINAL FREEZE
 
+
+## Final Freeze Status
+
+Status:
+FINAL FREEZE
+
+Result:
+PASS
+
+Freeze Scope:
+
+- Core Concepts
+- Responsibilities
+- Boundary Rules
+- Consumers
+- Artifact Model
+- Consumption Model
+- Governance Rules
+- DNA Combination Model
+- Experience Model Decision
+- Internal Consumption Workflow
+
+Modification Policy:
+
+The frozen architecture may only be modified if Reality Validation discovers:
+
+- Architecture Blocker
+- Authority Conflict
+- Consumer Conflict
+- Artifact Conflict
+- Governance Conflict
+
+Otherwise:
+
+No architectural redesign is permitted.
+
+Next Stage:
+
+DNA Artifact System Design
