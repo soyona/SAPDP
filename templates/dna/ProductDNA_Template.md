@@ -1,29 +1,162 @@
-# DNA Type
+# Product DNA Template
 
-`Product DNA`
+## Metadata
 
-# Experience Pattern
+Artifact Name:
 
-- <Executable end-to-end product experience rule. Evidence: EVID-001.>
+Artifact Type:
+Product DNA
 
-# Interaction Pattern
+Version:
 
-- <Executable trigger, response, feedback, or state-transition rule. Evidence: EVID-001.>
+Status:
 
-# Motivation Pattern
+Source Product:
 
-- <Executable motivation mechanism rule. Evidence: EVID-001.>
+---
 
-# Retention Pattern
+## DNA Identity
 
-- <Executable return-use or sustained-engagement mechanism rule. Evidence: EVID-001.>
+DNA Statement:
 
-# Progression Pattern
+---
 
-- <Executable progression, mastery, or advancement mechanism rule. Evidence: EVID-001.>
+## DNA Summary
 
-# Evidence References
+Summary:
 
-| Evidence ID | Supported Items | Verified Fact | Evidence Artifact | Official Source |
-| --- | --- | --- | --- | --- |
-| `EVID-001` | `<section and item identifiers>` | `<verified fact>` | `dna/evidence/<Product>/<artifact>` | `<official product, documentation, help center, or real usage observation>` |
+---
+
+## Core Experience Mechanisms
+
+### Mechanism 1
+
+Name:
+
+Purpose:
+
+Behavioral Effect:
+
+### Mechanism 2
+
+Name:
+
+Purpose:
+
+Behavioral Effect:
+
+### Mechanism N
+
+Name:
+
+Purpose:
+
+Behavioral Effect:
+
+---
+
+## Authority Areas
+
+### Primary Authority Areas
+
+*
+
+### Secondary Authority Areas
+
+*
+
+---
+
+## Mechanism Interaction Model
+
+Interaction Description:
+
+---
+
+## User Motivation Model
+
+### Primary Motivation
+
+*
+
+### Secondary Motivation
+
+*
+
+---
+
+## Experience Principles
+
+### Principle 1
+
+### Principle 2
+
+### Principle N
+
+---
+
+## Applicable Scenarios
+
+*
+
+---
+
+## Non-Applicable Scenarios
+
+*
+
+---
+
+## Combination Guidance
+
+### Compatible DNA Characteristics
+
+*
+
+### Potential Conflict Characteristics
+
+*
+
+---
+
+## Combination Contribution
+
+### Primary Contribution Areas
+
+*
+
+### Secondary Contribution Areas
+
+*
+
+---
+
+## Risks
+
+### Known Risks
+
+*
+
+---
+
+## References
+
+### Observed Product Behaviors
+
+*
+
+### Evidence Notes
+
+*
+
+---
+
+## Optional Research Notes
+
+### Historical Notes
+
+### Evolution Notes
+
+### Alternative Interpretations
+
+### Research Notes

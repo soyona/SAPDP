@@ -1,39 +1,208 @@
-# DNA Type
+# Visual DNA Template
 
-`Visual DNA`
+## Metadata
 
-# Visual Tokens
+Artifact Name:
 
-| Parameter | Value | Unit / Format | Scope / State | Evidence ID |
-| --- | --- | --- | --- | --- |
-| `<token-name>` | `<explicit value>` | `<unit or format, or none>` | `<application scope or state>` | `EVID-001` |
+Artifact Type:
+Visual DNA
 
-# Layout Rules
+Version:
 
-- <Executable hierarchy, spatial organization, or responsive rule. Evidence: EVID-001.>
+Status:
 
-# Typography Rules
+Source Product:
 
-- <Executable typeface, size, weight, line-height, or text-style rule. Evidence: EVID-001.>
+---
 
-# Color System
+## DNA Identity
 
-- <Executable color parameter with value, format, scope, and state. Evidence: EVID-001.>
+DNA Statement:
 
-# Spacing System
+---
 
-- <Executable spacing parameter with value, unit, and scope. Evidence: EVID-001.>
+## DNA Summary
 
-# Component Rules
+Summary:
 
-- <Component visual anatomy, variant, state, or composition rule. Evidence: EVID-001.>
+---
 
-# Motion Rules
+## Visual Personality
 
-- <Motion parameter or explicit no-motion rule, including duration and easing when applicable. Evidence: EVID-001.>
+### Primary Personality
 
-# Evidence References
+*
 
-| Evidence ID | Supported Items | Verified Fact | Evidence Artifact | Official Source |
-| --- | --- | --- | --- | --- |
-| `EVID-001` | `<section and item identifiers>` | `<verified fact>` | `dna/evidence/<Product>/<artifact>` | `<primary source reference>` |
+### Secondary Personality
+
+*
+
+---
+
+## Authority Areas
+
+### Primary Authority Areas
+
+*
+
+### Secondary Authority Areas
+
+*
+
+Allowed Areas:
+
+* Visual Personality
+* Information Density
+* Visual Hierarchy
+* Motion Language
+* Layout Philosophy
+* Typography Style
+* Illustration Style
+
+---
+
+## Authority Signature
+
+### Core Authority
+
+*
+
+### Supporting Authority
+
+*
+
+---
+
+## Core Visual Characteristics
+
+### Characteristic 1
+
+Name:
+
+Description:
+
+Perception Effect:
+
+### Characteristic 2
+
+Name:
+
+Description:
+
+Perception Effect:
+
+### Characteristic N
+
+Name:
+
+Description:
+
+Perception Effect:
+
+---
+
+## Visual Interaction Model
+
+Interaction Description:
+
+---
+
+## Perception Model
+
+### Primary Perception
+
+*
+
+### Secondary Perception
+
+*
+
+---
+
+## Dominant Visual Signals
+
+### Dominant Visual Signals
+
+*
+
+### Secondary Visual Signals
+
+*
+
+---
+
+## Visual Principles
+
+### Principle 1
+
+### Principle 2
+
+### Principle N
+
+---
+
+## Applicable Scenarios
+
+*
+
+---
+
+## Non-Applicable Scenarios
+
+*
+
+---
+
+## Combination Guidance
+
+### Compatible DNA Characteristics
+
+*
+
+### Potential Conflict Characteristics
+
+*
+
+---
+
+## Combination Contribution
+
+### Primary Contribution Areas
+
+*
+
+### Secondary Contribution Areas
+
+*
+
+---
+
+## Risks
+
+### Known Risks
+
+*
+
+---
+
+## References
+
+### Observed Product Behaviors
+
+*
+
+### Evidence Notes
+
+*
+
+---
+
+## Optional Research Notes
+
+### Historical Notes
+
+### Evolution Notes
+
+### Alternative Interpretations
+
+### Research Notes

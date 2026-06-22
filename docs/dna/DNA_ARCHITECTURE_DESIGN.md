@@ -938,21 +938,43 @@ COMPLETE
 DNA Artifact Specification Design
 
 Status:
+
 FROZEN
 
 Deliverables:
 
-- ProductDNA_Template.md
-- VisualDNA_Template.md
+* ProductDNA_Template.md
+* VisualDNA_Template.md
+
+Completed:
+
+* ProductDNA Template Design
+* VisualDNA Template Design
+* Template Audit
+
+Reality Validation:
+
+* Minecraft_Product_DNA
+* Linear_Visual_DNA
 
 Result:
 
-DNA Artifact Specification Design Complete
+PASS
+
+Goal:
+
+Validate that DNA artifacts can be created consistently from the templates.
+
+Exit Criteria:
+
+* Minecraft Product DNA completed
+* Linear Visual DNA completed
+* Template Reality Validation PASS
 
 Next Stage:
 
-Stage 2
-DNA Runtime Integration Design
+Stage 1 Freeze
+
 
 
 ---
@@ -963,26 +985,18 @@ DNA Runtime Integration Design
 
 Goal:
 
-Define how DNA participates in SAPDP execution.
+Define and validate how DNA executes inside SAPDP.
 
 Output:
 
-- DNA Selection Rules
-- DNA Resolution Rules
-- DNA Composition Rules
-- DNA Consumption Rules
-
-Questions:
-
-- When is DNA selected?
-- Where is DNA selection recorded?
-- How is DNA consumed?
-- How are conflicts resolved?
-- How does DNA influence downstream artifacts?
+* DNA Runtime Integration Model
+* DNA Runtime Contracts
+* Runtime Walkthrough
 
 Exit Criteria:
 
-DNA can participate in SAPDP execution.
+DNA Runtime Closed Loop PASS
+
 
 ---
 
@@ -1186,18 +1200,15 @@ Architecture Status:
 
 FINAL FREEZE
 
-Roadmap Status:
+Stage 1 Status:
 
-ACTIVE
-
-
-Architecture Status:
-
-FINAL FREEZE
+FROZEN
 
 Roadmap Status:
 
 ACTIVE
+
+
 
 
 ### Roadmap Governance Rule
@@ -1285,13 +1296,11 @@ ChatGPT
 
 Output:
 
-DNA Selection Rules
+DNA Runtime Integration Model
 
-DNA Resolution Rules
+DNA Runtime Contracts
 
-DNA Composition Rules
-
-DNA Consumption Rules
+Runtime Walkthrough
 
 Gate:
 
@@ -1563,20 +1572,51 @@ A stage is not complete until all required deliverables are frozen.
 
 DNA Artifact Specification Design
 
-Required Deliverables:
+Status:
 
-- ProductDNA_Template.md
-- VisualDNA_Template.md
+FROZEN
 
-Completion Criteria:
+Deliverables:
 
-- Both templates frozen
-- Mandatory fields defined
-- Optional fields defined
+* ProductDNA_Template.md
+* VisualDNA_Template.md
+
+Completed:
+
+* ProductDNA Template Design
+* VisualDNA Template Design
+* Template Audit
+* Minecraft Product DNA Reality Validation
+* Linear Visual DNA Reality Validation
+* Stage 1 Final Audit
+
+Validation Result:
+
+PASS
+
+Reality Validation Samples:
+
+* Minecraft_Product_DNA
+* Linear_Visual_DNA
+
+Findings:
+
+* No architecture blocker discovered
+* No authority conflict discovered
+* No governance conflict discovered
+* No consumer conflict discovered
+* No template patch required
+
+Exit Criteria:
+
+PASS
 
 Next Stage:
 
 Stage 2
+
+DNA Runtime Integration Design
+
 
 ---
 
@@ -1586,18 +1626,26 @@ DNA Runtime Integration Design
 
 Required Deliverables:
 
-- DNA_Runtime_Integration.md
+* DNA_Runtime_Integration.md
+
+Validation Deliverables:
+
+* Runtime_Walkthrough_Report.md
 
 Completion Criteria:
 
-- DNA Selection Rules frozen
-- DNA Resolution Rules frozen
-- DNA Composition Rules frozen
-- DNA Consumption Rules frozen
+* DNA Entry Contract frozen
+* DNA Persistence Contract frozen
+* DNA Propagation Contract frozen
+* DNA Consumption Contract frozen
+* DNA Conflict Contract frozen
+* DNA Implementation Contract frozen
+* Runtime Walkthrough PASS
 
 Next Stage:
 
 Codex Entry Gate
+
 
 ---
 
@@ -1719,3 +1767,314 @@ Completion Criteria:
 Result:
 
 DNA System Released
+
+## 15. DNA Runtime Integration
+
+### 15.1 DNA Entry Contract
+
+#### Purpose
+
+Define when DNA enters SAPDP execution.
+
+#### Rule
+
+DNA Selection occurs after:
+
+Solution Definition
+
+before:
+
+Product Requirement
+
+Human may select:
+
+* Product DNA
+* Visual DNA
+* Product DNA + Visual DNA
+* No DNA
+
+DNA Selection is optional.
+
+DNA is not required for SAPDP execution.
+
+---
+
+### 15.2 DNA Persistence Contract
+
+#### Purpose
+
+Ensure DNA Selection survives cross-session execution.
+
+#### Rule
+
+DNA Selection must be recorded.
+
+Record Location:
+
+Product Requirement
+
+DNA Selection Section
+
+Example:
+
+Selected Product DNA
+
+* Minecraft Product DNA
+
+Selected Visual DNA
+
+* Linear Visual DNA
+
+If no DNA is selected:
+
+Selected Product DNA
+
+* None
+
+Selected Visual DNA
+
+* None
+
+---
+
+### 15.3 DNA Propagation Contract
+
+#### Purpose
+
+Define how DNA intent propagates through SAPDP.
+
+#### Flow
+
+DNA Selection
+
+↓
+
+Product Requirement
+(record only)
+
+↓
+
+UX Specification
+(Product DNA Consumption)
+
+↓
+
+Visual Design Specification
+(Visual DNA Consumption)
+
+↓
+
+Task Package
+
+↓
+
+Implementation
+
+DNA Selection must remain traceable throughout the execution chain.
+
+---
+
+### 15.4 DNA Consumption Contract
+
+#### Execution Workflow
+
+Selection
+
+↓
+
+Interpretation
+
+↓
+
+Extraction
+
+↓
+
+Mapping
+
+↓
+
+Application
+
+↓
+
+Verification
+
+---
+
+#### Interpretation
+
+ChatGPT interprets approved DNA artifacts.
+
+Interpretation does not modify DNA meaning.
+
+---
+
+#### Extraction
+
+Relevant DNA knowledge is extracted within DNA authority boundaries.
+
+Extraction does not create new DNA artifacts.
+
+---
+
+#### Mapping
+
+Product DNA maps to:
+
+UX Specification
+
+Visual DNA maps to:
+
+Visual Design Specification
+
+---
+
+#### Application
+
+Mapped DNA knowledge is applied during specification creation.
+
+Application does not redefine DNA.
+
+---
+
+#### Verification
+
+ChatGPT must verify that selected DNA intent is preserved within downstream specifications.
+
+Verification does not modify DNA meaning.
+
+---
+
+### 15.5 DNA Conflict Contract
+
+#### Conflict Resolution Flow
+
+Conflict Detection
+
+↓
+
+Conflict Report
+
+↓
+
+Human Resolution
+
+↓
+
+Resolution Record
+
+↓
+
+Continue
+
+---
+
+#### Resolution Authority
+
+Human owns final conflict resolution authority.
+
+ChatGPT may surface conflicts.
+
+ChatGPT may not silently override selected DNA artifacts.
+
+Codex may not resolve DNA conflicts.
+
+---
+
+#### Resolution Record
+
+Conflict resolution must be recorded in:
+
+Product Requirement
+
+DNA Conflict Resolution Section
+
+---
+
+### 15.6 DNA Implementation Contract
+
+#### Rule
+
+Codex does not consume raw DNA.
+
+Codex consumes approved specifications.
+
+Implementation authority remains:
+
+* Product Requirement
+* UX Specification
+* Visual Design Specification
+* Technical Artifacts
+
+DNA provides design intent.
+
+DNA does not provide implementation authority.
+
+---
+
+### 15.7 DNA Runtime Validation Contract
+
+#### Purpose
+
+Validate that DNA Runtime can execute without architectural conflict.
+
+---
+
+#### Runtime Walkthrough Requirement
+
+Runtime Walkthrough is mandatory.
+
+Validation Scenario:
+
+Product DNA
+
+* Minecraft Product DNA
+
+Visual DNA
+
+* Linear Visual DNA
+
+---
+
+#### Walkthrough Flow
+
+DNA Selection
+
+↓
+
+Product Requirement
+
+↓
+
+UX Specification
+
+↓
+
+Visual Design Specification
+
+↓
+
+Task Package
+
+↓
+
+Implementation
+
+---
+
+#### Validation Targets
+
+The walkthrough must verify:
+
+* No Consumer Conflict
+* No Authority Conflict
+* No Governance Conflict
+* No Propagation Break
+* No Implementation Ambiguity
+
+---
+
+#### Validation Result
+
+Runtime Walkthrough must pass before Stage 2 may be frozen.
