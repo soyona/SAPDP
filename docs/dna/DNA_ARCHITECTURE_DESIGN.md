@@ -935,47 +935,23 @@ COMPLETE
 
 ### Stage 1
 
-DNA Artifact Specification Design
+DNA Artifact Specification
 
 Status:
-
 FROZEN
-
-Deliverables:
-
-* ProductDNA_Template.md
-* VisualDNA_Template.md
-
-Completed:
-
-* ProductDNA Template Design
-* VisualDNA Template Design
-* Template Audit
-
-Reality Validation:
-
-* Minecraft_Product_DNA
-* Linear_Visual_DNA
-
-Result:
-
-PASS
 
 Goal:
 
-Validate that DNA artifacts can be created consistently from the templates.
+Define Product DNA and Visual DNA artifact templates.
+
+Output:
+
+* ProductDNA Template
+* VisualDNA Template
 
 Exit Criteria:
 
-* Minecraft Product DNA completed
-* Linear Visual DNA completed
-* Template Reality Validation PASS
-
-Next Stage:
-
-Stage 1 Freeze
-
-
+Templates are ready for DNA artifact production.
 
 ---
 
@@ -1004,6 +980,26 @@ DNA Runtime Closed Loop PASS
 
 DNA Library MVP
 
+Status:
+
+COMPLETE
+
+Final Audit Result:
+
+PASS
+
+Completion State:
+
+FROZEN
+
+Progress:
+
+10 / 10
+
+Final Audit Record:
+
+docs/dna/Stage3_Final_Audit_Result.md
+
 Goal:
 
 Build the first DNA asset set.
@@ -1031,6 +1027,10 @@ First frozen DNA Library.
 Exit Criteria:
 
 At least 10 DNA artifacts completed.
+
+Exit Criteria Result:
+
+PASS
 
 ---
 
@@ -1067,800 +1067,606 @@ DNA demonstrates measurable value.
 
 ### Stage 5
 
-DNA Asset System Design
+Protocol Integration
 
 Goal:
 
-Support DNA at scale.
+Decide how DNA becomes part of SAPDP protocol execution.
+
+Options:
+
+1. Optional DNA Layer
+
+2. Mandatory DNA Selection Gate
+
+3. Template-driven DNA recommendation
 
 Output:
 
-- Repository Structure
-- Naming Rules
-- Metadata Rules
-- Search Rules
-- Index Rules
-
-Questions:
-
-- How are DNA assets organized?
-- How are DNA assets discovered?
-- How are DNA assets indexed?
+DNA Protocol Integration Decision
 
 Exit Criteria:
 
-DNA Library can scale beyond MVP.
+Integration path selected.
 
 ---
 
 ### Stage 6
 
-DNA Lifecycle Design
+DNA Library Expansion
 
 Goal:
 
-Support long-term DNA evolution.
+Expand DNA Library across product categories.
+
+Categories:
+
+- Kids Learning
+- Games
+- CRM
+- SaaS
+- Productivity
+- Social
+- AI Tools
+- E-commerce
+- Dev Tools
+- Finance
+- Healthcare
 
 Output:
 
-- Research Workflow
-- Draft Workflow
-- Audit Workflow
-- Freeze Workflow
-- Release Workflow
-- Versioning Rules
-
-Questions:
-
-- How is DNA created?
-- How is DNA updated?
-- How is DNA versioned?
-- How is DNA released?
+Expanded DNA Library.
 
 Exit Criteria:
 
-DNA evolution is governed.
+DNA Library covers major SAPDP product categories.
 
 ---
 
 ### Stage 7
 
-DNA System Release
+DNA Governance Automation
 
 Goal:
 
-Release DNA as a first-class SAPDP capability.
+Automate:
 
-Release Scope:
+- DNA selection
+- DNA conflict detection
+- DNA usage validation
+- DNA traceability
 
-- DNA Architecture
-- DNA Templates
-- DNA Runtime Integration
-- DNA Library
-- DNA Asset System
-- DNA Lifecycle
+Output:
 
-Result:
+DNA Governance Automation Model
 
-DNA becomes an official SAPDP capability.
+Exit Criteria:
 
-
-## Final Freeze Status
-
-Status:
-FINAL FREEZE
-
-Result:
-PASS
-
-Freeze Scope:
-
-- Core Concepts
-- Responsibilities
-- Boundary Rules
-- Consumers
-- Artifact Model
-- Consumption Model
-- Governance Rules
-- DNA Combination Model
-- Experience Model Decision
-- Internal Consumption Workflow
-
-Modification Policy:
-
-The frozen architecture may only be modified if Reality Validation discovers:
-
-- Architecture Blocker
-- Authority Conflict
-- Consumer Conflict
-- Artifact Conflict
-- Governance Conflict
-
-Otherwise:
-
-No architectural redesign is permitted.
-
-Next Stage:
-
-DNA Artifact Specification Design
-
-
-
-## Roadmap Status
-
-Current Stage:
-
-Stage 2
-
-Current Work:
-
-DNA Runtime Integration Design
-
-Architecture Status:
-
-FINAL FREEZE
-
-Stage 1 Status:
-
-FROZEN
-
-Roadmap Status:
-
-ACTIVE
-
-
-
-
-### Roadmap Governance Rule
-
-Stages 0-7 define the official DNA System Roadmap.
-
-Roadmap execution proceeds sequentially.
-
-A later stage may not start before the previous stage is frozen unless explicitly approved.
-
-The Roadmap itself is not frozen and may evolve based on Reality Validation.
-
+DNA can be managed with minimal human overhead.
 
 ## 13. DNA Execution Model
 
 ### Purpose
 
-The DNA Execution Model defines:
+Define how the DNA System moves from architecture design to executable, Git-tracked assets.
 
-- Execution ownership
-- Stage transition rules
-- Codex entry gates
-- Reality validation gates
-- Release gates
-
-The DNA Execution Model does not modify:
-
-- DNA Architecture
-- DNA Consumers
-- DNA Artifact Model
-- DNA Consumption Model
-- DNA Governance Model
-
-The DNA Execution Model defines how the DNA System is executed.
+This section prevents stage-order drift and ensures DNA work proceeds from frozen design to asset production to validation to protocol integration.
 
 ---
 
-## Execution Flow
+### Execution Layers
 
-Stage 0
+DNA work executes in four distinct layers:
 
-DNA Architecture
+1. Architecture Layer
 
-Owner:
+2. Template Layer
 
-ChatGPT
+3. Asset Layer
 
-Output:
-
-DNA Architecture Design
-
-Status:
-
-FROZEN
-
-↓
-
-Stage 1
-
-DNA Artifact Specification Design
-
-Owner:
-
-ChatGPT
-
-Output:
-
-ProductDNA_Template
-
-VisualDNA_Template
-
-Gate:
-
-Template Freeze
-
-↓
-
-Stage 2
-
-DNA Runtime Integration Design
-
-Owner:
-
-ChatGPT
-
-Output:
-
-DNA Runtime Integration Model
-
-DNA Runtime Contracts
-
-Runtime Walkthrough
-
-Gate:
-
-Runtime Freeze
-
-↓
-
-Codex Entry Gate
-
-Condition:
-
-Stage 1 Frozen
-
-Stage 2 Frozen
-
-Result:
-
-Codex may participate in DNA implementation work.
-
-↓
-
-Stage 3
-
-DNA Library MVP
-
-Owner:
-
-ChatGPT + Codex
-
-Output:
-
-Initial DNA Library
-
-Examples:
-
-Minecraft Product DNA
-
-Duolingo Product DNA
-
-Pokemon Product DNA
-
-Linear Visual DNA
-
-Stripe Visual DNA
-
-Gate:
-
-At least 10 DNA artifacts completed.
-
-↓
-
-Stage 4
-
-Reality Validation
-
-Owner:
-
-ChatGPT + Codex
-
-Goal:
-
-Validate DNA effectiveness in real SAPDP projects.
-
-Execution:
-
-Human selects DNA.
-
-ChatGPT consumes DNA.
-
-Codex implements resulting specifications.
-
-Validation Areas:
-
-- Product Requirement
-- UX Specification
-- Visual Design Specification
-- Implementation Guidance
-
-Gate:
-
-DNA demonstrates measurable value.
-
-↓
-
-Scale Gate
-
-Condition:
-
-Reality Validation PASS
-
-Result:
-
-DNA System may scale beyond MVP.
-
-↓
-
-Stage 5
-
-DNA Asset System Design
-
-Owner:
-
-ChatGPT
-
-Output:
-
-Repository Structure
-
-Naming Rules
-
-Metadata Rules
-
-Search Rules
-
-Index Rules
-
-Gate:
-
-Asset System Freeze
-
-↓
-
-Stage 6
-
-DNA Lifecycle Design
-
-Owner:
-
-ChatGPT
-
-Output:
-
-Research Workflow
-
-Draft Workflow
-
-Audit Workflow
-
-Freeze Workflow
-
-Release Workflow
-
-Versioning Rules
-
-Gate:
-
-Lifecycle Freeze
-
-↓
-
-Release Gate
-
-Condition:
-
-Stage 5 Frozen
-
-Stage 6 Frozen
-
-Result:
-
-DNA System may enter Release.
-
-↓
-
-Stage 7
-
-DNA System Release
-
-Owner:
-
-ChatGPT + Codex
-
-Output:
-
-Released DNA System
-
-Release Scope:
-
-- DNA Architecture
-- DNA Templates
-- DNA Runtime Integration
-- DNA Library
-- DNA Asset System
-- DNA Lifecycle
-
-Result:
-
-DNA becomes an official SAPDP capability.
+4. Runtime Validation Layer
 
 ---
 
-## Execution Rules
+#### 1. Architecture Layer
 
-### E-001
+Purpose:
 
-Execution proceeds sequentially.
+Define what DNA is, who consumes it, how it is governed, and how it flows through SAPDP.
 
-A stage may not start before the previous stage is completed.
+Primary Location:
 
----
+docs/dna/
 
-### E-002
+Frozen Outputs:
 
-Codex may not enter before:
+* DNA_ARCHITECTURE_DESIGN.md
 
-- Stage 1 Freeze
-- Stage 2 Freeze
+Completion Requirement:
 
----
+DNA Architecture = FINAL FREEZE
 
-### E-003
+Allowed Work:
 
-Reality Validation is mandatory.
+* Clarify architecture only through explicit architecture evolution.
+* Record validation findings.
 
-DNA System may not proceed directly from Library MVP to Release.
+Forbidden Work:
 
----
-
-### E-004
-
-Reality Validation failures may require returning to:
-
-- Stage 1
-- Stage 2
-- Stage 3
-
-depending on root cause.
+* Product DNA asset creation
+* Visual DNA asset creation
+* Template editing
+* Runtime implementation
 
 ---
 
-### E-005
+#### 2. Template Layer
 
-Stage 5 and Stage 6 are scale-oriented stages.
+Purpose:
 
-They are intentionally delayed until Reality Validation PASS.
+Define reusable artifact templates for DNA asset creation.
 
----
+Primary Location:
 
-### E-006
+templates/dna/
 
-DNA System Release requires:
-
-- Architecture Frozen
-- Templates Frozen
-- Runtime Frozen
-- Library Built
-- Reality Validation PASS
-- Asset System Frozen
-- Lifecycle Frozen
-
-
-## 14. Stage Deliverable Contract
-
-### Purpose
-
-The Stage Deliverable Contract defines:
-
-- Required outputs
-- Freeze requirements
-- Stage completion criteria
-
-for each DNA System stage.
-
-A stage is not complete until all required deliverables are frozen.
-
----
-
-### Stage 1
-
-DNA Artifact Specification Design
-
-Status:
-
-FROZEN
-
-Deliverables:
+Frozen Outputs:
 
 * ProductDNA_Template.md
 * VisualDNA_Template.md
 
-Completed:
+Completion Requirement:
 
-* ProductDNA Template Design
-* VisualDNA Template Design
-* Template Audit
-* Minecraft Product DNA Reality Validation
-* Linear Visual DNA Reality Validation
-* Stage 1 Final Audit
+ProductDNA Template = FROZEN
+VisualDNA Template = FROZEN
 
-Validation Result:
+Allowed Work:
 
-PASS
+* Template evolution only through explicit template evolution.
 
-Reality Validation Samples:
+Forbidden Work:
 
-* Minecraft_Product_DNA
-* Linear_Visual_DNA
+* DNA architecture redesign
+* DNA asset creation
+* Runtime implementation
 
-Findings:
+---
 
-* No architecture blocker discovered
-* No authority conflict discovered
-* No governance conflict discovered
-* No consumer conflict discovered
-* No template patch required
+#### 3. Asset Layer
+
+Purpose:
+
+Create approved consumable DNA assets.
+
+Primary Location:
+
+library/dna/
+
+Expected Structure:
+
+library/dna/product/
+
+library/dna/visual/
+
+Frozen Outputs:
+
+* Product DNA assets
+* Visual DNA assets
+
+Completion Requirement:
+
+Each asset must be:
+
+* created from the appropriate DNA template
+* independently auditable
+* approved before consumption
+* versioned
+* immutable after freeze
+
+Allowed Work:
+
+* Create Product DNA assets
+* Create Visual DNA assets
+* Audit DNA assets
+
+Forbidden Work:
+
+* DNA architecture redesign
+* DNA template redesign
+* Product implementation
+* Runtime contract redesign
+
+---
+
+#### 4. Runtime Validation Layer
+
+Purpose:
+
+Validate that approved DNA assets improve real SAPDP product design.
+
+Primary Location:
+
+docs/dna/validation/
+
+Inputs:
+
+* Approved Product DNA assets
+* Approved Visual DNA assets
+* SAPDP product design artifacts
+
+Outputs:
+
+* DNA usage validation reports
+* DNA consumption findings
+* protocol integration recommendations
+
+Allowed Work:
+
+* Apply DNA to real product design
+* Measure usefulness
+* Record validation findings
+
+Forbidden Work:
+
+* Redefine DNA architecture
+* Modify frozen DNA assets
+* Modify frozen templates
+
+---
+
+### Stage Execution Order
+
+The DNA System must execute in the following order:
+
+1. Architecture Freeze
+
+2. Template Freeze
+
+3. Runtime Integration Freeze
+
+4. Initial DNA Asset Production
+
+5. Reality Validation
+
+6. Protocol Integration Decision
+
+7. Library Expansion
+
+8. Governance Automation
+
+---
+
+### Stage Transition Rules
+
+#### Rule 1
+
+A later stage must not begin until the current stage exit criteria are satisfied.
+
+#### Rule 2
+
+Stage transition must be based on Git-tracked frozen artifacts, not conversation memory.
+
+#### Rule 3
+
+If a new conversation begins, the current stage must be recovered from frozen repository artifacts.
+
+#### Rule 4
+
+If repository artifacts conflict with conversation memory, repository artifacts win.
+
+---
+
+### Codex Execution Boundary
+
+Codex may execute asset materialization and repository updates.
+
+Codex must not infer or redesign DNA architecture.
+
+Codex must not create DNA assets outside approved templates and approved target directories.
+
+Codex must return:
+
+* Commit URL
+* Changed Files
+* Execution Summary
+
+ChatGPT must perform:
+
+* Design reasoning
+* Asset audit
+* Freeze decision
+* Stage transition decision
+
+---
+
+### Stage Deliverable Contract
+
+Each stage must declare:
+
+* Stage Name
+* Stage Goal
+* Required Inputs
+* Required Outputs
+* Freeze Target
+* Exit Criteria
+* Next Stage
+
+Stage completion is not valid unless the required outputs are Git-tracked and auditable.
+
+---
+
+### Stage 1 Deliverable Contract
+
+Stage Name:
+
+DNA Artifact Specification
+
+Required Inputs:
+
+* DNA Architecture = FINAL FREEZE
+
+Required Outputs:
+
+* ProductDNA_Template.md
+* VisualDNA_Template.md
+
+Freeze Target:
+
+* ProductDNA Template
+* VisualDNA Template
 
 Exit Criteria:
 
-PASS
+* Templates exist in templates/dna/
+* Templates are internally consistent with DNA Architecture
+* Templates are ready for DNA asset production
 
 Next Stage:
 
-Stage 2
-
-DNA Runtime Integration Design
-
+Stage 2 — DNA Runtime Integration Design
 
 ---
 
-### Stage 2
+### Stage 2 Deliverable Contract
+
+Stage Name:
 
 DNA Runtime Integration Design
 
-Required Deliverables:
+Required Inputs:
 
-* DNA_Runtime_Integration.md
+* DNA Architecture = FINAL FREEZE
+* ProductDNA Template = FROZEN
+* VisualDNA Template = FROZEN
 
-Validation Deliverables:
+Required Outputs:
 
-* Runtime_Walkthrough_Report.md
+* DNA Runtime Integration Model
+* DNA Runtime Contracts
+* Runtime Walkthrough
 
-Completion Criteria:
+Freeze Target:
 
-* DNA Entry Contract frozen
-* DNA Persistence Contract frozen
-* DNA Propagation Contract frozen
-* DNA Consumption Contract frozen
-* DNA Conflict Contract frozen
-* DNA Implementation Contract frozen
-* Runtime Walkthrough PASS
+* DNA Runtime Integration Model
+* DNA Runtime Contracts
+
+Exit Criteria:
+
+* Runtime Closed Loop PASS
+* Product DNA consumption validated through UX Specification
+* Visual DNA consumption validated through Visual Design Specification
+* Implementation boundary validated
 
 Next Stage:
 
-Codex Entry Gate
-
+Stage 3 — DNA Library MVP
 
 ---
 
-### Stage 3
+### Stage 3 Deliverable Contract
+
+Stage Name:
 
 DNA Library MVP
 
-Required Deliverables:
+Required Inputs:
 
-Minimum DNA Library:
+* DNA Architecture = FINAL FREEZE
+* ProductDNA Template = FROZEN
+* VisualDNA Template = FROZEN
+* DNA Runtime Integration = FROZEN
 
-Product DNA
+Required Outputs:
 
-- Minecraft_Product_DNA.md
-- Duolingo_Product_DNA.md
-- Pokemon_Product_DNA.md
-- TocaBoca_Product_DNA.md
-- AnimalCrossing_Product_DNA.md
+* At least 5 Product DNA assets
+* At least 5 Visual DNA assets
+* First frozen DNA Library
 
-Visual DNA
+Freeze Target:
 
-- Linear_Visual_DNA.md
-- Stripe_Visual_DNA.md
-- Notion_Visual_DNA.md
-- Apple_Visual_DNA.md
-- Arc_Visual_DNA.md
+* Product DNA assets
+* Visual DNA assets
 
-Completion Criteria:
+Exit Criteria:
 
-- At least 10 DNA artifacts frozen
+* Minimum 10 DNA assets exist in library/dna/
+* Each asset follows the appropriate DNA template
+* Each asset has clear Product DNA or Visual DNA classification
+* Each asset is approved and versioned
+* Assets are ready for consumption by SAPDP design artifacts
 
 Next Stage:
 
-Stage 4
+Stage 4 — Reality Validation
 
 ---
 
-### Stage 4
+### Stage 4 Deliverable Contract
+
+Stage Name:
 
 Reality Validation
 
-Required Deliverables:
+Required Inputs:
 
-- Reality_Validation_Report.md
+* First frozen DNA Library
+* DNA Runtime Integration = FROZEN
 
-Completion Criteria:
+Required Outputs:
 
-- At least 3 SAPDP projects validated
-- DNA consumption demonstrated
-- Improvement evidence recorded
+* DNA usage validation reports
+* Evidence of DNA usefulness or failure
+* Patch recommendations if needed
 
-Next Stage:
+Freeze Target:
 
-Scale Gate
+* Reality Validation Findings
 
----
+Exit Criteria:
 
-### Stage 5
-
-DNA Asset System Design
-
-Required Deliverables:
-
-- DNA_Asset_System.md
-
-Completion Criteria:
-
-- Repository structure frozen
-- Naming rules frozen
-- Metadata rules frozen
-- Search rules frozen
+* DNA has been used in real SAPDP product design
+* Validation findings are recorded
+* Value, failure, or required redesign is determined
 
 Next Stage:
 
-Stage 6
+Stage 5 — Protocol Integration
 
 ---
 
-### Stage 6
+## 14. DNA Runtime Integration Model
 
-DNA Lifecycle Design
+### 14.1 Purpose
 
-Required Deliverables:
+Define how approved Product DNA and Visual DNA artifacts execute inside SAPDP product development without introducing new architecture layers or consumer responsibilities.
 
-- DNA_Lifecycle.md
-
-Completion Criteria:
-
-- Research workflow frozen
-- Draft workflow frozen
-- Audit workflow frozen
-- Freeze workflow frozen
-- Release workflow frozen
-- Versioning rules frozen
-
-Next Stage:
-
-Stage 7
+This model validates that DNA can be consumed by existing SAPDP artifacts and implemented through existing SAPDP handoff rules.
 
 ---
 
-### Stage 7
+### 14.2 Runtime Inputs
 
-DNA System Release
+DNA Runtime consumes only approved DNA assets.
 
-Required Deliverables:
+Approved DNA assets include:
 
-- DNA_System_Release.md
+* Product DNA artifacts
+* Visual DNA artifacts
 
-Completion Criteria:
+DNA Runtime does not consume:
 
-- Stage 1 complete
-- Stage 2 complete
-- Stage 3 complete
-- Stage 4 PASS
-- Stage 5 complete
-- Stage 6 complete
-
-Result:
-
-DNA System Released
-
-## 15. DNA Runtime Integration
-
-### 15.1 DNA Entry Contract
-
-#### Purpose
-
-Define when DNA enters SAPDP execution.
-
-#### Rule
-
-DNA Selection occurs after:
-
-Solution Definition
-
-before:
-
-Product Requirement
-
-Human may select:
-
-* Product DNA
-* Visual DNA
-* Product DNA + Visual DNA
-* No DNA
-
-DNA Selection is optional.
-
-DNA is not required for SAPDP execution.
+* draft DNA notes
+* research evidence
+* unapproved references
+* visual examples
+* implementation code
 
 ---
 
-### 15.2 DNA Persistence Contract
+### 14.3 Runtime Consumer Path
 
-#### Purpose
+Runtime consumption follows the existing Consumption Model:
 
-Ensure DNA Selection survives cross-session execution.
-
-#### Rule
-
-DNA Selection must be recorded.
-
-Record Location:
-
-Product Requirement
-
-DNA Selection Section
-
-Example:
-
-Selected Product DNA
-
-* Minecraft Product DNA
-
-Selected Visual DNA
-
-* Linear Visual DNA
-
-If no DNA is selected:
-
-Selected Product DNA
-
-* None
-
-Selected Visual DNA
-
-* None
-
----
-
-### 15.3 DNA Propagation Contract
-
-#### Purpose
-
-Define how DNA intent propagates through SAPDP.
-
-#### Flow
-
-DNA Selection
+Human
 
 ↓
 
-Product Requirement
-(record only)
+ChatGPT
 
 ↓
 
 UX Specification
-(Product DNA Consumption)
 
 ↓
 
 Visual Design Specification
-(Visual DNA Consumption)
+
+↓
+
+Implementation
+
+No new consumer is introduced.
+
+No intermediate Experience Model Layer is introduced.
+
+No Runtime DNA Executor is introduced.
+
+---
+
+### 14.4 Product DNA Runtime Rule
+
+Product DNA may only influence experience mechanism decisions.
+
+Runtime Target:
+
+UX Specification
+
+Allowed Influence:
+
+* Progression
+* Reward
+* Retention
+* Exploration
+* Collection
+* Creation
+* Competition
+* Workflow
+
+Forbidden Influence:
+
+* Color values
+* Typography values
+* Design tokens
+* Component definitions
+* Visual hierarchy
+* Layout specification
+* Motion language
+
+---
+
+### 14.5 Visual DNA Runtime Rule
+
+Visual DNA may only influence sensory expression decisions.
+
+Runtime Target:
+
+Visual Design Specification
+
+Allowed Influence:
+
+* Visual Personality
+* Information Density
+* Visual Hierarchy
+* Motion Language
+* Layout Philosophy
+* Typography Style
+* Illustration Style
+
+Forbidden Influence:
+
+* Reward systems
+* Progression systems
+* Retention systems
+* Economy systems
+* Social systems
+* Business model
+* Product growth mechanics
+
+---
+
+### 14.6 Specification Mediation Rule
+
+DNA never reaches implementation directly.
+
+DNA Artifact
+
+↓
+
+ChatGPT Interpretation
+
+↓
+
+UX Specification / Visual Design Specification
 
 ↓
 
@@ -1868,135 +1674,7 @@ Task Package
 
 ↓
 
-Implementation
-
-DNA Selection must remain traceable throughout the execution chain.
-
----
-
-### 15.4 DNA Consumption Contract
-
-#### Execution Workflow
-
-Selection
-
-↓
-
-Interpretation
-
-↓
-
-Extraction
-
-↓
-
-Mapping
-
-↓
-
-Application
-
-↓
-
-Verification
-
----
-
-#### Interpretation
-
-ChatGPT interprets approved DNA artifacts.
-
-Interpretation does not modify DNA meaning.
-
----
-
-#### Extraction
-
-Relevant DNA knowledge is extracted within DNA authority boundaries.
-
-Extraction does not create new DNA artifacts.
-
----
-
-#### Mapping
-
-Product DNA maps to:
-
-UX Specification
-
-Visual DNA maps to:
-
-Visual Design Specification
-
----
-
-#### Application
-
-Mapped DNA knowledge is applied during specification creation.
-
-Application does not redefine DNA.
-
----
-
-#### Verification
-
-ChatGPT must verify that selected DNA intent is preserved within downstream specifications.
-
-Verification does not modify DNA meaning.
-
----
-
-### 15.5 DNA Conflict Contract
-
-#### Conflict Resolution Flow
-
-Conflict Detection
-
-↓
-
-Conflict Report
-
-↓
-
-Human Resolution
-
-↓
-
-Resolution Record
-
-↓
-
-Continue
-
----
-
-#### Resolution Authority
-
-Human owns final conflict resolution authority.
-
-ChatGPT may surface conflicts.
-
-ChatGPT may not silently override selected DNA artifacts.
-
-Codex may not resolve DNA conflicts.
-
----
-
-#### Resolution Record
-
-Conflict resolution must be recorded in:
-
-Product Requirement
-
-DNA Conflict Resolution Section
-
----
-
-### 15.6 DNA Implementation Contract
-
-#### Rule
-
-Codex does not consume raw DNA.
+Codex Implementation
 
 Codex consumes approved specifications.
 
@@ -2013,7 +1691,7 @@ DNA does not provide implementation authority.
 
 ---
 
-### 15.7 DNA Runtime Validation Contract
+### 14.7 DNA Runtime Validation Contract
 
 #### Purpose
 
@@ -2078,3 +1756,71 @@ The walkthrough must verify:
 #### Validation Result
 
 Runtime Walkthrough must pass before Stage 2 may be frozen.
+
+
+## DNA Directory Ownership (Frozen)
+
+Status:
+
+FROZEN
+
+Purpose:
+
+Prevent DNA directory drift.
+
+Directory Responsibilities:
+
+docs/dna/
+
+* DNA architecture design
+* DNA validation reports
+* DNA evolution records
+
+Must NOT contain:
+
+* Product DNA assets
+* Visual DNA assets
+* DNA runtime assets
+
+templates/dna/
+
+* ProductDNA template
+* VisualDNA template
+* DNA artifact generation templates
+
+Must NOT contain:
+
+* Product DNA assets
+* Visual DNA assets
+* Evidence files
+
+library/dna/
+
+* Product DNA asset library
+* Visual DNA asset library
+
+This is the official DNA asset repository.
+
+All consumable DNA artifacts must be stored here.
+
+Must NOT contain:
+
+* Architecture design documents
+* Template definitions
+* Validation reports
+
+Ownership Summary:
+
+# docs/dna
+
+Design Layer
+
+# templates/dna
+
+Template Layer
+
+# library/dna
+
+Asset Layer
+
+Directory changes affecting these responsibilities require a new DNA Architecture evolution process and explicit freeze approval.
