@@ -22,14 +22,14 @@ Duolingo
 ## DNA Identity
 
 DNA Statement:
-Duolingo Product DNA converts long-term skill acquisition into a daily, low-friction, game-like habit loop by combining micro-lessons, streak preservation, variable rewards, progression paths, social comparison, and friendly accountability.
+Duolingo Product DNA converts long-term skill acquisition into a daily, low-friction, game-like habit loop by combining micro-lessons, streak preservation, variable rewards, progression paths, social comparison, constraints, and friendly accountability.
 
 ---
 
 ## DNA Summary
 
 Summary:
-Duolingo works because it reduces the psychological cost of returning to learning every day. The product does not rely on a single motivation mechanism. It stacks several lightweight mechanisms: short lesson completion, visible progress, streak continuity, XP accumulation, quests, leagues, limited failure budgets, reminders, and character-driven accountability. The combined effect is a repeatable loop where users can make progress in very small sessions while feeling loss aversion, completion pressure, competence growth, and social comparison.
+Duolingo works because it reduces the psychological cost of returning to learning every day. The product does not rely on a single motivation mechanism. It stacks several lightweight mechanisms: short lesson completion, visible progress, streak continuity, XP accumulation, quests, leagues, constrained recovery, reminders, and character-driven accountability. The combined effect is a repeatable loop where users can make progress in very small sessions while feeling loss aversion, completion pressure, competence growth, and social comparison.
 
 This Product DNA is not about Duolingo's colors, illustration style, mascot appearance, typography, layout, or motion style. Those belong to Visual DNA. This artifact only captures transferable experience mechanisms.
 
@@ -139,13 +139,13 @@ Users encounter different reward prompts, quests, achievements, boosts, repairs,
 ### Mechanism 10
 
 Name:
-Freemium Pressure with Engagement Preservation
+Constraint-Based Motivation
 
 Purpose:
-Balance free access, monetization prompts, and continued learning activity.
+Introduce meaningful constraints that increase attention, recovery behavior, and perceived achievement.
 
 Behavioral Effect:
-Users can continue learning without immediate payment, while constraints such as failure budgets, ads, premium tiers, and recovery options create monetization pressure. The mechanism must be tuned carefully to avoid damaging learning motivation.
+Users perceive effort, mistakes, and recovery as meaningful parts of progress. Constraints create consequence without making the experience terminal, increasing session completion and return behavior.
 
 ---
 
@@ -161,8 +161,6 @@ Users can continue learning without immediate payment, while constraints such as
 ### Secondary Authority Areas
 
 * Competition
-* Collection
-* Exploration
 
 ---
 
@@ -189,9 +187,9 @@ The system works best when no single mechanism dominates the learning goal. The 
 
 * Earn XP, badges, boosts, and quest rewards
 * Repair or preserve progress after missed activity
-* Respond to mascot or character-driven prompts
+* Respond to character-driven prompts
 * Unlock new learning content
-* Convert idle phone time into productive micro-learning
+* Convert idle time into productive micro-learning
 
 ---
 
@@ -219,7 +217,7 @@ Convert reminders into emotionally recognizable accountability signals.
 Keep the core loop repeatable enough for daily use and variable enough to avoid fatigue.
 
 ### Principle 8
-Monetization pressure must not break the user's belief that progress remains achievable.
+Use constraints to create consequence, but preserve the user's belief that progress remains achievable.
 
 ---
 
@@ -282,7 +280,7 @@ Monetization pressure must not break the user's belief that progress remains ach
 * Social competition
 * Quest design
 * Recovery mechanics
-* Freemium engagement design
+* Constraint-based motivation
 * Character-mediated accountability
 
 ---
@@ -294,10 +292,10 @@ Monetization pressure must not break the user's belief that progress remains ach
 * Streak pressure can create anxiety or obligation rather than healthy motivation.
 * Users may optimize for XP, streaks, or leagues instead of actual learning.
 * Competition can distort behavior and encourage shallow repetition.
-* Failure budgets can feel punitive if recovery is too slow or too monetized.
+* Failure budgets can feel punitive if recovery is too slow or too constrained.
 * Excessive notification pressure can damage trust.
 * Reward inflation can reduce the perceived value of progress signals.
-* Monetization prompts can conflict with the user's learning goal if overused.
+* Constraints can conflict with the user's learning goal if overused.
 * Character-driven accountability can become annoying if tone, timing, or frequency is wrong.
 
 ---
@@ -311,16 +309,14 @@ Monetization pressure must not break the user's belief that progress remains ach
 * Leagues rank users by accumulated XP over a time window.
 * Quests and challenges create short-term goals outside the main learning path.
 * Failure-budget mechanics create consequence for mistakes while recovery systems allow continued use.
-* Notifications and Duo-mediated reminders re-activate users around missed or pending practice.
-* Premium tiers reduce or remove some constraints while adding advanced learning features.
+* Notifications and character-mediated reminders re-activate users around missed or pending practice.
+* Constraint mechanics shape user attention, recovery, and return behavior.
 
 ### Evidence Notes
 
-* Reuters reported Duolingo's continued prioritization of user engagement, product quality, and long-term retention in 2026, including a stated goal of reaching 100 million daily active users by 2028.
-* Reuters reported Q1 2026 daily active users of 56.5 million and paid subscribers of 12.5 million, indicating that engagement and subscription growth remain central to the business model.
-* The Wall Street Journal reported that streaks and personalized notifications are core Duolingo engagement mechanisms and cited company-provided streak adoption figures.
-* Independent HCI research on gamification misuse in Duolingo identifies risks where users become overly focused on badges, points, leaderboards, or competitive behaviors rather than learning outcomes.
-* Public product reporting in 2025 described Duolingo's transition from hearts to an energy system as an attempt to make failure mechanics feel less punitive and more motivating.
+* Evidence is limited to observed product behavior patterns relevant to Product DNA.
+* Business metrics, valuation, subscriber growth, market performance, pricing strategy, and company financial performance are excluded from this artifact.
+* Visual style, color, typography, illustration, layout, and motion are excluded from this artifact and belong to Visual DNA if created separately.
 
 ---
 
@@ -332,7 +328,7 @@ Duolingo began as a language-learning product and later expanded into adjacent l
 
 ### Evolution Notes
 
-Recent product evolution suggests continued tuning of the balance between retention, monetization, AI-enabled learning quality, and reduced friction. This supports treating Duolingo Product DNA as an engagement-and-learning mechanism, not merely a gamification layer.
+Duolingo's product evolution can be interpreted as ongoing tuning between learning quality, daily return behavior, recovery friction, and motivation pressure. This supports treating Duolingo Product DNA as an engagement-and-learning mechanism, not merely a gamification layer.
 
 ### Alternative Interpretations
 
