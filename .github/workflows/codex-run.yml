@@ -17,40 +17,74 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Apply Stage4 Reality Validation Snapshot
+      - name: Insert Stage4 Reality Validation Snapshot
         run: |
-          FILE="docs/dna/DNA_ARCHITECTURE_DESIGN.md"
+          python3 << 'PY'
+          from pathlib import Path
 
-          cat << 'EOF' >> $FILE
+          path = Path('docs/dna/DNA_ARCHITECTURE_DESIGN.md')
+          text = path.read_text()
 
-## 10. Stage4 Reality Validation Snapshot
+          marker = '### Stage4 Reality Validation Snapshot'
+          if marker in text:
+              print('Stage4 snapshot already exists; no insertion needed.')
+              raise SystemExit(0)
 
-### 10.1 Validation Schema Standardization (FACT)
-All Stage4 validation artifacts use a unified Structured Audit Schema aligned with Visual Design Specification validation format.
+          insert_after = '''Next Stage:
 
-### 10.2 ROUTE_MANIFEST Schema Lock (FACT)
-ROUTE_MANIFEST is a schema-registry structure. Structure is immutable; only values are mutable.
+Stage 5 — Protocol Integration
 
-### 10.3 Stage4 Execution Chain Completion (FACT)
-DNA Selection → Product Representation → Product Requirement → UX Specification → Visual Design Specification → MVP Definition → Task Package = COMPLETE
+---'''
 
-### 10.4 Validation Output Model (FACT)
-Validation results are gate records: Verdict, Findings, Risk, Consistency, Execution Readiness, Stage Transition Decision.
+          snapshot = '''
 
-### 10.5 Stage4 System State (FACT)
-Stage4 Execution: COMPLETE
-Stage4 Closure: NOT COMPLETE
+### Stage4 Reality Validation Snapshot
 
-### 10.6 Missing Artifacts (FACT)
-- Execution Closure Pack
-- Findings Consolidation Layer
-- Final Stage Seal Artifact
-EOF
+Status:
+
+FROZEN
+
+Purpose:
+
+Record the factual Stage 4 Reality Validation state needed for new-session recovery.
+
+This snapshot records only facts produced during Stage 4 Reality Validation.
+
+It does not redesign DNA Architecture.
+
+It does not modify ProductDNA or VisualDNA templates.
+
+It does not modify frozen DNA assets.
+
+Facts:
+
+* Stage 4 validation artifacts use a unified Structured Audit Schema aligned with the Visual Design Specification validation format.
+* ROUTE_MANIFEST has been constrained as a schema-registry artifact with immutable structure and mutable values.
+* Stage 4 execution chain completed through DNA Selection, Product Representation, Product Requirement, UX Specification, Visual Design Specification, MVP Definition, and Task Package.
+* Stage 4 validation outputs are gate records rather than analysis reports.
+* Stage 4 execution is complete.
+* Stage 4 closure is not complete.
+
+Missing Artifacts:
+
+* Execution Closure Pack
+* Findings Consolidation Layer
+* Final Stage Seal Artifact
+
+---'''
+
+          if insert_after not in text:
+              raise SystemExit('Insertion anchor not found; refusing unsafe write.')
+
+          text = text.replace(insert_after, insert_after + snapshot, 1)
+          path.write_text(text)
+          print('Stage4 snapshot inserted after Stage 4 Deliverable Contract.')
+          PY
 
       - name: Commit and push changes
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add docs/dna/DNA_ARCHITECTURE_DESIGN.md
-          git commit -m "Stage4 Reality Validation freeze (real execution)" || echo "No changes"
+          git commit -m "Freeze Stage4 reality validation snapshot" || echo "No changes"
           git push
