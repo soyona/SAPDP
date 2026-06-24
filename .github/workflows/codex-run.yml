@@ -1,0 +1,20 @@
+name: Codex Execution Trigger
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  codex-run:
+    if: contains(github.event.label.name, 'execute')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print task info
+        run: |
+          echo "Codex execution triggered"
+          echo "Issue: ${{ github.event.issue.number }}"
+          echo "Title: ${{ github.event.issue.title }}"
