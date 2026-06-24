@@ -1,20 +1,33 @@
-name: Codex Execution Trigger
+name: Codex Execution Workflow
 
 on:
   issues:
     types: [labeled]
 
 jobs:
-  codex-run:
+  codex-exec:
     if: contains(github.event.label.name, 'execute')
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Print task info
+      - name: Read issue context
+        id: issue
         run: |
-          echo "Codex execution triggered"
-          echo "Issue: ${{ github.event.issue.number }}"
-          echo "Title: ${{ github.event.issue.title }}"
+          echo "ISSUE_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
+          echo "ISSUE_TITLE=${{ github.event.issue.title }}" >> $GITHUB_ENV
+
+      - name: Execute Stage4 Task (Simulated Codex Execution Layer)
+        run: |
+          echo "=== CODEx EXECUTION START ==="
+          echo "Issue: $ISSUE_NUMBER"
+          echo "Title: $ISSUE_TITLE"
+          echo "Target: DNA_ARCHITECTURE_DESIGN.md"
+          echo "Action: Stage4 Reality Validation Snapshot injection"
+          echo "NOTE: This is a simulated execution layer. Real Codex model execution requires external agent integration."
+
+      - name: Commit simulation result
+        run: |
+          echo "Execution completed (simulation layer only)"
