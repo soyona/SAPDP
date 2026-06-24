@@ -1,6 +1,8 @@
 name: Codex Execution Workflow
 
 on:
+  push:
+    branches: [main]
   issues:
     types: [labeled]
 
@@ -10,7 +12,7 @@ permissions:
 
 jobs:
   codex-exec:
-    if: contains(github.event.label.name, 'execute')
+    if: github.event_name == 'push' || contains(github.event.label.name, 'execute')
     runs-on: ubuntu-latest
 
     steps:
