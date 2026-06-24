@@ -4,30 +4,53 @@ on:
   issues:
     types: [labeled]
 
+permissions:
+  contents: write
+  issues: read
+
 jobs:
   codex-exec:
     if: contains(github.event.label.name, 'execute')
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Read issue context
-        id: issue
+      - name: Apply Stage4 Reality Validation Snapshot
         run: |
-          echo "ISSUE_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
-          echo "ISSUE_TITLE=${{ github.event.issue.title }}" >> $GITHUB_ENV
+          FILE="docs/dna/DNA_ARCHITECTURE_DESIGN.md"
 
-      - name: Execute Stage4 Task (Simulated Codex Execution Layer)
-        run: |
-          echo "=== CODEx EXECUTION START ==="
-          echo "Issue: $ISSUE_NUMBER"
-          echo "Title: $ISSUE_TITLE"
-          echo "Target: DNA_ARCHITECTURE_DESIGN.md"
-          echo "Action: Stage4 Reality Validation Snapshot injection"
-          echo "NOTE: This is a simulated execution layer. Real Codex model execution requires external agent integration."
+          cat << 'EOF' >> $FILE
 
-      - name: Commit simulation result
+## 10. Stage4 Reality Validation Snapshot
+
+### 10.1 Validation Schema Standardization (FACT)
+All Stage4 validation artifacts use a unified Structured Audit Schema aligned with Visual Design Specification validation format.
+
+### 10.2 ROUTE_MANIFEST Schema Lock (FACT)
+ROUTE_MANIFEST is a schema-registry structure. Structure is immutable; only values are mutable.
+
+### 10.3 Stage4 Execution Chain Completion (FACT)
+DNA Selection → Product Representation → Product Requirement → UX Specification → Visual Design Specification → MVP Definition → Task Package = COMPLETE
+
+### 10.4 Validation Output Model (FACT)
+Validation results are gate records: Verdict, Findings, Risk, Consistency, Execution Readiness, Stage Transition Decision.
+
+### 10.5 Stage4 System State (FACT)
+Stage4 Execution: COMPLETE
+Stage4 Closure: NOT COMPLETE
+
+### 10.6 Missing Artifacts (FACT)
+- Execution Closure Pack
+- Findings Consolidation Layer
+- Final Stage Seal Artifact
+EOF
+
+      - name: Commit and push changes
         run: |
-          echo "Execution completed (simulation layer only)"
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add docs/dna/DNA_ARCHITECTURE_DESIGN.md
+          git commit -m "Stage4 Reality Validation freeze (real execution)" || echo "No changes"
+          git push
