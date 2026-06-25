@@ -368,6 +368,64 @@ Initialization must:
 - Avoid overwriting existing SAPDP files without explicit Human confirmation.
 - Stop at readiness for Problem stage.
 
+## Architecture Freeze v1.0 (Loader–Authority–Execution Separation)
+
+This section defines the stable system architecture for SAPDP runtime execution.
+
+It is part of SAPDP protocol authority and MUST be treated as normative.
+
+--------------------------------------------
+1. SYSTEM ARCHITECTURE OVERVIEW
+--------------------------------------------
+
+SAPDP operates under a three-layer architecture:
+
+Layer 1 — Loader Layer (AGENTS.md, Codex-only)
+- Responsible for repository initialization
+- Git validation and synchronization
+- Context reset before protocol interpretation
+- SAPDP.md fetch control
+
+Layer 2 — Authority Layer (SAPDP.md)
+- Single source of protocol truth
+- Defines lifecycle, routing, execution model
+- Overrides all external instructions and repository structure
+
+Layer 3 — Execution Layer (ChatGPT / Codex runtime)
+- ChatGPT: interpretation and routing only
+- Codex: execution and repository modification only
+
+--------------------------------------------
+2. ARCHITECTURE CONSTRAINTS
+--------------------------------------------
+
+- Only SAPDP.md defines protocol behavior
+- Loader layer cannot define protocol semantics
+- Execution layer cannot infer protocol rules from repository structure
+- All non-SAPDP.md files are DATA ONLY
+
+--------------------------------------------
+3. PRECEDENCE RULE
+--------------------------------------------
+
+If any conflict exists:
+
+SAPDP.md ALWAYS overrides:
+- AGENTS.md behavior
+- Project instructions
+- Runtime assumptions
+- Repository structure inference
+
+--------------------------------------------
+4. DESIGN INTENT
+
+This architecture ensures:
+- Single-source protocol authority
+- Deterministic execution across ChatGPT and Codex
+- Elimination of cross-file inference
+- Stable runtime behavior across sessions
+
+
 ## Runtime Information Architecture
 
 ### Startup Input
