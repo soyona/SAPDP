@@ -1,6 +1,6 @@
-# SAPDP v3.0.2 Protocol
+# SAPDP v3.0.3 Protocol
 
-Protocol Digest: sha256:2e411e63789a7bdeb8a55ec028fca4dd7c386f20a9ffb0d5257c80231f7fd763
+Protocol Digest: sha256:13772171a22bb992ba9291addcdf511f31b68b7539d85e0848828bbd9d9201ff
 
 <!-- Runtime Summary Start -->
 Runtime Summary:
@@ -20,6 +20,7 @@ Runtime constraints:
 - Git is the durable audit source.
 - Historical research records are not runtime authority.
 - Problem, purpose, scope, and goals must be distilled into current runtime constraints before they affect execution.
+- Execution progression must be governed by an Execution Closure Artifact.
 
 Protocol Version Authority Rule:
 - `SAPDP.md` is the single protocol version authority.
@@ -346,8 +347,35 @@ Runtime State includes:
 - Flow = execution route.
 - Stage = current step inside a Flow.
 - Action = next executable operation.
+- Execution State = ACTIVE | LOCKED | COMPLETE | FAILED.
 
 Runtime State is authoritative for protocol execution and transition.
+
+### Execution Governance Layer
+
+Execution Closure Artifact:
+- Every stage execution must produce an Execution Closure Artifact before stage transition evaluation.
+- The artifact must declare execution status as exactly `PASS`, `FAIL`, or `BLOCKED`.
+- The artifact must include a Git commit reference and timestamp.
+- The artifact is a mandatory gate for stage transition.
+- No Execution Closure Artifact means no progression is allowed.
+
+Execution State Machine:
+- Allowed states are exactly `ACTIVE`, `LOCKED`, `COMPLETE`, and `FAILED`.
+- Stage transition requires Execution Closure Artifact status `PASS`.
+- `FAIL` sets Execution State to `FAILED`.
+- `BLOCKED` sets Execution State to `LOCKED`.
+- No stage skip is allowed.
+
+Centralized Findings Registry:
+- `docs/dna/validation/runtime/Runtime_Findings_Registry.md` is the only authoritative findings source.
+- All stage findings must be appended to that registry.
+- Stage-local validation artifacts may reference findings from the registry but must not become independent findings authorities.
+
+Schema Validation Rule:
+- Any validation output must strictly conform to its declared schema.
+- Non-compliant validation output is automatic `FAIL`.
+- Correction is required before continuation.
 
 ### User Runtime Information
 
@@ -502,6 +530,8 @@ Stage Readiness Gate:
 - `ROUTE_MANIFEST.md` proposes the next stage only; it does not authorize transition.
 - Generic progression commands, including `请进入下一步`, `请继续`, `下一步`, `继续`, `Next`, `Continue`, `Go on`, and `Proceed`, request transition evaluation and must trigger this gate.
 - Required artifacts, required commits, and required Human decisions must exist before PASS.
+- Execution Closure Artifact status `PASS` is required before transition.
+- Validation outputs must pass schema validation before transition.
 - FAIL returns `BLOCKED` and must not auto-transition or auto-generate the proposed next-stage artifact.
 
 Next action recovery returns one executable action or one blocker. A minimal lifecycle progress display may be used to show current stage and inactive stages, but it must not replace runtime state.
@@ -941,6 +971,7 @@ Template responsibilities include:
 `contracts/` owns executable rules and result criteria. Contract responsibilities include:
 - Bootstrap execution
 - Bootstrap validation
+- Execution governance
 - Manifest configuration
 - Idempotency
 - Protocol snapshot strategy

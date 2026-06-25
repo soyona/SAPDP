@@ -41,6 +41,8 @@ Artifact Routing Blocks
 
 Route Audit Source
 
+Execution Closure Artifact
+
 Route Update Timestamp
 ```
 
@@ -178,6 +180,9 @@ Create ProblemDefinition_CORE_v1.md
 
 Audit Source:
 <remote product commit URL or fallback local commit SHA>
+
+Execution Closure Artifact:
+<path to closure artifact>
 ```
 
 ---

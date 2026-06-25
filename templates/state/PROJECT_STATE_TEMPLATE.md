@@ -48,6 +48,9 @@ None
 Stage Status:
 READY
 
+Execution State:
+ACTIVE
+
 Next Action:
 Create ProblemDefinition_CORE_v1.md
 
@@ -107,9 +110,11 @@ Any request such as `Continue`, `Next`, `Next Step`, `Proceed`, `进入下一阶
 3. Verify current stage completion.
 4. Verify required artifacts.
 5. Verify required commits.
-6. Decide `BLOCKED`, `EXECUTE_NEXT_ACTION`, or `ALLOW_TRANSITION`.
-7. Execute the authoritative `Next Action` or block transition.
-8. Update `PROJECT_STATE.md` when repository state changes.
+6. Verify validation outputs conform to schema.
+7. Verify Execution Closure Artifact exists with status `PASS`.
+8. Decide `BLOCKED`, `EXECUTE_NEXT_ACTION`, or `ALLOW_TRANSITION`.
+9. Execute the authoritative `Next Action` or block transition.
+10. Update `PROJECT_STATE.md` when repository state changes.
 
 Runtime output for those requests must be only:
 
