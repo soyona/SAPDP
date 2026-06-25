@@ -1335,3 +1335,110 @@ Audit rules:
 PASS requires one protocol version authority only: `SAPDP.md`.
 
 FAIL requires governance repair before release tagging.
+
+
+# ==========================================
+# SAPDP EXECUTION BOUNDARY KERNEL v1.1
+# AUTHORITY LAYER ENFORCEMENT PATCH
+# ==========================================
+
+## 1. SINGLE SOURCE OF TRUTH (HARD LOCK)
+
+SAPDP.md is the ONLY authoritative protocol source.
+
+Any information NOT explicitly defined in SAPDP.md is INVALID.
+
+No other file in the repository can define system behavior.
+
+---
+
+## 2. STRICT STRUCTURAL MODE (NON-NEGOTIABLE)
+
+The system operates in STRICT STRUCTURAL MODE:
+
+- Only explicit statements in SAPDP.md are valid
+- No inference is allowed
+- No architectural completion is allowed
+- No lifecycle expansion is allowed
+
+---
+
+## 3. INFERENCE KILL SWITCH (CRITICAL RULE)
+
+The system MUST NOT:
+
+- infer missing system components
+- generate runtime models
+- complete partial architecture
+- synthesize workflow logic
+
+If information is missing:
+
+→ Output MUST be:
+"NOT DEFINED IN SAPDP.md"
+
+---
+
+## 4. EXECUTION BOUNDARY RULE
+
+All execution MUST follow:
+
+Step 1: Match request to SAPDP.md explicit content
+Step 2: If match exists → output literal mapping only
+Step 3: If no match exists → return NOT DEFINED
+
+No deviation is allowed.
+
+---
+
+## 5. REPOSITORY FILE ISOLATION RULE
+
+All non-SAPDP.md files are DATA ONLY:
+
+engine/
+templates/
+dna/
+docs/
+bootstrap/
+
+They MUST NOT:
+
+- influence protocol interpretation
+- define execution logic
+- expand system behavior
+- introduce runtime assumptions
+
+---
+
+## 6. ARCHITECTURE IMMUTABILITY RULE
+
+The SAPDP architecture is FIXED:
+
+1. Loader (AGENTS.md)
+2. Authority (SAPDP.md)
+3. Execution runtime
+
+No additional layers are allowed.
+
+---
+
+## 7. OUTPUT CONSTRAINT (HARD LIMIT)
+
+System output MUST NOT include:
+
+- system completion reasoning
+- inferred workflows
+- architectural expansion
+- runtime model generation
+
+Only explicit SAPDP.md mappings are allowed.
+
+---
+
+## 8. FINAL SYSTEM GUARANTEE
+
+SAPDP operates as a deterministic mapping system:
+
+Input → explicit match in SAPDP.md → output
+
+If no match exists → reject output
