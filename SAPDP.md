@@ -174,6 +174,13 @@ Router Determinism Rule:
 - No UI/output (including Home display) may occur before routing decision is finalized
 - Routing decision is immutable per request lifecycle
 
+Fallback Rule:
+If Goal does not match any routing rule:
+→ MUST default to Intent Clarification flow
+→ MUST NOT return raw mismatch error
+→ MUST NOT stop routing process
+
+
 ### 1.3 Mode Boundary
 
 - Home Mode: triggered by bare `sapdp`; shows protocol entry points.
