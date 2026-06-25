@@ -138,3 +138,33 @@ Findings map to SAPDP upgrade scope:
 - Requires Git commit-based enforcement
 - Requires schema-level validation upgrade
 - Requires closure layer introduction
+
+---
+
+## 13. Protocol Evolution Execution Specification
+
+### 13.1 Execution Constraint (HARD LOCK)
+All changes MUST be deterministic rule transformations.
+No redesign. No interpretation. No expansion.
+
+### 13.2 State Transition Format
+Each upgrade MUST define:
+- CURRENT STATE
+- TARGET STATE
+- ALLOWED TRANSFORMATION ONLY
+
+### 13.3 Rule Patch Format
+RULE MUST follow:
+- BEFORE: current behavior
+- AFTER: enforced behavior
+- MODE: MUST / MUST NOT / ONLY
+
+### 13.4 Scope Isolation Rule
+Codex MUST NOT:
+- introduce new modules
+- modify stage order
+- redesign architecture
+
+### 13.5 Single Evolution Constraint
+All findings MUST be resolved in ONE consolidated evolution patch.
+No iterative evolution allowed.
