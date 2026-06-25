@@ -169,6 +169,11 @@ Routing rules:
 - `开发一个XX产品`, `创建一个XX应用`, and equivalent new-product intent -> New Product Flow.
 - `不知道`, `不确定`, and equivalent uncertainty intent -> Intent Clarification.
 
+Router Determinism Rule:
+- Router evaluation MUST be executed before any rendering logic
+- No UI/output (including Home display) may occur before routing decision is finalized
+- Routing decision is immutable per request lifecycle
+
 ### 1.3 Mode Boundary
 
 - Home Mode: triggered by bare `sapdp`; shows protocol entry points.
@@ -234,6 +239,17 @@ Goal:
 Add DNA https://www.duolingo.com
 ```
 
+
+Startup Format Enforcement Rule:
+
+- Any deviation from structured startup format MUST be normalized into:
+  SAPDP + Goal
+
+- If normalization fails → Intent Clarification
+
+- System MUST NOT attempt partial interpretation of malformed Goal input
+
+
 Structured startup routing rules:
 - Goal starts with `Build` -> New Product Flow.
 - Goal starts with `Continue` -> Continue Product Flow.
@@ -260,6 +276,42 @@ Backward-compatible invocation input may include:
 - Action
 
 If Goal and other user content are omitted, enter Home Mode. If user content is present, enter Router Mode. A new product entering Runtime Mode must state the protocol purpose, product scope, non-goals, and operating unit in concise terms before execution begins.
+
+### 1.4 Runtime Entry Determinism Rule（新增）
+
+SAPDP entry behavior must follow strict deterministic evaluation:
+
+1. Input normalization:
+   - trim whitespace
+   - case-insensitive match on "sapdp"
+
+2. Entry classification priority:
+
+   (1) Bare "sapdp"
+       → MUST enter Home Mode only
+       → MUST NOT execute routing logic
+
+   (2) "sapdp + content"
+       → MUST enter Router Mode only
+       → MUST bypass Home Mode rendering
+
+   (3) Any Goal-based structured input
+       → MUST be treated as Router Mode input
+       → MUST NOT fallback to Home Mode
+
+3. Invalid mixed states:
+   - If system cannot classify input deterministically,
+     MUST return Intent Clarification (Rule 1.2 → 6)
+
+4. Hard constraint:
+   - Home Mode and Router Mode are mutually exclusive per request
+   - Runtime Mode only activates after Router resolution completes
+
+### 1.5 Precedence Rule:
+
+If Runtime Summary conflicts with any explicit Invocation or Router rule,
+Router + Invocation rules override Runtime Summary.
+
 
 ## 2. Bootstrap
 
