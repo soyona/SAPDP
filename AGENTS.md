@@ -28,3 +28,30 @@ For an explicit Release request after Repository Audit, run
 
 Do not use the GitHub Connector or `gh`. The scripts execute protocol decisions
 already made by the governing stage; they do not make or infer those decisions.
+
+
+
+## SAPDP v1.0 ARCHITECTURE ENFORCEMENT
+
+This loader MUST comply with SAPDP Architecture Freeze v1.0 defined in SAPDP.md.
+
+--------------------------------------------
+1. LOAD BOUNDARY
+--------------------------------------------
+
+Loader MUST NOT interpret protocol rules.
+
+Loader only performs:
+- repository fetch
+- context reset
+- SAPDP.md retrieval
+
+--------------------------------------------
+2. ARCHITECTURE LINKAGE
+
+Loader behavior is governed by:
+
+→ SAPDP.md → Architecture Freeze v1.0
+
+If conflict exists:
+→ SAPDP.md overrides loader logic
