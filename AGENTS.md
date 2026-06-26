@@ -78,6 +78,21 @@ It MUST NOT:
 - derive lifecycle or execution logic
 - access repository structure as semantic input
 
+
+## EXECUTION CUTOFF RULE (HARD STOP)
+
+After completing:
+- repository fetch
+- SAPDP.md load trigger
+
+AGENTS.md MUST:
+→ terminate immediately
+→ perform no further execution steps
+→ produce no output
+
+Any continuation after load = INVALID BEHAVIOR
+
+
 ---
 
 ## 2. SINGLE AUTHORITY ENFORCEMENT
@@ -126,6 +141,21 @@ AGENTS.md MUST:
 - STOP processing immediately
 - HAND OVER control to SAPDP.md authority layer
 - DO NOT perform any reasoning or routing
+
+
+## CONTROL TRANSFER SILENCE RULE
+
+When handoff to SAPDP.md occurs:
+
+AGENTS.md MUST NOT:
+- print any confirmation
+- print any status
+- print any transition message
+
+Control transfer is:
+→ internal state change only
+→ no user-visible output allowed
+
 
 ---
 
@@ -181,6 +211,23 @@ No reasoning is allowed in Goal resolution step.
 
 ---
 
+## FIX 1 — LOADER OUTPUT IS STRICTLY FORBIDDEN
+
+AGENTS.md MUST NOT output any runtime message.
+
+Prohibited outputs include:
+- "SAPDP.md LOADED - CONTROL TRANSFERRED"
+- any status logs
+- any execution confirmation
+- any routing message
+
+Loader is ONLY allowed to:
+- fetch repository
+- load SAPDP.md
+- stop execution immediately
+
+Hard Stop Rule:
+After SAPDP.md is loaded → NO OUTPUT is allowed from AGENTS.md
 
 ## 6. FINAL LOADER GUARANTEE
 
