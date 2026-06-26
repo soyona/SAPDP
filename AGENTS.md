@@ -73,8 +73,6 @@ It MUST perform ONLY:
 - SAPDP.md loading trigger
 
 It MUST NOT:
-- interpret SAPDP.md content
-- infer system architecture
 - derive lifecycle or execution logic
 - access repository structure as semantic input
 
@@ -158,71 +156,46 @@ Control transfer is:
 
 
 ---
-
-## 6. GOAL ROUTING EXECUTION HOOK (STEP3)
+## EXECUTION PIPELINE (MICRO-REFACTORED)
 
 Coverage: CAP-042
 
-After SAPDP.md is loaded and before any execution:
-
-Loader MUST enforce Goal routing through GOAL_LIBRARY.md.
-
-
-## OUTPUT NORMALIZATION ENFORCEMENT
-
-All outputs from AGENTS.md MUST pass through Output Normalization Layer.
-
-AGENTS.md is forbidden from:
-- emitting raw runtime state
-- emitting partial results
-- emitting empty outputs
-
-All results MUST be transformed into:
-SUCCESS / BLOCKED / ERROR
+This layer defines the complete deterministic execution path of SAPDP.
 
 ---
 
-### Execution Rule
+### 1. GOAL ROUTING
 
-When input contains:
-
-SAPDP
-Goal: <value>
-
-System MUST:
-
-1. Extract Goal
-2. Match against GOAL_LIBRARY.md
-3. Resolve into one of:
-   - Product Development
-   - Protocol Validation
-   - Protocol Audit
-   - Protocol Evolution
-   - Adversarial Testing
-
-4. If no match:
-   → RETURN BLOCKED (Unknown Goal)
+- Input Goal is resolved via GOAL_LIBRARY.md
+- No inference allowed
+- Deterministic mapping only
 
 ---
 
-### Hard Constraint
+### 2. EXECUTION BINDING
 
-- AGENTS.md MUST NOT interpret Goal meaning
-- AGENTS.md MUST NOT fallback to SAPDP.md inference
-- Only GOAL_LIBRARY.md is allowed for resolution
+Mapped Goal is executed via:
+
+engine/goal-system/entry.md
+→ executor.md
+→ verifier.md
+
+No deviation allowed.
+
+---
+
+### 3. OUTPUT CONTRACT ENFORCEMENT
+
+All results MUST conform to SAPDP.md Output Normalization Layer:
+
+- SUCCESS <Category>
+- BLOCKED <Reason>
+- ERROR <Message>
+
+No raw or unstructured output is allowed.
 
 ---
 
-### Determinism Rule
-
-Goal resolution MUST be:
-- registry-based
-- deterministic
-- non-generative
-
-No reasoning is allowed in Goal resolution step.
-
----
 
 ## FIX 1 — LOADER OUTPUT IS STRICTLY FORBIDDEN
 
@@ -242,13 +215,19 @@ Loader is ONLY allowed to:
 Hard Stop Rule:
 After SAPDP.md is loaded → NO OUTPUT is allowed from AGENTS.md
 
-## 6. FINAL LOADER GUARANTEE
+## 6. FINAL LOADER GUARANTEE (FIXED)
 
-Loader output MUST end at:
+Loader MUST NOT produce any runtime output.
 
-"SAPDP.md LOADED - CONTROL TRANSFERRED"
+Control transfer is strictly internal and silent.
 
-No further logic allowed.
+Loader responsibilities end immediately after:
+- repository fetch
+- SAPDP.md load trigger
+
+No confirmation messages are allowed.
+No status messages are allowed.
+No control transfer strings are allowed.
 
 
 # ==========================================
