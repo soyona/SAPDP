@@ -84,9 +84,16 @@ After completing:
 - SAPDP.md load trigger
 
 AGENTS.md MUST:
-→ terminate immediately
-→ perform no further execution steps
-→ produce no output
+→ perform repository fetch
+→ trigger SAPDP.md load
+→ HAND OFF control to SAPDP.md runtime layer
+
+AGENTS.md MUST NOT:
+- terminate runtime context
+- block execution continuation
+- produce execution cutoff behavior
+
+Control transfer is REQUIRED and must be continuous.
 
 Any continuation after load = INVALID BEHAVIOR
 
