@@ -1,6 +1,6 @@
 # SAPDP v3.0.3 Protocol
 
-Protocol Digest: sha256:27b4b6e66426d60c720c155efb01bb9978ac85f811145a541a0a68ff88e2731d
+Protocol Digest: sha256:6da8bd17bb3aee5783e32a56738b89d1a8504cb45e06837443a9335928910d02
 
 <!-- Runtime Summary Start -->
 Runtime Summary:
