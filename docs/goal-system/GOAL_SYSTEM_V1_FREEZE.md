@@ -145,3 +145,38 @@ Test execution results MUST:
 - be strictly PASS/FAIL/CONTRACT-VALIDATED
 
 No test result is valid unless verified by verifier.md
+
+---
+
+## AUTHORITY FREEZE (CRITICAL)
+
+Effective immediately:
+
+1. SAPDP.md
+→ Single Authority for:
+- Entry Routing
+- Runtime Control
+- Execution Flow Ownership
+
+2. GOAL_SYSTEM (this system)
+→ Only defines:
+- Goal Classification
+- Internal Semantic Categories
+
+3. GOAL_LIBRARY.md
+→ Data-only registry
+→ No routing authority
+→ No execution authority
+
+4. AGENTS.md
+→ Loader only
+→ No decision-making capability
+→ No routing logic allowed
+
+---
+
+## AUTHORITY HIERARCHY RULE
+
+If any conflict exists:
+
+SAPDP.md ALWAYS OVERRIDES ALL OTHER FILES
