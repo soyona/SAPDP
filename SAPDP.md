@@ -432,6 +432,58 @@ This architecture ensures:
 - Elimination of cross-file inference
 - Stable runtime behavior across sessions
 
+## Goal Routing Registry (Externalized Control Layer)
+
+Coverage: CAP-041
+
+SAPDP Goal resolution is NOT defined inside SAPDP.md.
+
+All Goal definitions are externalized to:
+
+engine/router/GOAL_LIBRARY.md
+
+---
+
+### Routing Rule
+
+When SAPDP receives:
+
+SAPDP
+Goal: <any goal>
+
+System MUST:
+
+1. Resolve Goal from GOAL_LIBRARY.md
+2. Map Goal to one of:
+   - Product Development
+   - Protocol Validation
+   - Protocol Audit
+   - Protocol Evolution
+   - Adversarial Testing
+
+3. If no match exists:
+   → MUST return: BLOCKED (Unknown Goal)
+
+---
+
+### Authority Rule
+
+- SAPDP.md does NOT define Goal list
+- SAPDP.md only defines routing behavior
+- Goal semantics are externalized completely
+
+---
+
+### Determinism Rule
+
+Goal resolution MUST be:
+
+- deterministic
+- registry-based
+- non-inferential
+
+No model-generated goals are allowed.
+
 
 ## Runtime Information Architecture
 

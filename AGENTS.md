@@ -129,6 +129,59 @@ AGENTS.md MUST:
 
 ---
 
+## 6. GOAL ROUTING EXECUTION HOOK (STEP3)
+
+Coverage: CAP-042
+
+After SAPDP.md is loaded and before any execution:
+
+Loader MUST enforce Goal routing through GOAL_LIBRARY.md.
+
+---
+
+### Execution Rule
+
+When input contains:
+
+SAPDP
+Goal: <value>
+
+System MUST:
+
+1. Extract Goal
+2. Match against GOAL_LIBRARY.md
+3. Resolve into one of:
+   - Product Development
+   - Protocol Validation
+   - Protocol Audit
+   - Protocol Evolution
+   - Adversarial Testing
+
+4. If no match:
+   → RETURN BLOCKED (Unknown Goal)
+
+---
+
+### Hard Constraint
+
+- AGENTS.md MUST NOT interpret Goal meaning
+- AGENTS.md MUST NOT fallback to SAPDP.md inference
+- Only GOAL_LIBRARY.md is allowed for resolution
+
+---
+
+### Determinism Rule
+
+Goal resolution MUST be:
+- registry-based
+- deterministic
+- non-generative
+
+No reasoning is allowed in Goal resolution step.
+
+---
+
+
 ## 6. FINAL LOADER GUARANTEE
 
 Loader output MUST end at:
