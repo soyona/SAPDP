@@ -484,6 +484,90 @@ Goal resolution MUST be:
 
 No model-generated goals are allowed.
 
+## Output Normalization Layer v1
+
+Coverage: CAP-043
+
+All SAPDP execution outputs MUST conform to a unified response contract.
+
+---
+
+## 1. OUTPUT CONTRACT
+
+Every execution result MUST return EXACTLY ONE of:
+
+- SUCCESS
+- BLOCKED
+- ERROR
+
+No other output type is allowed.
+
+---
+
+## 2. SUCCESS RULE
+
+SUCCESS MUST include exactly one of:
+
+- Product Development
+- Protocol Validation
+- Protocol Audit
+- Protocol Evolution
+- Adversarial Testing
+
+No explanation allowed.
+
+---
+
+## 3. BLOCKED RULE
+
+BLOCKED MUST include one reason only:
+
+- Unknown Goal
+- Missing Runtime State
+- Invalid Input
+- Not in Registry
+
+Format:
+
+BLOCKED <reason>
+
+---
+
+## 4. ERROR RULE
+
+ERROR is reserved for system failures:
+
+- missing file
+- execution failure
+- loader failure
+
+Format:
+
+ERROR <message>
+
+---
+
+## 5. SILENT FAILURE PROHIBITION
+
+System MUST NEVER:
+- return empty output
+- return null output
+- fail without explicit contract response
+
+---
+
+## 6. PRIORITY RULE
+
+Execution priority:
+
+1. Output Normalization Layer
+2. Runtime State Gate
+3. Goal Router
+4. SAPDP.md rules
+
+Output MUST always pass through normalization layer last.
+
+--- 
 
 ## Runtime Information Architecture
 

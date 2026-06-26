@@ -167,6 +167,19 @@ After SAPDP.md is loaded and before any execution:
 
 Loader MUST enforce Goal routing through GOAL_LIBRARY.md.
 
+
+## OUTPUT NORMALIZATION ENFORCEMENT
+
+All outputs from AGENTS.md MUST pass through Output Normalization Layer.
+
+AGENTS.md is forbidden from:
+- emitting raw runtime state
+- emitting partial results
+- emitting empty outputs
+
+All results MUST be transformed into:
+SUCCESS / BLOCKED / ERROR
+
 ---
 
 ### Execution Rule
