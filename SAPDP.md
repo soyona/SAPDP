@@ -1,6 +1,6 @@
-# SAPDP v3.0.5 Protocol
+# SAPDP v3.0.6 Protocol
 
-Protocol Digest: sha256:85edc9e986d835df2a71e76816997e2cca3cd61be954bc67fd9716f704f673af
+Protocol Digest: sha256:ad2fbf57dc6625373c6943378f6180b01f6bd0d83e9fbf573b5f3fd6da340cdf
 
 <!-- Runtime Summary Start -->
 Runtime Summary:
@@ -1407,6 +1407,18 @@ Output:
 ```
 
 If an execution method is unknown, the Codex task must explicitly instruct Codex to inspect the repository for standard automation first, then use the highest-priority valid method.
+
+### 11.4 Protocol Evolution Compact Execution
+
+After the Protocol Evolution Status Card, each stage must output only the fields defined by `engine/contracts/ProtocolEvolutionCompletionContract.md`.
+
+Protocol Evolution outputs must:
+- avoid repeating prior-stage narrative;
+- reference repository paths, commands, commit URLs, and frozen fields instead of pasting source bodies;
+- assign deterministic repository checks to `scripts/sapdp-audit`;
+- treat `scripts/sapdp-audit` output as validation evidence only.
+
+`scripts/sapdp-audit` must not interpret protocol rules, compare implementation with Frozen Design, approve Repository Audit, or authorize Release. Those governance decisions remain assigned to ChatGPT.
 
 DNA Governance reuses the protocol governance lifecycle:
 1. Reality Validation

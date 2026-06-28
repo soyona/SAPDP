@@ -82,14 +82,8 @@ Current Version:
 Target Version:
 <vX.Y.Z>
 
-Task:
-Materialize frozen SAPDP protocol changes.
-
-Goal:
-<upgrade goal>
-
-Scope:
-<scope>
+Frozen Files:
+<exact repository paths>
 
 Required Changes:
 <minimal concrete change list>
@@ -97,10 +91,17 @@ Required Changes:
 Validation:
 <minimal checklist>
 
-Return:
-Commit URL
-or
-Blocker
+Execution Method:
+Script | Make | Task Runner | Manual Command
+
+Invocation:
+<exact command>
+
+Constraints:
+<do / do not>
+
+Output:
+Commit URL or Blocker
 ```
 
 Rules:
@@ -181,6 +182,11 @@ Audit Scope:
 - Protocol Ref is resolved from Git and is not hardcoded in `SAPDP.md`
 - Release criteria
 
+Mechanical Validation:
+- Run `scripts/sapdp-audit`.
+- Treat its result as validation evidence only.
+- ChatGPT remains responsible for comparing Git Commit Diff with Frozen Design and deciding the Repository Audit result.
+
 Output:
 
 ```text
@@ -195,6 +201,20 @@ Release
 or
 Fix Materialization
 ```
+
+`scripts/sapdp-audit` contract:
+- Accept no input.
+- Fail when not inside a Git repository.
+- Read repository state without modifying files, commits, tags, or the working tree.
+- Perform no network access.
+- Require a clean working tree.
+- Validate the `SAPDP.md` heading format.
+- Validate exactly one Runtime Summary Start marker and one Runtime Summary End marker.
+- Validate Protocol Digest format and consistency.
+- Validate that Protocol Ref is not hardcoded as a commit SHA in `SAPDP.md`.
+- Print `PASS` only and exit zero on success.
+- Print one concrete `sapdp-audit: <blocker>` line to stderr and exit nonzero on failure.
+- Do not interpret protocol rules, compare implementation with Frozen Design, approve Repository Audit, or authorize Release.
 
 ### 7. Release
 
