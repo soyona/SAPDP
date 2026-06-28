@@ -1,0 +1,26 @@
+{
+  "source_ref": "v3.0.6",
+  "source_commit": "6e5960e2b78b16e86892441af6033c29e0fe0397",
+  "source_authority_sha256": "14827c81d26abf2b5661e87dc0032927713fe9565d031b38a0d28be0dda73f5c",
+  "preserved_assertions": [
+    "bare_sapdp_enters_home",
+    "sapdp_with_content_enters_router",
+    "product_lifecycle_has_13_stages",
+    "new_feature_enters_problem",
+    "bug_fix_enters_implementation_verification",
+    "refactor_enters_build",
+    "implementation_verification_failure_returns_to_build",
+    "user_validation_failure_returns_to_mvp_definition",
+    "dna_selection_requires_one_visual_and_one_product",
+    "missing_selected_dna_blocks_downstream_stages",
+    "generic_add_dna_requires_human_type_selection"
+  ],
+  "approved_behavior_changes": [
+    "registered_root_flow_module_authority",
+    "protocol_evolution_13_correctness_and_recovery_fixes",
+    "add_dna_approved_7_stage_flow"
+  ],
+  "known_source_conflicts": [
+    "v3.0.6_defined_both_5_stage_and_7_stage_dna_governance"
+  ]
+}

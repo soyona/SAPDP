@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+fail() {
+  printf 'sapdp-validate: %s\n' "$1" >&2
+  exit 1
+}
+
+repo_root=$(git rev-parse --show-toplevel 2>/dev/null) || fail 'not inside a Git repository'
+cd "$repo_root"
+
+# shellcheck source=scripts/lib/sapdp-validation.sh
+source scripts/lib/sapdp-validation.sh
+
+sapdp_validate_authority || fail 'authority validation failed'
+
+for test_script in \
+  tests/architecture/repository-layout.sh \
+  tests/architecture/authority-registry.sh \
+  tests/architecture/cap-ownership.sh \
+  tests/compatibility/runtime-baseline.sh \
+  tests/flows/protocol-evolution.sh \
+  tests/modules/dna/module.sh \
+  tests/scripts/sapdp-materialize.sh \
+  tests/scripts/sapdp-audit.sh \
+  tests/scripts/sapdp-release.sh
+do
+  [[ -x $test_script ]] || fail "missing executable test: ${test_script}"
+  "$test_script" || fail "test failed: ${test_script}"
+done
+
+git diff --check || fail 'git diff check failed'
+printf 'PASS\n'

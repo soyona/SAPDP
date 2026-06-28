@@ -1,137 +1,82 @@
 # SAPDP Repository Maintenance Guide
 
-This document is for maintainers of the SAPDP repository. It describes repository structure, maintenance practices, and release operations only.
+This guide is non-authoritative. Current behavior is owned by `SAPDP.md` and its registered authorities.
 
-For protocol behavior and evolution, use [SAPDP.md](./SAPDP.md). For the public project entry point, use [README.md](./README.md).
+## Authority Resolution
 
-## Repository Model
+1. Read the version, Router, global rules, and Registry from `SAPDP.md`.
+2. Resolve the owning authority by Registry owner and component.
+3. Edit one authority per concept.
+4. Update implementation, tests, and CHANGELOG in the same Evolution.
+5. Run `./scripts/sapdp-validate`.
 
-The repository separates public entry points, protocol authority, executable assets, reusable templates, and maintainer guidance:
+Do not answer current protocol facts from README, this guide, historical records, templates, scripts, or session memory.
 
-- [README.md](./README.md) introduces SAPDP.
-- [SAPDP.md](./SAPDP.md) owns the protocol version and protocol evolution lifecycle.
-- [DEVELOPER.md](./DEVELOPER.md) owns repository maintenance guidance.
-- [engine/](./engine/) contains Codex-consumable execution assets and contracts.
-- [templates/](./templates/) contains reusable project artifact templates.
+## Repository Responsibilities
 
-The repository follows **One Concept = One Authority**. A maintenance document may link to an authority, but must not restate or reinterpret the rules that authority owns.
-
-## Authority Ownership Map
-
-| Concept | Authority |
+| Path | Responsibility |
 | --- | --- |
-| Protocol Version | [SAPDP.md](./SAPDP.md) |
-| Protocol Evolution Lifecycle and Flow Progress Information | [SAPDP.md](./SAPDP.md) |
-| Protocol Evolution Completion | [Protocol Evolution Completion Contract](./engine/contracts/ProtocolEvolutionCompletionContract.md) |
-| Bootstrap Rules | [Bootstrap Contract](./engine/contracts/BootstrapContract.md) |
-| Bootstrap Validation | [Bootstrap Validation Contract](./engine/contracts/BootstrapValidationContract.md) |
-| Artifact Materialization | [Artifact Materialization Contract](./engine/contracts/ArtifactMaterializationContract.md) |
-| Repository Maintenance | [DEVELOPER.md](./DEVELOPER.md) |
+| `SAPDP.md` | Root authority |
+| `protocol/` | Registered architecture, Flow, and Module authority |
+| `engine/` | Runtime implementation |
+| `scripts/` | Deterministic automation |
+| `templates/` | Artifact templates |
+| `library/` | Governed reusable assets |
+| `tests/` | Validation |
+| `docs/history/` | Historical evidence |
+| `.github/` | Read-only CI |
 
-When a change affects an owned concept, edit its authority. Elsewhere, replace duplicated definitions with a reference to that authority.
+The full placement and directory rules are in [Repository Architecture](protocol/repository-architecture.md).
 
-## Authority Resolution Maintenance Rule
+## Change Rules
 
-- For protocol fact questions, identify the concept first.
-- Resolve the owning authority from the Authority Ownership Map.
-- Read the owning authority before answering or editing.
-- Do not answer protocol facts from memory, discussion history, release notes, or old decisions.
-- If authority evidence is missing, report `BLOCKED` instead of inferring.
+- Every repository change uses Protocol Evolution.
+- Design identifies Change Type, owner, directory impact, compatibility, and tests.
+- Design Freeze lists every changed path.
+- Materialization stages only Frozen Files.
+- Repository Audit compares Git Diff with committed Freeze evidence.
+- Release tags only the audited commit.
+- Released tags and their Freeze evidence are immutable.
 
-## Layer Responsibilities
+## Validation
 
-### Public entry points
+Run:
 
-[README.md](./README.md) explains what SAPDP is, who it is for, and where to start. It should not accumulate maintainer history or duplicate protocol and contract definitions.
-
-### Protocol authority
-
-[SAPDP.md](./SAPDP.md) is the authority for protocol versioning and protocol evolution. DEVELOPER.md references that authority and does not define protocol behavior or lifecycle rules.
-
-### Engine
-
-[engine/](./engine/) contains execution-relevant protocol assets, bootstrap assets, and contracts. Keep it optimized for Codex consumption. Research history, release evidence, and maintenance commentary do not belong in this layer.
-
-Contract definitions belong only in their respective authority documents:
-
-- [Bootstrap Contract](./engine/contracts/BootstrapContract.md)
-- [Bootstrap Validation Contract](./engine/contracts/BootstrapValidationContract.md)
-- [Artifact Materialization Contract](./engine/contracts/ArtifactMaterializationContract.md)
-- [Protocol Evolution Completion Contract](./engine/contracts/ProtocolEvolutionCompletionContract.md)
-
-### Templates
-
-[templates/](./templates/) contains reusable artifact templates grouped by purpose. Templates define artifact shape; they must not become independent authorities for protocol, lifecycle, bootstrap, or repository maintenance rules.
-
-## Repository Structure
-
-```text
-SAPDP/
-├── README.md
-├── SAPDP.md
-├── DEVELOPER.md
-├── engine/
-│   ├── bootstrap/
-│   └── contracts/
-└── templates/
-│   ├── mvp/
-│   ├── problem/
-│   ├── product/
-│   ├── release/
-│   ├── solution/
-│   ├── state/
-│   ├── tasks/
-│   ├── validation/
-│   └── verification/
+```bash
+./scripts/sapdp-validate
 ```
 
-Add files only when they have a distinct responsibility that cannot be served by an existing authority or layer.
+Validation covers:
 
-## Repository Model Verification Rule
+- root and registered authority;
+- Authority Digest;
+- repository layout;
+- CAP ownership;
+- authority dependencies;
+- broken current references;
+- runtime compatibility;
+- script syntax and integration tests.
 
-- DEVELOPER.md must describe only committed repository structure.
-- Do not document planned or speculative directories.
-- Before release, verify every path listed in Repository Structure exists on `main`.
-- Remove or correct any non-existent path.
+CI must run the same command with read-only repository permissions.
 
-## Maintenance Workflow
+## Adding a Flow
 
-1. Identify the concept being changed and locate its authority in the ownership map.
-2. Inspect dependent references and templates for impact without copying authority definitions into them.
-3. Make the smallest coherent patch in the owning document or layer.
-4. Remove stale duplication introduced by the affected content.
-5. Validate links, repository structure, authority uniqueness, and relevant automated checks.
-6. Review the diff for unrelated changes and temporary files.
-7. Commit the validated patch with a focused message.
+A new Flow requires independent entry, state, stages, transitions, outputs, recovery, a registered authority, implementation ownership, and tests.
 
-Preferred changes are targeted section replacements, additions, file moves, and renames. Avoid unnecessary document regeneration, parallel authority definitions, speculative files, and unrelated cleanup.
+## Adding a Module
 
-## Release Workflow
+A Module uses:
 
-Release operations must use the version and evolution rules owned by [SAPDP.md](./SAPDP.md); this guide does not duplicate them.
+```text
+protocol/modules/<module-id>/
+├── module.md
+├── design.md
+├── runtime.md
+└── flows/
+```
 
-For repository maintenance during an approved release:
+Every normative component is registered individually. Do not create empty packages or catch-all directories.
 
-1. Confirm the intended changes are complete and limited to the approved scope.
-2. Run checks relevant to the changed files and verify authority references resolve.
-3. Confirm the working tree contains no temporary artifacts or unrelated modifications.
-4. Commit the release changes with an explicit release-oriented message.
-5. Perform the required Git tag and remote publication operations specified by [SAPDP.md](./SAPDP.md).
-6. Verify the published commit and tag from the remote.
-7. Use the remote commit and release/tag URLs as release evidence.
+## Documentation
 
-Release packages, audit dumps, migration scratch files, and generated evidence do not belong in the repository root. Preserve durable release evidence in Git history, tags, and the remote release system.
-
-## Repository Hygiene
-
-- Keep each concept in its single owning authority.
-- Use references instead of duplicated normative text.
-- Keep the repository root limited to stable entry points and repository-level files.
-- Keep execution assets in [engine/](./engine/) and templates in [templates/](./templates/).
-- Do not commit caches, local environment files, temporary release artifacts, generated audit output, or editor metadata.
-- Preserve existing naming and directory conventions.
-- Check links and paths after moving or renaming files.
-- Keep commits focused, reviewable, and free of unrelated changes.
-- Treat historical behavior as Git history, not current maintenance guidance.
-
-DEVELOPER.md must remain a repository maintenance guide only. Protocol behavior, lifecycle definitions, bootstrap definitions, version authority, and product governance belong to their mapped authorities.
+Authority files define runtime. Public guides explain without redefining. Historical records state that they are non-authoritative.

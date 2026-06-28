@@ -3,53 +3,68 @@
 set -euo pipefail
 
 readonly REPOSITORY="soyona/SAPDP"
+readonly EXPECTED_ORIGIN="https://github.com/soyona/SAPDP"
 
 fail() {
   printf 'sapdp-release: %s\n' "$1" >&2
   exit 1
 }
 
-sha256_stdin() {
-  LC_ALL=C LC_CTYPE=C LANG=C shasum -a 256 | awk '{print $1}'
-}
+[[ $# -eq 6 && $1 == --version && $3 == --audited-commit && $5 == --freeze-digest ]] \
+  || fail 'usage: sapdp-release --version <vX.Y.Z> --audited-commit <sha> --freeze-digest sha256:<digest>'
 
-[[ $# -eq 0 ]] || fail 'usage: sapdp-release'
+version=$2
+audited_commit=$4
+freeze_digest=$6
+
+[[ $version =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || fail 'invalid version'
+[[ $audited_commit =~ ^[0-9a-f]{40}$ ]] || fail 'invalid audited commit'
+[[ $freeze_digest =~ ^sha256:[0-9a-f]{64}$ ]] || fail 'invalid Freeze Digest'
 
 repo_root=$(git rev-parse --show-toplevel 2>/dev/null) || fail 'not inside a Git repository'
 cd "$repo_root"
 
+# shellcheck source=scripts/lib/sapdp-validation.sh
+source scripts/lib/sapdp-validation.sh
+
+[[ $(git config --get remote.origin.url) == "$EXPECTED_ORIGIN" ]] || fail 'unexpected origin URL'
 [[ -z $(git status --porcelain) ]] || fail 'working tree is dirty'
+[[ $(git rev-parse HEAD) == "$audited_commit" ]] || fail 'HEAD does not match Audited Commit'
+[[ $(sapdp_heading_version) == "$version" ]] || fail 'SAPDP version does not match release version'
 
-heading=$(sed -n '1p' SAPDP.md)
-if [[ $heading =~ ^#\ SAPDP\ v([0-9]+\.[0-9]+\.[0-9]+)\ Protocol$ ]]; then
-  tag="v${BASH_REMATCH[1]}"
+remote_main=$(git ls-remote origin refs/heads/main | awk '{print $1}')
+[[ $remote_main == "$audited_commit" ]] || fail 'remote main does not match Audited Commit'
+
+freeze_file="docs/history/protocol-evolution/${version}/design-freeze.md"
+sapdp_validate_freeze "$freeze_file" "$freeze_digest" || fail 'invalid Design Freeze'
+sapdp_validate_authority || fail 'Authority Digest or Registry is invalid'
+./scripts/sapdp-validate >/dev/null || fail 'protocol validation failed'
+
+tag_message=$(printf 'Target-Version: %s\nAudited-Commit: %s\nFreeze-Digest: %s\nRepository-Audit: PASS' \
+  "$version" "$audited_commit" "$freeze_digest")
+
+verify_local_tag() {
+  [[ $(git rev-list -n 1 "$version") == "$audited_commit" ]] || return 1
+  [[ $(git tag -l "$version" --format='%(contents)' | sed '/^$/d') == "$tag_message" ]]
+}
+
+if git rev-parse --verify --quiet "refs/tags/${version}" >/dev/null; then
+  verify_local_tag || fail 'local tag does not match audited release'
 else
-  fail 'invalid SAPDP.md version heading'
+  remote_tag=$(git ls-remote --tags origin "refs/tags/${version}" "refs/tags/${version}^{}")
+  if [[ -n $remote_tag ]]; then
+    git fetch --quiet origin "refs/tags/${version}:refs/tags/${version}"
+    verify_local_tag || fail 'remote tag does not match audited release'
+  else
+    git tag -a "$version" -m "$tag_message" "$audited_commit"
+  fi
 fi
 
-[[ $(grep -c '^<!-- Runtime Summary Start -->$' SAPDP.md) -eq 1 ]] \
-  || fail 'Runtime Summary Start marker missing or duplicated'
-[[ $(grep -c '^<!-- Runtime Summary End -->$' SAPDP.md) -eq 1 ]] \
-  || fail 'Runtime Summary End marker missing or duplicated'
-
-digest_line=$(grep '^Protocol Digest:' SAPDP.md || true)
-[[ $digest_line =~ ^Protocol\ Digest:\ sha256:([0-9a-f]{64})$ ]] \
-  || fail 'invalid Protocol Digest'
-actual_digest=${BASH_REMATCH[1]}
-expected_digest=$(sed '/^Protocol Digest:/d' SAPDP.md | sha256_stdin)
-[[ $actual_digest == "$expected_digest" ]] \
-  || fail 'Protocol Digest is inconsistent'
-
-if grep -Eiq '^Protocol Ref:[[:space:]]*[0-9a-f]{40}([[:space:]]|$)' SAPDP.md; then
-  fail 'Protocol Ref must be resolved from Git, not hardcoded'
+remote_peeled=$(git ls-remote --tags origin "refs/tags/${version}^{}" | awk '{print $1}')
+if [[ -z $remote_peeled ]]; then
+  git push --quiet origin "refs/tags/${version}"
+  remote_peeled=$(git ls-remote --tags origin "refs/tags/${version}^{}" | awk '{print $1}')
 fi
+[[ $remote_peeled == "$audited_commit" ]] || fail 'remote tag does not match Audited Commit'
 
-git rev-parse --verify --quiet "refs/tags/${tag}" >/dev/null \
-  && fail "local tag ${tag} already exists"
-[[ -z $(git ls-remote --tags origin "refs/tags/${tag}" "refs/tags/${tag}^{}") ]] \
-  || fail "remote tag ${tag} already exists"
-
-git tag -a "$tag" -m "SAPDP ${tag}" HEAD
-git push --quiet origin "refs/tags/${tag}"
-
-printf 'https://github.com/%s/tree/%s\n' "$REPOSITORY" "$tag"
+printf 'https://github.com/%s/tree/%s\n' "$REPOSITORY" "$version"
