@@ -13,7 +13,17 @@
     "user_validation_failure_returns_to_mvp_definition",
     "dna_selection_requires_one_visual_and_one_product",
     "missing_selected_dna_blocks_downstream_stages",
-    "generic_add_dna_requires_human_type_selection"
+    "generic_add_dna_requires_human_type_selection",
+    "bootstrap_preserves_required_input_output_and_stop_rules",
+    "bootstrap_preserves_pass_patch_required_and_fail_criteria",
+    "bootstrap_preserves_remote_git_validation",
+    "artifact_materialization_preserves_allowed_forbidden_and_stop_rules",
+    "execution_governance_preserves_closure_state_findings_and_readiness",
+    "product_handoff_preserves_execution_invocation_constraints_validation_output",
+    "missing_product_git_script_remains_blocking",
+    "commit_audit_uses_git_diff_and_patch_required",
+    "product_release_requires_implementation_and_user_validation",
+    "protocol_release_binds_audited_commit"
   ],
   "approved_behavior_changes": [
     "registered_root_flow_module_authority",

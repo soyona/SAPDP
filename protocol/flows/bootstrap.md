@@ -674,7 +674,7 @@ has been produced.
 
 ## Validation Authority
 
-Bootstrap validation reads repository state, generated artifacts, runtime state, protocol source metadata, and remote Git evidence. It must not infer missing success.
+The complete Bootstrap validation criteria are owned by the registered `protocol/flows/bootstrap-validation.md` component. Bootstrap validation reads repository state, generated artifacts, runtime state, protocol source metadata, and remote Git evidence. It must not infer missing success.
 
 PASS requires:
 

@@ -32,7 +32,7 @@ source scripts/lib/sapdp-validation.sh
 [[ $(git rev-parse HEAD) == "$audited_commit" ]] || fail 'HEAD does not match Audited Commit'
 [[ $(sapdp_heading_version) == "$version" ]] || fail 'SAPDP version does not match release version'
 
-remote_main=$(git ls-remote origin refs/heads/main | awk '{print $1}')
+remote_main=$(sapdp_remote_ref origin refs/heads/main) || fail 'remote main is unavailable'
 [[ $remote_main == "$audited_commit" ]] || fail 'remote main does not match Audited Commit'
 
 freeze_file="docs/history/protocol-evolution/${version}/design-freeze.md"
@@ -60,10 +60,10 @@ else
   fi
 fi
 
-remote_peeled=$(git ls-remote --tags origin "refs/tags/${version}^{}" | awk '{print $1}')
+remote_peeled=$(sapdp_remote_ref origin "refs/tags/${version}^{}") || fail 'remote tag state is unavailable'
 if [[ -z $remote_peeled ]]; then
-  git push --quiet origin "refs/tags/${version}"
-  remote_peeled=$(git ls-remote --tags origin "refs/tags/${version}^{}" | awk '{print $1}')
+  git push --quiet origin "refs/tags/${version}" || fail 'tag push failed; rerun Release'
+  remote_peeled=$(sapdp_remote_ref origin "refs/tags/${version}^{}") || fail 'remote tag state is unavailable after push'
 fi
 [[ $remote_peeled == "$audited_commit" ]] || fail 'remote tag does not match Audited Commit'
 

@@ -108,6 +108,8 @@ Every Flow authority defines:
 10. Validation and audit
 11. Failure and recovery
 
+A large Flow may register additional components under the same owner ID when each component has a distinct, non-overlapping responsibility. Every component is registered and included in Authority Digest. A component does not create another Flow.
+
 ## Authority Dependencies
 
 - Dependencies are declared as exact registered owner IDs.

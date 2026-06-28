@@ -248,6 +248,17 @@ BLOCKED PRODUCT_GIT_SCRIPT_MISSING
 
 No stub may fabricate a Commit URL, Tag URL, PASS, or release result.
 
+## Compatibility Evidence
+
+Protocol Evolution that changes Product Development authority must preserve executable assertions for:
+
+- Bootstrap readiness, validation outcomes, and remote evidence;
+- artifact materialization and Human-AI handoff contracts;
+- stage order, ownership, required DNA consumption, and rework routes;
+- Product Git blockers, Commit Audit, and Product Release gates.
+
+The source ref, source commit, baseline digest, and assertion suite must be bound by the candidate Design Freeze. Passing assertions are required evidence; they do not authorize behavior absent from this Flow.
+
 ## Rework
 
 - Problem defect returns to Problem.

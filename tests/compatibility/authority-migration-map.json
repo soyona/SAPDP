@@ -1,0 +1,94 @@
+{
+  "source_ref": "v3.0.6",
+  "source_commit": "6e5960e2b78b16e86892441af6033c29e0fe0397",
+  "sources": [
+    {
+      "path": "SAPDP.md",
+      "sha256": "14827c81d26abf2b5661e87dc0032927713fe9565d031b38a0d28be0dda73f5c",
+      "targets": [
+        "SAPDP.md",
+        "protocol/flows/bootstrap.md",
+        "protocol/flows/commit-audit.md",
+        "protocol/flows/intent-clarification.md",
+        "protocol/flows/product-development.md",
+        "protocol/flows/protocol-evolution.md",
+        "protocol/modules/dna/design.md",
+        "protocol/modules/dna/runtime.md",
+        "protocol/modules/execution-governance/runtime.md",
+        "protocol/modules/goal-system/runtime.md",
+        "protocol/repository-architecture.md"
+      ]
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "ad6b76408bca07339a27dcd6d27b75e9689537efaa2895535816638e4b7ecd65",
+      "targets": ["AGENTS.md", "SAPDP.md", "protocol/modules/goal-system/runtime.md"]
+    },
+    {
+      "path": "DEVELOPER.md",
+      "sha256": "f5afac6af5a57b0bc1747655505ba9db443b180f0c541d24e3b017ad65ac3433",
+      "targets": ["DEVELOPER.md", "protocol/repository-architecture.md"]
+    },
+    {
+      "path": "engine/contracts/ArtifactMaterializationContract.md",
+      "sha256": "94cdddc089ca28b28de21240c3451bdebe215c176f979321b13871d2a5c4649b",
+      "preserve_headings": true,
+      "targets": [
+        "protocol/modules/artifact-materialization/design.md",
+        "protocol/modules/artifact-materialization/runtime.md"
+      ]
+    },
+    {
+      "path": "engine/contracts/BootstrapContract.md",
+      "sha256": "d65755d6a486e2648c748f73ca03dd5504bc1faffc23befdd9c42f1026d27903",
+      "preserve_headings": true,
+      "targets": ["protocol/flows/bootstrap.md"]
+    },
+    {
+      "path": "engine/contracts/BootstrapValidationContract.md",
+      "sha256": "f69854cb7417466ea7e708b7e4b5b06fa83bae9a2732a76cb6ecbed0ba4b9339",
+      "preserve_headings": true,
+      "targets": ["protocol/flows/bootstrap-validation.md"]
+    },
+    {
+      "path": "engine/contracts/ExecutionGovernanceContract.md",
+      "sha256": "ca325031073f75841195466176475a6f0ac25d9ef0c54cad8e9f6bcbb9ebedff",
+      "preserve_headings": true,
+      "targets": [
+        "protocol/modules/execution-governance/design.md",
+        "protocol/modules/execution-governance/runtime.md"
+      ]
+    },
+    {
+      "path": "engine/contracts/ProtocolEvolutionCompletionContract.md",
+      "sha256": "4072726837d9afc26d0ee1ab479cd0bdcae1b396fa97a6db62d2712eb778e4d9",
+      "targets": ["protocol/flows/protocol-evolution.md"]
+    },
+    {
+      "path": "docs/dna/DNA_ARCHITECTURE_DESIGN.md",
+      "sha256": "cd4a69a9da6750c4421b534b82e5a365ae0630e52c2429d117898e266840b3e8",
+      "targets": [
+        "protocol/modules/dna/design.md",
+        "protocol/modules/dna/runtime.md",
+        "docs/history/dna/DNA_ARCHITECTURE_DESIGN.md"
+      ]
+    },
+    {
+      "path": "docs/goal-system/GOAL_SYSTEM_V1_FREEZE.md",
+      "sha256": "441419cb594a0d97217853ec8d22fda5f87ffc7c0c2fc9730d6360288db21c2c",
+      "targets": [
+        "protocol/modules/goal-system/design.md",
+        "protocol/modules/goal-system/runtime.md",
+        "docs/history/goal-system/GOAL_SYSTEM_V1_FREEZE.md"
+      ]
+    },
+    {
+      "path": "docs/goal-system/GOAL_SYSTEM_V1_RELEASE.md",
+      "sha256": "f22a0bb70e14f3aa5891a5764d3474d6afd934c53f62ad0fbf018a552c697c54",
+      "targets": [
+        "protocol/modules/goal-system/design.md",
+        "docs/history/goal-system/GOAL_SYSTEM_V1_RELEASE.md"
+      ]
+    }
+  ]
+}

@@ -2,12 +2,29 @@
 
 set -euo pipefail
 
-bash -n scripts/sapdp-materialize scripts/lib/sapdp-validation.sh
-grep -Fq 'git add -- "$path"' scripts/sapdp-materialize
-! grep -Fq 'git add --all' scripts/sapdp-materialize
-grep -Fq 'git push --dry-run' scripts/sapdp-materialize
-grep -Fq 'clean HEAD is not a resumable candidate' scripts/sapdp-materialize
-grep -Fq 'remote main drifted from Base Commit and candidate' scripts/sapdp-materialize
-if scripts/sapdp-materialize >/dev/null 2>&1; then
+# shellcheck source=tests/scripts/lib/test-repository.sh
+source tests/scripts/lib/test-repository.sh
+trap cleanup_test_repository EXIT
+
+create_test_repository
+prepare_test_candidate
+reject_next_remote_update
+
+if materialize_test_candidate >/dev/null 2>&1; then
+  printf 'first Materialization unexpectedly succeeded\n' >&2
   exit 1
 fi
+
+candidate=$(git -C "$TEST_REPO" rev-parse HEAD)
+[[ $candidate != "$TEST_BASE" ]]
+[[ -z $(git -C "$TEST_REPO" status --porcelain) ]]
+[[ $(git --git-dir="$TEST_REMOTE" rev-parse refs/heads/main) == "$TEST_BASE" ]]
+
+output=$(materialize_test_candidate)
+candidate=$(git -C "$TEST_REPO" rev-parse HEAD)
+[[ $output == "https://github.com/soyona/SAPDP/commit/${candidate}" ]]
+[[ $(git --git-dir="$TEST_REMOTE" rev-parse refs/heads/main) == "$candidate" ]]
+
+retry_output=$(materialize_test_candidate)
+[[ $retry_output == "$output" ]]
+[[ $(git -C "$TEST_REPO" rev-list --count "${TEST_BASE}..HEAD") -eq 1 ]]

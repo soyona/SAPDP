@@ -12,6 +12,12 @@ sapdp_repo_root() {
   git rev-parse --show-toplevel 2>/dev/null
 }
 
+sapdp_remote_ref() {
+  local remote=$1 ref=$2 output
+  output=$(git ls-remote "$remote" "$ref") || return 1
+  awk 'NR == 1 { print $1 }' <<<"$output"
+}
+
 sapdp_heading_version() {
   local heading
   heading=$(sed -n '1p' SAPDP.md)

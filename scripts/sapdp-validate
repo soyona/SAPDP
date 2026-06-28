@@ -19,6 +19,7 @@ for test_script in \
   tests/architecture/repository-layout.sh \
   tests/architecture/authority-registry.sh \
   tests/architecture/cap-ownership.sh \
+  tests/compatibility/authority-migration-map.sh \
   tests/compatibility/runtime-baseline.sh \
   tests/flows/protocol-evolution.sh \
   tests/modules/dna/module.sh \

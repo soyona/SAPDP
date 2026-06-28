@@ -28,7 +28,7 @@ source scripts/lib/sapdp-validation.sh
 [[ -z $(git status --porcelain) ]] || fail 'working tree is dirty'
 [[ $(git rev-parse HEAD) == "$candidate" ]] || fail 'HEAD does not match candidate'
 
-remote_main=$(git ls-remote origin refs/heads/main | awk '{print $1}')
+remote_main=$(sapdp_remote_ref origin refs/heads/main) || fail 'remote main is unavailable'
 [[ $remote_main == "$candidate" ]] || fail 'remote main does not match candidate'
 
 sapdp_validate_freeze "$freeze_file" "$expected_freeze_digest" || fail 'invalid Design Freeze'

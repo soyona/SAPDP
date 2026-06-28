@@ -38,7 +38,7 @@ sapdp_freeze_values "$freeze_file" frozen_file >"$frozen_paths"
 [[ $(sapdp_heading_version) == "$target_version" ]] || fail 'SAPDP version does not match Target Version'
 git cat-file -e "${base_commit}^{commit}" 2>/dev/null || fail 'Base Commit is unavailable'
 
-remote_main=$(git ls-remote origin refs/heads/main | awk '{print $1}')
+remote_main=$(sapdp_remote_ref origin refs/heads/main) || fail 'remote main is unavailable'
 [[ -n $remote_main ]] || fail 'remote main is unavailable'
 
 if [[ -z $(git status --porcelain) ]]; then
@@ -54,7 +54,7 @@ if [[ -z $(git status --porcelain) ]]; then
   ./scripts/sapdp-validate >/dev/null || fail 'protocol validation failed'
 
   if [[ $remote_main == "$base_commit" ]]; then
-    git push --quiet origin HEAD:refs/heads/main
+    git push --quiet origin HEAD:refs/heads/main || fail 'candidate push failed; rerun Materialization'
   elif [[ $remote_main != "$head" ]]; then
     fail 'remote main drifted from Base Commit and candidate'
   fi
@@ -93,8 +93,8 @@ git diff --cached --quiet && fail 'no staged changes'
 git commit --quiet -m "$commit_message"
 candidate=$(git rev-parse HEAD)
 
-git push --quiet origin HEAD:refs/heads/main
-remote_main=$(git ls-remote origin refs/heads/main | awk '{print $1}')
+git push --quiet origin HEAD:refs/heads/main || fail 'candidate push failed; rerun Materialization'
+remote_main=$(sapdp_remote_ref origin refs/heads/main) || fail 'remote main is unavailable after push'
 [[ $remote_main == "$candidate" ]] || fail 'remote main does not match candidate after push'
 
 printf 'https://github.com/%s/commit/%s\n' "$REPOSITORY" "$candidate"

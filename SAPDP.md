@@ -1,6 +1,6 @@
 # SAPDP v4.0.0 Protocol
 
-Authority Digest: sha256:dbba151ea814dd0b6a5e9f68b13c1e4c4d071a52e7de586c059c0f3c193230eb
+Authority Digest: sha256:9c4472db361bac8f90097523dbc2fa368fc136292403004a80f760106da303fa
 
 <!-- Runtime Summary Start -->
 Runtime Summary:
@@ -61,6 +61,7 @@ authority|<kind>|<owner-id>|<component-id>|<repository-path>
 <!-- Authority Registry Start -->
 authority|architecture|repository|root|protocol/repository-architecture.md
 authority|flow|bootstrap|main|protocol/flows/bootstrap.md
+authority|flow|bootstrap|validation|protocol/flows/bootstrap-validation.md
 authority|flow|commit-audit|main|protocol/flows/commit-audit.md
 authority|flow|intent-clarification|main|protocol/flows/intent-clarification.md
 authority|flow|product-development|main|protocol/flows/product-development.md
