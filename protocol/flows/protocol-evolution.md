@@ -11,7 +11,7 @@ depends_on=module|execution-governance|repository-evolution
 
 ## Scope
 
-This is the core authority for changing SAPDP behavior, authority, repository governance, and protocol automation. Stage components own only their registered stage contracts.
+Core authority for SAPDP behavior, authority, governance, and automation changes. Registered stage components own their stage contracts.
 
 ## Fixed Flow
 
@@ -23,7 +23,7 @@ This is the core authority for changing SAPDP behavior, authority, repository go
 6. Repository Audit - ChatGPT
 7. Release - Codex
 
-No stage may be added, removed, reordered, or skipped implicitly.
+Stages cannot be added, removed, reordered, or skipped implicitly.
 
 ## Stage Authority
 
@@ -37,11 +37,11 @@ stage_authority=6|flow|protocol-evolution|repository-audit
 stage_authority=7|flow|protocol-evolution|release
 ```
 
-Each record resolves exactly one Registry tuple from the same Git ref. Missing, duplicate, conflicting, or cyclic stage closure returns `BLOCKED STAGE_AUTHORITY_INVALID`.
+Each record resolves one same-ref Registry tuple. Invalid closure returns `BLOCKED STAGE_AUTHORITY_INVALID`.
 
 ## Status
 
-Initial entry, explicit status, and blockers render:
+Initial entry, status requests, and blockers render:
 
 ```text
 SAPDP Protocol Evolution Status
@@ -59,36 +59,30 @@ Next:
 <stage or blocker>
 ```
 
-Other responses use one compact status line plus the active stage contract. States are completed, current, revision-required, blocked, and not-started.
+Otherwise use one compact status line plus the active contract. States: completed, current, revision-required, blocked, not-started. Target is `UNFROZEN` until Design Freeze.
 
-Target Version is `UNFROZEN` before Design Freeze. Design Freeze sets it exactly.
+## Next and Rework
 
-## Next
+`next` checks readiness; PASS executes the next stage. Failure returns one blocker. Frozen Codex work uses its exact invocation. Nothing bypasses audit, approval, repository state, or authority.
 
-`next` evaluates active-stage readiness. PASS executes the next stage in the same response or task. Failure returns one blocker. A frozen Codex stage executes only through its exact invocation.
+- Design Audit FAIL -> Design.
+- Implementation mismatch -> Materialization.
+- Design defect -> Design.
+- Remote drift -> Repository Audit.
+- Failed candidate -> new Design Freeze based on that candidate.
 
-`next` never bypasses audit, approval, repository state, exact authority, or script requirements.
-
-## Rework
-
-- Design Audit FAIL returns to Design.
-- Materialization implementation mismatch returns to Materialization.
-- Repository Audit design defect returns to Design.
-- Repository drift requires a new Repository Audit.
-- A failed candidate requires a new Design Freeze based on that candidate.
-
-## Repository Capabilities
+## Capabilities
 
 ```text
-Context:         ./scripts/sapdp-context
+Context: ./scripts/sapdp-context
 Materialization: ./scripts/sapdp-materialize
-Audit:           ./scripts/sapdp-audit
-Release:         ./scripts/sapdp-release
-Validation:      ./scripts/sapdp-validate
+Audit: ./scripts/sapdp-audit
+Release: ./scripts/sapdp-release
+Validation: ./scripts/sapdp-validate
 ```
 
-Scripts implement mechanical contracts and do not decide design, governance, version classification, transitions, or finding disposition.
+Scripts perform mechanics, not design, governance, version classification, transitions, or disposition.
 
 ## Completion
 
-Protocol Evolution completes only when the released tag points to the Repository Audit-approved commit, Freeze and Authority Digests verify, remote evidence resolves, no blocker remains, and Release returns the Tag URL.
+Complete only when the remote tag targets the audited commit, Freeze and Authority Digests verify, remote evidence resolves, no blocker remains, and Release returns the Tag URL.

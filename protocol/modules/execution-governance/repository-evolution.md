@@ -9,32 +9,29 @@ schema=sapdp-authority-v1
 depends_on=module|execution-governance|runtime
 <!-- SAPDP Authority Metadata End -->
 
-## Consumers
+## Consumer
 
 Protocol Evolution only.
 
-## Commit Reference
+## References
 
-- Evolution Definition, Design, Design Audit, and Design Freeze use `base_commit_reference`.
-- Materialization uses `candidate_commit_reference`.
-- Repository Audit and Release use `audited_commit_reference`.
+- Stages 1-4: `base_commit_reference`
+- Stage 5: `candidate_commit_reference`
+- Stages 6-7: `audited_commit_reference`
 
-Each reference is a full commit SHA available in the repository.
+References are full available commit SHAs.
 
 ## Findings
 
-Runtime State resolves one local registry path. The path may be ignored by Git but must exist for readiness.
+Runtime State resolves an existing local registry, which may be Git-ignored.
 
-- Every finding has a stable ID, source stage, status, severity, finding, evidence, and timestamp.
-- OPEN BLOCKER blocks every transition.
-- OPEN MAJOR may enter Design but blocks Design Audit PASS and Design Freeze.
-- Design Freeze copies the final registry to immutable historical evidence.
-- The Freeze declares the snapshot path and raw-byte SHA-256.
-- Materialization, Repository Audit, and Release verify the snapshot and digest.
+- Every finding has ID, source stage, status, severity, finding, evidence, and timestamp.
+- OPEN BLOCKER blocks transition.
+- OPEN MAJOR may enter Design but blocks Design Audit PASS and Freeze.
+- Freeze copies final findings to immutable evidence and declares its raw-byte SHA-256.
+- Stages 5-7 verify that snapshot and digest.
 
 ## Closure
-
-Required fields:
 
 ```text
 flow: Protocol Evolution
@@ -45,4 +42,4 @@ timestamp: <ISO-8601>
 findings_registry: <runtime path>
 ```
 
-PASS requires the correct reference class, existing registry, all stage findings recorded, schema-valid output, and no severity prohibited at that stage.
+PASS requires the correct reference, registry, recorded findings, valid schema, and no prohibited severity.

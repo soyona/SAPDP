@@ -251,7 +251,7 @@ sapdp_context_authority_envelopes() {
 }
 
 sapdp_validate_context_budgets() {
-  local path bundle
+  local path bundle result=0
   [[ $(wc -c <protocol/flows/protocol-evolution.md | tr -d ' ') -le 3072 ]] || return 1
   for path in protocol/flows/protocol-evolution/*.md; do
     [[ $(wc -c <"$path" | tr -d ' ') -le 4096 ]] || return 1
@@ -273,8 +273,9 @@ sapdp_validate_context_budgets() {
     rm -f "$bundle"
     return 1
   }
-  [[ $(wc -c <"$bundle" | tr -d ' ') -le 16384 ]]
+  [[ $(wc -c <"$bundle" | tr -d ' ') -le 16384 ]] || result=1
   rm -f "$bundle"
+  return "$result"
 }
 
 sapdp_validate_authority() {

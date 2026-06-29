@@ -1,6 +1,6 @@
 # SAPDP v5.0.0 Protocol
 
-Authority Digest: sha256:bcc0ca12d3b39b8f42a15caa8c3196e40fb8f053a31c758847d0fba06cd63bc9
+Authority Digest: sha256:2a963a1a21908402c77de65f8a8267a6be848d09777125b7d1f81ca9d4d0bd52
 
 <!-- Runtime Capsule Start -->
 capsule_schema=sapdp-runtime-capsule-v1

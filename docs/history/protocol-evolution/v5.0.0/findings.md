@@ -285,3 +285,29 @@ The revised migration baseline and this Design Freeze require exactly seventeen 
 
 timestamp:
 2026-06-28T15:10:09Z
+
+---
+
+finding_id:
+PE-012
+
+source_stage:
+Repository Audit
+
+status:
+RESOLVED
+
+severity:
+BLOCKER
+
+finding:
+The real Protocol Evolution Stage 1 context bundle exceeds the frozen 16384-byte limit, and the budget validator masks the failed size predicate.
+
+evidence:
+sapdp-context on candidate 5e70608c2b62b02a9f985e01eb965f4222e74385 returns BLOCKED STAGE_AUTHORITY_INVALID; the equivalent bundle is 17352 bytes.
+
+verification:
+The repair Freeze requires a bundle at or below 16384 bytes and preserves the failed predicate before temporary-file cleanup.
+
+timestamp:
+2026-06-29T01:14:34Z
