@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-flow=protocol/flows/protocol-evolution.md
+core=protocol/flows/protocol-evolution.md
 
 for stage in \
   '1. Evolution Definition - ChatGPT' \
@@ -13,12 +13,30 @@ for stage in \
   '6. Repository Audit - ChatGPT' \
   '7. Release - Codex'
 do
-  grep -Fxq "$stage" "$flow"
+  grep -Fxq "$stage" "$core"
 done
 
-grep -Fq 'Design Audit FAIL returns to Design' "$flow" || grep -Fq 'FAIL returns to Design.' "$flow"
-grep -Fq 'Candidate Commit Policy' "$flow"
-grep -Fq -- '--expected-freeze-digest' "$flow"
-grep -Fq -- '--audited-commit' "$flow"
-grep -Fq 'Repository-Audit: PASS' "$flow"
-grep -Fq 'idempotent' "$flow"
+for component in \
+  evolution-definition \
+  design \
+  design-audit \
+  design-freeze \
+  materialization \
+  repository-audit \
+  release
+do
+  file="protocol/flows/protocol-evolution/${component}.md"
+  grep -qx 'authority=normative' "$file"
+  grep -qx 'kind=flow' "$file"
+  grep -qx 'owner_id=protocol-evolution' "$file"
+  grep -qx "component_id=${component}" "$file"
+done
+
+grep -Fq 'FAIL appends findings and returns to Design.' \
+  protocol/flows/protocol-evolution/design-audit.md
+grep -Fq 'local candidate' protocol/flows/protocol-evolution/materialization.md
+grep -Fq -- '--expected-freeze-digest' protocol/flows/protocol-evolution/materialization.md
+grep -Fq -- '--audited-commit' protocol/flows/protocol-evolution/release.md
+grep -Fq 'Repository-Audit: PASS' protocol/flows/protocol-evolution/release.md
+grep -Fq 'idempotent' protocol/flows/protocol-evolution/materialization.md
+grep -Fq 'idempotent' protocol/flows/protocol-evolution/release.md

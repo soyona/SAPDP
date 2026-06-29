@@ -6,7 +6,9 @@ kind=flow
 owner_id=commit-audit
 component_id=main
 schema=sapdp-authority-v1
-depends_on=execution-governance
+depends_on=module|execution-governance|design
+depends_on=module|execution-governance|entry
+depends_on=module|execution-governance|runtime
 <!-- SAPDP Authority Metadata End -->
 
 ## Entry

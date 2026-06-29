@@ -6,8 +6,12 @@ kind=module-flow
 owner_id=dna
 component_id=add-dna
 schema=sapdp-authority-v1
-depends_on=execution-governance
-depends_on=artifact-materialization
+depends_on=module|artifact-materialization|design
+depends_on=module|artifact-materialization|entry
+depends_on=module|artifact-materialization|runtime
+depends_on=module|execution-governance|design
+depends_on=module|execution-governance|entry
+depends_on=module|execution-governance|runtime
 <!-- SAPDP Authority Metadata End -->
 
 ## Entry

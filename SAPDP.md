@@ -1,27 +1,71 @@
-# SAPDP v4.0.0 Protocol
+# SAPDP v5.0.0 Protocol
 
-Authority Digest: sha256:9c4472db361bac8f90097523dbc2fa368fc136292403004a80f760106da303fa
+Authority Digest: sha256:bcc0ca12d3b39b8f42a15caa8c3196e40fb8f053a31c758847d0fba06cd63bc9
 
-<!-- Runtime Summary Start -->
-Runtime Summary:
-- `SAPDP.md` is the protocol root authority and sole protocol version authority.
-- Registered Flow and Module authorities own only their explicitly delegated scopes.
-- Bare `sapdp` enters Home Mode; `sapdp` plus content enters Router Mode.
-- Runtime loads only the routed authority and its explicit dependency closure from the same Git ref.
-- Git is durable audit evidence; conversation memory is not runtime authority.
-- Missing, duplicate, conflicting, or cyclic authority returns a blocker without inference.
-<!-- Runtime Summary End -->
+<!-- Runtime Capsule Start -->
+capsule_schema=sapdp-runtime-capsule-v1
+version_source=first-heading
+authority_digest_source=Authority Digest line
+global=Artifacts and Runtime State drive product work; Git is durable audit evidence; conversation memory is not authority.
+global=Missing behavior, architecture, stages, outputs, or evidence must not be invented.
+global=Progression requires the active Flow readiness and transition rules.
+global=Missing or conflicting authority returns BLOCKED; behavior absent from loaded authority returns NOT DEFINED IN SAPDP.md.
+mode=home|trimmed case-insensitive bare sapdp|render exact home_output and do not enter a Flow
+mode=router|sapdp plus content|resolve one route before rendering; Home and Router are mutually exclusive
+route=1|new-product intent|Goal starts Build|product-development|entry=new
+route=2|continue-product intent|Goal starts Continue|product-development|entry=continue
+route=3|protocol-upgrade intent|Goal starts Upgrade SAPDP|protocol-evolution|main
+route=4|Add Visual DNA|Add Product DNA|dna|add-dna
+literal=generic Add DNA without type|HUMAN_INPUT: Select DNA Type
+route=5|Commit URL|Commit SHA|review-commit intent|commit-audit|main
+route=6|uncertainty|malformed Goal|unmatched entry|intent-clarification|main
+structured=SAPDP followed by Goal: <goal>|normalize Goal before Goal System execution
+structured=missing Goal content|Home
+structured=ambiguous Goal content|intent-clarification|main
+loading=Resolve root and every authority from one Git ref.
+loading=Resolve Router target against the Authority Registry, then load core, active stage authority when declared, and exact dependency closure.
+loading=Dependency keys are kind, owner ID, and component ID; reject missing, duplicate, conflicting, or cyclic closure.
+loading=Do not scan repository structure or load unrelated authority.
+output=SUCCESS <Category>|BLOCKED <Reason>|ERROR <Message>
+output=Active Flow exact output overrides the global envelope.
+output=Success requires verifiable evidence; Blocked names one missing condition; Error names execution or validation failure.
+output=Exact literals must not gain explanation; silent failure and fabricated evidence are prohibited.
+precedence=1 root global rules|2 routed Flow|3 explicit Module dependencies|4 non-authoritative implementation and evidence
+precedence=Scope overlap is BLOCKED AUTHORITY_CONFLICT and is not repaired by precedence.
+undefined=NOT DEFINED IN SAPDP.md
+home_output:
+SAPDP v<Current Version>
+
+AI-Assisted Solo Product Development Protocol
+
+你想做什么？
+
+1. 开发一个新产品
+   从Idea开始创建新项目
+
+2. 继续一个已有产品
+   已有项目，需要继续研发
+
+3. 升级SAPDP协议
+   修改、优化、修复协议
+
+4. 新增DNA案例
+   将优秀产品案例沉淀到DNA Library供后续复用
+
+5. 审核一个Commit
+   对Codex提交结果进行审核
+
+6. 我不知道该选哪个
+   描述你的情况，我帮你路由
+
+直接回复数字或描述你的情况即可。
+<!-- Runtime Capsule End -->
 
 SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
 
 ## Global Runtime Constraints
 
-- Product work is driven by explicit artifacts and Runtime State.
-- Git is the durable repository audit source.
-- Historical records and guides are not current runtime authority.
-- Missing architecture, behavior, stages, or outputs must not be invented.
-- Execution progression requires the owning Flow's readiness and transition rules.
-- Unresolved authority returns `BLOCKED`; behavior absent from all loaded authority returns `NOT DEFINED IN SAPDP.md`.
+The Runtime Capsule exclusively owns the compact global execution constraints loaded at entry. Historical records and guides are not current runtime authority.
 
 ## Version Authority
 
@@ -66,6 +110,13 @@ authority|flow|commit-audit|main|protocol/flows/commit-audit.md
 authority|flow|intent-clarification|main|protocol/flows/intent-clarification.md
 authority|flow|product-development|main|protocol/flows/product-development.md
 authority|flow|protocol-evolution|main|protocol/flows/protocol-evolution.md
+authority|flow|protocol-evolution|design|protocol/flows/protocol-evolution/design.md
+authority|flow|protocol-evolution|design-audit|protocol/flows/protocol-evolution/design-audit.md
+authority|flow|protocol-evolution|design-freeze|protocol/flows/protocol-evolution/design-freeze.md
+authority|flow|protocol-evolution|evolution-definition|protocol/flows/protocol-evolution/evolution-definition.md
+authority|flow|protocol-evolution|materialization|protocol/flows/protocol-evolution/materialization.md
+authority|flow|protocol-evolution|release|protocol/flows/protocol-evolution/release.md
+authority|flow|protocol-evolution|repository-audit|protocol/flows/protocol-evolution/repository-audit.md
 authority|module|artifact-materialization|design|protocol/modules/artifact-materialization/design.md
 authority|module|artifact-materialization|entry|protocol/modules/artifact-materialization/module.md
 authority|module|artifact-materialization|runtime|protocol/modules/artifact-materialization/runtime.md
@@ -75,6 +126,7 @@ authority|module|dna|runtime|protocol/modules/dna/runtime.md
 authority|module-flow|dna|add-dna|protocol/modules/dna/flows/add-dna.md
 authority|module|execution-governance|design|protocol/modules/execution-governance/design.md
 authority|module|execution-governance|entry|protocol/modules/execution-governance/module.md
+authority|module|execution-governance|repository-evolution|protocol/modules/execution-governance/repository-evolution.md
 authority|module|execution-governance|runtime|protocol/modules/execution-governance/runtime.md
 authority|module|goal-system|design|protocol/modules/goal-system/design.md
 authority|module|goal-system|entry|protocol/modules/goal-system/module.md
@@ -108,107 +160,15 @@ Missing files, duplicate paths, symlinks, invalid metadata, or a mismatched dige
 
 ## Authority Loading
 
-1. Load `SAPDP.md` from the resolved Git ref.
-2. Classify Home or Router Mode.
-3. Resolve one Router target.
-4. Resolve the target against the Registry.
-5. Load that authority and its explicit dependencies from the same Git ref.
-6. Reject missing, duplicate, conflicting, or cyclic dependencies.
-7. Execute only the loaded authority closure.
-
-The runtime must not scan repository structure to discover protocol behavior.
+The Runtime Capsule exclusively owns entry-time loading behavior. Registered stage authority and exact dependency tuples provide bounded closure without repository discovery.
 
 ## Invocation
 
-### Home Mode
-
-Trigger:
-
-```text
-sapdp
-```
-
-Match case-insensitively after trimming surrounding whitespace.
-
-Output:
-
-```text
-SAPDP v<Current Version>
-
-AI-Assisted Solo Product Development Protocol
-
-你想做什么？
-
-1. 开发一个新产品
-   从Idea开始创建新项目
-
-2. 继续一个已有产品
-   已有项目，需要继续研发
-
-3. 升级SAPDP协议
-   修改、优化、修复协议
-
-4. 新增DNA案例
-   将优秀产品案例沉淀到DNA Library供后续复用
-
-5. 审核一个Commit
-   对Codex提交结果进行审核
-
-6. 我不知道该选哪个
-   描述你的情况，我帮你路由
-
-直接回复数字或描述你的情况即可。
-```
-
-Resolve Current Version from the first heading. Home Mode displays only this entry and does not enter a Flow.
-
-### Router Mode
-
-`sapdp` plus user content enters Router Mode without rendering Home.
-
-Routes:
-
-- `1`, new-product intent, or Goal starting with `Build` -> Product Development with `entry=new`.
-- `2`, continue-product intent, or Goal starting with `Continue` -> Product Development with `entry=continue`.
-- `3`, protocol-upgrade intent, or Goal starting with `Upgrade SAPDP` -> Protocol Evolution.
-- `4`, `Add Visual DNA`, or `Add Product DNA` -> DNA Module Add DNA Flow.
-- Generic `Add DNA` without an explicit type -> exactly `HUMAN_INPUT: Select DNA Type`.
-- `5`, Commit URL, Commit SHA, or review-commit intent -> Commit Audit.
-- `6`, uncertainty, malformed Goal, or unmatched entry intent -> Intent Clarification.
-
-Router evaluation completes before rendering. Home and Router Mode are mutually exclusive for one request.
-
-### Structured Input
-
-Backward-compatible input:
-
-```text
-SAPDP
-
-Goal: <goal>
-```
-
-A Goal is normalized and routed before Goal System execution. Missing Goal content enters Home. Ambiguous content enters Intent Clarification.
+The Runtime Capsule exclusively owns Home, Router, structured-input, route, and exact Home output behavior. Resolve `<Current Version>` from the first heading.
 
 ## Output Normalization
 
-Global category envelopes are:
-
-```text
-SUCCESS <Category>
-BLOCKED <Reason>
-ERROR <Message>
-```
-
-An active Flow's explicit output contract takes precedence within that Flow.
-
-Rules:
-
-- Success requires verifiable completion evidence.
-- Blocked identifies one concrete missing input, decision, artifact, authority, or repository condition.
-- Error identifies an execution or validation failure.
-- Silent failure and fabricated evidence are prohibited.
-- Exact literal outputs owned by a Flow or Module must not gain explanation.
+The Runtime Capsule exclusively owns global output envelopes and normalization. An active Flow exact output contract takes precedence within that Flow.
 
 ## Deterministic Execution
 
@@ -219,7 +179,8 @@ High-value reasoning is reserved for design, implementation, defect analysis, ve
 ## Token and Context Minimization
 
 - Default runtime mode is compressed execution.
-- Load the root summary first, then only the routed authority closure.
+- Load the Runtime Capsule first, then only routed core, active stage authority, and exact dependency closure.
+- Use `scripts/sapdp-context` for a bounded, deterministic context bundle.
 - Do not load unrelated Flows, Modules, historical records, or templates.
 - Prefer paths, refs, digests, and Git URLs over pasted document bodies.
 - Repeat the full flow only on initial entry, explicit status request, or blocker.
@@ -238,17 +199,8 @@ For protocol release:
 
 ## Precedence
 
-1. Root global rules
-2. Routed Flow authority
-3. Explicitly declared Module dependencies
-4. Non-authoritative implementation and evidence
-
-Precedence does not repair overlapping authority. Overlap is a blocker.
+The Runtime Capsule exclusively owns precedence and authority-conflict behavior.
 
 ## Undefined Behavior
 
-If loaded authority does not explicitly define the requested protocol behavior, output exactly:
-
-```text
-NOT DEFINED IN SAPDP.md
-```
+The Runtime Capsule exclusively owns the exact undefined-behavior output.

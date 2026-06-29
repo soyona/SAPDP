@@ -8,6 +8,10 @@ sha256_stdin() {
   LC_ALL=C LC_CTYPE=C LANG=C shasum -a 256 | awk '{print $1}'
 }
 
+sapdp_sha256_file() {
+  LC_ALL=C LC_CTYPE=C LANG=C shasum -a 256 "$1" | awk '{print $1}'
+}
+
 sapdp_repo_root() {
   git rev-parse --show-toplevel 2>/dev/null
 }
@@ -39,6 +43,65 @@ sapdp_registry_paths() {
     }
   ' SAPDP.md
 }
+
+sapdp_registry_records() {
+  awk '
+    /^<!-- Authority Registry Start -->$/ { active = 1; next }
+    /^<!-- Authority Registry End -->$/ { active = 0 }
+    active && /^authority\|/ {
+      if (split($0, fields, "|") != 5) exit 2
+      print fields[2] "|" fields[3] "|" fields[4] "|" fields[5]
+    }
+  ' SAPDP.md
+}
+
+sapdp_authority_path() {
+  local kind=$1 owner=$2 component=$3
+  sapdp_registry_records | awk -F'|' \
+    -v kind="$kind" -v owner="$owner" -v component="$component" '
+      $1 == kind && $2 == owner && $3 == component {
+        print $4
+        count++
+      }
+      END { if (count != 1) exit 2 }
+    '
+}
+
+sapdp_dependency_records() {
+  awk '
+    /^<!-- SAPDP Authority Metadata Start -->$/ { active = 1; next }
+    /^<!-- SAPDP Authority Metadata End -->$/ { active = 0 }
+    active && /^depends_on=/ {
+      sub(/^depends_on=/, "")
+      print
+    }
+  ' "$1"
+}
+
+sapdp_stage_records() {
+  sed -n 's/^stage_authority=//p' "$1"
+}
+
+sapdp_runtime_capsule() {
+  awk '
+    /^<!-- Runtime Capsule Start -->$/ { starts++; active = 1 }
+    active { print }
+    /^<!-- Runtime Capsule End -->$/ { ends++; active = 0 }
+    END {
+      if (starts != 1 || ends != 1 || active) exit 2
+    }
+  ' SAPDP.md
+}
+
+sapdp_validate_capsule() (
+  local capsule_tmp
+  capsule_tmp=$(mktemp)
+  trap 'rm -f "$capsule_tmp"' EXIT
+  sapdp_runtime_capsule >"$capsule_tmp" || return 1
+  [[ $(grep -c '^capsule_schema=sapdp-runtime-capsule-v1$' "$capsule_tmp") -eq 1 ]] || return 1
+  [[ $(wc -c <"$capsule_tmp" | tr -d ' ') -le 4096 ]] || return 1
+  grep -qx 'undefined=NOT DEFINED IN SAPDP.md' "$capsule_tmp" || return 1
+)
 
 sapdp_authority_digest() {
   local path
@@ -94,12 +157,134 @@ sapdp_validate_registry() (
   [[ $expected == "$(LC_ALL=C sort "$paths_tmp")" ]] || return 1
 )
 
+sapdp_validate_dependencies() (
+  local edges source kind owner component dependency path
+  edges=$(mktemp)
+  trap 'rm -f "$edges"' EXIT
+
+  while IFS='|' read -r kind owner component path; do
+    source="${kind}|${owner}|${component}"
+    if [[ -n $(sapdp_dependency_records "$path" | LC_ALL=C sort | uniq -d) ]]; then
+      return 1
+    fi
+    while IFS= read -r dependency; do
+      [[ -n $dependency ]] || continue
+      [[ $dependency =~ ^[^|]+\|[^|]+\|[^|]+$ ]] || return 1
+      IFS='|' read -r kind owner component <<<"$dependency"
+      sapdp_authority_path "$kind" "$owner" "$component" >/dev/null || return 1
+      [[ $source != "$dependency" ]] || return 1
+      printf '%s %s\n' "$source" "$dependency" >>"$edges"
+    done < <(sapdp_dependency_records "$path")
+  done < <(sapdp_registry_records)
+
+  if [[ -s $edges ]]; then
+    tsort "$edges" >/dev/null 2>&1 || return 1
+  fi
+)
+
+sapdp_validate_stage_authority() (
+  local core expected records stage kind owner component path
+  core=$(sapdp_authority_path flow protocol-evolution main) || return 1
+  records=$(mktemp)
+  expected=$(mktemp)
+  trap 'rm -f "$records" "$expected"' EXIT
+
+  sapdp_stage_records "$core" >"$records"
+  cat >"$expected" <<'EOF'
+1|flow|protocol-evolution|evolution-definition
+2|flow|protocol-evolution|design
+3|flow|protocol-evolution|design-audit
+4|flow|protocol-evolution|design-freeze
+5|flow|protocol-evolution|materialization
+6|flow|protocol-evolution|repository-audit
+7|flow|protocol-evolution|release
+EOF
+  cmp -s "$expected" "$records" || return 1
+
+  while IFS='|' read -r stage kind owner component; do
+    path=$(sapdp_authority_path "$kind" "$owner" "$component") || return 1
+    [[ -f $path && ! -L $path ]] || return 1
+  done <"$records"
+)
+
+sapdp_context_closure_records() (
+  local flow=$1 stage=$2 queue seen record kind owner component path dependency
+  queue=$(mktemp)
+  seen=$(mktemp)
+  trap 'rm -f "$queue" "$seen"' EXIT
+
+  printf 'flow|%s|main\n' "$flow" >"$queue"
+  if [[ $flow == protocol-evolution ]]; then
+    path=$(sapdp_authority_path flow protocol-evolution main) || return 1
+    record=$(sapdp_stage_records "$path" | awk -F'|' -v stage="$stage" '
+      $1 == stage { print $2 "|" $3 "|" $4; count++ }
+      END { if (count != 1) exit 2 }
+    ') || return 1
+    printf '%s\n' "$record" >>"$queue"
+  fi
+
+  while IFS= read -r record || [[ -n $record ]]; do
+    [[ -n $record ]] || continue
+    grep -Fxq "$record" "$seen" && continue
+    printf '%s\n' "$record" >>"$seen"
+    IFS='|' read -r kind owner component <<<"$record"
+    path=$(sapdp_authority_path "$kind" "$owner" "$component") || return 1
+    while IFS= read -r dependency; do
+      [[ -n $dependency ]] && printf '%s\n' "$dependency" >>"$queue"
+    done < <(sapdp_dependency_records "$path")
+  done <"$queue"
+
+  LC_ALL=C sort "$seen"
+)
+
+sapdp_context_authority_envelopes() {
+  local flow=$1 stage=$2 record kind owner component path blob
+  while IFS= read -r record; do
+    IFS='|' read -r kind owner component <<<"$record"
+    path=$(sapdp_authority_path "$kind" "$owner" "$component") || return 1
+    blob=$(git hash-object "$path") || return 1
+    printf 'authority_begin=%s|%s|%s|%s|%s\n' "$kind" "$owner" "$component" "$path" "$blob"
+    command cat "$path"
+    [[ $(tail -c 1 "$path" | wc -l | tr -d ' ') -eq 1 ]] || printf '\n'
+    printf 'authority_end=%s|%s|%s\n' "$kind" "$owner" "$component"
+  done < <(sapdp_context_closure_records "$flow" "$stage")
+}
+
+sapdp_validate_context_budgets() {
+  local path bundle
+  [[ $(wc -c <protocol/flows/protocol-evolution.md | tr -d ' ') -le 3072 ]] || return 1
+  for path in protocol/flows/protocol-evolution/*.md; do
+    [[ $(wc -c <"$path" | tr -d ' ') -le 4096 ]] || return 1
+  done
+  bundle=$(mktemp)
+  {
+    printf 'SAPDP_CONTEXT_V1\n'
+    printf 'ref=%040d\n' 0
+    printf 'root_blob=%040d\n' 0
+    printf 'version=v0.0.0\n'
+    printf 'authority_digest=sha256:%064d\n' 0
+    printf 'flow=protocol-evolution\n'
+    printf 'stage=1\n'
+    printf 'working_tree=dirty\n'
+    printf 'remote_main=%040d\n' 0
+    sapdp_context_authority_envelopes protocol-evolution 1
+    printf 'END_SAPDP_CONTEXT\n'
+  } >"$bundle" || {
+    rm -f "$bundle"
+    return 1
+  }
+  [[ $(wc -c <"$bundle" | tr -d ' ') -le 16384 ]]
+  rm -f "$bundle"
+}
+
 sapdp_validate_authority() {
   local declared calculated
   sapdp_heading_version >/dev/null || return 1
-  [[ $(grep -c '^<!-- Runtime Summary Start -->$' SAPDP.md) -eq 1 ]] || return 1
-  [[ $(grep -c '^<!-- Runtime Summary End -->$' SAPDP.md) -eq 1 ]] || return 1
+  sapdp_validate_capsule || return 1
   sapdp_validate_registry || return 1
+  sapdp_validate_dependencies || return 1
+  sapdp_validate_stage_authority || return 1
+  sapdp_validate_context_budgets || return 1
 
   declared=$(sed -n 's/^Authority Digest: sha256://p' SAPDP.md)
   [[ $declared =~ ^[0-9a-f]{64}$ ]] || return 1
@@ -146,7 +331,7 @@ sapdp_freeze_values() {
 }
 
 sapdp_validate_freeze() {
-  local freeze_file=$1 expected=$2 declared calculated target path previous=
+  local freeze_file=$1 expected=$2 declared calculated target path previous= snapshot snapshot_digest
   [[ $freeze_file != /* && $freeze_file != *'..'* && $freeze_file != .git/* ]] || return 1
   [[ -f $freeze_file && ! -L $freeze_file ]] || return 1
   [[ $expected =~ ^sha256:[0-9a-f]{64}$ ]] || return 1
@@ -162,7 +347,18 @@ sapdp_validate_freeze() {
   [[ $target =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || return 1
   [[ $freeze_file == "docs/history/protocol-evolution/${target}/design-freeze.md" ]] || return 1
   sapdp_freeze_value "$freeze_file" runtime_baseline_digest | grep -Eq '^sha256:[0-9a-f]{64}$' || return 1
+  [[ $(sapdp_freeze_value "$freeze_file" dependency_schema) == sapdp-authority-dependency-v2 ]] || return 1
+  [[ $(sapdp_freeze_value "$freeze_file" runtime_capsule_schema) == sapdp-runtime-capsule-v1 ]] || return 1
+  [[ $(sapdp_freeze_value "$freeze_file" context_schema) == sapdp-context-v1 ]] || return 1
   sapdp_freeze_value "$freeze_file" commit_message | grep -Eq '[[:graph:]]' || return 1
+
+  snapshot=$(sapdp_freeze_value "$freeze_file" findings_snapshot_path) || return 1
+  snapshot_digest=$(sapdp_freeze_value "$freeze_file" findings_snapshot_digest) || return 1
+  [[ $snapshot != /* && $snapshot != *'..'* && $snapshot != .git/* ]] || return 1
+  [[ -f $snapshot && ! -L $snapshot ]] || return 1
+  [[ $snapshot_digest =~ ^sha256:[0-9a-f]{64}$ ]] || return 1
+  [[ $snapshot_digest == "sha256:$(sapdp_sha256_file "$snapshot")" ]] || return 1
+  ! grep -qx 'OPEN' "$snapshot" || return 1
 
   while IFS= read -r path; do
     [[ -n $path && $path != /* && $path != *'..'* && $path != .git/* ]] || return 1

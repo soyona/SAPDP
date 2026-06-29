@@ -10,6 +10,12 @@ create_test_repository
 prepare_test_candidate
 reject_next_remote_update
 
+usage=$(
+  cd "$TEST_REPO"
+  ./scripts/sapdp-materialize 2>&1 || true
+)
+[[ $usage == 'ERROR SAPDP_MATERIALIZE_USAGE' ]]
+
 if materialize_test_candidate >/dev/null 2>&1; then
   printf 'first Materialization unexpectedly succeeded\n' >&2
   exit 1

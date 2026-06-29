@@ -20,7 +20,7 @@ The active Flow owns its stages and transitions. This Module owns the shared exe
 
 ## Execution Closure Artifact
 
-Every stage execution must produce an Execution Closure Artifact before a stage transition can be evaluated.
+Every governed stage execution produces an Execution Closure Artifact before transition. The active Flow selects an exact registered governance profile; a profile may replace fields only within its declared consumer scope.
 
 Required fields:
 
@@ -38,18 +38,18 @@ execution_status:
 PASS | FAIL | BLOCKED
 
 commit_reference:
-<commit URL or local commit SHA>
+<profile-valid commit URL or SHA>
 
 timestamp:
 <ISO-8601 timestamp>
 
 findings_registry:
-<product-workspace runtime findings path>
+<profile-valid runtime findings path>
 ```
 
 Rules:
 - `execution_status` values are exactly `PASS`, `FAIL`, or `BLOCKED`.
-- `commit_reference` is mandatory.
+- `commit_reference` is mandatory and conforms to the active governance profile.
 - `timestamp` is mandatory.
 - Missing Execution Closure Artifact blocks progression.
 - Execution Closure Artifact status other than `PASS` blocks progression.
@@ -92,7 +92,7 @@ Rules:
 
 ## Findings Registry
 
-The active product workspace Runtime State resolves one current findings registry path. Protocol-repository historical findings are not product runtime authority.
+The active governance profile resolves one current findings registry path. Historical findings are evidence and are not current runtime authority.
 
 Rules:
 - All stage findings must be appended to the registry.

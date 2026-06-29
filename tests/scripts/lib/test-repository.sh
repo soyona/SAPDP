@@ -5,6 +5,7 @@ set -euo pipefail
 readonly TEST_EXPECTED_ORIGIN="https://github.com/soyona/SAPDP"
 
 create_test_repository() {
+  local normative=normative
   SOURCE_ROOT=$(git rev-parse --show-toplevel)
   TEST_ROOT=$(mktemp -d)
   TEST_REPO="${TEST_ROOT}/work"
@@ -18,9 +19,10 @@ create_test_repository() {
 
   mkdir -p \
     "$TEST_REPO/scripts/lib" \
-    "$TEST_REPO/protocol" \
+    "$TEST_REPO/protocol/flows/protocol-evolution" \
     "$TEST_REPO/docs/history/protocol-evolution"
 
+  cp "$SOURCE_ROOT/scripts/sapdp-context" "$TEST_REPO/scripts/"
   cp "$SOURCE_ROOT/scripts/sapdp-materialize" "$TEST_REPO/scripts/"
   cp "$SOURCE_ROOT/scripts/sapdp-audit" "$TEST_REPO/scripts/"
   cp "$SOURCE_ROOT/scripts/sapdp-release" "$TEST_REPO/scripts/"
@@ -35,6 +37,7 @@ EOF
     "$TEST_REPO/scripts/sapdp-materialize" \
     "$TEST_REPO/scripts/sapdp-audit" \
     "$TEST_REPO/scripts/sapdp-release" \
+    "$TEST_REPO/scripts/sapdp-context" \
     "$TEST_REPO/scripts/sapdp-validate" \
     "$TEST_REPO/scripts/lib/sapdp-validation.sh"
 
@@ -51,18 +54,68 @@ EOF
     '' \
     'fixture=v1' >"$TEST_REPO/protocol/fixture.md"
 
+  cat >"$TEST_REPO/protocol/flows/protocol-evolution.md" <<EOF
+# Test Protocol Evolution
+
+<!-- SAPDP Authority Metadata Start -->
+authority=${normative}
+kind=flow
+owner_id=protocol-evolution
+component_id=main
+schema=sapdp-authority-v1
+<!-- SAPDP Authority Metadata End -->
+
+stage_authority=1|flow|protocol-evolution|evolution-definition
+stage_authority=2|flow|protocol-evolution|design
+stage_authority=3|flow|protocol-evolution|design-audit
+stage_authority=4|flow|protocol-evolution|design-freeze
+stage_authority=5|flow|protocol-evolution|materialization
+stage_authority=6|flow|protocol-evolution|repository-audit
+stage_authority=7|flow|protocol-evolution|release
+EOF
+
+  for component in \
+    evolution-definition \
+    design \
+    design-audit \
+    design-freeze \
+    materialization \
+    repository-audit \
+    release
+  do
+    cat >"$TEST_REPO/protocol/flows/protocol-evolution/${component}.md" <<EOF
+# Test ${component}
+
+<!-- SAPDP Authority Metadata Start -->
+authority=${normative}
+kind=flow
+owner_id=protocol-evolution
+component_id=${component}
+schema=sapdp-authority-v1
+<!-- SAPDP Authority Metadata End -->
+EOF
+  done
+
   cat >"$TEST_REPO/SAPDP.md" <<'EOF'
 # SAPDP v0.0.0 Protocol
 
 Authority Digest: sha256:PLACEHOLDER
 
-<!-- Runtime Summary Start -->
-Runtime Summary:
-- Test fixture.
-<!-- Runtime Summary End -->
+<!-- Runtime Capsule Start -->
+capsule_schema=sapdp-runtime-capsule-v1
+undefined=NOT DEFINED IN SAPDP.md
+<!-- Runtime Capsule End -->
 
 <!-- Authority Registry Start -->
 authority|module|fixture|main|protocol/fixture.md
+authority|flow|protocol-evolution|main|protocol/flows/protocol-evolution.md
+authority|flow|protocol-evolution|design|protocol/flows/protocol-evolution/design.md
+authority|flow|protocol-evolution|design-audit|protocol/flows/protocol-evolution/design-audit.md
+authority|flow|protocol-evolution|design-freeze|protocol/flows/protocol-evolution/design-freeze.md
+authority|flow|protocol-evolution|evolution-definition|protocol/flows/protocol-evolution/evolution-definition.md
+authority|flow|protocol-evolution|materialization|protocol/flows/protocol-evolution/materialization.md
+authority|flow|protocol-evolution|release|protocol/flows/protocol-evolution/release.md
+authority|flow|protocol-evolution|repository-audit|protocol/flows/protocol-evolution/repository-audit.md
 <!-- Authority Registry End -->
 EOF
 
@@ -92,15 +145,27 @@ EOF
 }
 
 prepare_test_candidate() {
-  local payload digest
+  local payload digest findings_digest
   TEST_VERSION=v0.0.1
   TEST_FREEZE="docs/history/protocol-evolution/${TEST_VERSION}/design-freeze.md"
+  TEST_FINDINGS="docs/history/protocol-evolution/${TEST_VERSION}/findings.md"
 
   mkdir -p "${TEST_REPO}/$(dirname "$TEST_FREEZE")"
   sed 's/^# SAPDP v0\.0\.0 Protocol$/# SAPDP v0.0.1 Protocol/' \
     "$TEST_REPO/SAPDP.md" >"$TEST_REPO/SAPDP.md.tmp"
   mv "$TEST_REPO/SAPDP.md.tmp" "$TEST_REPO/SAPDP.md"
   printf '\nfixture=v2\n' >>"$TEST_REPO/protocol/fixture.md"
+  cat >"${TEST_REPO}/${TEST_FINDINGS}" <<'EOF'
+# Test Findings Snapshot
+
+status:
+RESOLVED
+EOF
+  findings_digest=$(
+    LC_ALL=C LC_CTYPE=C LANG=C shasum -a 256 \
+      "${TEST_REPO}/${TEST_FINDINGS}" |
+      awk '{print $1}'
+  )
 
   payload=$(cat <<EOF
 base_commit_sha=${TEST_BASE}
@@ -109,9 +174,15 @@ target_version=${TEST_VERSION}
 runtime_baseline_source_ref=v0.0.0
 runtime_baseline_source_commit=${TEST_BASE}
 runtime_baseline_digest=sha256:0000000000000000000000000000000000000000000000000000000000000000
+dependency_schema=sapdp-authority-dependency-v2
+runtime_capsule_schema=sapdp-runtime-capsule-v1
+context_schema=sapdp-context-v1
+findings_snapshot_path=${TEST_FINDINGS}
+findings_snapshot_digest=sha256:${findings_digest}
 approved_behavior_change=Fixture change.
 frozen_file=SAPDP.md
 frozen_file=${TEST_FREEZE}
+frozen_file=${TEST_FINDINGS}
 frozen_file=protocol/fixture.md
 required_change=Update fixture.
 validation=./scripts/sapdp-validate
@@ -133,7 +204,7 @@ ${payload}
 <!-- Frozen Payload End -->
 EOF
 
-  export TEST_VERSION TEST_FREEZE TEST_FREEZE_DIGEST
+  export TEST_VERSION TEST_FREEZE TEST_FREEZE_DIGEST TEST_FINDINGS
 }
 
 reject_next_remote_update() {

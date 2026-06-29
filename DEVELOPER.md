@@ -5,7 +5,7 @@ This guide is non-authoritative. Current behavior is owned by `SAPDP.md` and its
 ## Authority Resolution
 
 1. Read the version, Router, global rules, and Registry from `SAPDP.md`.
-2. Resolve the owning authority by Registry owner and component.
+2. Resolve the owning authority by exact Registry kind, owner, and component.
 3. Edit one authority per concept.
 4. Update implementation, tests, and CHANGELOG in the same Evolution.
 5. Run `./scripts/sapdp-validate`.
@@ -56,6 +56,20 @@ Validation covers:
 - broken current references;
 - runtime compatibility;
 - script syntax and integration tests.
+
+For bounded runtime inspection, run:
+
+```bash
+./scripts/sapdp-context --ref "<git-ref>" --flow "<owner-id>" --stage "<stage-id>"
+```
+
+Dependencies use:
+
+```text
+depends_on=<kind>|<owner-id>|<component-id>
+```
+
+Staged Flows resolve one registered `stage_authority` component at a time.
 
 CI must run the same command with read-only repository permissions.
 

@@ -18,11 +18,16 @@ sapdp_validate_authority || fail 'authority validation failed'
 for test_script in \
   tests/architecture/repository-layout.sh \
   tests/architecture/authority-registry.sh \
+  tests/architecture/authority-dependencies.sh \
   tests/architecture/cap-ownership.sh \
   tests/compatibility/authority-migration-map.sh \
+  tests/compatibility/dependency-migration-v4.0.0.sh \
   tests/compatibility/runtime-baseline.sh \
+  tests/compatibility/runtime-baseline-v4.0.0.sh \
   tests/flows/protocol-evolution.sh \
+  tests/flows/protocol-evolution-stage-loading.sh \
   tests/modules/dna/module.sh \
+  tests/scripts/sapdp-context.sh \
   tests/scripts/sapdp-materialize.sh \
   tests/scripts/sapdp-audit.sh \
   tests/scripts/sapdp-release.sh

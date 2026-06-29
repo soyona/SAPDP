@@ -2,6 +2,12 @@
 
 set -euo pipefail
 
+grep -Fxq '/engine/runtime/' .gitignore
+
+for file in protocol/flows/protocol-evolution/*.md; do
+  [[ -f $file && ! -L $file ]]
+done
+
 allowed='
 .github
 .gitattributes

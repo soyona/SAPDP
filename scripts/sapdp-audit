@@ -5,18 +5,25 @@ set -euo pipefail
 readonly EXPECTED_ORIGIN="https://github.com/soyona/SAPDP"
 
 fail() {
-  printf 'sapdp-audit: %s\n' "$1" >&2
+  local code
+  code=$(printf '%s' "$1" | tr '[:lower:] -' '[:upper:]__' | tr -cd 'A-Z0-9_')
+  printf 'BLOCKED SAPDP_AUDIT_%s\n' "$code" >&2
+  exit 1
+}
+
+error() {
+  printf 'ERROR SAPDP_AUDIT_%s\n' "$1" >&2
   exit 1
 }
 
 [[ $# -eq 6 && $1 == --commit && $3 == --freeze-file && $5 == --expected-freeze-digest ]] \
-  || fail 'usage: sapdp-audit --commit <sha> --freeze-file <path> --expected-freeze-digest sha256:<digest>'
+  || error USAGE
 
 candidate=$2
 freeze_file=$4
 expected_freeze_digest=$6
 
-[[ $candidate =~ ^[0-9a-f]{40}$ ]] || fail 'invalid candidate commit'
+[[ $candidate =~ ^[0-9a-f]{40}$ ]] || error INVALID_CANDIDATE
 
 repo_root=$(git rev-parse --show-toplevel 2>/dev/null) || fail 'not inside a Git repository'
 cd "$repo_root"

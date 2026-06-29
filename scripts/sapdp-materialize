@@ -6,12 +6,19 @@ readonly REPOSITORY="soyona/SAPDP"
 readonly EXPECTED_ORIGIN="https://github.com/soyona/SAPDP"
 
 fail() {
-  printf 'sapdp-materialize: %s\n' "$1" >&2
+  local code
+  code=$(printf '%s' "$1" | tr '[:lower:] -' '[:upper:]__' | tr -cd 'A-Z0-9_')
+  printf 'BLOCKED SAPDP_MATERIALIZE_%s\n' "$code" >&2
+  exit 1
+}
+
+error() {
+  printf 'ERROR SAPDP_MATERIALIZE_%s\n' "$1" >&2
   exit 1
 }
 
 [[ $# -eq 4 && $1 == --freeze-file && $3 == --expected-freeze-digest ]] \
-  || fail 'usage: sapdp-materialize --freeze-file <path> --expected-freeze-digest sha256:<digest>'
+  || error USAGE
 
 freeze_file=$2
 expected_freeze_digest=$4

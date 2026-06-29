@@ -1,0 +1,110 @@
+{
+  "source_ref": "v4.0.0",
+  "source_commit": "32dd6381df7944588bccc58cd28715a44f072b07",
+  "records": [
+    {
+      "path": "protocol/flows/bootstrap-validation.md",
+      "legacy": ["execution-governance"],
+      "exact": [
+        "module|execution-governance|design",
+        "module|execution-governance|entry",
+        "module|execution-governance|runtime"
+      ]
+    },
+    {
+      "path": "protocol/flows/bootstrap.md",
+      "legacy": ["execution-governance", "artifact-materialization"],
+      "exact": [
+        "module|artifact-materialization|design",
+        "module|artifact-materialization|entry",
+        "module|artifact-materialization|runtime",
+        "module|execution-governance|design",
+        "module|execution-governance|entry",
+        "module|execution-governance|runtime"
+      ]
+    },
+    {
+      "path": "protocol/flows/commit-audit.md",
+      "legacy": ["execution-governance"],
+      "exact": [
+        "module|execution-governance|design",
+        "module|execution-governance|entry",
+        "module|execution-governance|runtime"
+      ]
+    },
+    {
+      "path": "protocol/flows/product-development.md",
+      "legacy": ["bootstrap", "execution-governance", "artifact-materialization", "dna"],
+      "exact": [
+        "flow|bootstrap|main",
+        "flow|bootstrap|validation",
+        "module-flow|dna|add-dna",
+        "module|artifact-materialization|design",
+        "module|artifact-materialization|entry",
+        "module|artifact-materialization|runtime",
+        "module|dna|design",
+        "module|dna|entry",
+        "module|dna|runtime",
+        "module|execution-governance|design",
+        "module|execution-governance|entry",
+        "module|execution-governance|runtime"
+      ]
+    },
+    {
+      "path": "protocol/flows/protocol-evolution.md",
+      "legacy": ["execution-governance", "artifact-materialization"],
+      "exact": ["module|execution-governance|repository-evolution"]
+    },
+    {
+      "path": "protocol/modules/artifact-materialization/module.md",
+      "legacy": ["execution-governance"],
+      "exact": [
+        "module|execution-governance|design",
+        "module|execution-governance|entry",
+        "module|execution-governance|runtime"
+      ]
+    },
+    {
+      "path": "protocol/modules/artifact-materialization/runtime.md",
+      "legacy": ["execution-governance"],
+      "exact": [
+        "module|execution-governance|design",
+        "module|execution-governance|entry",
+        "module|execution-governance|runtime"
+      ]
+    },
+    {
+      "path": "protocol/modules/dna/flows/add-dna.md",
+      "legacy": ["execution-governance", "artifact-materialization"],
+      "exact": [
+        "module|artifact-materialization|design",
+        "module|artifact-materialization|entry",
+        "module|artifact-materialization|runtime",
+        "module|execution-governance|design",
+        "module|execution-governance|entry",
+        "module|execution-governance|runtime"
+      ]
+    },
+    {
+      "path": "protocol/modules/dna/module.md",
+      "legacy": ["execution-governance", "artifact-materialization"],
+      "exact": [
+        "module|artifact-materialization|design",
+        "module|artifact-materialization|entry",
+        "module|artifact-materialization|runtime",
+        "module|execution-governance|design",
+        "module|execution-governance|entry",
+        "module|execution-governance|runtime"
+      ]
+    },
+    {
+      "path": "protocol/modules/dna/runtime.md",
+      "legacy": ["execution-governance"],
+      "exact": [
+        "module|execution-governance|design",
+        "module|execution-governance|entry",
+        "module|execution-governance|runtime"
+      ]
+    }
+  ]
+}

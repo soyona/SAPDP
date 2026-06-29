@@ -23,6 +23,8 @@ Required state:
 - Readiness Result
 - Next Action
 
+The active Flow resolves one exact registered governance profile. Missing, ambiguous, or unregistered profile resolution returns `BLOCKED AUTHORITY_DEPENDENCY_INVALID`.
+
 ## Readiness
 
 A transition requires:
@@ -32,6 +34,8 @@ A transition requires:
 3. Required artifacts are committed when the Flow requires Git evidence.
 4. Validation passes.
 5. No blocker remains.
+
+Profile-specific reference and findings rules are evaluated before transition.
 
 Failure returns one concrete blocker and does not transition.
 

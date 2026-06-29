@@ -1,0 +1,17 @@
+{
+  "source_ref": "v4.0.0",
+  "source_commit": "32dd6381df7944588bccc58cd28715a44f072b07",
+  "sapdp_file_digest": "f70546726f4f1d4e9721da841fd8c82d9617f278a01e917d9552c90ed6818775",
+  "preserved": [
+    "home",
+    "router",
+    "structured-input",
+    "seven-stage-protocol-evolution",
+    "materialization-invocation",
+    "audit-invocation",
+    "release-invocation",
+    "commit-url-success",
+    "tag-url-success",
+    "git-tag-release-authority"
+  ]
+}

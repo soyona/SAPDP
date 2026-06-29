@@ -12,6 +12,15 @@ materialize_test_candidate >/dev/null
 TEST_CANDIDATE=$(git -C "$TEST_REPO" rev-parse HEAD)
 reject_next_remote_update
 
+invalid=$(
+  cd "$TEST_REPO"
+  ./scripts/sapdp-release \
+    --version invalid \
+    --audited-commit "$TEST_CANDIDATE" \
+    --freeze-digest "$TEST_FREEZE_DIGEST" 2>&1 || true
+)
+[[ $invalid == 'ERROR SAPDP_RELEASE_INVALID_VERSION' ]]
+
 release_command=(
   ./scripts/sapdp-release
   --version "$TEST_VERSION"

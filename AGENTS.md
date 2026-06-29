@@ -11,11 +11,12 @@ When triggered:
 3. Run `git rev-parse FETCH_HEAD:SAPDP.md`.
 4. Compare the resulting blob SHA with the SAPDP SHA loaded in this session.
 5. If unchanged, do not reload the root authority.
-6. If changed or not loaded, run `git show FETCH_HEAD:SAPDP.md`.
-7. Replace prior SAPDP root context with the retrieved file.
-8. Hand control to the loaded `SAPDP.md` runtime without user-visible loader output.
+6. If changed or not loaded, load only the first heading, `Authority Digest:` line, and the exact block from `<!-- Runtime Capsule Start -->` through `<!-- Runtime Capsule End -->` from `git show FETCH_HEAD:SAPDP.md`.
+7. Require exactly one capsule marker pair and `capsule_schema=sapdp-runtime-capsule-v1`; otherwise return `BLOCKED RUNTIME_CAPSULE_INVALID`.
+8. Replace prior SAPDP root context with the retrieved heading, digest, and capsule.
+9. Hand control to the loaded `SAPDP.md` runtime without user-visible loader output.
 
-The Loader performs repository fetch, root context reset, and root authority retrieval only.
+The Loader performs repository fetch, root context reset, and bounded root authority retrieval only. It must not load the complete root body as fallback.
 
 The Loader must not:
 

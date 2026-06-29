@@ -6,10 +6,18 @@ kind=flow
 owner_id=product-development
 component_id=main
 schema=sapdp-authority-v1
-depends_on=bootstrap
-depends_on=execution-governance
-depends_on=artifact-materialization
-depends_on=dna
+depends_on=flow|bootstrap|main
+depends_on=flow|bootstrap|validation
+depends_on=module-flow|dna|add-dna
+depends_on=module|artifact-materialization|design
+depends_on=module|artifact-materialization|entry
+depends_on=module|artifact-materialization|runtime
+depends_on=module|dna|design
+depends_on=module|dna|entry
+depends_on=module|dna|runtime
+depends_on=module|execution-governance|design
+depends_on=module|execution-governance|entry
+depends_on=module|execution-governance|runtime
 <!-- SAPDP Authority Metadata End -->
 
 ## Scope

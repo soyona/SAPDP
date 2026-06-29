@@ -14,7 +14,7 @@ bootstrap_validation=protocol/flows/bootstrap-validation.md
 artifact=protocol/modules/artifact-materialization/design.md
 governance=protocol/modules/execution-governance/design.md
 commit_audit=protocol/flows/commit-audit.md
-evolution=protocol/flows/protocol-evolution.md
+evolution_release=protocol/flows/protocol-evolution/release.md
 
 for stage in \
   '1. Problem - ChatGPT' \
@@ -101,4 +101,4 @@ grep -Fq 'Git Commit Diff as implementation source of truth' "$commit_audit"
 grep -Fq 'PATCH REQUIRED' "$commit_audit"
 grep -Fq 'Implementation Verification PASS' "$flow"
 grep -Fq 'User Validation PASS' "$flow"
-grep -Fq 'remote `main` to equal Audited Commit SHA' "$evolution"
+grep -Fq 'remote `main` to equal Audited Commit' "$evolution_release"

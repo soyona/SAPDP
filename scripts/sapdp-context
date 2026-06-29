@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+readonly EXPECTED_ORIGIN="https://github.com/soyona/SAPDP"
+
+error() {
+  printf 'ERROR SAPDP_CONTEXT_%s\n' "$1" >&2
+  exit 1
+}
+
+block() {
+  printf 'BLOCKED %s\n' "$1" >&2
+  exit 1
+}
+
+[[ $# -eq 6 && $1 == --ref && $3 == --flow && $5 == --stage ]] \
+  || error USAGE
+
+requested_ref=$2
+flow=$4
+stage=$6
+
+[[ $flow =~ ^[a-z0-9-]+$ && $stage =~ ^[a-z0-9-]+$ ]] || error USAGE
+
+repo_root=$(git rev-parse --show-toplevel 2>/dev/null) || block REF_UNAVAILABLE
+cd "$repo_root"
+
+# shellcheck source=scripts/lib/sapdp-validation.sh
+source scripts/lib/sapdp-validation.sh
+
+[[ $(git config --get remote.origin.url) == "$EXPECTED_ORIGIN" ]] || block REF_UNAVAILABLE
+commit=$(git rev-parse --verify "${requested_ref}^{commit}" 2>/dev/null) || block REF_UNAVAILABLE
+root_blob=$(git rev-parse "${commit}:SAPDP.md" 2>/dev/null) || block REF_UNAVAILABLE
+remote_main=$(sapdp_remote_ref origin refs/heads/main) || block REF_UNAVAILABLE
+[[ -n $remote_main ]] || block REF_UNAVAILABLE
+
+if [[ -z $(git status --porcelain) ]]; then
+  working_tree=clean
+else
+  working_tree=dirty
+fi
+
+context_root=$(mktemp -d)
+output=$(mktemp)
+trap 'rm -rf "$context_root"; rm -f "$output"' EXIT
+git archive "$commit" SAPDP.md protocol | tar -xf - -C "$context_root" \
+  || block REF_UNAVAILABLE
+
+(
+  cd "$context_root"
+  sapdp_validate_capsule || block RUNTIME_CAPSULE_INVALID
+  sapdp_validate_registry || block AUTHORITY_DEPENDENCY_INVALID
+  sapdp_validate_dependencies || block AUTHORITY_DEPENDENCY_INVALID
+  sapdp_validate_stage_authority || block STAGE_AUTHORITY_INVALID
+  sapdp_validate_authority || block AUTHORITY_DEPENDENCY_INVALID
+
+  version=$(sapdp_heading_version) || block RUNTIME_CAPSULE_INVALID
+  digest=$(sed -n 's/^Authority Digest: //p' SAPDP.md)
+
+  {
+    printf 'SAPDP_CONTEXT_V1\n'
+    printf 'ref=%s\n' "$commit"
+    printf 'root_blob=%s\n' "$root_blob"
+    printf 'version=%s\n' "$version"
+    printf 'authority_digest=%s\n' "$digest"
+    printf 'flow=%s\n' "$flow"
+    printf 'stage=%s\n' "$stage"
+    printf 'working_tree=%s\n' "$working_tree"
+    printf 'remote_main=%s\n' "$remote_main"
+    sapdp_context_authority_envelopes "$flow" "$stage" \
+      || block STAGE_AUTHORITY_INVALID
+    printf 'END_SAPDP_CONTEXT\n'
+  } >"$output"
+)
+
+if [[ $flow == protocol-evolution && $stage == 1 ]]; then
+  [[ $(wc -c <"$output" | tr -d ' ') -le 16384 ]] \
+    || block STAGE_AUTHORITY_INVALID
+fi
+
+command cat "$output"

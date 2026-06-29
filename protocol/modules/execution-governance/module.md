@@ -16,6 +16,7 @@ Own cross-flow execution state, readiness, closure, handoff, progress, and findi
 
 - `design.md` owns governance data structures and invariants.
 - `runtime.md` owns readiness, transition, handoff, and output behavior.
+- `repository-evolution.md` owns Protocol Evolution closure references and findings durability.
 
 ## Consumers
 

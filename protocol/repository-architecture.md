@@ -110,13 +110,41 @@ Every Flow authority defines:
 
 A large Flow may register additional components under the same owner ID when each component has a distinct, non-overlapping responsibility. Every component is registered and included in Authority Digest. A component does not create another Flow.
 
+A staged Flow may declare exact stage records:
+
+```text
+stage_authority=<stage-number>|<kind>|<owner-id>|<component-id>
+```
+
+The core owns stage order and transitions. One registered stage component owns each stage contract. Missing, duplicate, conflicting, or cyclic stage resolution returns `BLOCKED STAGE_AUTHORITY_INVALID`.
+
 ## Authority Dependencies
 
-- Dependencies are declared as exact registered owner IDs.
+- Dependencies use exact registered tuples:
+
+```text
+depends_on=<kind>|<owner-id>|<component-id>
+```
+
+- Owner-only dependencies are invalid.
+- Every tuple resolves exactly one Authority Registry record.
 - Circular dependencies are invalid.
 - Runtime loads only the routed authority and its explicit dependency closure.
 - Missing, duplicate, or cyclic dependencies return `BLOCKED AUTHORITY_DEPENDENCY_INVALID`.
 - Global SAPDP rules and delegated authority scopes must not overlap.
+
+## Context Budgets
+
+Normative byte budgets are validation and release gates:
+
+```text
+Runtime Capsule: 4096
+Protocol Evolution core: 3072
+Protocol Evolution stage authority: 4096
+Protocol Evolution Stage 1 context bundle: 16384
+```
+
+Budgets count raw bytes including final newlines. Exceeding a budget blocks validation.
 
 ## Historical Evidence
 

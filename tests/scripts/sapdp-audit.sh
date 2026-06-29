@@ -11,6 +11,15 @@ prepare_test_candidate
 materialize_test_candidate >/dev/null
 TEST_CANDIDATE=$(git -C "$TEST_REPO" rev-parse HEAD)
 
+invalid=$(
+  cd "$TEST_REPO"
+  ./scripts/sapdp-audit \
+    --commit invalid \
+    --freeze-file "$TEST_FREEZE" \
+    --expected-freeze-digest "$TEST_FREEZE_DIGEST" 2>&1 || true
+)
+[[ $invalid == 'ERROR SAPDP_AUDIT_INVALID_CANDIDATE' ]]
+
 (
   cd "$TEST_REPO"
   output=$(./scripts/sapdp-audit \

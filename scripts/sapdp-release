@@ -6,20 +6,27 @@ readonly REPOSITORY="soyona/SAPDP"
 readonly EXPECTED_ORIGIN="https://github.com/soyona/SAPDP"
 
 fail() {
-  printf 'sapdp-release: %s\n' "$1" >&2
+  local code
+  code=$(printf '%s' "$1" | tr '[:lower:] -' '[:upper:]__' | tr -cd 'A-Z0-9_')
+  printf 'BLOCKED SAPDP_RELEASE_%s\n' "$code" >&2
+  exit 1
+}
+
+error() {
+  printf 'ERROR SAPDP_RELEASE_%s\n' "$1" >&2
   exit 1
 }
 
 [[ $# -eq 6 && $1 == --version && $3 == --audited-commit && $5 == --freeze-digest ]] \
-  || fail 'usage: sapdp-release --version <vX.Y.Z> --audited-commit <sha> --freeze-digest sha256:<digest>'
+  || error USAGE
 
 version=$2
 audited_commit=$4
 freeze_digest=$6
 
-[[ $version =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || fail 'invalid version'
-[[ $audited_commit =~ ^[0-9a-f]{40}$ ]] || fail 'invalid audited commit'
-[[ $freeze_digest =~ ^sha256:[0-9a-f]{64}$ ]] || fail 'invalid Freeze Digest'
+[[ $version =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || error INVALID_VERSION
+[[ $audited_commit =~ ^[0-9a-f]{40}$ ]] || error INVALID_AUDITED_COMMIT
+[[ $freeze_digest =~ ^sha256:[0-9a-f]{64}$ ]] || error INVALID_FREEZE_DIGEST
 
 repo_root=$(git rev-parse --show-toplevel 2>/dev/null) || fail 'not inside a Git repository'
 cd "$repo_root"

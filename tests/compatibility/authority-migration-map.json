@@ -12,6 +12,13 @@
         "protocol/flows/intent-clarification.md",
         "protocol/flows/product-development.md",
         "protocol/flows/protocol-evolution.md",
+        "protocol/flows/protocol-evolution/design-audit.md",
+        "protocol/flows/protocol-evolution/design-freeze.md",
+        "protocol/flows/protocol-evolution/design.md",
+        "protocol/flows/protocol-evolution/evolution-definition.md",
+        "protocol/flows/protocol-evolution/materialization.md",
+        "protocol/flows/protocol-evolution/release.md",
+        "protocol/flows/protocol-evolution/repository-audit.md",
         "protocol/modules/dna/design.md",
         "protocol/modules/dna/runtime.md",
         "protocol/modules/execution-governance/runtime.md",
@@ -56,13 +63,23 @@
       "preserve_headings": true,
       "targets": [
         "protocol/modules/execution-governance/design.md",
+        "protocol/modules/execution-governance/repository-evolution.md",
         "protocol/modules/execution-governance/runtime.md"
       ]
     },
     {
       "path": "engine/contracts/ProtocolEvolutionCompletionContract.md",
       "sha256": "4072726837d9afc26d0ee1ab479cd0bdcae1b396fa97a6db62d2712eb778e4d9",
-      "targets": ["protocol/flows/protocol-evolution.md"]
+      "targets": [
+        "protocol/flows/protocol-evolution.md",
+        "protocol/flows/protocol-evolution/design-audit.md",
+        "protocol/flows/protocol-evolution/design-freeze.md",
+        "protocol/flows/protocol-evolution/design.md",
+        "protocol/flows/protocol-evolution/evolution-definition.md",
+        "protocol/flows/protocol-evolution/materialization.md",
+        "protocol/flows/protocol-evolution/release.md",
+        "protocol/flows/protocol-evolution/repository-audit.md"
+      ]
     },
     {
       "path": "docs/dna/DNA_ARCHITECTURE_DESIGN.md",
