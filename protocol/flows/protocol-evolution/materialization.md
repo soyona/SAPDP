@@ -6,6 +6,7 @@ kind=flow
 owner_id=protocol-evolution
 component_id=materialization
 schema=sapdp-authority-v1
+depends_on=flow|protocol-evolution|thread-handoff
 <!-- SAPDP Authority Metadata End -->
 
 ## Invocation
@@ -38,6 +39,6 @@ Materialization is idempotent after commit, push, or output interruption.
 
 Usage or malformed input returns `ERROR SAPDP_MATERIALIZE_<CODE>`. A repository or governance precondition returns `BLOCKED SAPDP_MATERIALIZE_<CODE>`. Failures are one exact line on stderr with non-zero exit.
 
-## Transition
+## Thread Boundary
 
-Successful Commit URL enters Repository Audit.
+Successful Commit URL remains the script stdout. The Flow then emits the Repository Audit Handoff Card and stops this thread. It does not append the Card to script stdout.

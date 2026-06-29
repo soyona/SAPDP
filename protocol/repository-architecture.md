@@ -141,6 +141,7 @@ Normative byte budgets are validation and release gates:
 Runtime Capsule: 4096
 Protocol Evolution core: 3072
 Protocol Evolution stage authority: 4096
+Protocol Evolution thread handoff authority: 4096
 Protocol Evolution Stage 1 context bundle: 16384
 ```
 
@@ -214,5 +215,6 @@ After the target version is released, its directory is immutable. Later Evolutio
 | CAP-043 | OWNED | root | `SAPDP.md` |
 | CAP-044 | OWNED | dna | `protocol/modules/dna/module.md` |
 | CAP-045 | OWNED | repository | `protocol/repository-architecture.md` |
+| CAP-046 | OWNED | protocol-evolution | `protocol/flows/protocol-evolution/thread-handoff.md` |
 
-Every CAP from CAP-001 through CAP-045 must appear exactly once as `OWNED` or `RESERVED`.
+Every CAP from CAP-001 through CAP-046 must appear exactly once as `OWNED` or `RESERVED`.

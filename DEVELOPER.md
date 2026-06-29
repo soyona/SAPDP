@@ -73,6 +73,19 @@ Staged Flows resolve one registered `stage_authority` component at a time.
 
 CI must run the same command with read-only repository permissions.
 
+## Protocol Evolution Thread Handoff
+
+After Design Freeze PASS and Materialization PASS, SAPDP emits a self-contained Handoff Card and stops the source thread. Codex App links bind the current repository path, origin URL, and encoded prompt. CLI uses `/new`; IDE uses New Thread. The target thread validates Git and Freeze evidence before loading only its target-stage authority closure.
+
+Render or validate mechanically with:
+
+```bash
+./scripts/sapdp-handoff render <frozen options>
+./scripts/sapdp-handoff validate <frozen options>
+```
+
+The v5.0.0 to v6.0.0 migration alone materializes in the Design Freeze thread because v5.0.0 does not publish `authority_registry_location` in its Runtime Capsule.
+
 ## Adding a Flow
 
 A new Flow requires independent entry, state, stages, transitions, outputs, recovery, a registered authority, implementation ownership, and tests.

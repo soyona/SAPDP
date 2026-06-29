@@ -40,3 +40,14 @@ grep -Fq -- '--audited-commit' protocol/flows/protocol-evolution/release.md
 grep -Fq 'Repository-Audit: PASS' protocol/flows/protocol-evolution/release.md
 grep -Fq 'idempotent' protocol/flows/protocol-evolution/materialization.md
 grep -Fq 'idempotent' protocol/flows/protocol-evolution/release.md
+
+handoff=protocol/flows/protocol-evolution/thread-handoff.md
+grep -qx 'authority=normative' "$handoff"
+grep -qx 'owner_id=protocol-evolution' "$handoff"
+grep -qx 'component_id=thread-handoff' "$handoff"
+grep -Fq 'design-freeze -> materialization' "$handoff"
+grep -Fq 'materialization -> repository-audit' "$handoff"
+grep -Fq 'Repository Audit PASS stays in-thread for Release.' "$handoff"
+grep -Fq 'sapdp-thread-handoff-v1' "$handoff"
+grep -Fq 'codex://threads/new?path=' "$handoff"
+grep -Fq 'Commit URL only; then emit the Repository Audit Handoff Card outside script stdout.' "$handoff"

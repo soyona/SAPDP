@@ -2,6 +2,14 @@
 
 This file is historical release evidence. It is not protocol authority.
 
+## v6.0.0
+
+- Added mandatory, self-contained thread handoffs after Design Freeze and Materialization.
+- Added Codex App deep links with deterministic CLI and IDE fallbacks.
+- Added same-ref handoff validation, deterministic failure priority, and a mechanical renderer.
+- Added a machine-readable Runtime Capsule Authority Registry location.
+- Preserved staged loading, context budgets, and existing Materialization, Audit, and Release stdout.
+
 ## v5.0.0
 
 - Added a bounded normative Runtime Capsule and stage-specific authority loading.

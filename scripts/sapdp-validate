@@ -23,14 +23,17 @@ for test_script in \
   tests/compatibility/authority-migration-map.sh \
   tests/compatibility/dependency-migration-v4.0.0.sh \
   tests/compatibility/runtime-baseline.sh \
+  tests/compatibility/runtime-baseline-v5.0.0.sh \
   tests/compatibility/runtime-baseline-v4.0.0.sh \
   tests/flows/protocol-evolution.sh \
   tests/flows/protocol-evolution-stage-loading.sh \
+  tests/flows/protocol-evolution-thread-handoff.sh \
   tests/modules/dna/module.sh \
   tests/scripts/sapdp-context.sh \
   tests/scripts/sapdp-materialize.sh \
   tests/scripts/sapdp-audit.sh \
-  tests/scripts/sapdp-release.sh
+  tests/scripts/sapdp-release.sh \
+  tests/scripts/sapdp-handoff.sh
 do
   [[ -x $test_script ]] || fail "missing executable test: ${test_script}"
   "$test_script" || fail "test failed: ${test_script}"

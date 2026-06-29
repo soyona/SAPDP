@@ -1,0 +1,23 @@
+{
+  "source_ref": "v5.0.0",
+  "source_commit": "296ca7bf176df130b17a4cde34161f6c58332268",
+  "sapdp_file_digest": "af6c78c9262bae542aa205f11b1943ca833f69365cfc8702115d5151a8ff2bcb",
+  "preserved": [
+    "home",
+    "router",
+    "structured-input",
+    "seven-stage-protocol-evolution",
+    "staged-authority-loading",
+    "context-budgets",
+    "materialization-invocation",
+    "audit-invocation",
+    "release-invocation",
+    "commit-url-success",
+    "audit-pass-success",
+    "tag-url-success"
+  ],
+  "intentional_breaking_changes": [
+    "mandatory-thread-boundary-after-design-freeze",
+    "mandatory-thread-boundary-after-materialization"
+  ]
+}

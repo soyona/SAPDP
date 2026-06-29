@@ -7,6 +7,7 @@ owner_id=protocol-evolution
 component_id=design-freeze
 schema=sapdp-authority-v1
 depends_on=architecture|repository|root
+depends_on=flow|protocol-evolution|thread-handoff
 <!-- SAPDP Authority Metadata End -->
 
 ## Required Handoff
@@ -65,6 +66,6 @@ The findings snapshot raw-byte SHA-256 is declared in the payload. Every finding
 
 Only an immutable Git tag releases a version. A released version cannot be reused.
 
-## Transition
+## Thread Boundary
 
-PASS sets Target Version and enters Materialization through the exact frozen invocation.
+PASS sets Target Version, emits the Materialization Handoff Card, and stops the source thread. The v5.0.0 to v6.0.0 migration alone runs the frozen Materialization invocation once in the current thread because the base Runtime Capsule cannot locate the Registry in a fresh bounded-loader thread.

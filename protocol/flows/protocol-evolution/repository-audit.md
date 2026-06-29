@@ -6,6 +6,7 @@ kind=flow
 owner_id=protocol-evolution
 component_id=repository-audit
 schema=sapdp-authority-v1
+depends_on=flow|protocol-evolution|thread-handoff
 <!-- SAPDP Authority Metadata End -->
 
 ## Mechanical Invocation
@@ -45,3 +46,5 @@ Release | Design | Materialization
 ```
 
 Implementation mismatch returns to Materialization. Design defect returns to Design. Remote drift requires a new audit.
+
+PASS does not emit a Handoff Card. Release runs in this Repository Audit thread.

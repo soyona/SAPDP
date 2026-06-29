@@ -1,7 +1,7 @@
 {
-  "source_ref": "v3.0.6",
-  "source_commit": "6e5960e2b78b16e86892441af6033c29e0fe0397",
-  "source_authority_sha256": "14827c81d26abf2b5661e87dc0032927713fe9565d031b38a0d28be0dda73f5c",
+  "source_ref": "v5.0.0",
+  "source_commit": "296ca7bf176df130b17a4cde34161f6c58332268",
+  "source_authority_sha256": "af6c78c9262bae542aa205f11b1943ca833f69365cfc8702115d5151a8ff2bcb",
   "preserved_assertions": [
     "bare_sapdp_enters_home",
     "sapdp_with_content_enters_router",
@@ -23,12 +23,15 @@
     "missing_product_git_script_remains_blocking",
     "commit_audit_uses_git_diff_and_patch_required",
     "product_release_requires_implementation_and_user_validation",
-    "protocol_release_binds_audited_commit"
+    "protocol_release_binds_audited_commit",
+    "protocol_evolution_uses_mandatory_thread_handoffs"
   ],
   "approved_behavior_changes": [
     "registered_root_flow_module_authority",
     "protocol_evolution_13_correctness_and_recovery_fixes",
-    "add_dna_approved_7_stage_flow"
+    "add_dna_approved_7_stage_flow",
+    "machine_readable_authority_registry_location",
+    "deterministic_protocol_evolution_thread_handoff"
   ],
   "known_source_conflicts": [
     "v3.0.6_defined_both_5_stage_and_7_stage_dna_governance"

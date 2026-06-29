@@ -28,6 +28,7 @@ trap 'rm -f "$bundle"' EXIT
 
 [[ $(sapdp_runtime_capsule | wc -c | tr -d ' ') -le 4096 ]]
 [[ $(wc -c <protocol/flows/protocol-evolution.md | tr -d ' ') -le 3072 ]]
+[[ $(wc -c <protocol/flows/protocol-evolution/thread-handoff.md | tr -d ' ') -le 4096 ]]
 
 for file in protocol/flows/protocol-evolution/*.md; do
   [[ $(wc -c <"$file" | tr -d ' ') -le 4096 ]]
@@ -40,4 +41,12 @@ grep -Fxq 'architecture|repository|root' <<<"$stage_one"
 
 stage_five=$(sapdp_context_closure_records protocol-evolution 5)
 grep -Fxq 'flow|protocol-evolution|materialization' <<<"$stage_five"
+grep -Fxq 'flow|protocol-evolution|thread-handoff' <<<"$stage_five"
 ! grep -Fq 'architecture|repository|root' <<<"$stage_five"
+
+stage_six=$(sapdp_context_closure_records protocol-evolution 6)
+grep -Fxq 'flow|protocol-evolution|repository-audit' <<<"$stage_six"
+grep -Fxq 'flow|protocol-evolution|thread-handoff' <<<"$stage_six"
+
+! grep -Fq 'thread-handoff' <<<"$stage_one"
+grep -qx 'authority_registry_location=SAPDP.md' < <(sapdp_runtime_capsule)

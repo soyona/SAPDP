@@ -1,11 +1,12 @@
-# SAPDP v5.0.0 Protocol
+# SAPDP v6.0.0 Protocol
 
-Authority Digest: sha256:2a963a1a21908402c77de65f8a8267a6be848d09777125b7d1f81ca9d4d0bd52
+Authority Digest: sha256:01ade921278840b4c78c086e7980caf69f7e565951c2a8354479bd9268304e0e
 
 <!-- Runtime Capsule Start -->
 capsule_schema=sapdp-runtime-capsule-v1
 version_source=first-heading
 authority_digest_source=Authority Digest line
+authority_registry_location=SAPDP.md
 global=Artifacts and Runtime State drive product work; Git is durable audit evidence; conversation memory is not authority.
 global=Missing behavior, architecture, stages, outputs, or evidence must not be invented.
 global=Progression requires the active Flow readiness and transition rules.
@@ -117,6 +118,7 @@ authority|flow|protocol-evolution|evolution-definition|protocol/flows/protocol-e
 authority|flow|protocol-evolution|materialization|protocol/flows/protocol-evolution/materialization.md
 authority|flow|protocol-evolution|release|protocol/flows/protocol-evolution/release.md
 authority|flow|protocol-evolution|repository-audit|protocol/flows/protocol-evolution/repository-audit.md
+authority|flow|protocol-evolution|thread-handoff|protocol/flows/protocol-evolution/thread-handoff.md
 authority|module|artifact-materialization|design|protocol/modules/artifact-materialization/design.md
 authority|module|artifact-materialization|entry|protocol/modules/artifact-materialization/module.md
 authority|module|artifact-materialization|runtime|protocol/modules/artifact-materialization/runtime.md

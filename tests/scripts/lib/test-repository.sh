@@ -26,6 +26,7 @@ create_test_repository() {
   cp "$SOURCE_ROOT/scripts/sapdp-materialize" "$TEST_REPO/scripts/"
   cp "$SOURCE_ROOT/scripts/sapdp-audit" "$TEST_REPO/scripts/"
   cp "$SOURCE_ROOT/scripts/sapdp-release" "$TEST_REPO/scripts/"
+  cp "$SOURCE_ROOT/scripts/sapdp-handoff" "$TEST_REPO/scripts/"
   cp "$SOURCE_ROOT/scripts/lib/sapdp-validation.sh" "$TEST_REPO/scripts/lib/"
 
   cat >"$TEST_REPO/scripts/sapdp-validate" <<'EOF'
@@ -37,6 +38,7 @@ EOF
     "$TEST_REPO/scripts/sapdp-materialize" \
     "$TEST_REPO/scripts/sapdp-audit" \
     "$TEST_REPO/scripts/sapdp-release" \
+    "$TEST_REPO/scripts/sapdp-handoff" \
     "$TEST_REPO/scripts/sapdp-context" \
     "$TEST_REPO/scripts/sapdp-validate" \
     "$TEST_REPO/scripts/lib/sapdp-validation.sh"
@@ -83,6 +85,11 @@ EOF
     repository-audit \
     release
   do
+    dependency=
+    if [[ $component == materialization || $component == repository-audit || \
+      $component == design-freeze ]]; then
+      dependency='depends_on=flow|protocol-evolution|thread-handoff'
+    fi
     cat >"$TEST_REPO/protocol/flows/protocol-evolution/${component}.md" <<EOF
 # Test ${component}
 
@@ -92,9 +99,22 @@ kind=flow
 owner_id=protocol-evolution
 component_id=${component}
 schema=sapdp-authority-v1
+${dependency}
 <!-- SAPDP Authority Metadata End -->
 EOF
   done
+
+  cat >"$TEST_REPO/protocol/flows/protocol-evolution/thread-handoff.md" <<EOF
+# Test thread-handoff
+
+<!-- SAPDP Authority Metadata Start -->
+authority=${normative}
+kind=flow
+owner_id=protocol-evolution
+component_id=thread-handoff
+schema=sapdp-authority-v1
+<!-- SAPDP Authority Metadata End -->
+EOF
 
   cat >"$TEST_REPO/SAPDP.md" <<'EOF'
 # SAPDP v0.0.0 Protocol
@@ -103,6 +123,7 @@ Authority Digest: sha256:PLACEHOLDER
 
 <!-- Runtime Capsule Start -->
 capsule_schema=sapdp-runtime-capsule-v1
+authority_registry_location=SAPDP.md
 undefined=NOT DEFINED IN SAPDP.md
 <!-- Runtime Capsule End -->
 
@@ -116,6 +137,7 @@ authority|flow|protocol-evolution|evolution-definition|protocol/flows/protocol-e
 authority|flow|protocol-evolution|materialization|protocol/flows/protocol-evolution/materialization.md
 authority|flow|protocol-evolution|release|protocol/flows/protocol-evolution/release.md
 authority|flow|protocol-evolution|repository-audit|protocol/flows/protocol-evolution/repository-audit.md
+authority|flow|protocol-evolution|thread-handoff|protocol/flows/protocol-evolution/thread-handoff.md
 <!-- Authority Registry End -->
 EOF
 

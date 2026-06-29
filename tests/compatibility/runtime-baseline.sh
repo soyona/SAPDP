@@ -2,8 +2,8 @@
 
 set -euo pipefail
 
-expected=14827c81d26abf2b5661e87dc0032927713fe9565d031b38a0d28be0dda73f5c
-actual=$(git show v3.0.6:SAPDP.md | shasum -a 256 | awk '{print $1}')
+expected=af6c78c9262bae542aa205f11b1943ca833f69365cfc8702115d5151a8ff2bcb
+actual=$(git show v5.0.0:SAPDP.md | shasum -a 256 | awk '{print $1}')
 [[ $actual == "$expected" ]]
 
 flow=protocol/flows/product-development.md
@@ -102,3 +102,7 @@ grep -Fq 'PATCH REQUIRED' "$commit_audit"
 grep -Fq 'Implementation Verification PASS' "$flow"
 grep -Fq 'User Validation PASS' "$flow"
 grep -Fq 'remote `main` to equal Audited Commit' "$evolution_release"
+grep -qx 'authority_registry_location=SAPDP.md' "$root"
+grep -Fq 'mandatory, self-contained thread handoffs' CHANGELOG.md
+grep -Fq 'The source thread stops after the Card' \
+  protocol/flows/protocol-evolution/thread-handoff.md
