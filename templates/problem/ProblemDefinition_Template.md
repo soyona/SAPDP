@@ -12,6 +12,16 @@
 
 ---
 
+<!-- SAPDP Stage Contract Start -->
+stage_schema=sapdp-product-stage-v1
+stage=Problem
+input_artifact=HUMAN_INPUT
+input_commit=NOT_APPLICABLE
+conclusion_status=DRAFT
+<!-- SAPDP Stage Contract End -->
+
+---
+
 # Purpose
 
 Define and validate the problem worth solving.
@@ -44,42 +54,6 @@ Lifecycle Entry
 # Outputs
 
 Solution Definition
-
----
-
-# Required Load Set
-
-PROJECT_STATE.md
-
-PROJECT_BOOTSTRAP.md
-
-ARTIFACT_INDEX.md
-
-Problem Baseline
-
-Decision Log
-
----
-
-# Artifact Routing
-
-Route Manifest:
-ROUTE_MANIFEST.md
-
-Route Role:
-Problem to Solution handoff
-
-Producer:
-Human
-
-Consumer:
-ChatGPT
-
-Next Action:
-Generate SolutionDefinition_CORE_v1.md
-
-Audit Source:
-ProblemDefinition_CORE_v1.md
 
 ---
 

@@ -6,46 +6,48 @@ kind=flow
 owner_id=product-development
 component_id=main
 schema=sapdp-authority-v1
-depends_on=flow|bootstrap|main
-depends_on=flow|bootstrap|validation
-depends_on=module-flow|dna|add-dna
 depends_on=module|artifact-materialization|design
 depends_on=module|artifact-materialization|entry
 depends_on=module|artifact-materialization|runtime
 depends_on=module|dna|design
 depends_on=module|dna|entry
 depends_on=module|dna|runtime
-depends_on=module|execution-governance|design
-depends_on=module|execution-governance|entry
-depends_on=module|execution-governance|runtime
 <!-- SAPDP Authority Metadata End -->
 
 ## Scope
 
-Own new-product and continue-product execution from an initialized workspace through validated product release.
+Own new-product and continue-product execution from an initialized workspace
+through validated product release.
+
+Product Development is a strict artifact dependency chain, not a persisted
+lifecycle state machine.
 
 ## Entry
 
-- New Product uses Bootstrap and enters Problem when Bootstrap readiness passes.
-- Continue Product reads committed Runtime State, Route Manifest, and artifacts before selecting the next action.
-- New Feature enters Problem.
-- Bug Fix enters Implementation Verification.
-- Refactor enters Build.
+- New Product enters only after Bootstrap PASS and begins at Problem.
+- Continue Product scans committed stage artifacts in canonical order and
+  returns the first missing, incomplete, uncommitted, failed, or stale stage.
+- New Feature begins at Problem and uses the current released product as its
+  baseline.
+- Bug Fix reuses the approved upstream chain and begins at Build.
+- Refactor reuses the approved upstream chain and begins at Build.
 
 Bootstrap is prerequisite work, not a lifecycle stage.
 
 ## Runtime Inputs
 
-- Protocol version and source ref
-- Product identity and repository
-- Runtime State
-- Route Manifest
-- Artifact Index
-- Existing committed artifacts
+- `SAPDP.lock`
+- product identity and repository
+- committed stage artifacts
+- direct predecessor commit evidence
 - Human decisions
-- Git evidence
+- Git and test evidence
 
-Conversation memory and historical research are not runtime state.
+Conversation memory, README text, generated progress views, and historical
+artifacts are not runtime state.
+
+`PROJECT_STATE.md`, `ROUTE_MANIFEST.md`, and `ARTIFACT_INDEX.md` are not Product
+Development inputs and must not be created or updated for stage progression.
 
 ## Lifecycle
 
@@ -65,173 +67,205 @@ Conversation memory and historical research are not runtime state.
 
 The stage count and order must not change without Protocol Evolution.
 
-## General Stage Contract
+## Canonical Outputs
 
-Every stage defines:
+| Stage | Conclusion artifact |
+| --- | --- |
+| Problem | `docs/problem/ProblemDefinition_CORE_v1.md` |
+| Solution | `docs/solution/SolutionDefinition_CORE_v1.md` |
+| DNA Selection | `docs/product/DNASelection_CORE_v1.md` |
+| Product Representation | `docs/product/ProductRepresentation_CORE_v1.md` |
+| Product Requirement | `docs/product/ProductRequirement_CORE_v1.md` |
+| UX Specification | `docs/product/UXSpecification_CORE_v1.md` |
+| Visual Design Specification | `docs/product/VisualDesignSpecification_CORE_v1.md` |
+| MVP Definition | `docs/mvp/MVPDefinition_CORE_v1.md` |
+| Task Package | `docs/tasks/TaskPackage_CORE_v1.md` |
+| Build | `docs/build/BuildResult_CORE_v1.md` |
+| Implementation Verification | `docs/verification/ImplementationVerification_CORE_v1.md` |
+| User Validation | `docs/validation/UserValidation_CORE_v1.md` |
+| Release | `docs/release/ReleaseResult_CORE_v1.md` plus Git tag |
 
-- objective;
-- required inputs;
-- produced artifacts;
-- owner and execution environment;
-- validation and exit criteria;
-- completion evidence;
-- next action.
+Technical constraints are part of Product Requirement. They are not a separate
+lifecycle stage or transition.
 
-No committed, validated stage output means no transition when Git evidence is required.
+## Stage Artifact Contract
 
-## Problem
+Every conclusion artifact contains exactly one bounded contract:
 
-Define target users, observed problem, context, evidence, constraints, and non-goals. Do not prescribe a solution.
+```text
+<!-- SAPDP Stage Contract Start -->
+stage_schema=sapdp-product-stage-v1
+stage=<canonical stage name>
+input_artifact=<canonical predecessor path or HUMAN_INPUT>
+input_commit=<40-lowercase-hex or NOT_APPLICABLE>
+conclusion_status=<stage-valid status>
+<!-- SAPDP Stage Contract End -->
+```
 
-Output: Problem Definition.
+Rules:
 
-## Solution
+- Problem uses `HUMAN_INPUT` and `NOT_APPLICABLE`.
+- Every later stage names only its direct predecessor.
+- `input_commit` equals the latest committed revision of that predecessor.
+- Problem through Build use `COMPLETE`.
+- Implementation Verification and User Validation use `PASS` or `FAIL`.
+- Release uses `COMPLETE` or `FAIL`.
+- The contract is runtime metadata inside the owning product artifact; it does
+  not create a separate state artifact.
+- The artifact body must satisfy the complete matching template.
+- Human edits and additions are allowed when they preserve the template,
+  evidence boundaries, and stage scope.
 
-Define the proposed outcome and mechanism that addresses the approved Problem without expanding product scope.
+## Completion and Progression
 
-Output: Solution Definition.
+A stage is complete only when:
 
-## DNA Selection
+1. its canonical conclusion artifact exists;
+2. its Stage Contract is valid;
+3. all required template sections are present and complete;
+4. the artifact is tracked and has no uncommitted changes;
+5. its direct predecessor is complete;
+6. its `input_commit` matches the predecessor's latest artifact commit; and
+7. its stage-valid conclusion status permits progression.
 
-Consume approved Problem and Solution. Select exactly one Visual DNA and one Product DNA under the DNA Module Runtime.
+The artifact commit is the stage closure evidence. The Human or Codex may
+create the commit. A separate transition commit, Closure Artifact, Findings
+Registry update, route update, index update, README update, or state update is
+prohibited.
 
-Output:
+Local commit evidence is sufficient for Problem through User Validation.
+Release verifies the repository remote and tag under the repository-standard
+release command.
 
-- Selected Visual DNA and source ref
-- Selected Product DNA and source ref
-- Human selection evidence
+`Continue Product` checks stages in canonical order and returns exactly the
+first executable action or blocker. It does not write progress state.
 
-Missing either selection blocks Product Representation.
+## Stale Dependency Rule
 
-## Product Representation
+If an upstream artifact receives a new commit, its direct consumer becomes
+stale when `input_commit` no longer matches. That consumer and every transitive
+downstream result are non-current until revalidated in order.
 
-Describe the product's conceptual shape, actors, objects, relationships, major states, and experience model using the approved Problem, Solution, and selected DNA.
+Stale artifacts remain in Git as historical evidence. They are not deleted and
+do not override the earliest stale stage.
 
-Output: Product Representation.
+## Stage Contracts
 
-## Product Requirement
+### Problem
 
-Define functional behavior, constraints, acceptance conditions, and traceability to the approved upstream artifacts.
+Define target users, observed problem, context, evidence, constraints,
+non-goals, success criteria, assumptions, and acceptance criteria. Do not
+prescribe a solution.
 
-Output: Product Requirement.
+### Solution
 
-## UX Specification
+Consume the committed Problem conclusion. Define the proposed outcome,
+mechanism, vision, strategy, principles, boundaries, constraints, assumptions,
+success definition, and acceptance criteria without expanding Problem scope.
 
-Define end-to-end user flows, navigation, states, interactions, errors, empty states, and accessibility requirements.
+### DNA Selection
 
-UX Specification is mandatory. Missing it blocks MVP Definition and Build.
+Consume the committed Solution conclusion. Record exactly one Selected Visual
+DNA and one Selected Product DNA, their source refs, selection rationale, and
+Human decision evidence. Missing either selection blocks Product
+Representation.
 
-## Visual Design Specification
+### Product Representation
 
-Translate approved Visual DNA and UX requirements into executable visual constraints.
+Consume the committed DNA Selection conclusion. Define the product overview,
+actors, objects, structure, relationships, major states, core user flows,
+functional domains, information structure, external interfaces, boundaries,
+assumptions, and acceptance criteria.
 
-It is required for Experience Products and whenever the Human requires visual quality, brand style, UI design, or visual consistency. Unknown applicability returns `BLOCKED`.
+### Product Requirement
 
-## MVP Definition
+Consume the committed Product Representation conclusion. Define target users,
+problems, goals, required capabilities, functional behavior, technical and
+product constraints, success metrics, traceability, boundaries, assumptions,
+and acceptance criteria.
 
-Define the smallest coherent product scope, included and excluded behavior, success conditions, and validation plan.
+### UX Specification
 
-MVP Definition must not weaken approved Problem, Solution, requirement, UX, or required visual constraints.
+Consume the committed Product Requirement conclusion. Define user profiles,
+journeys, flows, interactions, navigation, feedback, errors, empty states,
+accessibility, constraints, and acceptance criteria.
 
-## Task Package
+### Visual Design Specification
 
-Create implementation-ready tasks with exact artifact references, dependencies, constraints, acceptance checks, execution environment, and return contract.
+Consume the committed UX Specification conclusion. This stage and artifact are
+mandatory for every product.
 
-## Build
+The artifact records the selected Visual DNA, applicability, visual goals,
+principles, style, color, typography, layout, components, iconography, imagery,
+consistency, accessibility, and acceptance criteria. A non-UI product uses
+`Applicability: Non-UI Product`, supplies applicable terminal, text, or output
+presentation rules, and gives a rationale for each non-applicable visual
+section. An empty or omitted section is invalid.
 
-Codex implements only the approved Task Package and repository state.
+### MVP Definition
 
-Required behavior:
+Consume the committed Visual Design Specification conclusion. Define the
+smallest coherent scope, validation goal, success criteria, included and
+excluded behavior, constraints, metrics, release readiness, assumptions, and
+acceptance criteria.
 
-- inspect current code and standard automation;
-- preserve unrelated changes;
-- modify only approved scope;
-- run required tests;
-- use explicit product Git scripts when available;
-- return verifiable Git evidence.
+### Task Package
 
-Build must not redesign frozen product artifacts.
+Consume the committed MVP Definition conclusion. Define implementation-ready
+tasks, exact artifact references, dependencies, constraints, acceptance
+checks, execution environment, validation commands, and return contract.
 
-## Implementation Verification
+### Build
 
-Verify implementation against approved artifacts and constraints using repository evidence and executable tests.
+Consume the committed Task Package conclusion. Implement only its approved
+scope, preserve unrelated changes, run required tests, and record the
+implementation commit, changed paths, commands, results, remaining issues, and
+scope conformance in Build Result.
 
-Failure returns to Build.
+Build must not redesign approved product artifacts.
 
-## User Validation
+### Implementation Verification
 
-Validate that the product creates the intended value for the target users under the approved MVP.
+Consume the committed Build Result conclusion. Verify implementation against
+the Task Package and approved upstream chain using repository evidence and
+executable tests. `FAIL` returns to Build.
 
-Failure returns to MVP Definition.
+### User Validation
 
-## Release
+Consume the committed Implementation Verification `PASS` conclusion. Record
+validation environment, participants, feedback, observed behavior, goal
+achievement, problem resolution, findings, required actions, and decision.
+`FAIL` returns to MVP Definition.
 
-Product Release requires:
+### Release
 
-- Implementation Verification PASS;
-- User Validation PASS;
-- no unresolved release blocker;
-- explicit release task;
-- verifiable product repository evidence.
+Consume the committed User Validation `PASS` conclusion. Release requires
+explicit Human approval, no unresolved blocker, verifiable repository
+evidence, a release result, and a Git tag. Environment failure remains at
+Release.
 
-Codex executes the product release script or explicit repository-standard release command. Product release output follows the product repository contract and must not be confused with SAPDP protocol release.
+## Direct Loading
 
-## DNA Consumption
+Normal stage execution loads only:
 
-Selected Visual DNA and Selected Product DNA remain mandatory through Product Representation, Product Requirement, UX Specification, applicable Visual Design Specification, MVP Definition, Task Package, Build, Implementation Verification, and User Validation.
+- this Flow;
+- the current stage template;
+- the direct predecessor conclusion artifact;
+- explicitly referenced sections or evidence;
+- relevant source, diff, and tests for Build or verification.
 
-Product stages reference selected DNA; they do not redefine DNA schemas or library assets.
+It must not load all historical artifacts, all templates, README, route files,
+index files, or persisted progress state by default.
 
-## Runtime State and Routing
-
-A transition requires:
-
-- Runtime State;
-- Route Manifest;
-- Stage Readiness PASS;
-- required artifacts and decisions;
-- required commit evidence.
-
-Continue Product returns one next executable action when readiness passes and one blocker when it fails. It generates a new artifact only when the Human clearly requests execution.
-
-Route Manifest and route cards may propose an action but do not own lifecycle transition.
-
-## Artifact Rules
-
-Artifacts are durable runtime memory. Every active artifact identifies:
-
-- producer;
-- consumer;
-- status;
-- source evidence;
-- route role;
-- next action when applicable.
-
-Historical artifacts do not override current approved artifacts.
-
-## Templates
-
-Templates define non-authoritative artifact shape. The owning Flow or Module defines required behavior.
-
-Current template families:
-
-- Problem
-- Solution
-- Product Representation
-- Product Requirement
-- Technical Constraint
-- UX Specification
-- Visual Design Specification
-- MVP Definition
-- Task Package
-- Implementation Verification
-- User Validation
-- Release Result
-- Runtime State
+Selected DNA is consumed through the committed chain and explicit references;
+stages do not reconstruct or redefine DNA assets.
 
 ## Human-AI Handoff
 
-ChatGPT owns product interpretation, design, task definition, and governance audit. Codex owns repository inspection, materialization, implementation, test execution, and Git operations. Human owns product decisions, DNA selection, value validation, and explicit approvals.
+ChatGPT owns product interpretation and artifact design. Codex owns repository
+inspection, exact materialization, implementation, and test execution. Human
+owns product decisions, DNA selection, value validation, approval, and may
+edit any stage artifact within its standard.
 
 Every Codex task includes:
 
@@ -246,37 +280,58 @@ Output:
 
 ## Product Git Runtime
 
-Product repositories use explicit commit, verify, and release scripts when present. Bootstrap may create non-success `NOT_IMPLEMENTED` stubs when no implementation exists.
+Product repositories may use explicit scripts when present. Otherwise Codex
+uses standard non-destructive repository commands and the Task Package
+validation commands.
 
-Missing required product Git automation outside Bootstrap returns:
+Missing product-specific Git automation is not a blocker by itself. Fabricated
+commit, test, tag, PASS, or release evidence is prohibited.
 
-```text
-BLOCKED PRODUCT_GIT_SCRIPT_MISSING
+## Executable Progress Check
+
+The reference resolver is:
+
+```bash
+./scripts/sapdp-product-next --project-root "<product-repository>"
 ```
 
-No stub may fabricate a Commit URL, Tag URL, PASS, or release result.
-
-## Compatibility Evidence
-
-Protocol Evolution that changes Product Development authority must preserve executable assertions for:
-
-- Bootstrap readiness, validation outcomes, and remote evidence;
-- artifact materialization and Human-AI handoff contracts;
-- stage order, ownership, required DNA consumption, and rework routes;
-- Product Git blockers, Commit Audit, and Product Release gates.
-
-The source ref, source commit, baseline digest, and assertion suite must be bound by the candidate Design Freeze. Passing assertions are required evidence; they do not authorize behavior absent from this Flow.
+It is read-only. It checks canonical paths, Stage Contracts, required headings,
+Git tracking, uncommitted artifact changes, predecessor commit equality,
+stage-valid results, rework routes, and release tag evidence.
 
 ## Rework
 
 - Problem defect returns to Problem.
 - Solution defect returns to Solution.
 - Missing or invalid DNA remains at DNA Selection.
-- Downstream specification defect returns to its owning specification stage.
-- Build verification failure returns to Build.
-- User Validation failure returns to MVP Definition.
-- Release environment failure remains at Release.
+- A stale direct input returns to the earliest stale stage.
+- Downstream specification defect returns to its owning stage.
+- Implementation Verification `FAIL` returns to Build.
+- User Validation `FAIL` returns to MVP Definition.
+- Release `FAIL` or environment failure remains at Release.
+
+Rework produces a new artifact commit at the owning stage. Direct predecessor
+commit validation then propagates revalidation through downstream stages.
+
+## Required Scenario Coverage
+
+Executable tests must cover:
+
+- normal new-product progression through all thirteen stages;
+- Human completion of a partially authored artifact;
+- missing required content;
+- continuation in a new session without conversation state;
+- mandatory DNA Selection;
+- mandatory Visual Design for UI and non-UI products;
+- upstream revision and transitive stale detection;
+- Implementation Verification failure returning to Build;
+- User Validation failure returning to MVP Definition;
+- Release failure remaining at Release; and
+- Bug Fix and Refactor reuse of a valid upstream baseline.
 
 ## Compatibility
 
-The v4 authority migration does not change the thirteen stages, entry rules, rollback rules, product artifacts, DNA consumption requirements, or product Git behavior defined by v3.0.6.
+This runtime replaces persisted Product Development state and routing. Existing
+product repositories require one migration that adds Stage Contracts and
+direct predecessor commit references to active artifacts. Legacy state, route,
+index, and dynamic README content become non-authoritative and are not updated.

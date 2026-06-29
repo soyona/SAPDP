@@ -3,152 +3,100 @@
 ## Document Information
 
 | Item | Value |
-|--------|--------|
+| --- | --- |
 | Artifact Type | Task Package |
 | Owner | ChatGPT |
 | Producer | ChatGPT |
 | Lifecycle Stage | Task Package |
-| Status | Frozen |
+| Status | Template |
+
+---
+
+<!-- SAPDP Stage Contract Start -->
+stage_schema=sapdp-product-stage-v1
+stage=Task Package
+input_artifact=docs/mvp/MVPDefinition_CORE_v1.md
+input_commit=<MVP_DEFINITION_ARTIFACT_COMMIT>
+conclusion_status=DRAFT
+<!-- SAPDP Stage Contract End -->
 
 ---
 
 # Purpose
 
-Define a token-efficient implementation package that can be directly executed by Codex.
+Define a token-efficient implementation package that Codex can execute without
+redesigning approved product artifacts.
 
-This artifact transforms approved product artifacts into one bounded implementation task.
+# Inputs
 
-This artifact must prefer artifact paths, commit URLs, and repository references over pasted full content.
+MVP Definition
 
-This artifact must not include lifecycle theory or background unless required for execution.
+# Outputs
 
-Task Package must not be generated until required Product Shape artifacts and MVP Definition have passed validation and the lifecycle state authority has been updated.
+Build Result
 
-Required lifecycle state source:
+# Execution Method
 
-```text
-PROJECT_STATE.md
-```
+<EXECUTION_METHOD>
 
----
+# Invocation
 
-# Required Format
+<EXACT_INVOCATION>
 
-```text
-Task:
-<one sentence>
+# Task
 
-Inputs:
-<artifact paths or commit URLs>
+<ONE_SENTENCE_TASK>
 
-Scope:
-<must do>
-<must not do>
+# Input References
 
-Acceptance:
-<3-7 checks>
+<ARTIFACT_PATHS_AND_COMMITS>
 
-Output:
-Commit URL
-```
+# Scope
 
----
+## Must Do
 
-# Artifact Routing
+<REQUIRED_WORK>
 
-Route Manifest:
-ROUTE_MANIFEST.md
+## Must Not Do
 
-Route Role:
-Task Package to Codex Build handoff
+<OUT_OF_SCOPE_WORK>
 
-Producer:
-ChatGPT
+# Dependencies
 
-Consumer:
-Codex
+<TASK_DEPENDENCIES>
 
-Next Action:
-Implement the Task Package in Codex.
+# Constraints
 
-Audit Source:
-TaskPackage_CORE_v1.md or commit URL
+<IMPLEMENTATION_CONSTRAINTS>
 
----
+# Acceptance Checks
 
-Task Package completion routes from ChatGPT to Codex.
+1. <CHECK>
+2. <CHECK>
+3. <CHECK>
 
-The stage completion Route Card must include:
+# Validation
+
+<EXACT_VALIDATION_COMMANDS>
+
+# Output Contract
 
 ```text
-Route
-
-Current:
-Task Package · ChatGPT · <Project> Project · CURRENT session
-
-Done:
-<TaskPackage artifact path or commit URL>
-
-Next:
-Build · Codex · <absolute product workspace> · REUSE_EXISTING session
-
-Action:
-Implement the Task Package in Codex.
-
-Start:
-Open <absolute product workspace> and execute <TaskPackage artifact path or commit URL>.
-
-Audit:
-<TaskPackage artifact path or commit URL>
-
-Expected output:
-Commit URL
+BuildResult_CORE_v1.md
+Implementation Commit
+Test Evidence
 ```
-
----
 
 # Rules
 
-- Use paths, commit URLs, and artifact names instead of pasted full artifact content.
-- Include only context required for Codex execution.
-- Do not include lifecycle theory.
-- Avoid pasted documents, lifecycle explanations, and repeated context.
-- Do not request broad implementation beyond current stage scope.
-- Scope must include both required work and explicit non-goals.
-- Acceptance must contain 3 to 7 concrete checks.
-- Output must require Commit URL only when a remote commit URL exists.
-- Tests, result summaries, changed-file lists, and execution summaries are optional diagnostics, not required handoff fields.
-- The Route Card must identify Codex workspace, source artifact or commit URL, minimal Codex startup instruction, and expected output.
-
----
-
-# Template
-
-```text
-Task:
-<one sentence>
-
-Inputs:
-<artifact paths or commit URLs>
-
-Scope:
-Must do:
-<required implementation work>
-
-Must not do:
-<out-of-scope work>
-
-Acceptance:
-1. <check>
-2. <check>
-3. <check>
-
-Output:
-Commit URL
-```
-
----
+- Use artifact paths, section identifiers, and commits instead of pasted
+  upstream documents.
+- Include only context required for implementation.
+- Preserve unrelated changes.
+- Do not redesign frozen product artifacts.
+- Acceptance checks must be concrete and executable.
+- Output evidence must not be fabricated.
 
 # Status
 
-Frozen
+Draft

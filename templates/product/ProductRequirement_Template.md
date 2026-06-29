@@ -12,6 +12,16 @@
 
 ---
 
+<!-- SAPDP Stage Contract Start -->
+stage_schema=sapdp-product-stage-v1
+stage=Product Requirement
+input_artifact=docs/product/ProductRepresentation_CORE_v1.md
+input_commit=<PRODUCT_REPRESENTATION_ARTIFACT_COMMIT>
+conclusion_status=DRAFT
+<!-- SAPDP Stage Contract End -->
+
+---
+
 # Purpose
 
 Define what value and capabilities the product must provide.
@@ -40,50 +50,6 @@ Product Representation
 # Outputs
 
 UX Specification
-
-Visual Design Specification
-
-Technical Constraint
-
----
-
-# Required Load Set
-
-PROJECT_STATE.md
-
-PROJECT_BOOTSTRAP.md
-
-ARTIFACT_INDEX.md
-
-Problem Definition
-
-Solution Definition
-
-Product Representation
-
-Decision Log
-
----
-
-# Artifact Routing
-
-Route Manifest:
-ROUTE_MANIFEST.md
-
-Route Role:
-Product Requirement to UX, Visual, and Technical handoff
-
-Producer:
-ChatGPT
-
-Consumer:
-ChatGPT
-
-Next Action:
-Generate UXSpecification_CORE_v1.md, classify visual design requirement, generate VisualDesignSpecification_CORE_v1.md when required, and generate TechnicalConstraint_CORE_v1.md.
-
-Audit Source:
-ProductRequirement_CORE_v1.md
 
 ---
 
@@ -157,6 +123,26 @@ ProductRequirement_CORE_v1.md
 
 ---
 
+# Technical Constraints
+
+## Platform Constraints
+
+<PLATFORM_CONSTRAINTS>
+
+## Runtime Constraints
+
+<RUNTIME_CONSTRAINTS>
+
+## Integration Constraints
+
+<INTEGRATION_CONSTRAINTS>
+
+## Security and Privacy Constraints
+
+<SECURITY_AND_PRIVACY_CONSTRAINTS>
+
+---
+
 # Assumptions
 
 <ASSUMPTIONS>
@@ -174,10 +160,11 @@ A valid Product Requirement must satisfy:
 - Required capabilities defined
 - Success metrics defined
 - Scope boundary defined
+- Technical constraints defined
 - No product structure defined
 - No UX design defined
 - No visual design defined
-- No technical implementation defined
+- No unapproved technical implementation prescribed
 
 ---
 

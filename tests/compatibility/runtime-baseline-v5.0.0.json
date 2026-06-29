@@ -18,6 +18,8 @@
   ],
   "intentional_breaking_changes": [
     "mandatory-thread-boundary-after-design-freeze",
-    "mandatory-thread-boundary-after-materialization"
+    "mandatory-thread-boundary-after-materialization",
+    "artifact-driven-product-development-runtime",
+    "minimal-sapdp-lock-product-bootstrap"
   ]
 }

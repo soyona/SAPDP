@@ -57,6 +57,15 @@ Validation covers:
 - runtime compatibility;
 - script syntax and integration tests.
 
+Product Development progression is inspected without mutation:
+
+```bash
+./scripts/sapdp-product-next --project-root "<product-repository>"
+```
+
+The resolver returns the first missing, incomplete, uncommitted, failed, or
+stale canonical stage. It never updates product files.
+
 For bounded runtime inspection, run:
 
 ```bash

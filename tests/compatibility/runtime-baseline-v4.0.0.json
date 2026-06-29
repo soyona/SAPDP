@@ -12,6 +12,11 @@
     "release-invocation",
     "commit-url-success",
     "tag-url-success",
-    "git-tag-release-authority"
+    "git-tag-release-authority",
+    "thirteen-stage-product-content-model"
+  ],
+  "intentional_breaking_changes": [
+    "artifact-driven-product-development-runtime",
+    "minimal-sapdp-lock-product-bootstrap"
   ]
 }

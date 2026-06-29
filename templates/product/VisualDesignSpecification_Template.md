@@ -12,15 +12,27 @@
 
 ---
 
+<!-- SAPDP Stage Contract Start -->
+stage_schema=sapdp-product-stage-v1
+stage=Visual Design Specification
+input_artifact=docs/product/UXSpecification_CORE_v1.md
+input_commit=<UX_SPECIFICATION_ARTIFACT_COMMIT>
+conclusion_status=DRAFT
+<!-- SAPDP Stage Contract End -->
+
+---
+
 # Purpose
 
 Define the visual design requirements of the product.
 
 This artifact exists to ensure visual consistency, usability, clarity, and brand alignment.
 
-This artifact is mandatory for Experience Products.
+This artifact is mandatory for every product.
 
-For Functional Products, this artifact is optional unless the Human explicitly requires it.
+For a non-UI product, use `Applicability: Non-UI Product`, define applicable
+terminal, text, or output presentation rules, and give a rationale for every
+non-applicable visual section.
 
 This artifact must not define:
 
@@ -34,13 +46,7 @@ This artifact must not define:
 
 # Inputs
 
-Product Representation
-
-Product Requirement
-
 UX Specification
-
-Product Classification
 
 ---
 
@@ -50,43 +56,11 @@ MVP Definition
 
 ---
 
-# Required Load Set
+# Applicability
 
-PROJECT_STATE.md
+<APPLICABILITY>
 
-PROJECT_BOOTSTRAP.md
-
-ARTIFACT_INDEX.md
-
-Product Representation
-
-Product Requirement
-
-UX Specification
-
-Decision Log
-
----
-
-# Artifact Routing
-
-Route Manifest:
-ROUTE_MANIFEST.md
-
-Route Role:
-Visual Design Specification to MVP planning handoff
-
-Producer:
-ChatGPT
-
-Consumer:
-ChatGPT
-
-Next Action:
-Generate MVPDefinition_CORE_v1.md
-
-Audit Source:
-VisualDesignSpecification_CORE_v1.md
+<APPLICABILITY_RATIONALE>
 
 ---
 

@@ -20,7 +20,12 @@ Own cross-flow execution state, readiness, closure, handoff, progress, and findi
 
 ## Consumers
 
-All registered Flows and executable Modules.
+- Protocol Evolution
+- executable Flows and Modules that explicitly declare this Module as a
+  dependency
+
+Product Development does not consume this Module. Its committed stage artifact
+is its closure evidence.
 
 ## Boundary
 

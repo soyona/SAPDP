@@ -5,11 +5,7 @@
     {
       "path": "protocol/flows/bootstrap-validation.md",
       "legacy": ["execution-governance"],
-      "exact": [
-        "module|execution-governance|design",
-        "module|execution-governance|entry",
-        "module|execution-governance|runtime"
-      ]
+      "exact": []
     },
     {
       "path": "protocol/flows/bootstrap.md",
@@ -17,10 +13,7 @@
       "exact": [
         "module|artifact-materialization|design",
         "module|artifact-materialization|entry",
-        "module|artifact-materialization|runtime",
-        "module|execution-governance|design",
-        "module|execution-governance|entry",
-        "module|execution-governance|runtime"
+        "module|artifact-materialization|runtime"
       ]
     },
     {
@@ -36,18 +29,12 @@
       "path": "protocol/flows/product-development.md",
       "legacy": ["bootstrap", "execution-governance", "artifact-materialization", "dna"],
       "exact": [
-        "flow|bootstrap|main",
-        "flow|bootstrap|validation",
-        "module-flow|dna|add-dna",
         "module|artifact-materialization|design",
         "module|artifact-materialization|entry",
         "module|artifact-materialization|runtime",
         "module|dna|design",
         "module|dna|entry",
-        "module|dna|runtime",
-        "module|execution-governance|design",
-        "module|execution-governance|entry",
-        "module|execution-governance|runtime"
+        "module|dna|runtime"
       ]
     },
     {
@@ -58,20 +45,12 @@
     {
       "path": "protocol/modules/artifact-materialization/module.md",
       "legacy": ["execution-governance"],
-      "exact": [
-        "module|execution-governance|design",
-        "module|execution-governance|entry",
-        "module|execution-governance|runtime"
-      ]
+      "exact": []
     },
     {
       "path": "protocol/modules/artifact-materialization/runtime.md",
       "legacy": ["execution-governance"],
-      "exact": [
-        "module|execution-governance|design",
-        "module|execution-governance|entry",
-        "module|execution-governance|runtime"
-      ]
+      "exact": []
     },
     {
       "path": "protocol/modules/dna/flows/add-dna.md",
@@ -91,20 +70,13 @@
       "exact": [
         "module|artifact-materialization|design",
         "module|artifact-materialization|entry",
-        "module|artifact-materialization|runtime",
-        "module|execution-governance|design",
-        "module|execution-governance|entry",
-        "module|execution-governance|runtime"
+        "module|artifact-materialization|runtime"
       ]
     },
     {
       "path": "protocol/modules/dna/runtime.md",
       "legacy": ["execution-governance"],
-      "exact": [
-        "module|execution-governance|design",
-        "module|execution-governance|entry",
-        "module|execution-governance|runtime"
-      ]
+      "exact": []
     }
   ]
 }

@@ -1,0 +1,375 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+  printf 'sapdp-product-next: usage: sapdp-product-next --project-root <path>\n' >&2
+  exit 2
+}
+
+[[ $# -eq 2 && $1 == --project-root ]] || usage
+project_root=$2
+
+[[ -d $project_root ]] || {
+  printf 'BLOCKED:\nPRODUCT_REPOSITORY_UNAVAILABLE\n'
+  exit 1
+}
+
+project_root=$(cd "$project_root" && pwd -P)
+git -C "$project_root" rev-parse --show-toplevel >/dev/null 2>&1 || {
+  printf 'BLOCKED:\nPRODUCT_GIT_REPOSITORY_REQUIRED\n'
+  exit 1
+}
+
+git_root=$(git -C "$project_root" rev-parse --show-toplevel)
+[[ $git_root == "$project_root" ]] || {
+  printf 'BLOCKED:\nPROJECT_ROOT_MISMATCH\n'
+  exit 1
+}
+
+lock_file="$project_root/SAPDP.lock"
+[[ -f $lock_file && ! -L $lock_file ]] || {
+  printf 'NEXT_ACTION:\nMIGRATE SAPDP.lock\n'
+  exit 0
+}
+
+lock_value() {
+  local key=$1
+  awk -F= -v key="$key" '
+    $1 == key {
+      sub(/^[^=]*=/, "")
+      print
+      count++
+    }
+    END { if (count != 1) exit 2 }
+  ' "$lock_file"
+}
+
+lock_schema=$(lock_value schema 2>/dev/null) || {
+  printf 'NEXT_ACTION:\nREPAIR SAPDP.lock\n'
+  exit 0
+}
+lock_version=$(lock_value version 2>/dev/null) || {
+  printf 'NEXT_ACTION:\nREPAIR SAPDP.lock\n'
+  exit 0
+}
+lock_source=$(lock_value source 2>/dev/null) || {
+  printf 'NEXT_ACTION:\nREPAIR SAPDP.lock\n'
+  exit 0
+}
+lock_commit=$(lock_value commit 2>/dev/null) || {
+  printf 'NEXT_ACTION:\nREPAIR SAPDP.lock\n'
+  exit 0
+}
+lock_digest=$(lock_value authority_digest 2>/dev/null) || {
+  printf 'NEXT_ACTION:\nREPAIR SAPDP.lock\n'
+  exit 0
+}
+
+[[ $lock_schema == sapdp-lock-v1 ]] || {
+  printf 'NEXT_ACTION:\nREPAIR SAPDP.lock\n'
+  exit 0
+}
+[[ $lock_version =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || {
+  printf 'NEXT_ACTION:\nREPAIR SAPDP.lock\n'
+  exit 0
+}
+[[ $lock_source == https://github.com/soyona/SAPDP ]] || {
+  printf 'NEXT_ACTION:\nREPAIR SAPDP.lock\n'
+  exit 0
+}
+[[ $lock_commit =~ ^[0-9a-f]{40}$ ]] || {
+  printf 'NEXT_ACTION:\nREPAIR SAPDP.lock\n'
+  exit 0
+}
+[[ $lock_digest =~ ^sha256:[0-9a-f]{64}$ ]] || {
+  printf 'NEXT_ACTION:\nREPAIR SAPDP.lock\n'
+  exit 0
+}
+
+stages=(
+  "Problem"
+  "Solution"
+  "DNA Selection"
+  "Product Representation"
+  "Product Requirement"
+  "UX Specification"
+  "Visual Design Specification"
+  "MVP Definition"
+  "Task Package"
+  "Build"
+  "Implementation Verification"
+  "User Validation"
+  "Release"
+)
+
+paths=(
+  "docs/problem/ProblemDefinition_CORE_v1.md"
+  "docs/solution/SolutionDefinition_CORE_v1.md"
+  "docs/product/DNASelection_CORE_v1.md"
+  "docs/product/ProductRepresentation_CORE_v1.md"
+  "docs/product/ProductRequirement_CORE_v1.md"
+  "docs/product/UXSpecification_CORE_v1.md"
+  "docs/product/VisualDesignSpecification_CORE_v1.md"
+  "docs/mvp/MVPDefinition_CORE_v1.md"
+  "docs/tasks/TaskPackage_CORE_v1.md"
+  "docs/build/BuildResult_CORE_v1.md"
+  "docs/verification/ImplementationVerification_CORE_v1.md"
+  "docs/validation/UserValidation_CORE_v1.md"
+  "docs/release/ReleaseResult_CORE_v1.md"
+)
+
+emit_next() {
+  printf 'NEXT_ACTION:\n%s\n' "$1"
+  exit 0
+}
+
+emit_blocked() {
+  printf 'BLOCKED:\n%s\n' "$1"
+  exit 1
+}
+
+contract_value() {
+  local file=$1 key=$2
+  awk -F= -v key="$key" '
+    /^<!-- SAPDP Stage Contract Start -->$/ { starts++; active=1; next }
+    /^<!-- SAPDP Stage Contract End -->$/ { ends++; active=0; next }
+    active && $1 == key {
+      sub(/^[^=]*=/, "")
+      print
+      count++
+    }
+    END {
+      if (starts != 1 || ends != 1 || active || count != 1) exit 2
+    }
+  ' "$file"
+}
+
+required_headings() {
+  case $1 in
+    0)
+      printf '%s\n' \
+        '# Problem Summary' '## Problem Name' '## Problem Statement' \
+        '# Problem Context' '## Current Situation' '## Target User' \
+        '## Impact' '# Evidence' '## Observations' \
+        '## Validation Evidence' '# Problem Boundary' '## In Scope' \
+        '## Out Of Scope' '# Success Criteria' '# Constraints' \
+        '# Assumptions' '# Acceptance Criteria'
+      ;;
+    1)
+      printf '%s\n' \
+        '# Solution Summary' '## Solution Name' '## Solution Statement' \
+        '# Solution Vision' '# Solution Strategy' '# Solution Principles' \
+        '# Expected Outcome' '# Solution Boundary' '## In Scope' \
+        '## Out Of Scope' '# Constraints' '# Assumptions' \
+        '# Success Definition' '# Acceptance Criteria'
+      ;;
+    2)
+      printf '%s\n' \
+        '# Selected Visual DNA' '## DNA Name' '## Repository Path' \
+        '## Source Ref' '## Selection Rationale' '# Selected Product DNA' \
+        '# Compatibility Assessment' '# Human Decision Evidence' \
+        '# Constraints' '# Acceptance Criteria'
+      ;;
+    3)
+      printf '%s\n' \
+        '# Product Overview' '## Product Name' '## Product Description' \
+        '# Product Structure' '# Core User Flows' '# Functional Domains' \
+        '# Information Structure' '# External Interfaces' \
+        '# Product Boundary' '## In Scope' '## Out Of Scope' \
+        '# Assumptions' '# Acceptance Criteria'
+      ;;
+    4)
+      printf '%s\n' \
+        '# Product Summary' '## Product Name' '## Product Vision' \
+        '# Target Users' '# User Problems' '# User Goals' '# Product Goals' \
+        '# Required Capabilities' '# Success Metrics' '# Product Boundary' \
+        '## In Scope' '## Out Of Scope' '# Constraints' \
+        '# Technical Constraints' '## Platform Constraints' \
+        '## Runtime Constraints' '## Integration Constraints' \
+        '## Security and Privacy Constraints' '# Assumptions' \
+        '# Acceptance Criteria'
+      ;;
+    5)
+      printf '%s\n' \
+        '# UX Goals' '# User Profiles' '# User Journeys' '# User Flows' \
+        '# Interaction Principles' '# Navigation Rules' '# Feedback Rules' \
+        '# Error Handling Principles' '# Accessibility Requirements' \
+        '# UX Constraints' '# Acceptance Criteria'
+      ;;
+    6)
+      printf '%s\n' \
+        '# Applicability' '# Visual Goals' '# Design Principles' \
+        '# Visual Style' '# Color System' '# Typography System' \
+        '# Layout Principles' '# Component Visual Rules' \
+        '# Iconography Rules' '# Imagery Rules' \
+        '# Visual Consistency Rules' '# Accessibility Requirements' \
+        '# Acceptance Criteria'
+      ;;
+    7)
+      printf '%s\n' \
+        '# MVP Objective' '# Validation Goal' '# Success Criteria' \
+        '# Must Have Scope' '# Nice To Have Scope' \
+        '# Explicitly Excluded Scope' '# MVP Constraints' \
+        '# Validation Metrics' '# Release Readiness Criteria' \
+        '# Assumptions' '# Acceptance Criteria'
+      ;;
+    8)
+      printf '%s\n' \
+        '# Execution Method' '# Invocation' '# Task' '# Input References' \
+        '# Scope' '## Must Do' '## Must Not Do' '# Dependencies' \
+        '# Constraints' '# Acceptance Checks' '# Validation' \
+        '# Output Contract'
+      ;;
+    9)
+      printf '%s\n' \
+        '# Build Summary' '# Implementation Commit' '# Changed Paths' \
+        '# Commands Executed' '# Test Evidence' '# Scope Conformance' \
+        '# Remaining Issues' '# Acceptance Criteria'
+      ;;
+    10)
+      printf '%s\n' \
+        '# Verification Summary' '## Verification Scope' \
+        '## Verification Result' '# Scope Verification' \
+        '# Acceptance Criteria Verification' '# Constraint Verification' \
+        '# Test Result Verification' '# Completeness Verification' \
+        '# Findings' '# Required Actions' '# Verification Decision' \
+        '## Decision' '## Reason' '# Acceptance Criteria'
+      ;;
+    11)
+      printf '%s\n' \
+        '# Validation Summary' '## Validation Scope' \
+        '## Validation Result' '# Validation Environment' \
+        '# Validation Participants' '# User Feedback' \
+        '# User Behavior Findings' '# Goal Achievement Evaluation' \
+        '# Problem Resolution Evaluation' '# Findings' \
+        '# Required Actions' '# Validation Decision' '## Decision' \
+        '## Reason' '# Acceptance Criteria'
+      ;;
+    12)
+      printf '%s\n' \
+        '# Release Summary' '## Release Scope' '## Release Version' \
+        '# Human Release Approval' '# Release Decision' '## Decision' \
+        '## Reason' '# Git Tag' '# Implementation Verification Summary' \
+        '# User Validation Summary' '# Known Limitations' '# Release Risks' \
+        '# Required Follow-up Actions' '# Acceptance Criteria'
+      ;;
+  esac
+}
+
+section_value() {
+  local file=$1 heading=$2
+  awk -v heading="$heading" '
+    $0 == heading { found=1; next }
+    found && /^#/ { exit }
+    found && $0 !~ /^[[:space:]]*$/ && $0 != "---" { print; exit }
+  ' "$file"
+}
+
+previous_path=HUMAN_INPUT
+previous_commit=NOT_APPLICABLE
+
+for i in "${!stages[@]}"; do
+  stage=${stages[$i]}
+  path=${paths[$i]}
+  file="$project_root/$path"
+
+  [[ -f $file && ! -L $file ]] || emit_next "CREATE $path"
+
+  schema=$(contract_value "$file" stage_schema 2>/dev/null) ||
+    emit_next "REPAIR $path STAGE_CONTRACT_INVALID"
+  artifact_stage=$(contract_value "$file" stage 2>/dev/null) ||
+    emit_next "REPAIR $path STAGE_CONTRACT_INVALID"
+  input_artifact=$(contract_value "$file" input_artifact 2>/dev/null) ||
+    emit_next "REPAIR $path STAGE_CONTRACT_INVALID"
+  input_commit=$(contract_value "$file" input_commit 2>/dev/null) ||
+    emit_next "REPAIR $path STAGE_CONTRACT_INVALID"
+  conclusion_status=$(contract_value "$file" conclusion_status 2>/dev/null) ||
+    emit_next "REPAIR $path STAGE_CONTRACT_INVALID"
+
+  [[ $schema == sapdp-product-stage-v1 && $artifact_stage == "$stage" ]] ||
+    emit_next "REPAIR $path STAGE_CONTRACT_INVALID"
+  [[ $input_artifact == "$previous_path" ]] ||
+    emit_next "REPAIR $path INPUT_ARTIFACT_INVALID"
+
+  while IFS= read -r heading; do
+    grep -Fxq "$heading" "$file" ||
+      emit_next "COMPLETE $path MISSING_HEADING:$heading"
+  done < <(required_headings "$i")
+
+  if grep -Eq '<[A-Z][A-Z0-9_ |.-]*>' "$file"; then
+    emit_next "COMPLETE $path UNRESOLVED_PLACEHOLDER"
+  fi
+
+  if [[ $i -eq 2 ]]; then
+    [[ $(grep -Fxc '## DNA Name' "$file") -eq 2 ]] ||
+      emit_next "COMPLETE $path DNA_NAME_COUNT_INVALID"
+    [[ $(grep -Fxc '## Repository Path' "$file") -eq 2 ]] ||
+      emit_next "COMPLETE $path DNA_PATH_COUNT_INVALID"
+    [[ $(grep -Fxc '## Source Ref' "$file") -eq 2 ]] ||
+      emit_next "COMPLETE $path DNA_SOURCE_REF_COUNT_INVALID"
+    [[ $(grep -Fxc '## Selection Rationale' "$file") -eq 2 ]] ||
+      emit_next "COMPLETE $path DNA_RATIONALE_COUNT_INVALID"
+  fi
+
+  git -C "$project_root" ls-files --error-unmatch -- "$path" >/dev/null 2>&1 ||
+    emit_next "COMMIT $path"
+  [[ -z $(git -C "$project_root" status --porcelain -- "$path") ]] ||
+    emit_next "COMMIT $path"
+
+  artifact_commit=$(git -C "$project_root" log -1 --format=%H -- "$path")
+  [[ $artifact_commit =~ ^[0-9a-f]{40}$ ]] || emit_next "COMMIT $path"
+
+  if [[ $i -eq 0 ]]; then
+    [[ $input_commit == NOT_APPLICABLE ]] ||
+      emit_next "REPAIR $path INPUT_COMMIT_INVALID"
+  else
+    [[ $input_commit == "$previous_commit" ]] ||
+      emit_next "REVALIDATE $path INPUT_COMMIT_MISMATCH"
+  fi
+
+  case $i in
+    0|1|2|3|4|5|6|7|8|9)
+      [[ $conclusion_status == COMPLETE ]] ||
+        emit_next "COMPLETE $path"
+      ;;
+    10)
+      case $conclusion_status in
+        PASS) ;;
+        FAIL) emit_next "REWORK docs/build/BuildResult_CORE_v1.md IMPLEMENTATION_VERIFICATION_FAILED" ;;
+        *) emit_next "COMPLETE $path" ;;
+      esac
+      ;;
+    11)
+      case $conclusion_status in
+        PASS) ;;
+        FAIL) emit_next "REWORK docs/mvp/MVPDefinition_CORE_v1.md USER_VALIDATION_FAILED" ;;
+        *) emit_next "COMPLETE $path" ;;
+      esac
+      ;;
+    12)
+      case $conclusion_status in
+        COMPLETE) ;;
+        FAIL) emit_next "RETRY $path RELEASE_FAILED" ;;
+        *) emit_next "COMPLETE $path" ;;
+      esac
+      tag=$(section_value "$file" '# Git Tag')
+      [[ -n $tag ]] || emit_next "COMPLETE $path GIT_TAG_MISSING"
+      git -C "$project_root" rev-parse -q --verify "refs/tags/$tag" >/dev/null 2>&1 ||
+        emit_next "RETRY $path GIT_TAG_UNAVAILABLE"
+      ;;
+  esac
+
+  if [[ $i -eq 9 ]]; then
+    build_commit=$(section_value "$file" '# Implementation Commit')
+    [[ $build_commit =~ ^[0-9a-f]{40}$ ]] ||
+      emit_next "COMPLETE $path IMPLEMENTATION_COMMIT_INVALID"
+    git -C "$project_root" cat-file -e "${build_commit}^{commit}" 2>/dev/null ||
+      emit_next "COMPLETE $path IMPLEMENTATION_COMMIT_UNAVAILABLE"
+  fi
+
+  previous_path=$path
+  previous_commit=$artifact_commit
+done
+
+emit_next "PRODUCT_DEVELOPMENT_COMPLETE"

@@ -2,6 +2,23 @@
 
 This file is historical release evidence. It is not protocol authority.
 
+## v7.0.0
+
+- Replaced persisted Product Development state and route synchronization with a
+  strict thirteen-stage committed-artifact dependency chain.
+- Made each canonical stage artifact commit its own closure evidence.
+- Added direct predecessor commit validation, stale-chain recovery, and a
+  read-only Product Development next-action resolver.
+- Preserved all thirteen stage content standards, mandatory DNA Selection, and
+  mandatory Visual Design Specification for UI and non-UI products.
+- Added explicit DNA Selection and Build Result templates.
+- Integrated Technical Constraints into Product Requirement.
+- Simplified Bootstrap to a static README, `SAPDP.lock`, stage templates, and
+  an on-demand scaffold without protocol snapshots or lifecycle state files.
+- Removed Product Development updates to PROJECT_STATE, ROUTE_MANIFEST,
+  ARTIFACT_INDEX, dynamic README content, Closure Artifacts, and Findings
+  Registry.
+
 ## v6.0.0
 
 - Added mandatory, self-contained thread handoffs after Design Freeze and Materialization.

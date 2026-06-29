@@ -1,89 +1,39 @@
-# UserValidationResult Template
+# UserValidation Template
 
 ## Document Information
 
 | Item | Value |
-|--------|--------|
+| --- | --- |
 | Artifact Type | User Validation Result |
 | Owner | Human |
-| Producer | Human |
+| Producer | Human + ChatGPT |
 | Lifecycle Stage | User Validation |
 | Status | Template |
 
 ---
 
-# Purpose
-
-Validate whether the product creates value for real users.
-
-This artifact exists to determine whether the MVP successfully solves the intended problem.
-
-This artifact does not evaluate:
-
-- Code Quality
-- Architecture Quality
-- Implementation Correctness
-- Test Coverage
-
-These subjects belong to Implementation Verification.
+<!-- SAPDP Stage Contract Start -->
+stage_schema=sapdp-product-stage-v1
+stage=User Validation
+input_artifact=docs/verification/ImplementationVerification_CORE_v1.md
+input_commit=<IMPLEMENTATION_VERIFICATION_ARTIFACT_COMMIT>
+conclusion_status=DRAFT
+<!-- SAPDP Stage Contract End -->
 
 ---
+
+# Purpose
+
+Validate whether the verified product creates the intended value for real
+users under the approved MVP.
 
 # Inputs
 
-MVP Definition
-
-Build Artifact
-
-Implementation Verification Result
-
----
+Implementation Verification PASS
 
 # Outputs
 
-Release Result
-
----
-
-# Required Load Set
-
-PROJECT_STATE.md
-
-PROJECT_BOOTSTRAP.md
-
-ARTIFACT_INDEX.md
-
-MVP Definition
-
-Build Artifact
-
-Implementation Verification Result
-
-Decision Log
-
----
-
-# Artifact Routing
-
-Route Manifest:
-ROUTE_MANIFEST.md
-
-Route Role:
-User Validation to Release or issue handling handoff
-
-Producer:
-Human
-
-Consumer:
-ChatGPT or Codex
-
-Next Action:
-Generate ReleaseResult_CORE_v1.md on PASS or route required issues to ChatGPT or Codex.
-
-Audit Source:
-UserValidation_CORE_v1.md
-
----
+Release on PASS or MVP Definition rework on FAIL
 
 # Validation Summary
 
@@ -91,89 +41,62 @@ UserValidation_CORE_v1.md
 
 <VALIDATION_SCOPE>
 
----
-
 ## Validation Result
 
-<PASS | PATCH REQUIRED | FAIL>
-
----
+<PASS | FAIL>
 
 # Validation Environment
 
 <VALIDATION_ENVIRONMENT>
 
----
-
 # Validation Participants
 
 <VALIDATION_PARTICIPANTS>
-
----
 
 # User Feedback
 
 <USER_FEEDBACK>
 
----
-
 # User Behavior Findings
 
 <USER_BEHAVIOR_FINDINGS>
-
----
 
 # Goal Achievement Evaluation
 
 <GOAL_ACHIEVEMENT_EVALUATION>
 
----
-
 # Problem Resolution Evaluation
 
 <PROBLEM_RESOLUTION_EVALUATION>
-
----
 
 # Findings
 
 <FINDINGS>
 
----
-
 # Required Actions
 
 <REQUIRED_ACTIONS>
-
----
 
 # Validation Decision
 
 ## Decision
 
-<PASS | PATCH REQUIRED | FAIL>
-
----
+<PASS | FAIL>
 
 ## Reason
 
 <DECISION_REASON>
 
----
-
 # Acceptance Criteria
 
 A valid User Validation Result must satisfy:
 
-- Validation participants identified
-- Validation environment documented
-- User feedback documented
-- User behavior documented
-- Goal achievement evaluated
-- Problem resolution evaluated
-- Validation decision produced
-
----
+- Implementation Verification input commit is current and PASS
+- Validation participants and environment are identified
+- User feedback and observed behavior are recorded
+- Goal achievement and problem resolution are evaluated
+- Findings and actions are explicit
+- Validation decision is exactly PASS or FAIL
 
 # Status
 

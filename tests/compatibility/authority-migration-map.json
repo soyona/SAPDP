@@ -48,13 +48,11 @@
     {
       "path": "engine/contracts/BootstrapContract.md",
       "sha256": "d65755d6a486e2648c748f73ca03dd5504bc1faffc23befdd9c42f1026d27903",
-      "preserve_headings": true,
       "targets": ["protocol/flows/bootstrap.md"]
     },
     {
       "path": "engine/contracts/BootstrapValidationContract.md",
       "sha256": "f69854cb7417466ea7e708b7e4b5b06fa83bae9a2732a76cb6ecbed0ba4b9339",
-      "preserve_headings": true,
       "targets": ["protocol/flows/bootstrap-validation.md"]
     },
     {

@@ -12,6 +12,16 @@
 
 ---
 
+<!-- SAPDP Stage Contract Start -->
+stage_schema=sapdp-product-stage-v1
+stage=Solution
+input_artifact=docs/problem/ProblemDefinition_CORE_v1.md
+input_commit=<PROBLEM_ARTIFACT_COMMIT>
+conclusion_status=DRAFT
+<!-- SAPDP Stage Contract End -->
+
+---
+
 # Purpose
 
 Define the solution approach for the validated problem.
@@ -44,43 +54,7 @@ Problem Definition
 
 # Outputs
 
-Product Representation
-
----
-
-# Required Load Set
-
-PROJECT_STATE.md
-
-PROJECT_BOOTSTRAP.md
-
-ARTIFACT_INDEX.md
-
-Problem Definition
-
-Decision Log
-
----
-
-# Artifact Routing
-
-Route Manifest:
-ROUTE_MANIFEST.md
-
-Route Role:
-Solution to Product Representation handoff
-
-Producer:
-ChatGPT
-
-Consumer:
-ChatGPT
-
-Next Action:
-Generate ProductRequirement_CORE_v1.md and ProductRepresentation_CORE_v1.md
-
-Audit Source:
-SolutionDefinition_CORE_v1.md
+DNA Selection
 
 ---
 

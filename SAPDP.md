@@ -1,19 +1,19 @@
-# SAPDP v6.0.0 Protocol
+# SAPDP v7.0.0 Protocol
 
-Authority Digest: sha256:01ade921278840b4c78c086e7980caf69f7e565951c2a8354479bd9268304e0e
+Authority Digest: sha256:6e4a7920e5ed72fcc21b48a198bbcfc5a0c54c1770721bc629fa1e197a6d6114
 
 <!-- Runtime Capsule Start -->
 capsule_schema=sapdp-runtime-capsule-v1
 version_source=first-heading
 authority_digest_source=Authority Digest line
 authority_registry_location=SAPDP.md
-global=Artifacts and Runtime State drive product work; Git is durable audit evidence; conversation memory is not authority.
+global=Committed artifacts and Git evidence drive product work; conversation memory and generated progress views are not authority.
 global=Missing behavior, architecture, stages, outputs, or evidence must not be invented.
 global=Progression requires the active Flow readiness and transition rules.
 global=Missing or conflicting authority returns BLOCKED; behavior absent from loaded authority returns NOT DEFINED IN SAPDP.md.
 mode=home|trimmed case-insensitive bare sapdp|render exact home_output and do not enter a Flow
 mode=router|sapdp plus content|resolve one route before rendering; Home and Router are mutually exclusive
-route=1|new-product intent|Goal starts Build|product-development|entry=new
+route=1|new-product intent|Goal starts Build|bootstrap|main
 route=2|continue-product intent|Goal starts Continue|product-development|entry=continue
 route=3|protocol-upgrade intent|Goal starts Upgrade SAPDP|protocol-evolution|main
 route=4|Add Visual DNA|Add Product DNA|dna|add-dna
@@ -62,7 +62,9 @@ AI-Assisted Solo Product Development Protocol
 直接回复数字或描述你的情况即可。
 <!-- Runtime Capsule End -->
 
-SAPDP is a platform-neutral protocol for one Human working with AI and Git to move from idea to validated product release with low context cost, explicit state, and verifiable handoffs.
+SAPDP is a platform-neutral protocol for one Human working with AI and Git to
+move from idea to validated product release through a strict committed-artifact
+chain with low context cost and verifiable handoffs.
 
 ## Global Runtime Constraints
 

@@ -12,6 +12,16 @@
 
 ---
 
+<!-- SAPDP Stage Contract Start -->
+stage_schema=sapdp-product-stage-v1
+stage=Product Representation
+input_artifact=docs/product/DNASelection_CORE_v1.md
+input_commit=<DNA_SELECTION_ARTIFACT_COMMIT>
+conclusion_status=DRAFT
+<!-- SAPDP Stage Contract End -->
+
+---
+
 # Purpose
 
 Define the overall product structure.
@@ -30,7 +40,7 @@ This artifact must not define:
 
 # Inputs
 
-Solution Definition
+DNA Selection
 
 ---
 
@@ -59,51 +69,6 @@ Growth Systems
 Exploration Products
 Community Products
 ```
-
-Visual Design Requirement:
-
-```text
-Mandatory for Experience Product.
-Optional for Functional Product unless the Human explicitly requires it.
-```
-
----
-
-# Required Load Set
-
-PROJECT_STATE.md
-
-PROJECT_BOOTSTRAP.md
-
-ARTIFACT_INDEX.md
-
-Problem Definition
-
-Solution Definition
-
-Decision Log
-
----
-
-# Artifact Routing
-
-Route Manifest:
-ROUTE_MANIFEST.md
-
-Route Role:
-Product Representation to Product Requirement handoff
-
-Producer:
-ChatGPT
-
-Consumer:
-ChatGPT
-
-Next Action:
-Generate ProductRequirement_CORE_v1.md.
-
-Audit Source:
-ProductRepresentation_CORE_v1.md
 
 ---
 

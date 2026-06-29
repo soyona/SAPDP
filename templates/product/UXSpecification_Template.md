@@ -12,6 +12,16 @@
 
 ---
 
+<!-- SAPDP Stage Contract Start -->
+stage_schema=sapdp-product-stage-v1
+stage=UX Specification
+input_artifact=docs/product/ProductRequirement_CORE_v1.md
+input_commit=<PRODUCT_REQUIREMENT_ARTIFACT_COMMIT>
+conclusion_status=DRAFT
+<!-- SAPDP Stage Contract End -->
+
+---
+
 # Purpose
 
 Define the user experience requirements of the product.
@@ -30,8 +40,6 @@ This artifact must not define:
 
 # Inputs
 
-Product Representation
-
 Product Requirement
 
 ---
@@ -39,59 +47,6 @@ Product Requirement
 # Outputs
 
 Visual Design Specification
-
-MVP Definition
-
-Visual Design Decision:
-
-```text
-Required
-Not Required
-```
-
-Decision Source:
-
-```text
-Product Classification from ProductRepresentation_CORE_v1.md
-```
-
----
-
-# Required Load Set
-
-PROJECT_STATE.md
-
-PROJECT_BOOTSTRAP.md
-
-ARTIFACT_INDEX.md
-
-Product Representation
-
-Product Requirement
-
-Decision Log
-
----
-
-# Artifact Routing
-
-Route Manifest:
-ROUTE_MANIFEST.md
-
-Route Role:
-UX Specification to Visual Design and MVP planning handoff
-
-Producer:
-ChatGPT
-
-Consumer:
-ChatGPT
-
-Next Action:
-Generate or update VisualDesignSpecification_CORE_v1.md when required, otherwise route to MVPDefinition_CORE_v1.md with visual design marked Not Required.
-
-Audit Source:
-UXSpecification_CORE_v1.md
 
 ---
 

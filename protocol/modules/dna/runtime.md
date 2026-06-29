@@ -6,9 +6,6 @@ kind=module
 owner_id=dna
 component_id=runtime
 schema=sapdp-authority-v1
-depends_on=module|execution-governance|design
-depends_on=module|execution-governance|entry
-depends_on=module|execution-governance|runtime
 <!-- SAPDP Authority Metadata End -->
 
 ## DNA Selection

@@ -28,6 +28,7 @@ for test_script in \
   tests/flows/protocol-evolution.sh \
   tests/flows/protocol-evolution-stage-loading.sh \
   tests/flows/protocol-evolution-thread-handoff.sh \
+  tests/flows/product-development.sh \
   tests/modules/dna/module.sh \
   tests/scripts/sapdp-context.sh \
   tests/scripts/sapdp-materialize.sh \

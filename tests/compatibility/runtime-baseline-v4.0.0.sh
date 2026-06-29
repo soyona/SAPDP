@@ -13,7 +13,7 @@ actual=$(
 )
 [[ $actual == "$expected_digest" ]]
 
-grep -Fxq '# SAPDP v6.0.0 Protocol' SAPDP.md
+grep -Fxq '# SAPDP v7.0.0 Protocol' SAPDP.md
 grep -Fq 'mode=home|' SAPDP.md
 grep -Fq 'mode=router|' SAPDP.md
 grep -Fq 'structured=SAPDP followed by Goal: <goal>' SAPDP.md

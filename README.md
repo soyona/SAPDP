@@ -2,6 +2,10 @@
 
 SAPDP is an AI-assisted solo product development protocol for Human, ChatGPT, Codex, and Git collaboration.
 
+Product Development advances through thirteen canonical conclusion artifacts.
+Each artifact references the latest commit of its direct predecessor; no
+persisted route, index, or lifecycle state file is required.
+
 ## Start
 
 Use:

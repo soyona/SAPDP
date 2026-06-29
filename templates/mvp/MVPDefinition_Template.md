@@ -12,6 +12,16 @@
 
 ---
 
+<!-- SAPDP Stage Contract Start -->
+stage_schema=sapdp-product-stage-v1
+stage=MVP Definition
+input_artifact=docs/product/VisualDesignSpecification_CORE_v1.md
+input_commit=<VISUAL_DESIGN_ARTIFACT_COMMIT>
+conclusion_status=DRAFT
+<!-- SAPDP Stage Contract End -->
+
+---
+
 # Purpose
 
 Define the minimum product scope required for validation.
@@ -37,69 +47,13 @@ If any required Product Shape artifact is missing, MVP Definition is BLOCKED.
 
 # Inputs
 
-Product Representation
-
-Product Requirement
-
-UX Specification
-
 Visual Design Specification
-
-Technical Constraint
-
-Product Classification
 
 ---
 
 # Outputs
 
 Task Package
-
-Build Artifact
-
----
-
-# Required Load Set
-
-PROJECT_STATE.md
-
-PROJECT_BOOTSTRAP.md
-
-ARTIFACT_INDEX.md
-
-Product Representation
-
-Product Requirement
-
-UX Specification
-
-Visual Design Specification
-
-Technical Constraint
-
-Decision Log
-
----
-
-# Artifact Routing
-
-Route Manifest:
-ROUTE_MANIFEST.md
-
-Route Role:
-MVP Definition to Task Package handoff
-
-Producer:
-Human
-
-Consumer:
-ChatGPT
-
-Next Action:
-Generate TaskPackage_CORE_v1.md
-
-Audit Source:
-MVPDefinition_CORE_v1.md
 
 ---
 
